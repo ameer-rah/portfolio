@@ -1,4 +1,4 @@
-# Aidan Andrews Portfolio Website
+# My Portfolio Website
 
 A modern, responsive portfolio website built with Next.js and Tailwind CSS.
 

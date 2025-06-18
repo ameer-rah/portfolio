@@ -1,19 +1,35 @@
-# macOS system files
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
 .DS_Store
+*.pem
 
-# Xcode
-*.xcuserstate
-*.xcworkspace
-*.xcuserdata
-*.pbxuser
-*.mode1v3
-*.mode2v3
-DerivedData/
-build/
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# Node modules if any
-node_modules/
+# local env files
+.env*.local
 
-# General
-*.log
-.env
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts

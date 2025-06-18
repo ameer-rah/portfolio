@@ -1,14 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  experimental: {
+    appDir: true,
+  },
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'www.ameerrahman.info',
-      },
-    ],
+    domains: [],
   },
 }
 
-module.exports = nextConfig 
+module.exports = nextConfig

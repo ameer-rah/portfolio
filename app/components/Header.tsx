@@ -1,52 +1,240 @@
-import Image from 'next/image';
-import Link from 'next/link';
+'use client'
 
-export default function Header() {
+import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Menu, X, Github, Linkedin, Mail, Youtube } from 'lucide-react'
+import Link from 'next/link'
+
+interface NavItem {
+  name: string
+  href: string
+  current?: boolean
+}
+
+const navItems: NavItem[] = [
+  { name: 'Home', href: '/' },
+  { name: 'About', href: '/about', current: true },
+  { name: 'Projects', href: '/projects' },
+  { name: 'Contact', href: '/contact' },
+]
+
+const socialLinks = [
+  { 
+    name: 'GitHub', 
+    href: 'https://github.com/yourusername', 
+    icon: Github,
+    color: 'hover:text-gray-800'
+  },
+  { 
+    name: 'LinkedIn', 
+    href: 'https://linkedin.com/in/yourusername', 
+    icon: Linkedin,
+    color: 'hover:text-teal-green-600'
+  },
+  { 
+    name: 'Email', 
+    href: 'mailto:hello@aidanandrews.info', 
+    icon: Mail,
+    color: 'hover:text-coral-500'
+  },
+  { 
+    name: 'YouTube', 
+    href: 'https://youtube.com/@yourusername', 
+    icon: Youtube,
+    color: 'hover:text-coral-600'
+  },
+]
+
+const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen)
+  }
+
+  const closeMenu = () => {
+    setIsMenuOpen(false)
+  }
+
   return (
-    <header className="w-full bg-[#181A1B] pt-8 pb-4 px-4 border-b border-[#232527]">
-      <div className="max-w-6xl mx-auto flex flex-row items-center justify-between">
-        {/* Profile Section */}
-        <div className="flex items-center space-x-6">
-          <div className="rounded-xl overflow-hidden w-24 h-24 bg-gray-700">
-            <Image
-              src="/profile.jpg"
-              alt="Aidan Andrews"
-              width={96}
-              height={96}
-              className="object-cover w-full h-full"
-              priority
-            />
-          </div>
-          <div>
-            <h1 className="text-2xl font-bold text-white leading-tight">Aidan Andrews</h1>
-            <div className="text-gray-300 text-base mb-1">Entrepreneur, Researcher, Engineer</div>
-            <div className="flex space-x-3 mt-1">
-              <span className="text-xs bg-[#232527] text-blue-400 px-2 py-0.5 rounded-full">AI & Physics</span>
-              <span className="text-xs bg-[#232527] text-blue-400 px-2 py-0.5 rounded-full">CS</span>
+    <>
+      <motion.header
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+          scrolled
+            ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-white/20'
+            : 'bg-white/90 backdrop-blur-sm'
+        }`}
+      >
+        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            {/* Logo */}
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Link
+                href="/"
+                className="text-2xl font-bold text-gray-800 hover:text-teal-green-600 transition-colors"
+              >
+                Ameer Rahman
+              </Link>
+            </motion.div>
+
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center space-x-8">
+              {/* Navigation Links */}
+              <div className="flex items-center space-x-6">
+                {navItems.map((item) => (
+                  <motion.div key={item.name} className="relative">
+                    <Link
+                      href={item.href}
+                      className={`text-gray-700 hover:text-teal-green-600 font-medium transition-colors relative py-2 ${
+                        item.current ? 'text-teal-green-600' : ''
+                      }`}
+                    >
+                      {item.name}
+                      {item.current && (
+                        <motion.div
+                          layoutId="navbar-indicator"
+                          className="absolute bottom-0 left-0 right-0 h-0.5 bg-teal-green-600 rounded-full"
+                          initial={false}
+                          transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                        />
+                      )}
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Social Links */}
+              <div className="flex items-center space-x-3 pl-6 border-l border-gray-200">
+                {socialLinks.map((social) => {
+                  const IconComponent = social.icon
+                  return (
+                    <motion.a
+                      key={social.name}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.1, y: -2 }}
+                      whileTap={{ scale: 0.95 }}
+                      className={`p-2 rounded-full bg-gray-100 text-gray-600 transition-all duration-300 ${social.color} hover:bg-gray-200 hover:shadow-md`}
+                      title={social.name}
+                    >
+                      <IconComponent size={18} />
+                    </motion.a>
+                  )
+                })}
+              </div>
             </div>
+
+            {/* Mobile Menu Button */}
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={toggleMenu}
+              className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-teal-green-500"
+              aria-label="Toggle menu"
+            >
+              <motion.div
+                animate={{ rotate: isMenuOpen ? 180 : 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </motion.div>
+            </motion.button>
           </div>
-        </div>
-        {/* Icons and Button */}
-        <div className="flex items-center space-x-4">
-          <Link href="#" aria-label="X"><svg className="w-6 h-6 text-gray-400 hover:text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M18 6L6 18M6 6l12 12" /></svg></Link>
-          <Link href="#" aria-label="GitHub"><svg className="w-6 h-6 text-gray-400 hover:text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.49 2.87 8.3 6.84 9.64.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.62-3.37-1.36-3.37-1.36-.45-1.18-1.1-1.5-1.1-1.5-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.7 0 0 .84-.28 2.75 1.05A9.38 9.38 0 0112 6.84c.85.004 1.7.12 2.5.35 1.9-1.33 2.74-1.05 2.74-1.05.55 1.4.2 2.44.1 2.7.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.8-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.8 0 .27.18.58.69.48A10.01 10.01 0 0022 12.26C22 6.58 17.52 2 12 2z" /></svg></Link>
-          <Link href="#" aria-label="LinkedIn"><svg className="w-6 h-6 text-gray-400 hover:text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.28c-.97 0-1.75-.79-1.75-1.75s.78-1.75 1.75-1.75 1.75.79 1.75 1.75-.78 1.75-1.75 1.75zm13.5 11.28h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-10h2.88v1.36h.04c.4-.75 1.38-1.54 2.84-1.54 3.04 0 3.6 2 3.6 4.59v5.59z" /></svg></Link>
-          <Link href="#" aria-label="YouTube"><svg className="w-6 h-6 text-gray-400 hover:text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a2.994 2.994 0 00-2.112-2.12C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.386.566a2.994 2.994 0 00-2.112 2.12C0 8.07 0 12 0 12s0 3.93.502 5.814a2.994 2.994 0 002.112 2.12C4.5 20.5 12 20.5 12 20.5s7.5 0 9.386-.566a2.994 2.994 0 002.112-2.12C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" /></svg></Link>
-          <Link href="#" className="bg-blue-900 text-blue-200 px-4 py-1.5 rounded-full font-semibold text-sm ml-2 hover:bg-blue-800 transition">AAXIOM →</Link>
-        </div>
-      </div>
-      {/* Navigation Bar */}
-      <nav className="w-full flex justify-center mt-8">
-        <ul className="flex space-x-8 text-white text-lg font-medium">
-          <li><Link href="#" className="border-b-2 border-white pb-1">About</Link></li>
-          <li><Link href="#" className="hover:text-blue-400">Projects</Link></li>
-          <li><Link href="#" className="hover:text-blue-400">Blog</Link></li>
-          <li className="relative group">
-            <button className="hover:text-blue-400 flex items-center">Publications <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg></button>
-            {/* Dropdown (hidden for now) */}
-          </li>
-        </ul>
-      </nav>
-    </header>
-  );
-} 
+        </nav>
+
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+              className="md:hidden bg-white/95 backdrop-blur-md border-t border-white/20"
+            >
+              <div className="max-w-7xl mx-auto px-4 py-4 space-y-4">
+                {/* Navigation Links */}
+                {navItems.map((item, index) => (
+                  <motion.div
+                    key={item.name}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <Link
+                      href={item.href}
+                      onClick={closeMenu}
+                      className={`block px-4 py-2 rounded-lg text-gray-700 hover:text-teal-green-600 hover:bg-teal-green-50 font-medium transition-all ${
+                        item.current ? 'text-teal-green-600 bg-teal-green-50' : ''
+                      }`}
+                    >
+                      {item.name}
+                    </Link>
+                  </motion.div>
+                ))}
+                
+                {/* Mobile Social Links */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                  className="pt-4 border-t border-gray-200"
+                >
+                  <p className="text-sm text-gray-500 mb-3 px-4">Connect with me</p>
+                  <div className="flex justify-center space-x-4">
+                    {socialLinks.map((social) => {
+                      const IconComponent = social.icon
+                      return (
+                        <motion.a
+                          key={social.name}
+                          href={social.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.95 }}
+                          className={`p-3 rounded-full bg-gray-100 text-gray-600 transition-all duration-300 ${social.color} hover:bg-gray-200`}
+                          onClick={closeMenu}
+                        >
+                          <IconComponent size={20} />
+                        </motion.a>
+                      )
+                    })}
+                  </div>
+                </motion.div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.header>
+
+      {/* Overlay for mobile menu */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={closeMenu}
+            className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 md:hidden"
+          />
+        )}
+      </AnimatePresence>
+    </>
+  )
+}
+
+export default Header

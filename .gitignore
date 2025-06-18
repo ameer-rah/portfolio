@@ -1,0 +1,19 @@
+# macOS system files
+.DS_Store
+
+# Xcode
+*.xcuserstate
+*.xcworkspace
+*.xcuserdata
+*.pbxuser
+*.mode1v3
+*.mode2v3
+DerivedData/
+build/
+
+# Node modules if any
+node_modules/
+
+# General
+*.log
+.env

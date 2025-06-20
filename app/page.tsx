@@ -1,11 +1,12 @@
 "use client";
 
+import React, { useCallback } from 'react';
 import { Github, Linkedin, Youtube, Music, Target, Terminal } from 'lucide-react'
 import GitHubCalendar from 'react-github-calendar'
 import Particles from "react-tsparticles";
 import { loadSnowPreset } from "tsparticles-preset-snow";
-import { useCallback } from "react";
 import type { Engine } from "tsparticles-engine";
+import Link from "next/link";
 
 type IconProps = React.SVGProps<SVGSVGElement> & { size?: number };
 
@@ -61,51 +62,16 @@ const socialLinks = [
 ]
 
 export default function Page() {
+  const particlesInit = useCallback(async (engine: Engine) => {
+    await loadSnowPreset(engine);
+  }, []);
+
   return (
-    <div className="bg-[#111111] text-white min-h-screen font-sans">
-      <header className="relative z-30 bg-[#222] border-b border-gray-900">
-        <div className="max-w-6xl mx-auto flex items-center justify-between p-4 md:p-6">
-          <div className="flex items-center gap-5">
-            <img src="/header_pic.jpeg" alt="Ameer Rahman" className="w-20 h-20 rounded-2xl object-cover shadow-lg"/>
-            <div className="flex flex-col justify-center">
-              <span className="text-2xl md:text-3xl font-extrabold text-white leading-tight">Ameer Rahman</span>
-              <span className="text-gray-300 text-lg md:text-xl font-medium">Computer Science & IT Student</span>
-              <div className="flex gap-2 mt-2">
-                <span className="px-3 py-1 rounded-full bg-emerald-900 text-emerald-300 text-xs font-semibold">Cybersecurity</span>
-                <span className="px-3 py-1 rounded-full bg-blue-900 text-blue-300 text-xs font-semibold">CS</span>
-              </div>
-            </div>
-          </div>
-          <div className="flex items-center space-x-4">
-            {socialLinks.map((link) => (
-              <a key={link.name} href={link.href} className="text-gray-300 hover:text-emerald-400 transition-colors">
-                <link.icon size={26} />
-              </a>
-            ))}
-          </div>
-        </div>
-      </header>
-      <nav className="relative z-30 bg-[#111111] ">
-        <div className="max-w-4xl mx-auto flex justify-center items-center gap-12 py-4">
-          <a href="#" className="text-white font-bold text-lg pb-1 border-b-2 border-white">About</a>
-          <a href="#" className="text-white font-semibold text-lg pb-1 border-b-2 border-transparent hover:border-white transition">Projects</a>
-          <a href="#" className="text-white font-semibold text-lg pb-1 border-b-2 border-transparent hover:border-white transition">Experience</a>
-          <a
-            href="/ameer_resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-white font-semibold text-lg pb-1 border-b-2 border-transparent hover:border-white transition"
-          >
-            Resume
-          </a>
-        </div>
-      </nav>
+    <>
       <Particles
         id="tsparticles"
         className="fixed inset-0 z-0"
-        init={useCallback(async (engine: Engine) => {
-          await loadSnowPreset(engine);
-        }, [])}
+        init={particlesInit}
         options={{
           preset: "snow",
           background: { color: "#111111" },
@@ -119,142 +85,140 @@ export default function Page() {
           }
         }}
       />
-      <main>
-        <div className="max-w-4xl mx-auto">
-          <section className="mt-12 bg-gradient-to-br from-gray-800/80 via-gray-900/50 to-gray-800/80 
-            backdrop-blur-lg rounded-3xl p-8 border border-gray-700/60 shadow-2xl shadow-black/20">
-            <div className="flex flex-col items-center text-center">
-              <div className="relative mb-6">
-                <div className="w-28 h-28 rounded-full bg-gradient-to-br from-teal-400/80 to-emerald-600/80 
-                  flex items-center justify-center animate-[float_3s_ease-in-out_infinite]">
-                  <span className="text-4xl font-bold text-white">AR</span>
-                </div>
-                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-teal-400 to-emerald-600 
-                  blur-xl opacity-50"></div>
+      <div className="max-w-4xl mx-auto">
+        <section className="mt-12 bg-gradient-to-br from-gray-800/80 via-gray-900/50 to-gray-800/80 
+          backdrop-blur-lg rounded-3xl p-8 border border-gray-700/60 shadow-2xl shadow-black/20">
+          <div className="flex flex-col items-center text-center">
+            <div className="relative mb-6">
+              <div className="w-28 h-28 rounded-full bg-gradient-to-br from-teal-400/80 to-emerald-600/80 
+                flex items-center justify-center animate-[float_3s_ease-in-out_infinite]">
+                <span className="text-4xl font-bold text-white">AR</span>
               </div>
-              <h1 className="text-5xl font-extrabold text-white tracking-tight">Ameer Rahman</h1>
-              <h2 className="mt-2 text-xl text-gray-400">Computer Science & IT Student</h2>
-              <p className="mt-6 max-w-2xl text-lg text-gray-300">
-                Whether I'm working on cybersecurity projects, studying data structures, or building tools to
-                simplify daily tasks, I bring curiosity, discipline, and purpose to everything I do. I believe in
-                learning by doing, and in using what I learn to uplift others, improve systems, and create
-                technology that makes a difference
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-teal-400 to-emerald-600 
+                blur-xl opacity-50"></div>
+            </div>
+            <h1 className="text-5xl font-extrabold text-white tracking-tight">Ameer Rahman</h1>
+            <h2 className="mt-2 text-xl text-gray-400">Queens, NYC</h2>
+            <p className="mt-6 max-w-2xl text-lg text-gray-300">
+              Whether I'm working on cybersecurity projects, studying data structures, or building tools to
+              simplify daily tasks, I bring curiosity, discipline, and purpose to everything I do. I believe in
+              learning by doing, and in using what I learn to uplift others, improve systems, and create
+              technology that makes a difference
+            </p>
+          </div>
+        </section>
+
+        <div className="my-12">
+          <hr className="h-1 w-full border-0 bg-emerald-700 rounded-full" />
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-8 mt-8">
+          <div className="group relative transition-all">
+            <div className="absolute inset-0 z-0 rounded-2xl opacity-0 group-hover:opacity-100 group-hover:bg-gray-800/70 
+              group-hover:backdrop-blur-lg group-hover:border group-hover:border-gray-700/60 group-hover:shadow-2xl 
+              group-hover:shadow-black/20 transition-all duration-300 pointer-events-none"></div>
+            <div className="relative z-10 p-6">
+              <div className="flex items-center space-x-4 mb-4">
+                
+                <h3 className="text-2xl font-bold">About Me</h3>
+              </div>
+              <p className="text-gray-400">
+                I am a Computer Science and IT student with a passion for creating technology solutions that make a
+                real difference. My approach combines theoretical knowledge with practical application, always
+                focusing on building systems that are both efficient and user-friendly.
+              </p>
+              <p className="text-gray-400 mt-4">
+                Currently pursuing my degree while working on various projects that span web development, software
+                engineering, and emerging technologies. I enjoy tackling complex challenges and collaborating with
+                others to build innovative solutions.
               </p>
             </div>
-          </section>
-
-          <div className="my-12">
-            <hr className="h-1 w-full border-0 bg-emerald-700 rounded-full" />
           </div>
-
-          <div className="grid md:grid-cols-2 gap-8 mt-8">
-            <div className="group relative transition-all">
-              <div className="absolute inset-0 z-0 rounded-2xl opacity-0 group-hover:opacity-100 group-hover:bg-gray-800/70 
-                group-hover:backdrop-blur-lg group-hover:border group-hover:border-gray-700/60 group-hover:shadow-2xl 
-                group-hover:shadow-black/20 transition-all duration-300 pointer-events-none"></div>
-              <div className="relative z-10 p-6">
-                <div className="flex items-center space-x-4 mb-4">
-                  
-                  <h3 className="text-2xl font-bold">About Me</h3>
-                </div>
-                <p className="text-gray-400">
-                  I am a Computer Science and IT student with a passion for creating technology solutions that make a
-                  real difference. My approach combines theoretical knowledge with practical application, always
-                  focusing on building systems that are both efficient and user-friendly.
-                </p>
-                <p className="text-gray-400 mt-4">
-                  Currently pursuing my degree while working on various projects that span web development, software
-                  engineering, and emerging technologies. I enjoy tackling complex challenges and collaborating with
-                  others to build innovative solutions.
-                </p>
+          <div className="group relative transition-all">
+            <div className="absolute inset-0 z-0 rounded-2xl opacity-0 group-hover:opacity-100 group-hover:bg-gray-800/70 
+              group-hover:backdrop-blur-lg group-hover:border group-hover:border-gray-700/60 group-hover:shadow-2xl 
+            group-hover:shadow-black/20 transition-all duration-300 pointer-events-none"></div>
+            <div className="relative z-10 p-6">
+              <div className="flex items-center space-x-4 mb-4">
+                
+                <h3 className="text-2xl font-bold">Technical Philosophy</h3>
               </div>
-            </div>
-            <div className="group relative transition-all">
-              <div className="absolute inset-0 z-0 rounded-2xl opacity-0 group-hover:opacity-100 group-hover:bg-gray-800/70 
-                group-hover:backdrop-blur-lg group-hover:border group-hover:border-gray-700/60 group-hover:shadow-2xl 
-              group-hover:shadow-black/20 transition-all duration-300 pointer-events-none"></div>
-              <div className="relative z-10 p-6">
-                <div className="flex items-center space-x-4 mb-4">
-                  
-                  <h3 className="text-2xl font-bold">Technical Philosophy</h3>
-                </div>
-                <ul className="space-y-3 text-gray-400">
-                  <li className="flex items-start">
-                    <span className="text-blue-400 mr-3 mt-1">•</span>
-                    <span>Clean, maintainable code that others can understand</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-blue-400 mr-3 mt-1">•</span>
-                    <span>User-centered design that prioritizes experience</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-blue-400 mr-3 mt-1">•</span>
-                    <span>Continuous learning and staying current with technology</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-blue-400 mr-3 mt-1">•</span>
-                    <span>Collaborative development and knowledge sharing</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-blue-400 mr-3 mt-1">•</span>
-                    <span>Saving the internet one virus at a time</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-blue-400 mr-3 mt-1">•</span>
-                    <span>Defending the internet from the bad guys</span>
-                  </li>
-                </ul>
-              </div>
+              <ul className="space-y-3 text-gray-400">
+                <li className="flex items-start">
+                  <span className="text-blue-400 mr-3 mt-1">•</span>
+                  <span>Clean, maintainable code that others can understand</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-blue-400 mr-3 mt-1">•</span>
+                  <span>User-centered design that prioritizes experience</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-blue-400 mr-3 mt-1">•</span>
+                  <span>Continuous learning and staying current with technology</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-blue-400 mr-3 mt-1">•</span>
+                  <span>Collaborative development and knowledge sharing</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-blue-400 mr-3 mt-1">•</span>
+                  <span>Saving the internet one virus at a time</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-blue-400 mr-3 mt-1">•</span>
+                  <span>Defending the internet from the bad guys</span>
+                </li>
+              </ul>
             </div>
           </div>
+        </div>
 
-          {/* Education Section */}
-          <div className="w-full px-4">
-            <div className="max-w-4xl mx-auto group relative transition-all">
-              <div className="absolute inset-0 z-0 rounded-2xl opacity-0 group-hover:opacity-100 group-hover:bg-gray-800/70 group-hover:backdrop-blur-lg group-hover:border 
-              group-hover:border-gray-700/60 group-hover:shadow-2xl group-hover:shadow-black/20 transition-all duration-300 pointer-events-none"></div>
-              <div className="relative z-10 p-6 flex flex-col">
-                <h2 className="text-2xl font-extrabold mb-6 text-white">Education</h2>
-                <div className="flex flex-col md:flex-row items-center gap-6">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Rutgers_Scarlet_Knights_logo.svg/496px-Rutgers_Scarlet_Knights_logo.svg.png" alt="Rutgers Logo" 
-                  className="w-24 h-24 object-contain rounded-lg" />
-                  <div className="flex-1">
-                    <div className="text-white text-xl font-bold">Rutgers University - New Brunswick</div>
-                    <div className="text-gray-400 text-lg font-medium mt-1">B.S. in Computer Science, Minor in Critical Intelligence Studies</div>
-                    <div className="mt-4">
-                      <div className="bg-emerald-700 rounded-full h-8 flex items-center">
-                        <span className="text-white font-semibold text-base px-4">3.7 GPA</span>
-                      </div>
+        {/* Education Section */}
+        <div className="w-full px-4">
+          <div className="max-w-4xl mx-auto group relative transition-all">
+            <div className="absolute inset-0 z-0 rounded-2xl opacity-0 group-hover:opacity-100 group-hover:bg-gray-800/70 group-hover:backdrop-blur-lg group-hover:border 
+            group-hover:border-gray-700/60 group-hover:shadow-2xl group-hover:shadow-black/20 transition-all duration-300 pointer-events-none"></div>
+            <div className="relative z-10 p-6 flex flex-col">
+              <h2 className="text-2xl font-extrabold mb-6 text-white">Education</h2>
+              <div className="flex flex-col md:flex-row items-center gap-6">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Rutgers_Scarlet_Knights_logo.svg/496px-Rutgers_Scarlet_Knights_logo.svg.png" alt="Rutgers Logo" 
+                className="w-24 h-24 object-contain rounded-lg" />
+                <div className="flex-1">
+                  <div className="text-white text-xl font-bold">Rutgers University - New Brunswick</div>
+                  <div className="text-gray-400 text-lg font-medium mt-1">B.S. in Computer Science, Minor in Critical Intelligence Studies</div>
+                  <div className="mt-4">
+                    <div className="bg-emerald-700 rounded-full h-8 flex items-center">
+                      <span className="text-white font-semibold text-base px-4">3.7 GPA</span>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <div className="max-w-4xl mx-auto my-12">
-            <hr className="h-1 w-full border-0 bg-emerald-700 rounded-full" />
-          </div>
+        <div className="max-w-4xl mx-auto my-12">
+          <hr className="h-1 w-full border-0 bg-emerald-700 rounded-full" />
+        </div>
 
-          <div className="group relative transition-all mt-0">
-            <div className="absolute inset-0 z-0 rounded-2xl opacity-0 group-hover:opacity-100 group-hover:bg-gray-800/70 
-              group-hover:backdrop-blur-lg group-hover:border group-hover:border-gray-700/60 group-hover:shadow-2xl 
-              group-hover:shadow-black/20 transition-all duration-300 pointer-events-none"></div>
-            <div className="relative z-0 p-2">
-              <h2 className="text-2xl font-bold mb-4">GitHub Contributions</h2>
-              <div className="flex justify-center">
-                <GitHubCalendar
-                  username="ameer-rah"
-                  colorScheme="dark"
-                  blockSize={13}
-                  blockMargin={4}
-                  fontSize={16}
-                />
-              </div>
+        <div className="group relative transition-all mt-0">
+          <div className="absolute inset-0 z-0 rounded-2xl opacity-0 group-hover:opacity-100 group-hover:bg-gray-800/70 
+            group-hover:backdrop-blur-lg group-hover:border group-hover:border-gray-700/60 group-hover:shadow-2xl 
+            group-hover:shadow-black/20 transition-all duration-300 pointer-events-none"></div>
+          <div className="relative z-0 p-2">
+            <h2 className="text-2xl font-bold mb-4">GitHub Contributions</h2>
+            <div className="flex justify-center">
+              <GitHubCalendar
+                username="ameer-rah"
+                colorScheme="dark"
+                blockSize={13}
+                blockMargin={4}
+                fontSize={16}
+              />
             </div>
           </div>
         </div>
-      </main>
+      </div>
 
       {/* What Drives Me Section */}
 
@@ -384,6 +348,6 @@ export default function Page() {
           </div>
         </section>
       </div>
-    </div>
+    </>
   )
 }

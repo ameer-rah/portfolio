@@ -1,378 +1,389 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
-import { 
-  Mail, 
-  FileText, 
-  Eye, 
-  Target, 
-  Building, 
-  GraduationCap, 
-  Wrench,
-  Menu,
-  X
-} from 'lucide-react'
+import { Github, Linkedin, Youtube, Music, Target, Terminal } from 'lucide-react'
+import GitHubCalendar from 'react-github-calendar'
+import Particles from "react-tsparticles";
+import { loadSnowPreset } from "tsparticles-preset-snow";
+import { useCallback } from "react";
+import type { Engine } from "tsparticles-engine";
 
-const skills = [
-  'AutoCAD', 'Revit', 'SketchUp', 'Rhino', 'V-Ray', 'Photoshop',
-  'InDesign', 'Illustrator', '3D Modeling', 'Rendering', 'BIM', 'Sustainability'
+type IconProps = React.SVGProps<SVGSVGElement> & { size?: number };
+
+const SpotifyIcon = (props: IconProps) => (
+  <svg viewBox="0 0 168 168" width={props.size || 26} height={props.size || 26} {...props}>
+    <circle cx="84" cy="84" r="84" fill="#1ED760"/>
+    <path d="M120.1 115.5c-1.6 2.6-5.1 3.4-7.7 1.8-21-12.9-47.5-15.8-78.7-8.6-3 0.7-6-1.2-6.7-4.2-0.7-3 1.2-6 4.2-6.7 33.6-7.7 62.6-4.5 85.2 9.6 2.6 1.6 3.4 5.1 1.8 7.7zm10.9-21.9c-2 3.2-6.2 4.2-9.4 2.2-24-14.7-60.6-19-88.9-10.3-3.5 1-7.2-1-8.2-4.5-1-3.5 1-7.2 4.5-8.2 31.8-9.4 71.1-5.7 98.2 11.2 3.2 2 4.2 6.2 2.2 9.4zm0.9-23.2c-28.2-16.7-74.8-18.2-101.7-9.9-4 1.2-8.2-1-9.4-5-1.2-4 1-8.2 5-9.4 30.2-9.2 81.2-7.5 113.6 11.2 4 2.4 5.3 7.6 2.9 11.6-2.4 4-7.6 5.3-11.6 2.9z" fill="#fff"/>
+  </svg>
+);
+
+const GitHubIcon = (props: IconProps) => (
+  <svg viewBox="0 0 24 24" width={props.size || 26} height={props.size || 26} {...props}>
+    <circle cx="12" cy="12" r="12" fill="#181717"/>
+    <path fill="#fff" d="M12 2C6.48 2 2 6.58 2 12.26c0 4.48 2.87 8.28 6.84 9.63.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.62-3.37-1.36-3.37-1.36-.45-1.18-1.1-1.5-1.1-1.5-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.7 0 0 .84-.28 2.75 1.05A9.38 9.38 0 0112 6.84c.85.004 1.71.12 2.51.35 1.91-1.33 2.75-1.05 2.75-1.05.55 1.4.2 2.44.1 2.7.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.07.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.58.69.48A10.01 10.01 0 0022 12.26C22 6.58 17.52 2 12 2z"/>
+  </svg>
+);
+
+const LinkedInIcon = (props: IconProps) => (
+  <svg viewBox="0 0 24 24" width={props.size || 26} height={props.size || 26} {...props}>
+    <circle cx="12" cy="12" r="12" fill="#0077B5"/>
+    <path fill="#fff" d="M17.1 17.1h-2.2v-3.1c0-.7 0-1.6-1-1.6s-1.1.8-1.1 1.6v3.1h-2.2V10h2.1v1h.1c.3-.6 1-1.2 2-1.2 2.1 0 2.5 1.4 2.5 3.2v4.1zM7.3 9c-.7 0-1.2-.6-1.2-1.2 0-.7.5-1.2 1.2-1.2.7 0 1.2.6 1.2 1.2 0 .7-.5 1.2-1.2 1.2zm1.1 8.1H6.2V10h2.2v7.1z"/>
+  </svg>
+);
+
+const YouTubeIcon = (props: IconProps) => (
+  <svg viewBox="0 0 24 24" width={props.size || 26} height={props.size || 26} {...props}>
+    <circle cx="12" cy="12" r="12" fill="#FF0000"/>
+    <polygon points="10,8.5 16,12 10,15.5" fill="#fff"/>
+  </svg>
+);
+
+const socialLinks = [
+  {
+    name: 'GitHub',
+    href: 'https://github.com/ameer-rah',
+    icon: GitHubIcon,
+  },
+  {
+    name: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/ameer-rahman-a3bb232a0/',
+    icon: LinkedInIcon,
+  },
+  {
+    name: 'YouTube',
+    href: 'https://www.youtube.com/@uhhhmeer',
+    icon: YouTubeIcon,
+  },
+  {
+    name: 'Spotify',
+    href: 'https://open.spotify.com/user/realramannoodles?si=c0b48adfe8fd4389',
+    icon: SpotifyIcon,
+  },
 ]
 
-const fadeInUp = {
-  initial: { opacity: 0, y: 60 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, ease: "easeOut" }
-}
-
-const staggerContainer = {
-  animate: {
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-}
-
-export default function AboutPage() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
-  const { scrollY } = useScroll()
-  const y1 = useTransform(scrollY, [0, 300], [0, 50])
-  const y2 = useTransform(scrollY, [0, 300], [0, -50])
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50)
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
+export default function Page() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-teal-green-700 via-royal-purple-600 to-coral-500">
-      {/* Navigation */}
-      <motion.nav 
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-          scrolled 
-            ? 'bg-white/95 backdrop-blur-md shadow-lg' 
-            : 'bg-white/90 backdrop-blur-sm'
-        }`}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <motion.div 
-              whileHover={{ scale: 1.05 }}
-              className="text-2xl font-bold text-gray-800"
-            >
-              Aidan Andrews
-            </motion.div>
-            
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex space-x-8">
-              {['Home', 'About', 'Projects', 'Contact'].map((item) => (
-                <motion.a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  whileHover={{ scale: 1.1 }}
-                  className={`text-gray-700 hover:text-teal-green-600 font-medium transition-colors relative ${
-                    item === 'About' ? 'text-teal-green-600' : ''
-                  }`}
-                >
-                  {item}
-                  {item === 'About' && (
-                    <motion.div
-                      layoutId="underline"
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-teal-green-600"
-                    />
-                  )}
-                </motion.a>
-              ))}
+    <div className="bg-[#111111] text-white min-h-screen font-sans">
+      <header className="relative z-30 bg-[#222] border-b border-gray-900">
+        <div className="max-w-6xl mx-auto flex items-center justify-between p-4 md:p-6">
+          <div className="flex items-center gap-5">
+            <img src="/header_pic.jpeg" alt="Ameer Rahman" className="w-20 h-20 rounded-2xl object-cover shadow-lg"/>
+            <div className="flex flex-col justify-center">
+              <span className="text-2xl md:text-3xl font-extrabold text-white leading-tight">Ameer Rahman</span>
+              <span className="text-gray-300 text-lg md:text-xl font-medium">Computer Science & IT Student</span>
+              <div className="flex gap-2 mt-2">
+                <span className="px-3 py-1 rounded-full bg-emerald-900 text-emerald-300 text-xs font-semibold">Cybersecurity</span>
+                <span className="px-3 py-1 rounded-full bg-blue-900 text-blue-300 text-xs font-semibold">CS</span>
+              </div>
             </div>
+          </div>
+          <div className="flex items-center space-x-4">
+            {socialLinks.map((link) => (
+              <a key={link.name} href={link.href} className="text-gray-300 hover:text-emerald-400 transition-colors">
+                <link.icon size={26} />
+              </a>
+            ))}
+          </div>
+        </div>
+      </header>
+      <nav className="relative z-30 bg-[#111111] ">
+        <div className="max-w-4xl mx-auto flex justify-center items-center gap-12 py-4">
+          <a href="#" className="text-white font-bold text-lg pb-1 border-b-2 border-white">About</a>
+          <a href="#" className="text-white font-semibold text-lg pb-1 border-b-2 border-transparent hover:border-white transition">Projects</a>
+          <a href="#" className="text-white font-semibold text-lg pb-1 border-b-2 border-transparent hover:border-white transition">Experience</a>
+          <a
+            href="/ameer_resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white font-semibold text-lg pb-1 border-b-2 border-transparent hover:border-white transition"
+          >
+            Resume
+          </a>
+        </div>
+      </nav>
+      <Particles
+        id="tsparticles"
+        className="fixed inset-0 z-0"
+        init={useCallback(async (engine: Engine) => {
+          await loadSnowPreset(engine);
+        }, [])}
+        options={{
+          preset: "snow",
+          background: { color: "#111111" },
+          fullScreen: { enable: false },
+          zIndex: 0,
+          particles: {
+            size: {
+              value: 2,
+              random: { enable: true, minimumValue: 1 }
+            }
+          }
+        }}
+      />
+      <main>
+        <div className="max-w-4xl mx-auto">
+          <section className="mt-12 bg-gradient-to-br from-gray-800/80 via-gray-900/50 to-gray-800/80 
+            backdrop-blur-lg rounded-3xl p-8 border border-gray-700/60 shadow-2xl shadow-black/20">
+            <div className="flex flex-col items-center text-center">
+              <div className="relative mb-6">
+                <div className="w-28 h-28 rounded-full bg-gradient-to-br from-teal-400/80 to-emerald-600/80 
+                  flex items-center justify-center animate-[float_3s_ease-in-out_infinite]">
+                  <span className="text-4xl font-bold text-white">AR</span>
+                </div>
+                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-teal-400 to-emerald-600 
+                  blur-xl opacity-50"></div>
+              </div>
+              <h1 className="text-5xl font-extrabold text-white tracking-tight">Ameer Rahman</h1>
+              <h2 className="mt-2 text-xl text-gray-400">Computer Science & IT Student</h2>
+              <p className="mt-6 max-w-2xl text-lg text-gray-300">
+                Whether I'm working on cybersecurity projects, studying data structures, or building tools to
+                simplify daily tasks, I bring curiosity, discipline, and purpose to everything I do. I believe in
+                learning by doing, and in using what I learn to uplift others, improve systems, and create
+                technology that makes a difference
+              </p>
+            </div>
+          </section>
 
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
-            >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+          <div className="my-12">
+            <hr className="h-1 w-full border-0 bg-emerald-700 rounded-full" />
           </div>
 
-          {/* Mobile Menu */}
-          <motion.div
-            initial={false}
-            animate={{ height: isMenuOpen ? 'auto' : 0 }}
-            className="md:hidden overflow-hidden bg-white border-t"
-          >
-            <div className="py-4 space-y-4">
-              {['Home', 'About', 'Projects', 'Contact'].map((item) => (
-                <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  className="block px-4 text-gray-700 hover:text-indigo-600 font-medium"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item}
-                </a>
-              ))}
+          <div className="grid md:grid-cols-2 gap-8 mt-8">
+            <div className="group relative transition-all">
+              <div className="absolute inset-0 z-0 rounded-2xl opacity-0 group-hover:opacity-100 group-hover:bg-gray-800/70 
+                group-hover:backdrop-blur-lg group-hover:border group-hover:border-gray-700/60 group-hover:shadow-2xl 
+                group-hover:shadow-black/20 transition-all duration-300 pointer-events-none"></div>
+              <div className="relative z-10 p-6">
+                <div className="flex items-center space-x-4 mb-4">
+                  
+                  <h3 className="text-2xl font-bold">About Me</h3>
+                </div>
+                <p className="text-gray-400">
+                  I am a Computer Science and IT student with a passion for creating technology solutions that make a
+                  real difference. My approach combines theoretical knowledge with practical application, always
+                  focusing on building systems that are both efficient and user-friendly.
+                </p>
+                <p className="text-gray-400 mt-4">
+                  Currently pursuing my degree while working on various projects that span web development, software
+                  engineering, and emerging technologies. I enjoy tackling complex challenges and collaborating with
+                  others to build innovative solutions.
+                </p>
+              </div>
             </div>
-          </motion.div>
-        </div>
-      </motion.nav>
-
-      <main className="pt-16">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          {/* Hero Section */}
-          <motion.section 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-            className="relative overflow-hidden rounded-3xl bg-white/10 backdrop-blur-lg border border-white/20 p-8 md:p-16 text-center mb-12"
-          >
-            <motion.div
-              style={{ y: y1 }}
-              className="absolute inset-0 bg-gradient-to-r from-purple-400/20 to-pink-400/20 rounded-3xl"
-            />
-            
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.8, type: "spring" }}
-              className="relative w-48 h-48 mx-auto mb-8 rounded-full bg-gradient-to-br from-teal-green-400 to-royal-purple-500 flex items-center justify-center text-6xl font-bold text-white shadow-2xl"
-            >
-              <motion.span
-                animate={{ 
-                  rotate: [0, 10, -10, 0],
-                  scale: [1, 1.1, 1]
-                }}
-                transition={{ 
-                  duration: 4,
-                  repeat: Infinity,
-                  repeatType: "reverse"
-                }}
-              >
-                AA
-              </motion.span>
-            </motion.div>
-
-            <motion.h1 
-              {...fadeInUp}
-              className="text-4xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg"
-            >
-              Aidan Andrews
-            </motion.h1>
-            
-            <motion.p 
-              {...fadeInUp}
-              transition={{ delay: 0.2 }}
-              className="text-xl md:text-2xl text-white/90 mb-6"
-            >
-              Architectural Designer & Creative Professional
-            </motion.p>
-            
-            <motion.p 
-              {...fadeInUp}
-              transition={{ delay: 0.4 }}
-              className="text-lg text-white/80 max-w-3xl mx-auto leading-relaxed"
-            >
-              Passionate about creating innovative architectural solutions that blend functionality 
-              with aesthetic excellence. I bring a unique perspective to design challenges, combining 
-              technical expertise with creative vision to deliver exceptional results for every project.
-            </motion.p>
-          </motion.section>
-
-          {/* Content Grid */}
-          <motion.div 
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12"
-          >
-            {/* About Me Card */}
-            <motion.div 
-              variants={fadeInUp}
-              whileHover={{ y: -8, scale: 1.02 }}
-              className="group bg-white/95 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-white/20 hover:shadow-2xl transition-all duration-300"
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="p-3 bg-gradient-to-br from-teal-green-500 to-royal-purple-600 rounded-xl text-white">
-                  <Target size={24} />
+            <div className="group relative transition-all">
+              <div className="absolute inset-0 z-0 rounded-2xl opacity-0 group-hover:opacity-100 group-hover:bg-gray-800/70 
+                group-hover:backdrop-blur-lg group-hover:border group-hover:border-gray-700/60 group-hover:shadow-2xl 
+              group-hover:shadow-black/20 transition-all duration-300 pointer-events-none"></div>
+              <div className="relative z-10 p-6">
+                <div className="flex items-center space-x-4 mb-4">
+                  
+                  <h3 className="text-2xl font-bold">Technical Philosophy</h3>
                 </div>
-                <h2 className="text-2xl font-bold text-gray-800">About Me</h2>
+                <ul className="space-y-3 text-gray-400">
+                  <li className="flex items-start">
+                    <span className="text-blue-400 mr-3 mt-1">•</span>
+                    <span>Clean, maintainable code that others can understand</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-blue-400 mr-3 mt-1">•</span>
+                    <span>User-centered design that prioritizes experience</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-blue-400 mr-3 mt-1">•</span>
+                    <span>Continuous learning and staying current with technology</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-blue-400 mr-3 mt-1">•</span>
+                    <span>Collaborative development and knowledge sharing</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-blue-400 mr-3 mt-1">•</span>
+                    <span>Saving the internet one virus at a time</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-blue-400 mr-3 mt-1">•</span>
+                    <span>Defending the internet from the bad guys</span>
+                  </li>
+                </ul>
               </div>
-              
-              <div className="space-y-4 text-gray-600 leading-relaxed">
-                <p>
-                  I am an architectural designer with a passion for creating spaces that inspire 
-                  and function beautifully. My approach combines traditional design principles 
-                  with modern innovation, always keeping the end user's experience at the forefront 
-                  of every decision.
-                </p>
-                <p>
-                  With a background in architectural design from Iowa State University, I have 
-                  developed a comprehensive understanding of both the technical and creative 
-                  aspects of architecture. My work spans residential, commercial, and conceptual projects.
-                </p>
-              </div>
-            </motion.div>
-
-            {/* Design Philosophy Card */}
-            <motion.div 
-              variants={fadeInUp}
-              whileHover={{ y: -8, scale: 1.02 }}
-              className="group bg-white/95 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-white/20 hover:shadow-2xl transition-all duration-300"
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="p-3 bg-gradient-to-br from-royal-purple-500 to-coral-600 rounded-xl text-white">
-                  <Building size={24} />
-                </div>
-                <h2 className="text-2xl font-bold text-gray-800">Design Philosophy</h2>
-              </div>
-              
-              <p className="text-gray-600 mb-4 leading-relaxed">
-                I believe that great architecture should tell a story while serving its purpose 
-                flawlessly. My design philosophy centers around core principles:
-              </p>
-              
-              <ul className="space-y-2">
-                {[
-                  'Sustainable and environmentally conscious design',
-                  'Human-centered spaces that enhance daily life',
-                  'Innovation balanced with timeless design principles',
-                  'Collaboration and open communication with clients',
-                  'Attention to detail in every aspect of the design process'
-                ].map((item, index) => (
-                  <motion.li
-                    key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    className="flex items-start gap-3 text-gray-600"
-                  >
-                    <div className="w-2 h-2 bg-gradient-to-br from-teal-green-500 to-royal-purple-600 rounded-full mt-2 flex-shrink-0" />
-                    {item}
-                  </motion.li>
-                ))}
-              </ul>
-            </motion.div>
-
-            {/* Technical Skills Card */}
-            <motion.div 
-              variants={fadeInUp}
-              whileHover={{ y: -8, scale: 1.02 }}
-              className="group bg-white/95 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-white/20 hover:shadow-2xl transition-all duration-300"
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="p-3 bg-gradient-to-br from-coral-500 to-teal-green-600 rounded-xl text-white">
-                  <Wrench size={24} />
-                </div>
-                <h2 className="text-2xl font-bold text-gray-800">Technical Skills</h2>
-              </div>
-              
-              <p className="text-gray-600 mb-6 leading-relaxed">
-                Proficient in a wide range of design and technical tools:
-              </p>
-              
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                {skills.map((skill, index) => (
-                  <motion.div
-                    key={skill}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                    transition={{ delay: index * 0.05 }}
-                    className="bg-gradient-to-r from-teal-green-500 to-royal-purple-600 text-white px-3 py-2 rounded-full text-sm font-medium text-center cursor-pointer hover:shadow-lg transition-all duration-300"
-                  >
-                    {skill}
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Education Card */}
-            <motion.div 
-              variants={fadeInUp}
-              whileHover={{ y: -8, scale: 1.02 }}
-              className="group bg-white/95 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-white/20 hover:shadow-2xl transition-all duration-300"
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="p-3 bg-gradient-to-br from-teal-green-500 to-coral-600 rounded-xl text-white">
-                  <GraduationCap size={24} />
-                </div>
-                <h2 className="text-2xl font-bold text-gray-800">Education & Experience</h2>
-              </div>
-              
-              <div className="space-y-4">
-                <div className="p-4 bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl">
-                  <h3 className="font-bold text-gray-800 text-lg">Iowa State University</h3>
-                  <p className="text-teal-green-600 font-medium">Bachelor of Architecture</p>
-                  <p className="text-gray-600 text-sm">Focus on sustainable design and urban planning</p>
-                </div>
-                
-                <p className="text-gray-600 leading-relaxed">
-                  My educational journey has provided me with a solid foundation in architectural 
-                  theory, structural engineering principles, and sustainable design practices. 
-                  I've worked on diverse projects ranging from residential developments to public spaces.
-                </p>
-              </div>
-            </motion.div>
-          </motion.div>
-
-          {/* Contact Section */}
-          <motion.section
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            style={{ y: y2 }}
-            className="bg-white/95 backdrop-blur-sm rounded-3xl p-8 md:p-12 text-center shadow-2xl border border-white/20"
-          >
-            <motion.h2 
-              className="text-3xl md:text-4xl font-bold text-gray-800 mb-6"
-              whileInView={{ scale: [0.9, 1.1, 1] }}
-              transition={{ duration: 0.5 }}
-            >
-              Let's Work Together
-            </motion.h2>
-            
-            <p className="text-lg text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-              I'm always excited to take on new challenges and collaborate on innovative projects. 
-              Whether you're looking for residential design, commercial architecture, or creative 
-              consultation, I'd love to hear about your vision.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              {[
-                { icon: Mail, text: 'Get In Touch', href: 'mailto:hello@aidanandrews.info', primary: true },
-                { icon: Eye, text: 'View My Work', href: '/projects', primary: false },
-                { icon: FileText, text: 'Download Resume', href: '/assets/PDF/resume.pdf', primary: false }
-              ].map((button, index) => (
-                <motion.a
-                  key={button.text}
-                  href={button.href}
-                  target={button.text.includes('Resume') ? '_blank' : undefined}
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className={`flex items-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 ${
-                    button.primary
-                      ? 'bg-gradient-to-r from-teal-green-500 to-royal-purple-600 text-white shadow-lg hover:shadow-xl'
-                      : 'border-2 border-teal-green-500 text-teal-green-600 hover:bg-teal-green-50'
-                  }`}
-                >
-                  <button.icon size={20} />
-                  {button.text}
-                </motion.a>
-              ))}
             </div>
-          </motion.section>
+          </div>
+
+          {/* Education Section */}
+          <div className="w-full px-4">
+            <div className="max-w-4xl mx-auto group relative transition-all">
+              <div className="absolute inset-0 z-0 rounded-2xl opacity-0 group-hover:opacity-100 group-hover:bg-gray-800/70 group-hover:backdrop-blur-lg group-hover:border 
+              group-hover:border-gray-700/60 group-hover:shadow-2xl group-hover:shadow-black/20 transition-all duration-300 pointer-events-none"></div>
+              <div className="relative z-10 p-6 flex flex-col">
+                <h2 className="text-2xl font-extrabold mb-6 text-white">Education</h2>
+                <div className="flex flex-col md:flex-row items-center gap-6">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Rutgers_Scarlet_Knights_logo.svg/496px-Rutgers_Scarlet_Knights_logo.svg.png" alt="Rutgers Logo" 
+                  className="w-24 h-24 object-contain rounded-lg" />
+                  <div className="flex-1">
+                    <div className="text-white text-xl font-bold">Rutgers University - New Brunswick</div>
+                    <div className="text-gray-400 text-lg font-medium mt-1">B.S. in Computer Science, Minor in Critical Intelligence Studies</div>
+                    <div className="mt-4">
+                      <div className="bg-emerald-700 rounded-full h-8 flex items-center">
+                        <span className="text-white font-semibold text-base px-4">3.7 GPA</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="max-w-4xl mx-auto my-12">
+            <hr className="h-1 w-full border-0 bg-emerald-700 rounded-full" />
+          </div>
+
+          <div className="group relative transition-all mt-0">
+            <div className="absolute inset-0 z-0 rounded-2xl opacity-0 group-hover:opacity-100 group-hover:bg-gray-800/70 
+              group-hover:backdrop-blur-lg group-hover:border group-hover:border-gray-700/60 group-hover:shadow-2xl 
+              group-hover:shadow-black/20 transition-all duration-300 pointer-events-none"></div>
+            <div className="relative z-0 p-2">
+              <h2 className="text-2xl font-bold mb-4">GitHub Contributions</h2>
+              <div className="flex justify-center">
+                <GitHubCalendar
+                  username="ameer-rah"
+                  colorScheme="dark"
+                  blockSize={13}
+                  blockMargin={4}
+                  fontSize={16}
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </main>
+
+      {/* What Drives Me Section */}
+
+
+      
+      <div className="w-full py-6 px-4">
+        <div className="max-w-4xl mx-auto group relative transition-all">
+          <div className="absolute inset-0 z-0 rounded-2xl opacity-0 group-hover:opacity-100 group-hover:bg-gray-800/70 
+            group-hover:backdrop-blur-lg group-hover:border group-hover:border-gray-700/60 group-hover:shadow-2xl 
+          group-hover:shadow-black/20 transition-all duration-300 pointer-events-none"></div>
+          <div className="relative z-0 p-4 flex flex-col md:flex-row items-center gap-8">
+            <div className="flex-1 w-full">
+              <h2 className="text-2xl font-extrabold mb-4 text-white">What Drives Me</h2>
+              <div className="flex items-center mb-4">
+                <div className="w-1 h-8 bg-emerald-700 rounded-full mr-3"></div>
+                <blockquote className="italic text-base text-gray-400">
+                  "I had a purpose before everyone had an opinion" <span className="not-italic font-medium">- Jalen Hurts</span>
+                </blockquote>
+              </div>
+              <p className="text-gray-400 text-sm md:text-base leading-relaxed">
+                I've always been drawn to tech that solves real problems, whether it's securing a vulnerable system, building out backend tools, 
+                or studying how to protect critical infrastructure. I bring a hands-on mindset to everything I do, from troubleshooting issues in 
+                real time to diving deep into code and frameworks that power our digital world. My long-term goal is to work at the intersection of 
+                cybersecurity, and ethical innovation. I'm actively building that future through academic projects, certifications like CompTIA Security+ 
+                and Google Cybersecurity, and internship experience in IT and system support. I believe learning never stops and I'm committed to growing 
+                into a professional who not only understands how systems work, but how to make them work better for everyone.
+              </p>
+            </div>
+            <div className="flex-1 flex justify-center items-center w-full mt-4 md:mt-0">
+              <img src="/profile.jpeg" alt="Placeholder childhood" className="w-96 h-90 object-cover rounded-xl border-2 border-gray-700 shadow-lg 
+              bg-gray-900"/>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* Technical Expertise Section */}
+      <div className="max-w-4xl mx-auto group relative transition-all mb-16">
+        <div className="absolute inset-0 z-0 rounded-2xl opacity-0 group-hover:opacity-100 group-hover:bg-gray-800/70 group-hover:backdrop-blur-lg group-hover:border group-hover:border-gray-700/60 group-hover:shadow-2xl group-hover:shadow-black/20 transition-all duration-300 pointer-events-none"></div>
+        <section className="relative z-10 p-8 rounded-2xl">
+          <div className="flex flex-col md:flex-row gap-12">
+            {/* Core Skills */}
+            <div className="flex-1">
+              <h2 className="text-3xl font-extrabold mb-4 text-white">Technical Expertise</h2>
+              <div className="mb-2">
+                <div className="text-lg font-semibold text-gray-200 mb-1">Certifications</div>
+                <div className="flex flex-wrap gap-2 mb-2">
+                  <span className="px-4 py-2 rounded-full bg-gray-900 text-white text-sm font-medium hover:bg-emerald-700 hover:text-black transition cursor-pointer">Coursera Google Cybersecurity</span>
+                </div>
+                <div className="flex flex-wrap gap-2 mb-2">
+                  <span className="px-4 py-2 rounded-full bg-gray-900 text-white text-sm font-medium hover:bg-emerald-700 hover:text-black transition cursor-pointer">Coursera Google Data Analytics</span>
+                  <span className="px-4 py-2 rounded-full bg-gray-900 text-white text-sm font-medium hover:bg-emerald-700 hover:text-black transition cursor-pointer">CompTIA Security+</span>
+                </div>
+              </div>
+              <div className="mb-2">
+                <div className="text-lg font-semibold text-gray-200 mb-1">Software Development</div>
+                <div className="flex flex-wrap gap-2 mb-2">
+                  <span className="px-4 py-2 rounded-full bg-gray-900 text-white text-sm font-medium hover:bg-emerald-700 hover:text-black transition cursor-pointer">Java</span>
+                  <span className="px-4 py-2 rounded-full bg-gray-900 text-white text-sm font-medium hover:bg-emerald-700 hover:text-black transition cursor-pointer">Python</span>
+                  <span className="px-4 py-2 rounded-full bg-gray-900 text-white text-sm font-medium hover:bg-emerald-700 hover:text-black transition cursor-pointer">JavaScript</span>
+                  <span className="px-4 py-2 rounded-full bg-gray-900 text-white text-sm font-medium hover:bg-emerald-700 hover:text-black transition cursor-pointer">React</span>
+                  <span className="px-4 py-2 rounded-full bg-gray-900 text-white text-sm font-medium hover:bg-emerald-700 hover:text-black transition cursor-pointer">Swift</span>
+                  <span className="px-4 py-2 rounded-full bg-gray-900 text-white text-sm font-medium hover:bg-emerald-700 hover:text-black transition cursor-pointer">HTML</span>
+                  <span className="px-4 py-2 rounded-full bg-gray-900 text-white text-sm font-medium hover:bg-emerald-700 hover:text-black transition cursor-pointer">CSS</span>
+                  <span className="px-4 py-2 rounded-full bg-gray-900 text-white text-sm font-medium hover:bg-emerald-700 hover:text-black transition cursor-pointer">TypeScript</span>
+                  <span className="px-4 py-2 rounded-full bg-gray-900 text-white text-sm font-medium hover:bg-emerald-700 hover:text-black transition cursor-pointer">C</span>
+
+                </div>
+              </div>
+              {/* End of Core Skills left column */}
+            </div>
+            {/* Languages */}
+            <div className="flex-1">
+              <h3 className="text-xl font-bold text-white mb-4">Languages</h3>
+              <div className="space-y-6">
+                {/* Java */}
+                <div>
+                  <div className="flex justify-between items-center mb-1">
+                    <span className="text-white font-semibold">Java</span>
+                    <span className="text-white font-semibold">85%</span>
+                  </div>
+                  <div className="w-full h-3 rounded-full bg-gray-700 overflow-hidden">
+                    <div className="h-full rounded-full bg-gradient-to-r from-pink-200 via-pink-400 to-red-600" style={{ width: '85%' }}></div>
+                  </div>
+                </div>
+                {/* Python */}
+                <div>
+                  <div className="flex justify-between items-center mb-1">
+                    <span className="text-white font-semibold">Python</span>
+                    <span className="text-white font-semibold">70%</span>
+                  </div>
+                  <div className="w-full h-3 rounded-full bg-gray-700 overflow-hidden">
+                    <div className="h-full rounded-full bg-gradient-to-r from-pink-200 via-pink-400 to-red-600" style={{ width: '70%' }}></div>
+                  </div>
+                </div>
+                {/* JavaScript */}
+                <div>
+                  <div className="flex justify-between items-center mb-1">
+                    <span className="text-white font-semibold">JavaScript</span>
+                    <span className="text-white font-semibold">65%</span>
+                  </div>
+                  <div className="w-full h-3 rounded-full bg-gray-700 overflow-hidden">
+                    <div className="h-full rounded-full bg-gradient-to-r from-pink-200 via-pink-400 to-red-600" style={{ width: '65%' }}></div>
+                  </div>
+                </div>
+                {/* React */}
+                <div>
+                  <div className="flex justify-between items-center mb-1">
+                    <span className="text-white font-semibold">React</span>
+                    <span className="text-white font-semibold">60%</span>
+                  </div>
+                  <div className="w-full h-3 rounded-full bg-gray-700 overflow-hidden">
+                    <div className="h-full rounded-full bg-gradient-to-r from-pink-200 via-pink-400 to-red-600" style={{ width: '60%' }}></div>
+                  </div>
+                </div>
+                {/* C */}
+                <div>
+                  <div className="flex justify-between items-center mb-1">
+                    <span className="text-white font-semibold">C</span>
+                    <span className="text-white font-semibold">35%</span>
+                  </div>
+                  <div className="w-full h-3 rounded-full bg-gray-700 overflow-hidden">
+                    <div className="h-full rounded-full bg-gradient-to-r from-pink-200 via-pink-400 to-red-600" style={{ width: '35%' }}></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
   )
 }

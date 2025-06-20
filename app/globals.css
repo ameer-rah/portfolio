@@ -8,8 +8,8 @@
   }
   
   body {
-    @apply bg-gradient-to-br from-teal-green-700 via-royal-purple-600 to-coral-500;
-    @apply min-h-screen;
+    @apply bg-[#111111];
+    @apply min-h-screen text-white;
   }
 }
 
@@ -23,25 +23,35 @@
   }
   
   .gradient-text {
-    @apply bg-gradient-to-r from-teal-green-600 to-royal-purple-600 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-teal-green-400 to-royal-purple-400 bg-clip-text text-transparent;
   }
 
-  .hero-gradient {
+  .dark-gradient {
+    background: linear-gradient(135deg, #18181b 0%, #27272a 50%, #3f3f46 100%);
+  }
+
+  .accent-gradient {
     background: linear-gradient(135deg, #0f766e 0%, #9155fd 50%, #ec5f5f 100%);
   }
 
-  .card-gradient {
-    background: linear-gradient(135deg, #14b8a6 0%, #a370f7 100%);
+  .glass-dark {
+    background: rgba(39, 39, 42, 0.7);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(113, 113, 122, 0.2);
+  }
+
+  .glow-effect {
+    box-shadow: 0 0 20px rgba(20, 184, 166, 0.3);
   }
 }
 
-/* Custom scrollbar with new colors */
+/* Custom scrollbar with dark theme */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #27272a;
   border-radius: 10px;
 }
 
@@ -51,21 +61,21 @@
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #0d9488, #7c3aed);
+  background: linear-gradient(135deg, #14b8a6, #a370f7);
 }
 
-/* Selection styles with new colors */
+/* Selection styles with dark theme */
 ::selection {
-  background: rgba(15, 118, 110, 0.3);
-  color: #1a202c;
+  background: rgba(20, 184, 166, 0.3);
+  color: #ffffff;
 }
 
-/* Focus styles for accessibility */
+/* Focus styles for dark theme accessibility */
 .focus-visible:focus {
-  @apply outline-none ring-2 ring-teal-green-500 ring-offset-2;
+  @apply outline-none ring-2 ring-teal-green-400 ring-offset-2 ring-offset-[#111111];
 }
 
-/* Loading animation */
+/* Loading animation for dark theme */
 @keyframes shimmer {
   0% {
     background-position: -200px 0;
@@ -78,12 +88,26 @@
 .shimmer {
   background: linear-gradient(
     90deg,
-    #f0f0f0 0px,
-    #e0e0e0 40px,
-    #f0f0f0 80px
+    #27272a 0px,
+    #3f3f46 40px,
+    #27272a 80px
   );
   background-size: 200px;
   animation: shimmer 1.5s infinite;
+}
+
+/* Glow effects for dark theme */
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 20px rgba(20, 184, 166, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 30px rgba(145, 85, 253, 0.7);
+  }
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite alternate;
 }
 
 /* Print styles */
@@ -96,4 +120,17 @@
     background: white !important;
     color: black !important;
   }
+}
+
+/* Dark theme specific styles */
+.dark-card {
+  background: rgba(39, 39, 42, 0.8);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(113, 113, 122, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.dark-card:hover {
+  background: rgba(63, 63, 70, 0.8);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
 }

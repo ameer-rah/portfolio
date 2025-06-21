@@ -67,7 +67,7 @@ const experiences = [
     company: 'CommonPoint Queens',
     location: 'Forest Hills, NY',
     date: 'July 2023 – December 2023',
-    image: '/commonPoint.png',
+    image: '/commonpoint.webp',
     bullets: [
       'Designed age-appropriate activities and interactive lessons to teach cybersecurity fundamentals in an engaging and accessible way',
       'Taught 30 students core digital safety topics, including recognizing phishing scams, avoiding unsafe websites, and protecting personal information online'

@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   keywords: ['computer science', 'IT', 'portfolio', 'ameer rahman', 'technology', 'software development'],
   icons: {
     icon: '/profile.jpeg',
+    apple: '/profile.jpeg',
   },
 };
 

@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: 'Ameer Rahman',
   description: 'Portfolio of Ameer Rahman, Computer Science & IT Student specializing in innovative technology solutions.',
   keywords: ['computer science', 'IT', 'portfolio', 'ameer rahman', 'technology', 'software development'],
+  icons: {
+    icon: '/profile.jpeg',
+  },
 };
 
 export default function RootLayout({

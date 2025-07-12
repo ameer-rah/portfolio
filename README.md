@@ -1,7 +1,5 @@
 # My Portfolio Website
 
-A modern, responsive portfolio website built with Next.js and Tailwind CSS.
-
 ## Features
 
 - Responsive design that works on all devices
@@ -17,3 +15,4 @@ A modern, responsive portfolio website built with Next.js and Tailwind CSS.
 - Tailwind CSS
 - Framer Motion
 - TypeScript
+- CSS

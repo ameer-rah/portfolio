@@ -134,3 +134,35 @@
   background: rgba(63, 63, 70, 0.8);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
 }
+
+/* Base styles for mobile first */
+body {
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 100%;
+  padding: 1rem;
+}
+
+/* For tablets and up */
+@media (min-width: 600px) {
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+/* For desktops and up */
+@media (min-width: 900px) {
+  .container {
+    max-width: 900px;
+  }
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+}

@@ -15,6 +15,18 @@ const socialLinks = [
 
 const experiences = [
   {
+    title: 'Cybersecurity Intern',
+    company: 'Redynox',
+    location: 'Remote',
+    date: 'July 2025 - August 2025',
+    image: '/redynox.jpeg',
+    bullets: [
+      'Performed sentiment analysis using Python and AI-driven tools to interpret authentic customer feedback and extract actionable insights',
+      'Conducted qualitative and quantitative analysis of consumer conversations to uncover market trends and inform product development strategies'
+    ],
+    tags: ['Python', 'AI', 'Automation'],
+  },
+  {
     title: 'AI and Augmented Reality Intern',
     company: 'Jasfel Analytics',
     location: 'Newark, NJ',
@@ -43,36 +55,12 @@ const experiences = [
     company: 'Michael Motazedi C.P.A.',
     location: 'Jamaica, NY',
     date: 'February 2024 - Aug 2024',
-    image: '/motazedi-cpa.png',
+    image: '/Motazedi-CPA-P.C.png',
     bullets: [
       'Improved operation systems by 35 percent, minimized network issues, and provided technical and hardware assistance',
       'Protected sensitive client data by implementing backup systems, routine maintenance and troubleshooting, creating a smooth digital infrastructure and utilized Active Directory'
     ],
     tags: ['IT', 'Active Directory', 'Hardware'],
-  },
-  {
-    title: 'Store Associate',
-    company: 'TJ Maxx',
-    location: 'Queens, NY',
-    date: 'February 2024 – August 2024',
-    image: '/TJ_Maxx_Logo.png',
-    bullets: [
-      'Provided excellent customer service as a front-end cashier, efficiently handling transactions and resolving guest inquiries',
-      'Assisted in backroom operations, including inventory organization, stock replenishment, and ensuring merchandise was properly tagged and shelved'
-    ],
-    tags: ['Public Speaking', 'Time Management', 'Overseeing Employees'],
-  },
-  {
-    title: 'IT Intern',
-    company: 'CommonPoint Queens',
-    location: 'Forest Hills, NY',
-    date: 'July 2023 – December 2023',
-    image: '/commonpoint.webp',
-    bullets: [
-      'Designed age-appropriate activities and interactive lessons to teach cybersecurity fundamentals in an engaging and accessible way',
-      'Taught 30 students core digital safety topics, including recognizing phishing scams, avoiding unsafe websites, and protecting personal information online'
-    ],
-    tags: ['Cybersecurity', 'Education', 'Networking'],
   },
 ];
 

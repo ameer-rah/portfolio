@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import React from 'react';
+import React, { useState } from 'react';
 
 const SpotifyIcon = (props: React.SVGProps<SVGSVGElement> & { size?: number }) => (
   <svg viewBox="0 0 168 168" width={props.size || 26} height={props.size || 26} {...props}>
@@ -95,33 +95,66 @@ function NavLinks() {
 }
 
 export default function Header() {
+  const [navOpen, setNavOpen] = useState(false);
   return (
     <>
       <header className="relative z-30 bg-[#222] border-b border-gray-900">
         <div className="max-w-6xl mx-auto flex items-center justify-between p-4 md:p-6">
           <div className="flex items-center gap-5">
-            <img src="/header_pic.jpeg" alt="Ameer Rahman" className="w-20 h-20 rounded-2xl object-cover shadow-lg"/>
+            <img src="/header_pic.jpeg" alt="Ameer Rahman" className="w-16 h-16 md:w-20 md:h-20 rounded-2xl object-cover shadow-lg"/>
             <div className="flex flex-col justify-center">
-              <span className="text-2xl md:text-3xl font-extrabold text-white leading-tight">Ameer Rahman</span>
-              <span className="text-gray-300 text-lg md:text-xl font-medium">Computer Science & IT Student</span>
+              <span className="text-xl md:text-2xl font-extrabold text-white leading-tight">Ameer Rahman</span>
+              <span className="text-gray-300 text-base md:text-lg font-medium">Computer Science & IT Student</span>
               <div className="flex gap-2 mt-2">
                 <span className="px-3 py-1 rounded-full bg-emerald-900 text-emerald-300 text-xs font-semibold">Cybersecurity</span>
                 <span className="px-3 py-1 rounded-full bg-blue-900 text-blue-300 text-xs font-semibold">CS</span>
               </div>
             </div>
           </div>
-          <div className="flex items-center space-x-4">
-            {socialLinks.map((link) => (
-              <a key={link.name} href={link.href} className="text-gray-300 hover:text-emerald-400 transition-colors">
-                <link.icon size={26} />
-              </a>
-            ))}
+          {/* Social icons and hamburger menu */}
+          <div className="flex items-center space-x-2 md:space-x-4">
+            {/* Social icons: row on md+, wrap on mobile */}
+            <div className="hidden sm:flex flex-wrap gap-2 md:gap-4">
+              {socialLinks.map((link) => (
+                <a key={link.name} href={link.href} className="text-gray-300 hover:text-emerald-400 transition-colors" target="_blank" rel="noopener noreferrer">
+                  <link.icon size={24} />
+                </a>
+              ))}
+            </div>
+            {/* Hamburger menu for mobile */}
+            <button
+              className="sm:hidden flex items-center justify-center p-2 rounded-md text-gray-300 hover:text-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-400"
+              aria-label="Open navigation menu"
+              onClick={() => setNavOpen(!navOpen)}
+            >
+              <svg className="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={navOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'} />
+              </svg>
+            </button>
           </div>
         </div>
+        {/* Social icons for mobile, below header */}
+        <div className="sm:hidden flex flex-wrap justify-center gap-3 pb-2">
+          {socialLinks.map((link) => (
+            <a key={link.name} href={link.href} className="text-gray-300 hover:text-emerald-400 transition-colors" target="_blank" rel="noopener noreferrer">
+              <link.icon size={24} />
+            </a>
+          ))}
+        </div>
       </header>
+      {/* Navigation bar: horizontal on md+, collapsible on mobile */}
       <nav className="relative z-30 bg-[#111111]">
-        <div className="max-w-4xl mx-auto flex justify-center items-center gap-12 py-4">
-          <NavLinks />
+        <div className="max-w-4xl mx-auto">
+          {/* Desktop nav */}
+          <div className="hidden sm:flex justify-center items-center gap-8 py-4">
+            <NavLinks />
+          </div>
+          {/* Mobile nav: collapsible */}
+          {navOpen && (
+            <div className="sm:hidden flex flex-col items-center gap-4 py-4 animate-fade-in bg-[#111111] border-t border-gray-800">
+              <NavLinks />
+            </div>
+          )}
         </div>
       </nav>
     </>

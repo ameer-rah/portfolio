@@ -7,7 +7,6 @@ import { loadSnowPreset } from "tsparticles-preset-snow";
 import type { Engine } from "tsparticles-engine";
 import Link from 'next/link';
 
-// Social icon components and socialLinks array (copied from app/page.tsx)
 type IconProps = React.SVGProps<SVGSVGElement> & { size?: number };
 
 const SpotifyIcon = (props: IconProps) => (
@@ -107,7 +106,6 @@ export default function ProjectsPage() {
         }}
       />
       
-      {/* GovStockTracker Recent Activity Section */}
       <div className="max-w-4xl mx-auto px-4 mt-12 mb-4 flex flex-col md:flex-row items-center gap-8 group relative transition-all">
         <div className="absolute left-0 right-0 top-0 bottom-0 min-h-[260px] z-0 rounded-2xl opacity-0 group-hover:opacity-100 group-hover:bg-gray-800/70 group-hover:backdrop-blur-lg group-hover:border group-hover:border-gray-700/60 group-hover:shadow-2xl group-hover:shadow-black/20 transition-all duration-300 pointer-events-none"></div>
         <div className="flex-1 flex justify-center items-center min-w-[220px] relative z-10">
@@ -117,7 +115,7 @@ export default function ProjectsPage() {
             className="rounded-xl w-full h-auto max-w-[600px] object-contain min-h-[300px]"
           />
         </div>
-        {/* Project Info */}
+
         <div className="flex-1 w-full relative z-10">
           <h2 className="text-2xl font-extrabold mb-2 text-white flex items-center gap-2">
             <span className="inline-block w-4 h-4 rounded-full bg-blue-600 mr-2"></span>
@@ -133,12 +131,12 @@ export default function ProjectsPage() {
             A platform for tracking government stock trades, scraping and visualizing public data, and providing actionable insights. Built with a modular ETL pipeline, dashboard, and alerting system.
           </p>
           <div className="flex gap-4 mt-2">
-            {/* Placeholder links, update when repo and demo are available */}
+
             <a href="#" className="text-emerald-400 font-semibold flex items-center gap-1 opacity-50 cursor-not-allowed">GitHub</a>
           </div>
         </div>
       </div>
-      {/* End GovStockTracker Section */}
+
       <div className="max-w-4xl mx-auto px-4 mt-0">
         <h1 className="text-4xl font-extrabold mb-8 text-center">Projects</h1>
         {loading ? (
@@ -148,7 +146,7 @@ export default function ProjectsPage() {
         ) : (
           <div className="grid md:grid-cols-2 gap-8">
             {repos.map(repo => {
-              // Custom live demo links for specific projects
+              
               let liveDemo = repo.homepage;
               if (repo.name === 'personal-website') {
                 liveDemo = 'https://youtu.be/vFzVDjp4D7A?si=tkLdZHRcHt1lRbaK';

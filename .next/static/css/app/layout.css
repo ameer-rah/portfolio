@@ -1042,6 +1042,11 @@ video {
   --tw-gradient-to: rgb(45 212 191 / 0) var(--tw-gradient-to-position);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
+.from-blue-200 {
+  --tw-gradient-from: #bfdbfe var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(191 219 254 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
 .via-gray-900\/50 {
   --tw-gradient-to: rgb(17 24 39 / 0)  var(--tw-gradient-to-position);
   --tw-gradient-stops: var(--tw-gradient-from), rgb(17 24 39 / 0.5) var(--tw-gradient-via-position), var(--tw-gradient-to);
@@ -1062,11 +1067,17 @@ video {
 .to-gray-800\/80 {
   --tw-gradient-to: rgb(31 41 55 / 0.8) var(--tw-gradient-to-position);
 }
+.to-green-600 {
+  --tw-gradient-to: #16a34a var(--tw-gradient-to-position);
+}
 .to-orange-400 {
   --tw-gradient-to: #fb923c var(--tw-gradient-to-position);
 }
 .to-red-600 {
   --tw-gradient-to: #dc2626 var(--tw-gradient-to-position);
+}
+.to-green-800 {
+  --tw-gradient-to: #166534 var(--tw-gradient-to-position);
 }
 .object-contain {
   -o-object-fit: contain;
@@ -1283,7 +1294,6 @@ video {
   transition-duration: 300ms;
 }
 
-/* Custom scrollbar with dark theme */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -1302,17 +1312,16 @@ video {
   background: linear-gradient(135deg, #14b8a6, #a370f7);
 }
 
-/* Selection styles with dark theme */
 ::-moz-selection {
   background: rgba(20, 184, 166, 0.3);
   color: #ffffff;
 }
+
 ::selection {
   background: rgba(20, 184, 166, 0.3);
   color: #ffffff;
 }
 
-/* Focus styles for dark theme accessibility */
 .focus-visible:focus {
   outline: 2px solid transparent;
   outline-offset: 2px;
@@ -1325,7 +1334,6 @@ video {
   --tw-ring-offset-color: #111111;
 }
 
-/* Loading animation for dark theme */
 @keyframes shimmer {
   0% {
     background-position: -200px 0;
@@ -1346,7 +1354,6 @@ video {
   animation: shimmer 1.5s infinite;
 }
 
-/* Glow effects for dark theme */
 @keyframes glow {
   0% {
     box-shadow: 0 0 20px rgba(20, 184, 166, 0.5);
@@ -1360,7 +1367,6 @@ video {
   animation: glow 2s ease-in-out infinite alternate;
 }
 
-/* Print styles */
 @media print {
   .no-print {
     display: none !important;
@@ -1372,7 +1378,6 @@ video {
   }
 }
 
-/* Dark theme specific styles */
 .dark-card {
   background: rgba(39, 39, 42, 0.8);
   -webkit-backdrop-filter: blur(16px);
@@ -1386,7 +1391,6 @@ video {
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
 }
 
-/* Base styles for mobile first */
 body {
   font-size: 1rem;
   margin: 0;
@@ -1398,7 +1402,6 @@ body {
   padding: 1rem;
 }
 
-/* For tablets and up */
 @media (min-width: 600px) {
   .container {
     max-width: 600px;
@@ -1406,7 +1409,6 @@ body {
   }
 }
 
-/* For desktops and up */
 @media (min-width: 900px) {
   .container {
     max-width: 900px;

@@ -221,9 +221,6 @@ export default function Page() {
       </div>
 
       {/* What Drives Me Section */}
-
-
-      
       <div className="w-full py-6 px-4">
         <div className="max-w-4xl mx-auto group relative transition-all">
           <div className="absolute inset-0 z-0 rounded-2xl opacity-0 group-hover:opacity-100 group-hover:bg-gray-800/70 
@@ -254,11 +251,13 @@ export default function Page() {
           </div>
         </div>
       </div>
+
       {/* Technical Expertise Section */}
       <div className="max-w-4xl mx-auto group relative transition-all mb-16">
         <div className="absolute inset-0 z-0 rounded-2xl opacity-0 group-hover:opacity-100 group-hover:bg-gray-800/70 group-hover:backdrop-blur-lg group-hover:border group-hover:border-gray-700/60 group-hover:shadow-2xl group-hover:shadow-black/20 transition-all duration-300 pointer-events-none"></div>
         <section className="relative z-10 p-8 rounded-2xl">
           <div className="flex flex-col md:flex-row gap-12">
+
             {/* Core Skills */}
             <div className="flex-1">
               <h2 className="text-3xl font-extrabold mb-4 text-white">Technical Expertise</h2>
@@ -287,8 +286,8 @@ export default function Page() {
 
                 </div>
               </div>
-              {/* End of Core Skills left column */}
             </div>
+
             {/* Languages */}
             <div className="flex-1">
               <h3 className="text-xl font-bold text-white mb-4">Languages</h3>
@@ -297,40 +296,40 @@ export default function Page() {
                 <div>
                   <div className="flex justify-between items-center mb-1">
                     <span className="text-white font-semibold">Java</span>
-                    <span className="text-white font-semibold">85%</span>
+                    <span className="text-white font-semibold">65%</span>
                   </div>
                   <div className="w-full h-3 rounded-full bg-gray-700 overflow-hidden">
-                    <div className="h-full rounded-full bg-gradient-to-r from-pink-200 via-pink-400 to-red-600" style={{ width: '85%' }}></div>
+                    <div className="h-full rounded-full bg-gradient-to-r from-blue-200  to-green-800" style={{ width: '65%' }}></div>
                   </div>
                 </div>
                 {/* Python */}
                 <div>
                   <div className="flex justify-between items-center mb-1">
                     <span className="text-white font-semibold">Python</span>
-                    <span className="text-white font-semibold">70%</span>
+                    <span className="text-white font-semibold">55%</span>
                   </div>
                   <div className="w-full h-3 rounded-full bg-gray-700 overflow-hidden">
-                    <div className="h-full rounded-full bg-gradient-to-r from-pink-200 via-pink-400 to-red-600" style={{ width: '70%' }}></div>
+                    <div className="h-full rounded-full bg-gradient-to-r from-blue-200  to-green-800" style={{ width: '55%' }}></div>
                   </div>
                 </div>
                 {/* JavaScript */}
                 <div>
                   <div className="flex justify-between items-center mb-1">
                     <span className="text-white font-semibold">JavaScript</span>
-                    <span className="text-white font-semibold">65%</span>
+                    <span className="text-white font-semibold">50%</span>
                   </div>
                   <div className="w-full h-3 rounded-full bg-gray-700 overflow-hidden">
-                    <div className="h-full rounded-full bg-gradient-to-r from-pink-200 via-pink-400 to-red-600" style={{ width: '65%' }}></div>
+                    <div className="h-full rounded-full bg-gradient-to-r from-blue-200  to-green-800" style={{ width: '50%' }}></div>
                   </div>
                 </div>
                 {/* React */}
                 <div>
                   <div className="flex justify-between items-center mb-1">
                     <span className="text-white font-semibold">React</span>
-                    <span className="text-white font-semibold">60%</span>
+                    <span className="text-white font-semibold">40%</span>
                   </div>
                   <div className="w-full h-3 rounded-full bg-gray-700 overflow-hidden">
-                    <div className="h-full rounded-full bg-gradient-to-r from-pink-200 via-pink-400 to-red-600" style={{ width: '60%' }}></div>
+                    <div className="h-full rounded-full bg-gradient-to-r from-blue-200  to-green-800" style={{ width: '40%' }}></div>
                   </div>
                 </div>
                 {/* C */}
@@ -340,7 +339,7 @@ export default function Page() {
                     <span className="text-white font-semibold">35%</span>
                   </div>
                   <div className="w-full h-3 rounded-full bg-gray-700 overflow-hidden">
-                    <div className="h-full rounded-full bg-gradient-to-r from-pink-200 via-pink-400 to-red-600" style={{ width: '35%' }}></div>
+                    <div className="h-full rounded-full bg-gradient-to-r from-blue-200  to-green-800" style={{ width: '35%' }}></div>
                   </div>
                 </div>
               </div>

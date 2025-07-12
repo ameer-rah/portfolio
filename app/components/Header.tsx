@@ -111,9 +111,7 @@ export default function Header() {
               </div>
             </div>
           </div>
-          {/* Social icons and hamburger menu */}
           <div className="flex items-center space-x-2 md:space-x-4">
-            {/* Social icons: row on md+, wrap on mobile */}
             <div className="hidden sm:flex flex-wrap gap-2 md:gap-4">
               {socialLinks.map((link) => (
                 <a key={link.name} href={link.href} className="text-gray-300 hover:text-emerald-400 transition-colors" target="_blank" rel="noopener noreferrer">
@@ -121,7 +119,6 @@ export default function Header() {
                 </a>
               ))}
             </div>
-            {/* Hamburger menu for mobile */}
             <button
               className="sm:hidden flex items-center justify-center p-2 rounded-md text-gray-300 hover:text-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-400"
               aria-label="Open navigation menu"
@@ -133,7 +130,6 @@ export default function Header() {
             </button>
           </div>
         </div>
-        {/* Social icons for mobile, below header */}
         <div className="sm:hidden flex flex-wrap justify-center gap-3 pb-2">
           {socialLinks.map((link) => (
             <a key={link.name} href={link.href} className="text-gray-300 hover:text-emerald-400 transition-colors" target="_blank" rel="noopener noreferrer">
@@ -142,14 +138,11 @@ export default function Header() {
           ))}
         </div>
       </header>
-      {/* Navigation bar: horizontal on md+, collapsible on mobile */}
       <nav className="relative z-30 bg-[#111111]">
         <div className="max-w-4xl mx-auto">
-          {/* Desktop nav */}
           <div className="hidden sm:flex justify-center items-center gap-8 py-4">
             <NavLinks />
           </div>
-          {/* Mobile nav: collapsible */}
           {navOpen && (
             <div className="sm:hidden flex flex-col items-center gap-4 py-4 animate-fade-in bg-[#111111] border-t border-gray-800">
               <NavLinks />

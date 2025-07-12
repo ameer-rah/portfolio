@@ -27,7 +27,6 @@ export default function SocialsPage() {
             </p>
             
             <div className="grid md:grid-cols-2 gap-8 mt-12">
-                {/* Instagram Card */}
                 <div className="group relative transition-all bg-gray-900/50 p-6 rounded-2xl border border-gray-700/60 hover:bg-gray-800/70 hover:border-gray-600">
                      <div className="flex items-center gap-3 mb-4">
                         <Instagram className="w-6 h-6 text-white" />
@@ -55,7 +54,6 @@ export default function SocialsPage() {
                     </a>
                 </div>
 
-                {/* TikTok Card */}
                 <div className="group relative transition-all bg-gray-900/50 p-6 rounded-2xl border border-gray-700/60 hover:bg-gray-800/70 hover:border-gray-600">
                     <div className="flex items-center gap-3 mb-4">
                         <TikTokIcon className="w-6 h-6 text-white" />

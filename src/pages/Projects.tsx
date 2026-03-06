@@ -2,6 +2,24 @@ import { motion } from "framer-motion";
 import { useState, useEffect, useMemo } from "react";
 import FilterDropdown from "../components/FilterDropdown";
 import ProjectCard, { Project } from "../components/ProjectCard";
+import { fetchUserRepos } from "../utils/githubApi";
+
+const GITHUB_USERNAME = "ameer-rah";
+
+function repoToProject(repo: Awaited<ReturnType<typeof fetchUserRepos>>[number]): Project {
+  const tags = [
+    ...(repo.language ? [repo.language] : []),
+    ...repo.topics,
+  ];
+  return {
+    id: repo.name,
+    title: repo.name.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()),
+    description: repo.description ?? "",
+    tags,
+    githubLink: repo.html_url,
+    demoLink: repo.homepage || undefined,
+  };
+}
 
 export default function Projects() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -12,14 +30,8 @@ export default function Projects() {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await fetch(
-          "https://raw.githubusercontent.com/aidanandrews22/aidanandrews22.github.io/main/content/projects.json",
-        );
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        setProjects(Array.isArray(data) ? data : []);
+        const repos = await fetchUserRepos(GITHUB_USERNAME);
+        setProjects(repos.map(repoToProject));
         setLoading(false);
       } catch (error) {
         console.error("Error fetching projects:", error);
@@ -56,7 +68,7 @@ export default function Projects() {
 
   if (error) {
     return (
-      <div className="flex flex-col justify-center items-center min-h-[50vh] space-y-4">
+      <div className="flex flex-col justify-center items-center min-h-[50vh] space-y-4 max-w-2xl mx-auto px-4">
         <p className="text-lg text-red-500">Error: {error}</p>
         <p className="text-sm">Please try refreshing the page</p>
       </div>
@@ -90,7 +102,12 @@ export default function Projects() {
 
       <div className="grid gap-6 md:grid-cols-2">
         {filteredProjects.map((project, index) => (
-          <ProjectCard key={project.id} project={project} index={index} />
+          <ProjectCard
+            key={project.id}
+            project={project}
+            index={index}
+            onClick={() => project.githubLink && window.open(project.githubLink, "_blank", "noopener noreferrer")}
+          />
         ))}
       </div>
     </motion.div>

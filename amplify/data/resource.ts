@@ -7,27 +7,6 @@ specifies that any unauthenticated user can "create", "read", "update",
 and "delete" any "Todo" records.
 =========================================================================*/
 const schema = a.schema({
-  Todo: a
-    .model({
-      content: a.string(),
-    })
-    .authorization((allow) => [allow.guest()]),
-
-  BlogPostLike: a
-    .model({
-      // Use id as the primary key (this will be the postId)
-      id: a.string().required(),
-      count: a.integer().required(),
-      // Add a timestamp for debugging
-      updatedAt: a.datetime(),
-    })
-    .authorization((allow) => [
-      // Allow anyone to read the like count
-      allow.guest().to(["read"]),
-      // Allow API key operations for all operations
-      allow.publicApiKey().to(["create", "read", "update", "delete"]),
-    ]),
-
   ProjectIndicator: a
     .model({
       // Use id as the primary key (this will be the projectId + indicatorType)

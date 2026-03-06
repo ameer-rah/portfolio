@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import ProjectIndicators from "../components/ProjectIndicators";
 
 export interface Project {
   id: string;
@@ -17,14 +16,6 @@ interface ProjectCardProps {
   onClick?: (id: string) => void;
 }
 
-/**
- * A reusable project card component that can be used in both the About and Projects pages.
- *
- * This component follows the styling principles from Rule 4:
- * - Uses OKLCH color space with CSS color-mix() for transparency
- * - Supports system-driven themes through CSS variables
- * - Implements smooth transitions with hover effects
- */
 const ProjectCard = ({
   project,
   index = 0,
@@ -61,12 +52,12 @@ const ProjectCard = ({
         className="h-full p-6 rounded-xl border border-transparent hover:border hover:border-[color-mix(in_oklch,var(--color-primary)_30%,transparent)]
                   hover:shadow-lg transition-all relative overflow-hidden"
       >
-        {/* Background gradient overlay */}
-        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] to-transparent rounded-bl-full opacity-50"></div>
+        
+        <div className="absolute top-0 right-0 w-32 h-32 bg-linear-to-bl from-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] to-transparent rounded-bl-full opacity-50"></div>
 
-        {/* Project content */}
+        
         <div className="relative">
-          <h3 className="text-xl font-bold group-hover:text-[var(--color-primary)] transition-colors mb-2">
+          <h3 className="text-xl font-bold group-hover:text-primary transition-colors mb-2">
             {project.title}
           </h3>
 
@@ -87,18 +78,11 @@ const ProjectCard = ({
             ))}
           </div>
 
-          <div
-            className="flex flex-wrap gap-2 mb-6"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <ProjectIndicators projectId={project.id} compact={true} />
-          </div>
-
           <div className="flex items-center gap-4 mt-auto">
             {project.githubLink && (
               <button
                 onClick={(e) => handleLinkClick(e, project.githubLink!)}
-                className="text-sm hover:text-[var(--color-primary)] transition-colors inline-flex items-center gap-1 cursor-pointer"
+                className="text-sm hover:text-primary transition-colors inline-flex items-center gap-1 cursor-pointer"
                 aria-label={`View ${project.title} on GitHub`}
               >
                 <svg
@@ -116,7 +100,7 @@ const ProjectCard = ({
             {project.demoLink && (
               <button
                 onClick={(e) => handleLinkClick(e, project.demoLink!)}
-                className="text-sm hover:text-[var(--color-primary)] transition-colors inline-flex items-center gap-1 cursor-pointer"
+                className="text-sm hover:text-primary transition-colors inline-flex items-center gap-1 cursor-pointer"
                 aria-label={`View ${project.title} live demo`}
               >
                 <svg
@@ -137,7 +121,7 @@ const ProjectCard = ({
               </button>
             )}
 
-            <span className="text-sm text-[var(--color-primary)] opacity-0 group-hover:opacity-100 transition-opacity ml-auto inline-flex items-center gap-1">
+            <span className="text-sm text-primary opacity-0 group-hover:opacity-100 transition-opacity ml-auto inline-flex items-center gap-1">
               View Project
               <svg
                 xmlns="http://www.w3.org/2000/svg"

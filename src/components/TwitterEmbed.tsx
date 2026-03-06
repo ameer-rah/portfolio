@@ -6,7 +6,7 @@ interface TwitterTweetProps {
 
 export default function TwitterTweet({ tweetId }: TwitterTweetProps) {
   useEffect(() => {
-    // Load Twitter widgets script
+    
     const script = document.createElement("script");
     script.src = "https://platform.twitter.com/widgets.js";
     script.async = true;
@@ -14,7 +14,7 @@ export default function TwitterTweet({ tweetId }: TwitterTweetProps) {
     document.body.appendChild(script);
 
     return () => {
-      // Cleanup when component unmounts
+      
       document.body.removeChild(script);
     };
   }, []);
@@ -25,9 +25,9 @@ export default function TwitterTweet({ tweetId }: TwitterTweetProps) {
         My LinkedIn and discord have become flooded so I'm migrating to X
         (twitter). If u ever want to dm me do so here, and I will respond
       </p>
-      &mdash; Aidan Andrews (@aidansandrews)
+      &mdash; Ameer Rahman (@[your-twitter])
       <a
-        href={`https://twitter.com/aidansandrews/status/${tweetId}?ref_src=twsrc%5Etfw`}
+        href={`https://twitter.com/[your-twitter]/status/${tweetId}?ref_src=twsrc%5Etfw`}
         target="_blank"
         rel="noopener noreferrer"
       >

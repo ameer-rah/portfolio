@@ -13,12 +13,11 @@ interface MarkdownRendererProps {
   className?: string;
 }
 
-// Custom hook for dark mode detection
 function useDarkMode() {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
-    // Check initial color scheme
+    
     const checkColorScheme = () => {
       const isDark =
         document.documentElement.classList.contains("force-dark") ||
@@ -27,15 +26,15 @@ function useDarkMode() {
       setIsDarkMode(isDark);
     };
 
-    // Check on mount
+    
     checkColorScheme();
 
-    // Set up listeners for theme changes
+    
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
     const handleChange = () => checkColorScheme();
     mediaQuery.addEventListener("change", handleChange);
 
-    // Observer for class changes on html element
+    
     const observer = new MutationObserver(checkColorScheme);
     observer.observe(document.documentElement, {
       attributes: true,
@@ -98,23 +97,22 @@ function CodeBlock({
   );
 }
 
-// Function to extract YouTube video ID from various YouTube URL formats
 function extractYoutubeVideoId(url: string): string | null {
   try {
     if (!url || typeof url !== "string") return null;
 
-    // Handle youtu.be format
+    
     if (url.includes("youtu.be/")) {
       return url.split("youtu.be/")[1]?.split("?")[0] || null;
     }
 
-    // Handle youtube.com/watch?v= format
+    
     if (url.includes("youtube.com/watch")) {
       const urlParams = new URLSearchParams(url.split("?")[1] || "");
       return urlParams.get("v");
     }
 
-    // Handle youtube.com/embed/ format
+    
     if (url.includes("youtube.com/embed/")) {
       return url.split("youtube.com/embed/")[1]?.split("?")[0] || null;
     }
@@ -160,7 +158,7 @@ export default function MarkdownRenderer({
             );
           },
           a: (props) => {
-            // Check if this is a YouTube link
+            
             const videoId = extractYoutubeVideoId(props.href || "");
 
             if (videoId) {
@@ -177,11 +175,11 @@ export default function MarkdownRenderer({
               );
             }
 
-            // Regular link handling
+            
             return (
               <a
                 {...props}
-                className="text-[var(--color-primary)] hover:opacity-80 transition-opacity"
+                className="text-primary hover:opacity-80 transition-opacity"
                 target="_blank"
                 rel="noopener noreferrer"
               />
@@ -192,9 +190,9 @@ export default function MarkdownRenderer({
               {children}
             </pre>
           ),
-          // Handle img tags to check if they contain YouTube links in alt text
+          
           img: (props) => {
-            // Check if alt text contains a YouTube marker
+            
             if (props.alt?.toLowerCase().includes("youtube:")) {
               const videoUrl = props.alt.split("youtube:")[1]?.trim();
               const videoId = extractYoutubeVideoId(videoUrl);
@@ -214,14 +212,14 @@ export default function MarkdownRenderer({
               }
             }
 
-            // Regular image
+            
             return <img {...props} className="rounded-lg" />;
           },
-          // Add custom component for summary tags
+          
           summary: (props) => <summary {...props} className="cursor-pointer" />,
-          // Add custom component for details tags
+          
           details: ({ node, children, ...rest }) => {
-            // Find the summary element
+            
             const childrenArray = Array.isArray(children)
               ? children
               : [children];
@@ -229,17 +227,17 @@ export default function MarkdownRenderer({
               (child: any) => child?.props?.node?.tagName === "summary",
             );
 
-            // Separate summary from content
+            
             const summary =
               summaryIndex !== -1 ? childrenArray[summaryIndex] : null;
 
-            // Extract the actual text content
-            // We need to recursively extract text from the content
+            
+            
             const extractTextContent = (node: any): string => {
               if (typeof node === "string") return node;
               if (!node) return "";
 
-              // If it's a React element with children
+              
               if (node.props && node.props.children) {
                 if (Array.isArray(node.props.children)) {
                   return node.props.children.map(extractTextContent).join("");
@@ -251,13 +249,13 @@ export default function MarkdownRenderer({
               return "";
             };
 
-            // Get all content except the summary
+            
             const contentNodes = childrenArray.filter(
               (_, i) => i !== summaryIndex,
             );
             const textContent = contentNodes.map(extractTextContent).join("");
 
-            // Render content as a code block
+            
             return (
               <details {...rest}>
                 {summary}

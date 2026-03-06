@@ -5,10 +5,8 @@ import { generateClient } from "aws-amplify/data";
 import type { Schema } from "../../amplify/data/resource";
 import NumberDisplay from "./NumberDisplay";
 
-// Generate a type-safe client for our Amplify backend
 const client = generateClient<Schema>();
 
-// Local storage key for indicators
 const INDICATORS_KEY = "projectIndicators";
 
 type IndicatorType = "clever" | "launch" | "inspired";
@@ -41,10 +39,10 @@ const AnimatedIndicator: React.FC<AnimatedIndicatorProps> = ({
   const [showCountIndicator, setShowCountIndicator] = useState<boolean>(false);
   hasInteracted;
 
-  // Create a unique ID for this indicator
+  
   const indicatorId = `${projectId}_${indicatorType}`;
 
-  // Load initial state from localStorage
+  
   useEffect(() => {
     try {
       const indicatorsJson = localStorage.getItem(INDICATORS_KEY);
@@ -55,7 +53,7 @@ const AnimatedIndicator: React.FC<AnimatedIndicatorProps> = ({
     }
   }, [indicatorId]);
 
-  // Load the current count from the database
+  
   useEffect(() => {
     let isMounted = true;
 
@@ -65,20 +63,20 @@ const AnimatedIndicator: React.FC<AnimatedIndicatorProps> = ({
       setError(null);
 
       try {
-        // Try to find an existing indicator record
+        
         const response = await client.models.ProjectIndicator.get({
           id: indicatorId,
         });
 
         if (isMounted) {
           if (response.data) {
-            // Record exists, update the count
+            
             setCount(response.data.count);
           } else {
-            // No record exists yet, initialize with count=0
+            
             setCount(0);
 
-            // Create a new record silently (don't wait for it)
+            
             client.models.ProjectIndicator.create({
               id: indicatorId,
               count: 0,
@@ -101,7 +99,7 @@ const AnimatedIndicator: React.FC<AnimatedIndicatorProps> = ({
           setError(
             `Could not load ${indicatorType} count. Please try again later.`,
           );
-          // Set to 0 on error to avoid showing loading state indefinitely
+          
           setCount(0);
         }
       } finally {
@@ -124,31 +122,31 @@ const AnimatedIndicator: React.FC<AnimatedIndicatorProps> = ({
     const currentCount = count ?? 0;
     const newCount = currentCount + 1;
 
-    // Trigger animation
+    
     setIsAnimating(true);
     setTimeout(() => setIsAnimating(false), 500);
 
-    // Show count indicator with animation
+    
     setShowCountIndicator(true);
     setTimeout(() => {
       setShowCountIndicator(false);
     }, 2000);
 
-    // Optimistically update UI
+    
     setCount(newCount);
     setHasInteracted(true);
     setError(null);
 
     try {
-      // Update localStorage
+      
       const indicatorsJson = localStorage.getItem(INDICATORS_KEY);
       const indicators = indicatorsJson ? JSON.parse(indicatorsJson) : {};
 
-      // Store the interaction for this indicator
+      
       indicators[indicatorId] = true;
       localStorage.setItem(INDICATORS_KEY, JSON.stringify(indicators));
 
-      // Update the database - use upsert pattern to handle both create and update
+      
       await client.models.ProjectIndicator.update({
         id: indicatorId,
         count: newCount,
@@ -158,7 +156,7 @@ const AnimatedIndicator: React.FC<AnimatedIndicatorProps> = ({
     } catch (err) {
       console.error(`Error updating ${indicatorType} indicator count:`, err);
 
-      // Revert optimistic update on error
+      
       setCount(currentCount);
       setError("Failed to update. Please try again.");
     }
@@ -201,7 +199,7 @@ const AnimatedIndicator: React.FC<AnimatedIndicatorProps> = ({
           </button>
         </div>
 
-        {/* Counter - now horizontally aligned */}
+        
         <div className={`ml-${compact ? "2" : "3"}`}>
           <NumberDisplay value={count ?? 0} />
         </div>
@@ -212,7 +210,6 @@ const AnimatedIndicator: React.FC<AnimatedIndicatorProps> = ({
   );
 };
 
-// Main component with the three indicators
 interface ProjectIndicatorsProps {
   projectId: string;
   compact?: boolean;

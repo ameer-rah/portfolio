@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import MarkdownRenderer from "../components/MarkdownRenderer";
 import ProjectIndicators from "../components/ProjectIndicators";
+import { fetchGitHubJson, fetchGitHubText } from "../utils/githubApi";
 
 interface Project {
   id: string;
@@ -23,19 +24,12 @@ export default function ProjectView() {
   useEffect(() => {
     const fetchProject = async () => {
       try {
-        const response = await fetch(
-          `https://raw.githubusercontent.com/aidanandrews22/aidanandrews22.github.io/main/content/projects/${id}.md`,
-        );
-        if (!response.ok) throw new Error("Project not found");
-        const content = await response.text();
+        
+        const [content, projects] = await Promise.all([
+          fetchGitHubText(`content/projects/${id}.md`),
+          fetchGitHubJson<Project[]>("content/projects.json"),
+        ]);
 
-        // Fetch project metadata
-        const metaResponse = await fetch(
-          "https://raw.githubusercontent.com/aidanandrews22/aidanandrews22.github.io/main/content/projects.json",
-        );
-        if (!metaResponse.ok)
-          throw new Error("Failed to fetch project metadata");
-        const projects = await metaResponse.json();
         const projectMeta = projects.find((p: Project) => p.id === id);
 
         if (!projectMeta) throw new Error("Project metadata not found");
@@ -70,7 +64,7 @@ export default function ProjectView() {
         </p>
         <a
           href="/projects"
-          className="text-sm hover:text-[var(--color-primary)] transition-colors"
+          className="text-sm hover:text-primary transition-colors"
         >
           ← Back to Projects
         </a>
@@ -88,7 +82,7 @@ export default function ProjectView() {
       <div className="space-y-4">
         <a
           href="/projects"
-          className="text-sm hover:text-[var(--color-primary)] transition-colors"
+          className="text-sm hover:text-primary transition-colors"
         >
           ← Back to Projects
         </a>
@@ -111,7 +105,7 @@ export default function ProjectView() {
               href={project.githubLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm hover:text-[var(--color-primary)] transition-colors"
+              className="text-sm hover:text-primary transition-colors"
             >
               GitHub →
             </a>
@@ -121,14 +115,14 @@ export default function ProjectView() {
               href={project.demoLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm hover:text-[var(--color-primary)] transition-colors"
+              className="text-sm hover:text-primary transition-colors"
             >
               Live Demo →
             </a>
           )}
         </div>
 
-        {/* Project Indicators */}
+        
         <div className="mt-6">
           <ProjectIndicators projectId={project.id} />
         </div>

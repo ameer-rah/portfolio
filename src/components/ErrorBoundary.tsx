@@ -30,12 +30,12 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   }
 
   static getDerivedStateFromError(error: Error): Partial<ErrorBoundaryState> {
-    // Update state so the next render will show the fallback UI
+    
     return { hasError: true, error };
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
-    // You can also log the error to an error reporting service
+    
     console.error("Uncaught error:", error, errorInfo);
     this.setState({ errorInfo });
   }
@@ -79,7 +79,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
       return (
         <div className="min-h-screen flex items-center justify-center bg-background text-foreground p-4">
           <div className="w-full max-w-md p-6 rounded-lg border border-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] bg-background shadow-lg">
-            <h2 className="text-2xl font-bold mb-4 text-[var(--color-primary)]">
+            <h2 className="text-2xl font-bold mb-4 text-primary">
               Unexpected Error... Try refreshing the page.
             </h2>
             <p className="mb-6">
@@ -98,7 +98,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
                 </p>
                 <button
                   onClick={() => (window.location.href = "/")}
-                  className="mt-4 px-4 py-2 bg-[var(--color-primary)] text-white rounded-md hover:bg-[color-mix(in_oklch,var(--color-primary)_80%,black)] transition-colors"
+                  className="mt-4 px-4 py-2 bg-primary text-white rounded-md hover:bg-[color-mix(in_oklch,var(--color-primary)_80%,black)] transition-colors"
                 >
                   Return to Home
                 </button>
@@ -145,7 +145,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
                 <button
                   type="submit"
                   disabled={this.state.isSubmitting}
-                  className="w-full py-2 px-4 bg-[var(--color-primary)] text-white rounded-md hover:bg-[color-mix(in_oklch,var(--color-primary)_80%,black)] transition-colors disabled:opacity-50"
+                  className="w-full py-2 px-4 bg-primary text-white rounded-md hover:bg-[color-mix(in_oklch,var(--color-primary)_80%,black)] transition-colors disabled:opacity-50"
                 >
                   {this.state.isSubmitting ? "Submitting..." : "Submit Report"}
                 </button>

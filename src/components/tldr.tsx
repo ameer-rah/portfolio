@@ -14,70 +14,48 @@ export default function TLDR() {
         {" "}
         <a
           onClick={() => scrollToSection("education")}
-          className="text-[var(--color-primary)] hover:underline cursor-pointer"
+          className="text-primary hover:underline cursor-pointer"
         >
-          physics at UIUC
+          Computer Science at Rutgers University - New Brunswick
         </a>
-        , researching
+        , supervising at the
         {" "}
         <a
-          onClick={() => scrollToSection("berkeley")}
-          className="text-[var(--color-primary)] hover:underline cursor-pointer"
+          onClick={() => scrollToSection("werblin")}
+          className="text-primary hover:underline cursor-pointer"
         >
-          AI/ML at UC Berkeley
+          Werblin Recreation Center at Rutgers
         </a>
-        , an AI Engineer at
+        , founder of
         {" "}
         <a
-          onClick={() => scrollToSection("aifarms")}
-          className="text-[var(--color-primary)] hover:underline cursor-pointer"
+          onClick={() => scrollToSection("runclub")}
+          className="text-primary hover:underline cursor-pointer"
         >
-          NCSA
+          the Rutgers Run Club
         </a>
         , building
         {" "}
         <a
-          onClick={() => scrollToSection("aganswers")}
-          className="text-[var(--color-primary)] hover:underline cursor-pointer"
+          href="https://github.com/ameer-rah/ruplanner"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-primary hover:underline cursor-pointer"
         >
-          AgAnswers.ai
-        </a>
-        ,
-        {" "}
-        <a
-          className="text-adaptive"
-        >
-          researching robotics at UIUC
+          RUPlanner
         </a>
         , and
         {" "}
         <a
-          href="/reading-list?filter=Berkeley+Research"
+          href="/reading-list"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-[var(--color-primary)] hover:underline"
+          className="text-primary hover:underline"
         >
           reading
         </a>
         <br /><b>Not so currently, I am...</b><br />
-        {" "}
-        <a
-          // href="https://www.illinihockey.com/roster/aidan-andrews-m0o81et2"
-          // target="_blank"
-          // rel="noopener noreferrer"
-          // className="text-[var(-µ-color-primary)] hover:underline"
-        >
-          playing hockey for UIUC d1
-        </a>
-        ,
-        {" "}
-        <a
-          onClick={() => scrollToSection("aaxiom")}
-          className="text-[var(--color-primary)] hover:underline cursor-pointer"
-        >
-         the founder of aaxiom.org
-        </a>
-        , and playing competitive chess (although I do currently play a lot of blitz)
+        hosting car shows, going to the gym with my friends, and working on side projects
       </p>
     </div>
   );

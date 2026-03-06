@@ -18,43 +18,40 @@ export default function ReadingList() {
   const [selectedTag, setSelectedTag] = useState("");
   const [searchParams] = useSearchParams();
 
-  // Initialize selected tag from URL parameters
+  
   useEffect(() => {
     const tagFromUrl = searchParams.get("filter") || "";
     setSelectedTag(tagFromUrl);
   }, [searchParams]);
 
   useEffect(() => {
-    fetch(
-      "https://raw.githubusercontent.com/aidanandrews22/aidanandrews22.github.io/main/content/reading_list.json",
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        try {
-          // Sort papers by date added, newest first
-          const sortedPapers = data.sort(
-            (a: ReadingListItem, b: ReadingListItem) => {
-              try {
-                return new Date(b.dateAdded).getTime() - new Date(a.dateAdded).getTime();
-              } catch (err) {
-                console.error("Error sorting paper dates:", err);
-                return 0;
-              }
-            },
-          );
-          setPapers(sortedPapers);
-        } catch (err) {
-          console.error("Error processing reading list data:", err);
-          setPapers([]);
-        } finally {
-          setLoading(false);
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching reading list:", error);
+    const fetchReadingList = async () => {
+      try {
+        const res = await fetch("/data/reading_list.json");
+        if (!res.ok) throw new Error("Failed to load reading list");
+        const data: ReadingListItem[] = await res.json();
+        
+        
+        const sortedPapers = data.sort(
+          (a: ReadingListItem, b: ReadingListItem) => {
+            try {
+              return new Date(b.dateAdded).getTime() - new Date(a.dateAdded).getTime();
+            } catch (err) {
+              console.error("Error sorting paper dates:", err);
+              return 0;
+            }
+          },
+        );
+        setPapers(sortedPapers);
+        setLoading(false);
+      } catch (err) {
+        console.error("Error fetching reading list:", err);
         setError("Failed to load reading list. Please try again later.");
         setLoading(false);
-      });
+      }
+    };
+
+    fetchReadingList();
   }, []);
 
   const availableTags = useMemo(() => {
@@ -166,14 +163,14 @@ export default function ReadingList() {
                     href={paper.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-lg font-semibold hover:text-[var(--color-primary)] transition-colors group"
+                    className="text-lg font-semibold hover:text-primary transition-colors group"
                   >
                     {paper.title}
                     <span className="inline-block ml-2 opacity-0 group-hover:opacity-100 transition-opacity">
                       ↗
                     </span>
                   </a>
-                  <div className="text-sm text-[color-mix(in_oklch,var(--color-primary)_60%,transparent)] shrink-0">
+                  <div className="text-sm text-primary/60 shrink-0">
                     Added: {new Date(paper.dateAdded).toLocaleDateString("en-US", {
                       year: "numeric",
                       month: "long",
@@ -185,7 +182,7 @@ export default function ReadingList() {
                   {paper.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-2 py-1 text-xs rounded-full bg-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] text-[color-mix(in_oklch,var(--color-primary)_80%,transparent)]"
+                      className="px-2 py-1 text-xs rounded-full bg-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] text-primary/80"
                     >
                       {tag}
                     </span>

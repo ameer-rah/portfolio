@@ -3,19 +3,19 @@ import TwitterTweet from "../TwitterEmbed";
 
 export default function Socials() {
   useEffect(() => {
-    // Create and load the Behold script
+    
     const script = document.createElement("script");
     script.type = "module";
     script.src = "https://w.behold.so/widget.js";
     document.head.appendChild(script);
 
-    // Clean up function to remove the script when component unmounts
+    
     return () => {
       if (script && document.head.contains(script)) {
         document.head.removeChild(script);
       }
     };
-  }, []); // Empty dependency array means this runs once on mount
+  }, []); 
 
   return (
     <section className="space-y-6">
@@ -23,7 +23,7 @@ export default function Socials() {
         <h2 className="text-3xl font-bold">Socials</h2>
         <div className="flex space-x-2">
           <a
-            href="https://www.instagram.com/aidanandrewss/"
+            href="https://www.instagram.com/[your-instagram]/"
             target="_blank"
             rel="noopener noreferrer"
             className="px-4 py-2 rounded-full bg-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] hover:bg-[color-mix(in_oklch,var(--color-primary)_15%,transparent)] text-sm transition-colors inline-flex items-center gap-1"
@@ -39,7 +39,7 @@ export default function Socials() {
             Instagram
           </a>
           <a
-            href="https://twitter.com/aidanandrews"
+            href="https://twitter.com/[your-twitter]"
             target="_blank"
             rel="noopener noreferrer"
             className="px-4 py-2 rounded-full bg-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] hover:bg-[color-mix(in_oklch,var(--color-primary)_15%,transparent)] text-sm transition-colors inline-flex items-center gap-1"
@@ -66,7 +66,7 @@ export default function Socials() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Instagram Profile Card */}
+        
         <div className="rounded-xl hover:border-[color-mix(in_oklch,var(--color-primary)_30%,transparent)] transition-all hover:shadow-lg">
           <div className="p-6 flex flex-col items-center">
             <div className="flex justify-between items-center w-full mb-4">
@@ -87,7 +87,7 @@ export default function Socials() {
               <div className="w-28 h-28 rounded-full overflow-hidden border-2 border-[color-mix(in_oklch,var(--color-primary)_30%,transparent)]">
                 <img
                   src="/assets/About/ig_pfp.jpg"
-                  alt="Aidan Andrews"
+                  alt="Ameer Rahman"
                   className="w-full h-full object-cover"
                   onError={(e) => {
                     (e.target as HTMLImageElement).src =
@@ -96,20 +96,20 @@ export default function Socials() {
                 />
               </div>
 
-              {/* Decorative circles */}
+              
               <div className="absolute -bottom-2 -right-2 w-8 h-8 rounded-full bg-[color-mix(in_oklch,var(--color-primary)_15%,transparent)]"></div>
               <div className="absolute -top-2 -left-2 w-6 h-6 rounded-full bg-[color-mix(in_oklch,var(--color-primary)_10%,transparent)]"></div>
             </div>
 
             <div className="text-center mb-4">
-              <h3 className="text-lg font-semibold">Aidan Andrews</h3>
+              <h3 className="text-lg font-semibold">Ameer Rahman</h3>
               <a
-                href="https://www.instagram.com/aidanandrewss/"
+                href="https://www.instagram.com/[your-instagram]/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm text-[color-mix(in_oklch,var(--color-primary)_90%,currentColor)] hover:underline"
+                className="text-sm text-primary/90 hover:underline"
               >
-                @aidanandrewss
+                @[your-instagram]
               </a>
             </div>
 
@@ -125,10 +125,10 @@ export default function Socials() {
             </div>
 
             <a
-              href="https://www.instagram.com/aidanandrewss/"
+              href="https://www.instagram.com/[your-instagram]/"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full px-4 py-2 text-center text-sm rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:opacity-90 transition-opacity inline-flex items-center justify-center gap-2"
+              className="w-full px-4 py-2 text-center text-sm rounded-full bg-linear-to-r from-purple-500 to-pink-500 text-white hover:opacity-90 transition-opacity inline-flex items-center justify-center gap-2"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -143,7 +143,7 @@ export default function Socials() {
           </div>
         </div>
 
-        {/* Twitter Card */}
+        
         <div className="rounded-xl hover:border-[color-mix(in_oklch,var(--color-primary)_30%,transparent)] transition-all hover:shadow-lg overflow-hidden">
           <div className="p-4">
             <div className="flex justify-between items-center">
@@ -167,10 +167,10 @@ export default function Socials() {
 
           <div className="p-4">
             <a
-              href="https://x.com/aidansandrews"
+              href="https://x.com/[your-twitter]"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full px-4 py-2 text-center text-sm rounded-full bg-gradient-to-r from-blue-400 to-sky-500 text-white hover:opacity-90 transition-opacity inline-flex items-center justify-center gap-2"
+              className="w-full px-4 py-2 text-center text-sm rounded-full bg-linear-to-r from-green-600 to-green-700 text-white hover:opacity-90 transition-opacity inline-flex items-center justify-center gap-2"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

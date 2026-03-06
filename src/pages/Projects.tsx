@@ -17,7 +17,7 @@ function repoToProject(repo: Awaited<ReturnType<typeof fetchUserRepos>>[number])
     description: repo.description ?? "",
     tags,
     githubLink: repo.html_url,
-    demoLink: repo.homepage || undefined,
+    demoLink: repo.name.toLowerCase() === "portfolio" ? undefined : (repo.homepage || undefined),
   };
 }
 

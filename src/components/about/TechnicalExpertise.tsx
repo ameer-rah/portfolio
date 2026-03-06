@@ -9,8 +9,8 @@ export default function TechnicalExpertiseSection() {
             <h4 className="font-medium mb-3">Cybersecurity and Deployment</h4>
             <div className="flex flex-wrap gap-2">
               {[
-                "Git", "Docker", "CI/CD", "OWASP", "Burp Suite",
-                "Metasploit", "Wireshark", "Nmap", "Snort", "AWS", "Linux",
+                "Git", "Docker", "CI/CD", "OWASP", "Metasploit", 
+                "Wireshark", "Nmap", "Snort", "AWS", "Linux",
               ].map((skill) => (
                 <span
                   key={skill}

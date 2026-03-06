@@ -36,10 +36,9 @@ export function WhatDrivesMe() {
           </div>
 
           
-          <div className="relative rounded-xl overflow-hidden">
-            <div className="absolute inset-0 bg-linear-to-tr from-[color-mix(in_oklch,var(--color-primary)_20%,transparent)] to-transparent z-10"></div>
+          <div className="rounded-xl overflow-hidden">
             <img
-              src="/assets/About/pos.jpg"
+              src="/assets/About/whatDrivesMe.jpeg"
               alt="Ameer Rahman"
               className="w-full h-full object-cover"
               onError={(e) => {

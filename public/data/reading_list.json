@@ -1,1 +1,58 @@
-[]
+[
+  {
+    "id": "paper-001",
+    "title": "Reflections on Trusting Trust — Ken Thompson (1984)",
+    "url": "https://dl.acm.org/doi/10.1145/358198.358210",
+    "tags": ["security", "paper"],
+    "dateAdded": "2026-03-01"
+  },
+  {
+    "id": "paper-002",
+    "title": "Smashing the Stack for Fun and Profit — Aleph One (1996)",
+    "url": "https://phrack.org/issues/49/14.html",
+    "tags": ["security", "systems", "paper"],
+    "dateAdded": "2026-02-28"
+  },
+  {
+    "id": "paper-003",
+    "title": "No Silver Bullet: Essence and Accidents of Software Engineering — Fred Brooks (1987)",
+    "url": "https://worrydream.com/refs/Brooks-NoSilverBullet.pdf",
+    "tags": ["software engineering", "paper"],
+    "dateAdded": "2026-02-25"
+  },
+  {
+    "id": "paper-004",
+    "title": "Spectre Attacks: Exploiting Speculative Execution — Kocher et al. (2018)",
+    "url": "https://arxiv.org/abs/1801.01203",
+    "tags": ["security", "systems", "paper"],
+    "dateAdded": "2026-01-15"
+  },
+  {
+    "id": "book-001",
+    "title": "The Pragmatic Programmer — David Thomas & Andrew Hunt",
+    "url": "https://pragprog.com/titles/tpp20/the-pragmatic-programmer-20th-anniversary-edition/",
+    "tags": ["software engineering", "book"],
+    "dateAdded": "2025-12-15"
+  },
+  {
+    "id": "book-002",
+    "title": "A Philosophy of Software Design — John Ousterhout",
+    "url": "https://web.stanford.edu/~ouster/cgi-bin/aposd.php",
+    "tags": ["software engineering", "book"],
+    "dateAdded": "2025-11-25"
+  },
+  {
+    "id": "book-003",
+    "title": "Hacking: The Art of Exploitation — Jon Erickson",
+    "url": "https://nostarch.com/hacking2.htm",
+    "tags": ["security", "systems", "book"],
+    "dateAdded": "2025-11-20"
+  },
+  {
+    "id": "book-004",
+    "title": "Practical Malware Analysis — Sikorski & Honig",
+    "url": "https://nostarch.com/malware",
+    "tags": ["security", "book"],
+    "dateAdded": "2025-11-15"
+  }
+]

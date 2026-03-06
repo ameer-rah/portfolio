@@ -34,7 +34,8 @@ dist-ssr
 # amplify
 .amplify
 amplifyconfiguration*
-amplify_outputs*
+# amplify_outputs.json is intentionally committed for Vercel deployment
+# amplify_outputs*
 #amplify-do-not-edit-begin
 amplify/\#current-cloud-backend
 amplify/.config/local-*

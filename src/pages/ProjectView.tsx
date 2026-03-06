@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import MarkdownRenderer from "../components/MarkdownRenderer";
-import ProjectIndicators from "../components/ProjectIndicators";
 import { fetchGitHubJson, fetchGitHubText } from "../utils/githubApi";
 
 interface Project {
@@ -123,9 +122,6 @@ export default function ProjectView() {
         </div>
 
         
-        <div className="mt-6">
-          <ProjectIndicators projectId={project.id} />
-        </div>
       </div>
 
       <MarkdownRenderer content={project.content} className="mt-8" />

@@ -37,14 +37,10 @@ export default function FilterDropdown({
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsOpen(false);
       }
     }
-
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
@@ -53,42 +49,42 @@ export default function FilterDropdown({
     <div className="relative shrink-0" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="px-3 py-2 rounded-lg border border-[color-mix(in_oklch,var(--color-primary)_20%,transparent)] 
-                 hover:border-[color-mix(in_oklch,var(--color-primary)_40%,transparent)] transition-colors
-                 flex items-center justify-between min-w-[120px] sm:min-w-[160px] bg-background text-sm sm:text-base cursor-pointer"
+        className="inline-flex items-center gap-3 px-4 py-2 border border-primary/20 hover:border-primary/50 transition-colors duration-300 bg-surface cursor-pointer"
       >
-        <span className="mr-2 truncate">{label}:</span>
-        <span className="font-medium truncate">{selectedOption || "All"}</span>
+        <span className="font-sans text-[10px] tracking-[0.2em] uppercase text-muted-adaptive font-light">
+          {label}
+        </span>
+        <span className="font-sans text-[10px] tracking-[0.15em] uppercase text-primary font-light">
+          {selectedOption || "All"}
+        </span>
         <svg
-          className={`w-4 h-4 ml-2 transition-transform shrink-0 ${isOpen ? "rotate-180" : ""}`}
+          className={`w-3 h-3 text-muted-adaptive transition-transform duration-300 shrink-0 ${isOpen ? "rotate-180" : ""}`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M19 9l-7 7-7-7"
-          />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" />
         </svg>
       </button>
 
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
+            initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="absolute z-[1] w-full mt-2 bg-background
-                     border border-[color-mix(in_oklch,var(--color-primary)_20%,transparent)] rounded-lg shadow-lg"
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute right-0 z-50 w-48 mt-1 bg-surface border border-primary/15 shadow-2xl"
           >
             <ul className="py-1 max-h-[60vh] overflow-y-auto">
               <li>
                 <button
                   onClick={() => handleSelect("")}
-                  className={`w-full px-4 py-2 text-left hover:bg-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] text-sm sm:text-base
-                           ${!selectedOption ? "bg-[color-mix(in_oklch,var(--color-primary)_5%,transparent)] cursor-pointer" : ""}`}
+                  className={`w-full px-4 py-2.5 text-left font-sans text-[11px] tracking-[0.15em] uppercase transition-colors duration-200 cursor-pointer
+                    ${!selectedOption
+                      ? "text-primary bg-primary/5"
+                      : "text-muted-adaptive hover:text-adaptive hover:bg-primary/5"
+                    }`}
                 >
                   All
                 </button>
@@ -97,8 +93,11 @@ export default function FilterDropdown({
                 <li key={option}>
                   <button
                     onClick={() => handleSelect(option)}
-                    className={`cursor-pointer w-full px-4 py-2 text-left hover:bg-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] text-sm sm:text-base
-                             ${selectedOption === option ? "bg-[color-mix(in_oklch,var(--color-primary)_5%,transparent)] cursor-pointer" : ""}`}
+                    className={`cursor-pointer w-full px-4 py-2.5 text-left font-sans text-[11px] tracking-[0.15em] uppercase transition-colors duration-200
+                      ${selectedOption === option
+                        ? "text-primary bg-primary/5"
+                        : "text-muted-adaptive hover:text-adaptive hover:bg-primary/5"
+                      }`}
                   >
                     {option}
                   </button>

@@ -1,52 +1,60 @@
 @import "tailwindcss";
 @plugin '@tailwindcss/typography';
 
+@keyframes pdfScroll {
+  0%   { transform: translateY(0); }
+  90%  { transform: translateY(-87%); }
+  100% { transform: translateY(-87%); }
+}
+
 @theme {
-  /* Colors */
-  --color-primary: oklch(
-    0.70 0.15 150
-  ); /* A light green that works well in both light/dark modes */
-  --color-secondary: oklch(
-    0.60 0.15 150
-  ); /* Slightly darker variant for hover states */
-  --color-background-light: oklch(1 0 0); /* Pure white */
-  --color-background-dark: rgba(
-    33,
-    33,
-    33,
-    0.9
-  ); /* Near black for better eye comfort */
-  --color-text-light: oklch(0.2 0 0); /* Dark gray for light mode text */
-  --color-text-dark: oklch(
-    0.95 0 0
-  ); /* Off-white for dark mode text - equivalent to gray-50/100 */
-  --color-surface-light: oklch(
-    0.98 0 0
-  ); /* Off-white for cards in light mode */
-  --color-surface-dark: oklch(0.15 0 0); /* Dark gray for cards in dark mode */
-  --color-border-light: oklch(
-    0.85 0 0
-  ); /* Light gray for borders in light mode */
-  --color-border-dark: oklch(0.25 0 0); /* Dark gray for borders in dark mode */
+  /* ── Mercedes-Maybach Luxury Palette ── */
+
+  /* Champagne Gold — the only accent */
+  --color-primary: #C8A455;
+  --color-secondary: #A8863A;
+
+  /* Dark luxury surfaces */
+  --color-background-dark: #080808;
+  --color-surface-dark: #111111;
+  --color-surface-raised-dark: #1C1C1C;
+  --color-border-dark: #2A2A2A;
+
+  /* Light luxury surfaces (warm parchment) */
+  --color-background-light: #FAF9F7;
+  --color-surface-light: #F2F0EB;
+  --color-surface-raised-light: #E8E5DF;
+  --color-border-light: #D0CBC0;
+
+  /* Text */
+  --color-text-dark: #F0EDE8;
+  --color-text-muted-dark: #888888;
+  --color-text-light: #1A1A1A;
+  --color-text-muted-light: #666666;
 
   /* Typography */
-  --font-sans:
-    ui-rounded, -apple-system, BlinkMacSystemFont, "SF Pro", "SF Pro Text",
-    system-ui, sans-serif;
+  --font-display: 'Raleway', -apple-system, system-ui, sans-serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
 
   /* Spacing */
   --spacing: 0.25rem;
 
   /* Animation */
-  --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
+  --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);
   --transition-theme:
-    background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease,
-    fill 0.3s ease;
+    background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease,
+    fill 0.4s ease;
 }
 
 @layer base {
   :root {
-    color-scheme: light dark;
+    color-scheme: dark;
+  }
+
+  /* Default to dark luxury */
+  html {
+    background-color: #080808;
+    color: #F0EDE8;
   }
 
   html.color-scheme-adaptive {
@@ -71,7 +79,6 @@
     color: var(--color-text);
   }
 
-  /* Force light theme regardless of system preference */
   html.force-light {
     color-scheme: light;
     --color-background: var(--color-background-light);
@@ -84,19 +91,18 @@
     color: var(--color-text);
   }
 
-  /* Force dark theme regardless of system preference */
   html.force-dark {
     color-scheme: dark;
     --color-background: var(--color-background-dark);
     --color-text: var(--color-text-dark);
     --color-surface: var(--color-surface-dark);
     --color-border: var(--color-border-dark);
+
     transition: var(--transition-theme);
     background-color: var(--color-background);
     color: var(--color-text);
   }
 
-  /* Starting style for smooth theme transitions */
   @starting-style {
     html.color-scheme-adaptive,
     html.force-light,
@@ -107,26 +113,9 @@
   }
 
   ::selection {
-    background-color: color-mix(
-      in oklch,
-      var(--color-primary) 25%,
-      transparent
-    );
+    background-color: rgba(200, 164, 85, 0.25);
   }
 
-  /* Improve image visibility in dark mode */
-  img {
-    @media (prefers-color-scheme: dark) {
-      filter: brightness(0.8) contrast(1.2);
-    }
-  }
-
-  /* Make sure dark mode images look good with forced themes too */
-  html.force-dark img {
-    filter: brightness(0.8) contrast(1.2);
-  }
-
-  /* Ensure SVGs adapt to color scheme */
   svg {
     fill: currentColor;
   }
@@ -167,43 +156,21 @@
     }
   }
 
-  .bg-clap {
+  .bg-surface-raised {
     @media (prefers-color-scheme: dark) {
-      background-color: oklch(0.3 0 0);
+      background-color: var(--color-surface-raised-dark);
     }
     @media (prefers-color-scheme: light) {
-      background-color: oklch(0.95 0 0);
+      background-color: var(--color-surface-raised-light);
     }
 
     html.force-light & {
-      background-color: oklch(0.95 0 0);
+      background-color: var(--color-surface-raised-light);
     }
 
     html.force-dark & {
-      background-color: oklch(0.3 0 0);
+      background-color: var(--color-surface-raised-dark);
     }
-  }
-
-  /* Add explicit hover variant for bg-clap */
-  .hover\:bg-clap:hover {
-    @media (prefers-color-scheme: dark) {
-      background-color: oklch(0.3 0 0);
-    }
-    @media (prefers-color-scheme: light) {
-      background-color: oklch(0.95 0 0);
-    }
-
-    html.force-light & {
-      background-color: oklch(0.95 0 0);
-    }
-
-    html.force-dark & {
-      background-color: oklch(0.3 0 0);
-    }
-  }
-
-  .custom-outline {
-    text-shadow: 1px 1px 1px black;
   }
 
   .border-adaptive {
@@ -223,192 +190,130 @@
     }
   }
 
+  /* Gold rule utility */
+  .gold-rule {
+    height: 1px;
+    background-color: rgba(200, 164, 85, 0.25);
+    width: 100%;
+  }
+
+  .gold-rule-solid {
+    height: 1px;
+    background-color: #C8A455;
+    width: 3rem;
+  }
+
+  /* Prose adaptive for Maybach dark */
   .prose-adaptive {
     @media (prefers-color-scheme: dark) {
-      --tw-prose-body: var(--color-text-dark);
-      --tw-prose-headings: var(--color-text-dark);
-      --tw-prose-lead: color-mix(
-        in oklch,
-        var(--color-text-dark) 90%,
-        transparent
-      );
-      --tw-prose-links: var(--color-primary);
-      --tw-prose-bold: var(--color-text-dark);
-      --tw-prose-counters: color-mix(
-        in oklch,
-        var(--color-text-dark) 70%,
-        transparent
-      );
-      --tw-prose-bullets: color-mix(
-        in oklch,
-        var(--color-text-dark) 70%,
-        transparent
-      );
-      --tw-prose-hr: var(--color-border-dark);
-      --tw-prose-quotes: color-mix(
-        in oklch,
-        var(--color-text-dark) 90%,
-        transparent
-      );
-      --tw-prose-quote-borders: color-mix(
-        in oklch,
-        var(--color-primary) 70%,
-        transparent
-      );
-      --tw-prose-captions: color-mix(
-        in oklch,
-        var(--color-text-dark) 70%,
-        transparent
-      );
-      --tw-prose-code: var(--color-text-dark);
-      --tw-prose-pre-code: var(--color-text-dark);
-      --tw-prose-pre-bg: var(--color-surface-dark);
-      --tw-prose-th-borders: var(--color-border-dark);
-      --tw-prose-td-borders: var(--color-border-dark);
+      --tw-prose-body: #B0ADA8;
+      --tw-prose-headings: #F0EDE8;
+      --tw-prose-lead: #888888;
+      --tw-prose-links: #C8A455;
+      --tw-prose-bold: #F0EDE8;
+      --tw-prose-counters: #888888;
+      --tw-prose-bullets: #555555;
+      --tw-prose-hr: #2A2A2A;
+      --tw-prose-quotes: #B0ADA8;
+      --tw-prose-quote-borders: rgba(200, 164, 85, 0.5);
+      --tw-prose-captions: #888888;
+      --tw-prose-code: #F0EDE8;
+      --tw-prose-pre-code: #F0EDE8;
+      --tw-prose-pre-bg: #111111;
+      --tw-prose-th-borders: #2A2A2A;
+      --tw-prose-td-borders: #2A2A2A;
     }
 
     @media (prefers-color-scheme: light) {
-      --tw-prose-body: var(--color-text-light);
-      --tw-prose-headings: var(--color-text-light);
-      --tw-prose-lead: color-mix(
-        in oklch,
-        var(--color-text-light) 90%,
-        transparent
-      );
-      --tw-prose-links: var(--color-primary);
-      --tw-prose-bold: var(--color-text-light);
-      --tw-prose-counters: color-mix(
-        in oklch,
-        var(--color-text-light) 70%,
-        transparent
-      );
-      --tw-prose-bullets: color-mix(
-        in oklch,
-        var(--color-text-light) 70%,
-        transparent
-      );
-      --tw-prose-hr: var(--color-border-light);
-      --tw-prose-quotes: color-mix(
-        in oklch,
-        var(--color-text-light) 90%,
-        transparent
-      );
-      --tw-prose-quote-borders: color-mix(
-        in oklch,
-        var(--color-primary) 70%,
-        transparent
-      );
-      --tw-prose-captions: color-mix(
-        in oklch,
-        var(--color-text-light) 70%,
-        transparent
-      );
-      --tw-prose-code: var(--color-text-light);
-      --tw-prose-pre-code: var(--color-text-light);
-      --tw-prose-pre-bg: var(--color-surface-light);
-      --tw-prose-th-borders: var(--color-border-light);
-      --tw-prose-td-borders: var(--color-border-light);
+      --tw-prose-body: #3A3530;
+      --tw-prose-headings: #1A1A1A;
+      --tw-prose-lead: #666666;
+      --tw-prose-links: #A8863A;
+      --tw-prose-bold: #1A1A1A;
+      --tw-prose-counters: #666666;
+      --tw-prose-bullets: #999999;
+      --tw-prose-hr: #D0CBC0;
+      --tw-prose-quotes: #3A3530;
+      --tw-prose-quote-borders: rgba(168, 134, 58, 0.5);
+      --tw-prose-captions: #666666;
+      --tw-prose-code: #1A1A1A;
+      --tw-prose-pre-code: #1A1A1A;
+      --tw-prose-pre-bg: #F2F0EB;
+      --tw-prose-th-borders: #D0CBC0;
+      --tw-prose-td-borders: #D0CBC0;
     }
 
     html.force-light & {
-      --tw-prose-body: var(--color-text-light);
-      --tw-prose-headings: var(--color-text-light);
-      --tw-prose-lead: color-mix(
-        in oklch,
-        var(--color-text-light) 90%,
-        transparent
-      );
-      --tw-prose-links: var(--color-primary);
-      --tw-prose-bold: var(--color-text-light);
-      --tw-prose-counters: color-mix(
-        in oklch,
-        var(--color-text-light) 70%,
-        transparent
-      );
-      --tw-prose-bullets: color-mix(
-        in oklch,
-        var(--color-text-light) 70%,
-        transparent
-      );
-      --tw-prose-hr: var(--color-border-light);
-      --tw-prose-quotes: color-mix(
-        in oklch,
-        var(--color-text-light) 90%,
-        transparent
-      );
-      --tw-prose-quote-borders: color-mix(
-        in oklch,
-        var(--color-primary) 70%,
-        transparent
-      );
-      --tw-prose-captions: color-mix(
-        in oklch,
-        var(--color-text-light) 70%,
-        transparent
-      );
-      --tw-prose-code: var(--color-text-light);
-      --tw-prose-pre-code: var(--color-text-light);
-      --tw-prose-pre-bg: var(--color-surface-light);
-      --tw-prose-th-borders: var(--color-border-light);
-      --tw-prose-td-borders: var(--color-border-light);
+      --tw-prose-body: #3A3530;
+      --tw-prose-headings: #1A1A1A;
+      --tw-prose-lead: #666666;
+      --tw-prose-links: #A8863A;
+      --tw-prose-bold: #1A1A1A;
+      --tw-prose-counters: #666666;
+      --tw-prose-bullets: #999999;
+      --tw-prose-hr: #D0CBC0;
+      --tw-prose-quotes: #3A3530;
+      --tw-prose-quote-borders: rgba(168, 134, 58, 0.5);
+      --tw-prose-captions: #666666;
+      --tw-prose-code: #1A1A1A;
+      --tw-prose-pre-code: #1A1A1A;
+      --tw-prose-pre-bg: #F2F0EB;
+      --tw-prose-th-borders: #D0CBC0;
+      --tw-prose-td-borders: #D0CBC0;
     }
 
     html.force-dark & {
-      --tw-prose-body: var(--color-text-dark);
-      --tw-prose-headings: var(--color-text-dark);
-      --tw-prose-lead: color-mix(
-        in oklch,
-        var(--color-text-dark) 90%,
-        transparent
-      );
-      --tw-prose-links: var(--color-primary);
-      --tw-prose-bold: var(--color-text-dark);
-      --tw-prose-counters: color-mix(
-        in oklch,
-        var(--color-text-dark) 70%,
-        transparent
-      );
-      --tw-prose-bullets: color-mix(
-        in oklch,
-        var(--color-text-dark) 70%,
-        transparent
-      );
-      --tw-prose-hr: var(--color-border-dark);
-      --tw-prose-quotes: color-mix(
-        in oklch,
-        var(--color-text-dark) 90%,
-        transparent
-      );
-      --tw-prose-quote-borders: color-mix(
-        in oklch,
-        var(--color-primary) 70%,
-        transparent
-      );
-      --tw-prose-captions: color-mix(
-        in oklch,
-        var(--color-text-dark) 70%,
-        transparent
-      );
-      --tw-prose-code: var(--color-text-dark);
-      --tw-prose-pre-code: var(--color-text-dark);
-      --tw-prose-pre-bg: var(--color-surface-dark);
-      --tw-prose-th-borders: var(--color-border-dark);
-      --tw-prose-td-borders: var(--color-border-dark);
+      --tw-prose-body: #B0ADA8;
+      --tw-prose-headings: #F0EDE8;
+      --tw-prose-lead: #888888;
+      --tw-prose-links: #C8A455;
+      --tw-prose-bold: #F0EDE8;
+      --tw-prose-counters: #888888;
+      --tw-prose-bullets: #555555;
+      --tw-prose-hr: #2A2A2A;
+      --tw-prose-quotes: #B0ADA8;
+      --tw-prose-quote-borders: rgba(200, 164, 85, 0.5);
+      --tw-prose-captions: #888888;
+      --tw-prose-code: #F0EDE8;
+      --tw-prose-pre-code: #F0EDE8;
+      --tw-prose-pre-bg: #111111;
+      --tw-prose-th-borders: #2A2A2A;
+      --tw-prose-td-borders: #2A2A2A;
     }
   }
 
-  /* Dark mode support for form elements */
-  .form-input-adaptive {
+  /* Text color adaptive */
+  .text-adaptive {
     @media (prefers-color-scheme: dark) {
-      background-color: var(--color-surface-dark);
       color: var(--color-text-dark);
-      border-color: var(--color-border-dark);
+    }
+    @media (prefers-color-scheme: light) {
+      color: var(--color-text-light);
+    }
+
+    html.force-light & {
+      color: var(--color-text-light);
     }
 
     html.force-dark & {
-      background-color: var(--color-surface-dark);
       color: var(--color-text-dark);
-      border-color: var(--color-border-dark);
+    }
+  }
+
+  .text-muted-adaptive {
+    @media (prefers-color-scheme: dark) {
+      color: var(--color-text-muted-dark);
+    }
+    @media (prefers-color-scheme: light) {
+      color: var(--color-text-muted-light);
+    }
+
+    html.force-light & {
+      color: var(--color-text-muted-light);
+    }
+
+    html.force-dark & {
+      color: var(--color-text-muted-dark);
     }
   }
 }

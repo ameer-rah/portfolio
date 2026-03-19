@@ -11,60 +11,52 @@ export default function ProjectsSection({
   error: string | null;
 }) {
   return (
-    <section className="space-y-6">
-      <div className="flex justify-between items-center">
-        <h2 className="text-3xl font-bold">Current Projects</h2>
+    <section className="w-full py-28 md:py-40 px-8 md:px-16 lg:px-24 border-t border-[#111111]">
+      <div className="flex items-center justify-end mb-10">
         <Link
           to="/projects"
-          className="px-4 py-2 rounded-full bg-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] hover:bg-[color-mix(in_oklch,var(--color-primary)_15%,transparent)] text-sm transition-colors"
+          className="font-sans text-[10px] tracking-[0.3em] uppercase text-muted-adaptive hover:text-primary transition-colors duration-300 inline-flex items-center gap-2"
         >
-          View all →
+          All projects
+          <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
         </Link>
       </div>
 
-      <div className="space-y-6">
-        <div className="prose prose-adaptive prose-lg max-w-none">
-          <p className="leading-relaxed">
-            Building meaningful projects is how I translate my ideas into
-            reality. Each project represents a problem I found worth solving or
-            a question I wanted to explore. While I have many interests, these
-            featured projects showcase my current focus on creating practical
-            tools that help people learn, work, and research more effectively.
-          </p>
-        </div>
+      {/* Massive heading */}
+      <h2
+        className="font-display font-extralight text-adaptive leading-[0.88] mb-8 tracking-tight"
+        style={{ fontSize: "clamp(3.5rem, 8vw, 10rem)" }}
+      >
+        Current Projects
+      </h2>
 
-        {loading ? (
-          <div className="flex justify-center items-center h-40">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
-          </div>
-        ) : error ? (
-          <div className="p-6 rounded-xl border border-red-300 bg-red-50 text-red-700 dark:border-red-800 dark:bg-red-900/20 dark:text-red-400">
-            <p>Error: {error}</p>
-            <p className="mt-2 text-sm">
-              Please try refreshing the page or check back later.
-            </p>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {projects.map((project, index) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                index={index}
-                compact={true}
-              />
-            ))}
-          </div>
-        )}
+      <p className="font-sans font-light text-muted-adaptive leading-relaxed text-[15px] mb-20 max-w-2xl">
+        Building meaningful projects is how I translate ideas into reality. Each project
+        represents a problem worth solving or a question worth exploring.
+      </p>
 
-        <div className="text-center pt-4">
-          <p className="text-sm opacity-80 italic">
-            These projects are just a small sample of my work. I'm constantly
-            building and experimenting with new ideas. Check out my GitHub for
-            more or reach out if you'd like to collaborate!
-          </p>
+      {loading ? (
+        <div className="flex items-center h-32">
+          <div className="w-5 h-5 border border-primary/30 border-t-primary rounded-full animate-spin" />
         </div>
-      </div>
+      ) : error ? (
+        <div className="border border-red-900/30 p-6 text-red-400 font-sans font-light text-[13px]">
+          <p>Error: {error}</p>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {projects.map((project, index) => (
+            <ProjectCard
+              key={project.id}
+              project={project}
+              index={index}
+              compact={true}
+            />
+          ))}
+        </div>
+      )}
     </section>
   );
 }

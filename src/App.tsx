@@ -4,90 +4,32 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import { Suspense, lazy, useEffect, useState } from "react";
+import { Suspense, lazy, useEffect } from "react";
 
 const About = lazy(() => import("./pages/About"));
 const Projects = lazy(() => import("./pages/Projects"));
+const Work = lazy(() => import("./pages/Work"));
+const Expertise = lazy(() => import("./pages/Expertise"));
 const ReadingList = lazy(() => import("./pages/ReadingList"));
-const Header = lazy(() => import("./components/Header"));
 const NavigationBar = lazy(() => import("./components/NavigationBar"));
 
 export default function App() {
-  const [, setTheme] = useState<"light" | "dark" | "system">("system");
-
+  // Always dark — no toggle
   useEffect(() => {
-    
-    const storedTheme = localStorage.getItem("color-theme") as
-      | "light"
-      | "dark"
-      | "system"
-      | null;
-    if (storedTheme) {
-      setTheme(storedTheme);
-    }
-
-    
-    applyTheme(storedTheme || "system");
-  }, []);
-
-  const applyTheme = (newTheme: "light" | "dark" | "system") => {
-    if (newTheme === "system") {
-      
-      document.documentElement.classList.remove("force-light", "force-dark");
-      localStorage.removeItem("color-theme");
-    } else {
-      
-      document.documentElement.classList.remove("force-light", "force-dark");
-      document.documentElement.classList.add(`force-${newTheme}`);
-      localStorage.setItem("color-theme", newTheme);
-    }
-  };
-
-  
-  useEffect(() => {
-    
-    document.documentElement.classList.add("color-scheme-adaptive");
-
-    
-    const darkModeMediaQuery = window.matchMedia(
-      "(prefers-color-scheme: dark)",
-    );
-
-    
-    const handleColorSchemeChange = () => {
-      if (darkModeMediaQuery.matches) {
-        document.documentElement.setAttribute("data-color-scheme", "dark");
-      } else {
-        document.documentElement.setAttribute("data-color-scheme", "light");
-      }
-    };
-
-    
-    handleColorSchemeChange();
-
-    
-    darkModeMediaQuery.addEventListener("change", handleColorSchemeChange);
-
-    
-    return () => {
-      darkModeMediaQuery.removeEventListener("change", handleColorSchemeChange);
-      document.documentElement.classList.remove("color-scheme-adaptive");
-    };
+    localStorage.removeItem("color-theme");
+    document.documentElement.classList.remove("force-light", "color-scheme-adaptive");
+    document.documentElement.classList.add("force-dark");
   }, []);
 
   return (
     <Router>
-      
-      
-      <div className="min-h-screen bg-background text-foreground font-sans prose-adaptive w-full overflow-x-hidden">
-        <Header />
+      <div className="min-h-screen bg-background font-sans prose-adaptive w-full overflow-x-hidden">
         <NavigationBar />
-
-        <main className="container mx-auto px-4 md:px-6 lg:px-10 py-8 max-w-7xl">
+        <main className="w-full overflow-x-hidden">
           <Suspense
             fallback={
               <div className="flex justify-center items-center h-40">
-                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+                <div className="w-6 h-6 border border-primary/40 border-t-primary rounded-full animate-spin" />
               </div>
             }
           >
@@ -95,7 +37,9 @@ export default function App() {
               <Route path="*" element={<Navigate to="/about" replace />} />
               <Route path="/" element={<Navigate to="/about" replace />} />
               <Route path="/about" element={<About />} />
+              <Route path="/work" element={<Work />} />
               <Route path="/projects" element={<Projects />} />
+              <Route path="/expertise" element={<Expertise />} />
               <Route path="/reading-list" element={<ReadingList />} />
             </Routes>
           </Suspense>

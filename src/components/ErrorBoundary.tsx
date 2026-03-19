@@ -30,12 +30,10 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   }
 
   static getDerivedStateFromError(error: Error): Partial<ErrorBoundaryState> {
-    
     return { hasError: true, error };
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
-    
     console.error("Uncaught error:", error, errorInfo);
     this.setState({ errorInfo });
   }

@@ -1,58 +1,98 @@
 [
   {
     "id": "paper-001",
-    "title": "Reflections on Trusting Trust — Ken Thompson (1984)",
-    "url": "https://dl.acm.org/doi/10.1145/358198.358210",
-    "tags": ["security", "paper"],
-    "dateAdded": "2026-03-01"
+    "title": "Meltdown: Reading Kernel Memory from User Space — Lipp et al. (2018)",
+    "url": "https://arxiv.org/abs/1801.01207",
+    "pdf": "/assets/reading/Meltdown- Reading Kernel Memory from User Space.pdf",
+    "tags": ["security", "systems", "paper"],
+    "dateAdded": "2026-03-19"
   },
   {
     "id": "paper-002",
-    "title": "Smashing the Stack for Fun and Profit — Aleph One (1996)",
-    "url": "https://phrack.org/issues/49/14.html",
-    "tags": ["security", "systems", "paper"],
-    "dateAdded": "2026-02-28"
-  },
-  {
-    "id": "paper-003",
-    "title": "No Silver Bullet: Essence and Accidents of Software Engineering — Fred Brooks (1987)",
-    "url": "https://worrydream.com/refs/Brooks-NoSilverBullet.pdf",
-    "tags": ["software engineering", "paper"],
-    "dateAdded": "2026-02-25"
-  },
-  {
-    "id": "paper-004",
     "title": "Spectre Attacks: Exploiting Speculative Execution — Kocher et al. (2018)",
     "url": "https://arxiv.org/abs/1801.01203",
+    "pdf": "/assets/reading/Spectre Attacks- Exploiting Speculative Execution .pdf",
     "tags": ["security", "systems", "paper"],
-    "dateAdded": "2026-01-15"
+    "dateAdded": "2026-03-18"
   },
   {
     "id": "book-001",
-    "title": "The Pragmatic Programmer — David Thomas & Andrew Hunt",
-    "url": "https://pragprog.com/titles/tpp20/the-pragmatic-programmer-20th-anniversary-edition/",
-    "tags": ["software engineering", "book"],
-    "dateAdded": "2025-12-15"
+    "title": "Operating Systems: Three Easy Pieces — Arpaci-Dusseau & Arpaci-Dusseau",
+    "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/",
+    "image": "/assets/reading/Operating Systems- Three Easy Pieces.jpg",
+    "tags": ["systems", "book"],
+    "dateAdded": "2026-03-10"
   },
   {
     "id": "book-002",
-    "title": "A Philosophy of Software Design — John Ousterhout",
-    "url": "https://web.stanford.edu/~ouster/cgi-bin/aposd.php",
-    "tags": ["software engineering", "book"],
-    "dateAdded": "2025-11-25"
+    "title": "Security Engineering — Ross Anderson (3rd ed., Free Online)",
+    "url": "https://www.cl.cam.ac.uk/~rja14/book.html",
+    "image": "/assets/reading/Security Engineering — Ross Anderson.jpg",
+    "tags": ["security", "book"],
+    "dateAdded": "2026-03-05"
+  },
+  {
+    "id": "paper-003",
+    "title": "The Byzantine Generals Problem — Lamport, Shostak & Pease (1982)",
+    "url": "https://dl.acm.org/doi/10.1145/357172.357176",
+    "pdf": "/assets/reading/The Byzantine Generals Problem.pdf",
+    "tags": ["distributed systems", "paper"],
+    "dateAdded": "2026-02-20"
   },
   {
     "id": "book-003",
-    "title": "Hacking: The Art of Exploitation — Jon Erickson",
-    "url": "https://nostarch.com/hacking2.htm",
-    "tags": ["security", "systems", "book"],
-    "dateAdded": "2025-11-20"
+    "title": "Designing Data-Intensive Applications — Martin Kleppmann",
+    "url": "https://dataintensive.net/",
+    "image": "/assets/reading/Designing Data-Intensive Applications.png",
+    "tags": ["systems", "distributed systems", "book"],
+    "dateAdded": "2026-02-15"
+  },
+  {
+    "id": "paper-004",
+    "title": "Reflections on Trusting Trust — Ken Thompson (1984)",
+    "url": "https://dl.acm.org/doi/10.1145/358198.358210",
+    "pdf": "/assets/reading/Reflections on Trusting Trust.pdf",
+    "tags": ["security", "paper"],
+    "dateAdded": "2026-01-05"
   },
   {
     "id": "book-004",
-    "title": "Practical Malware Analysis — Sikorski & Honig",
-    "url": "https://nostarch.com/malware",
-    "tags": ["security", "book"],
-    "dateAdded": "2025-11-15"
+    "title": "Introduction to Algorithms (CLRS) — Cormen, Leiserson, Rivest & Stein",
+    "url": "https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/",
+    "image": "/assets/reading/Introduction to Algorithms (CLRS) .avif",
+    "tags": ["algorithms", "book"],
+    "dateAdded": "2025-12-20"
+  },
+  {
+    "id": "paper-005",
+    "title": "Smashing the Stack for Fun and Profit — Aleph One (1996)",
+    "url": "https://phrack.org/issues/49/14.html",
+    "image": "/assets/reading/Smashing the Stack for Fun and Profit .png",
+    "tags": ["security", "systems", "paper"],
+    "dateAdded": "2025-12-28"
+  },
+  {
+    "id": "book-005",
+    "title": "Hacking: The Art of Exploitation — Jon Erickson",
+    "url": "https://nostarch.com/hacking2.htm",
+    "image": "/assets/reading/Hacking- The Art of Exploitation.jpg",
+    "tags": ["security", "systems", "book"],
+    "dateAdded": "2025-12-05"
+  },
+  {
+    "id": "paper-006",
+    "title": "No Silver Bullet: Essence and Accidents of Software Engineering — Fred Brooks (1987)",
+    "url": "https://worrydream.com/refs/Brooks-NoSilverBullet.pdf",
+    "pdf": "/assets/reading/No Silver Bullet.pdf",
+    "tags": ["software engineering", "paper"],
+    "dateAdded": "2025-12-10"
+  },
+  {
+    "id": "book-006",
+    "title": "The Pragmatic Programmer — David Thomas & Andrew Hunt",
+    "url": "https://pragprog.com/titles/tpp20/the-pragmatic-programmer-20th-anniversary-edition/",
+    "image": "/assets/reading/The Pragmatic Programmer.jpg",
+    "tags": ["software engineering", "book"],
+    "dateAdded": "2025-11-10"
   }
 ]

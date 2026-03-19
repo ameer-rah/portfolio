@@ -2,8 +2,8 @@ export default function EducationSection() {
   const schools = [
     {
       id: "education",
-      photo: "/assets/About/rutgers.jpg",
-      logo: "/assets/About/rutgers-logo.svg",
+      photo: "/assets/education/rutgers.jpg",
+      logo: "/assets/education/rutgers-logo.svg",
       logoAlt: "Rutgers Logo",
       logoFallback: "RU",
       name: "Rutgers University – New Brunswick",
@@ -20,8 +20,8 @@ export default function EducationSection() {
     },
     {
       id: "cuny",
-      photo: "/assets/About/ccny.jpg",
-      logo: "/assets/About/ccny logo.png",
+      photo: "/assets/education/ccny.jpg",
+      logo: "/assets/education/ccny logo.png",
       logoAlt: "CUNY City College Logo",
       logoFallback: "CC",
       name: "CUNY City College of New York",
@@ -40,7 +40,6 @@ export default function EducationSection() {
 
   return (
     <section className="w-full py-28 md:py-40 px-8 md:px-16 lg:px-24 border-t border-[#111111]">
-      {/* Massive heading */}
       <h2
         className="font-display font-extralight text-adaptive leading-[0.88] mb-20 tracking-tight"
         style={{ fontSize: "clamp(3.5rem, 8vw, 10rem)" }}
@@ -56,7 +55,6 @@ export default function EducationSection() {
             className={`py-12 md:py-14 ${i > 0 ? "border-t border-primary/8" : ""}`}
           >
             <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8 md:gap-20">
-              {/* Left — campus photo + GPA */}
               <div className="flex flex-col gap-4">
                 <div className="relative w-full aspect-4/3 overflow-hidden">
                   <img
@@ -64,7 +62,6 @@ export default function EducationSection() {
                     alt={school.logoAlt}
                     className="w-full h-full object-cover opacity-70 hover:opacity-90 transition-opacity duration-500"
                   />
-                  {/* Subtle dark vignette */}
                   <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent" />
                 </div>
                 <span className="font-sans text-[10px] tracking-[0.2em] text-primary border border-primary/20 px-2.5 py-1 w-fit">
@@ -75,7 +72,6 @@ export default function EducationSection() {
                 </p>
               </div>
 
-              {/* Right — content */}
               <div className="space-y-4">
                 <h3
                   className="font-display font-extralight text-adaptive leading-tight"

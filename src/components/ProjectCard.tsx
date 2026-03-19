@@ -62,7 +62,6 @@ const ProjectCard = ({
     >
       <div className="h-full border border-primary/10 hover:border-primary/35 transition-colors duration-500 flex flex-col">
 
-        {/* Video banner */}
         {project.video && (
           <div className="w-full aspect-video overflow-hidden border-b border-primary/10">
             <video
@@ -77,7 +76,6 @@ const ProjectCard = ({
           </div>
         )}
 
-        {/* PDF auto-scroll banner */}
         {project.pdf && !project.video && (
           <div className="w-full overflow-hidden border-b border-primary/10" style={{ height: "260px" }}>
             <div style={{ height: "2000px", animation: "pdfScroll 22s linear infinite" }}>
@@ -92,17 +90,14 @@ const ProjectCard = ({
 
         <div className="p-8 flex flex-col gap-6 flex-1">
 
-        {/* Title */}
         <h3 className="font-display font-light text-adaptive text-2xl leading-tight group-hover:text-primary transition-colors duration-300">
           {project.title}
         </h3>
 
-        {/* Description */}
         <p className={`font-sans font-light text-muted-adaptive text-[13px] leading-relaxed flex-1 ${compact ? "line-clamp-3" : "line-clamp-2"}`}>
           {project.description}
         </p>
 
-        {/* Tags */}
         {project.tags?.length > 0 && (
           <div className="flex flex-wrap gap-2">
             {project.tags.map((tag) => (
@@ -116,7 +111,6 @@ const ProjectCard = ({
           </div>
         )}
 
-        {/* Footer links */}
         <div className="flex items-center gap-5 pt-2 border-t border-primary/8">
           {project.githubLink && (
             <button

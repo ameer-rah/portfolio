@@ -15,10 +15,9 @@ export function WhatDrivesMe() {
       ref={sectionRef}
       className="relative w-full min-h-screen flex flex-col justify-end overflow-hidden"
     >
-      {/* Full-bleed background image with parallax */}
       <motion.div className="absolute inset-0 overflow-hidden" style={{ y: imgY }}>
         <img
-          src="/assets/About/whatDrivesMe.png"
+          src="/assets/about/whatDrivesMe.png"
           alt=""
           aria-hidden="true"
           className="w-full h-full object-cover scale-[1.15]"
@@ -30,12 +29,9 @@ export function WhatDrivesMe() {
         />
       </motion.div>
 
-      {/* Dark gradient — heavier at bottom for text legibility */}
       <div className="absolute inset-0 bg-gradient-to-t from-[#000000]/97 via-[#000000]/60 to-[#000000]/20 pointer-events-none" />
 
-      {/* Content — pinned to bottom-left */}
       <div className="relative z-10 px-8 md:px-16 lg:px-24 pb-24 md:pb-36 pt-48">
-        {/* Pull quote — cinematic large */}
         <blockquote
           className="font-display font-extralight text-white leading-[1.05] italic mb-6 max-w-5xl"
           style={{ fontSize: "clamp(2.2rem, 5vw, 6rem)" }}
@@ -47,7 +43,6 @@ export function WhatDrivesMe() {
           — Jalen Hurts
         </cite>
 
-        {/* Three paragraphs in a grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-5xl mt-12">
           <p className="font-sans font-light text-[#888888] leading-relaxed text-[14px]">
             I'm a first-generation college student studying Computer Science at Rutgers

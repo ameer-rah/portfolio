@@ -24,7 +24,6 @@ export default function ProjectsSection({
         </Link>
       </div>
 
-      {/* Massive heading */}
       <h2
         className="font-display font-extralight text-adaptive leading-[0.88] mb-8 tracking-tight"
         style={{ fontSize: "clamp(3.5rem, 8vw, 10rem)" }}

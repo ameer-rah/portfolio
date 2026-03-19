@@ -3,43 +3,66 @@
 
 @keyframes pdfScroll {
   0%   { transform: translateY(0); }
-  90%  { transform: translateY(-87%); }
-  100% { transform: translateY(-87%); }
+  100% { transform: translateY(-50%); }
+}
+
+.pdf-scroll-inner {
+  animation: pdfScroll linear infinite;
+}
+
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes marquee-right {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+.marquee-left {
+  display: flex;
+  width: max-content;
+  gap: 0.5rem;
+  animation: marquee-left linear infinite;
+}
+
+.marquee-right {
+  display: flex;
+  width: max-content;
+  gap: 0.5rem;
+  animation: marquee-right linear infinite;
+}
+
+.marquee-container:hover .marquee-left,
+.marquee-container:hover .marquee-right {
+  animation-play-state: paused;
 }
 
 @theme {
-  /* ── Mercedes-Maybach Luxury Palette ── */
+  --color-primary: #1B7340;
+  --color-secondary: #145530;
 
-  /* Champagne Gold — the only accent */
-  --color-primary: #C8A455;
-  --color-secondary: #A8863A;
-
-  /* Dark luxury surfaces */
   --color-background-dark: #080808;
   --color-surface-dark: #111111;
   --color-surface-raised-dark: #1C1C1C;
   --color-border-dark: #2A2A2A;
 
-  /* Light luxury surfaces (warm parchment) */
   --color-background-light: #FAF9F7;
   --color-surface-light: #F2F0EB;
   --color-surface-raised-light: #E8E5DF;
   --color-border-light: #D0CBC0;
 
-  /* Text */
   --color-text-dark: #F0EDE8;
   --color-text-muted-dark: #888888;
   --color-text-light: #1A1A1A;
   --color-text-muted-light: #666666;
 
-  /* Typography */
   --font-display: 'Raleway', -apple-system, system-ui, sans-serif;
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
 
-  /* Spacing */
   --spacing: 0.25rem;
 
-  /* Animation */
   --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);
   --transition-theme:
     background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease,
@@ -51,7 +74,6 @@
     color-scheme: dark;
   }
 
-  /* Default to dark luxury */
   html {
     background-color: #080808;
     color: #F0EDE8;
@@ -113,7 +135,7 @@
   }
 
   ::selection {
-    background-color: rgba(200, 164, 85, 0.25);
+    background-color: rgba(27, 115, 64, 0.25);
   }
 
   svg {
@@ -190,32 +212,30 @@
     }
   }
 
-  /* Gold rule utility */
   .gold-rule {
     height: 1px;
-    background-color: rgba(200, 164, 85, 0.25);
+    background-color: rgba(27, 115, 64, 0.25);
     width: 100%;
   }
 
   .gold-rule-solid {
     height: 1px;
-    background-color: #C8A455;
+    background-color: #1B7340;
     width: 3rem;
   }
 
-  /* Prose adaptive for Maybach dark */
   .prose-adaptive {
     @media (prefers-color-scheme: dark) {
       --tw-prose-body: #B0ADA8;
       --tw-prose-headings: #F0EDE8;
       --tw-prose-lead: #888888;
-      --tw-prose-links: #C8A455;
+      --tw-prose-links: #1B7340;
       --tw-prose-bold: #F0EDE8;
       --tw-prose-counters: #888888;
       --tw-prose-bullets: #555555;
       --tw-prose-hr: #2A2A2A;
       --tw-prose-quotes: #B0ADA8;
-      --tw-prose-quote-borders: rgba(200, 164, 85, 0.5);
+      --tw-prose-quote-borders: rgba(27, 115, 64, 0.5);
       --tw-prose-captions: #888888;
       --tw-prose-code: #F0EDE8;
       --tw-prose-pre-code: #F0EDE8;
@@ -228,13 +248,13 @@
       --tw-prose-body: #3A3530;
       --tw-prose-headings: #1A1A1A;
       --tw-prose-lead: #666666;
-      --tw-prose-links: #A8863A;
+      --tw-prose-links: #145530;
       --tw-prose-bold: #1A1A1A;
       --tw-prose-counters: #666666;
       --tw-prose-bullets: #999999;
       --tw-prose-hr: #D0CBC0;
       --tw-prose-quotes: #3A3530;
-      --tw-prose-quote-borders: rgba(168, 134, 58, 0.5);
+      --tw-prose-quote-borders: rgba(20, 85, 48, 0.5);
       --tw-prose-captions: #666666;
       --tw-prose-code: #1A1A1A;
       --tw-prose-pre-code: #1A1A1A;
@@ -247,13 +267,13 @@
       --tw-prose-body: #3A3530;
       --tw-prose-headings: #1A1A1A;
       --tw-prose-lead: #666666;
-      --tw-prose-links: #A8863A;
+      --tw-prose-links: #145530;
       --tw-prose-bold: #1A1A1A;
       --tw-prose-counters: #666666;
       --tw-prose-bullets: #999999;
       --tw-prose-hr: #D0CBC0;
       --tw-prose-quotes: #3A3530;
-      --tw-prose-quote-borders: rgba(168, 134, 58, 0.5);
+      --tw-prose-quote-borders: rgba(20, 85, 48, 0.5);
       --tw-prose-captions: #666666;
       --tw-prose-code: #1A1A1A;
       --tw-prose-pre-code: #1A1A1A;
@@ -266,13 +286,13 @@
       --tw-prose-body: #B0ADA8;
       --tw-prose-headings: #F0EDE8;
       --tw-prose-lead: #888888;
-      --tw-prose-links: #C8A455;
+      --tw-prose-links: #1B7340;
       --tw-prose-bold: #F0EDE8;
       --tw-prose-counters: #888888;
       --tw-prose-bullets: #555555;
       --tw-prose-hr: #2A2A2A;
       --tw-prose-quotes: #B0ADA8;
-      --tw-prose-quote-borders: rgba(200, 164, 85, 0.5);
+      --tw-prose-quote-borders: rgba(27, 115, 64, 0.5);
       --tw-prose-captions: #888888;
       --tw-prose-code: #F0EDE8;
       --tw-prose-pre-code: #F0EDE8;
@@ -282,7 +302,6 @@
     }
   }
 
-  /* Text color adaptive */
   .text-adaptive {
     @media (prefers-color-scheme: dark) {
       color: var(--color-text-dark);

@@ -23,7 +23,6 @@ export default function ProjectView() {
   useEffect(() => {
     const fetchProject = async () => {
       try {
-        
         const [content, projects] = await Promise.all([
           fetchGitHubText(`content/projects/${id}.md`),
           fetchGitHubJson<Project[]>("content/projects.json"),
@@ -121,7 +120,6 @@ export default function ProjectView() {
           )}
         </div>
 
-        
       </div>
 
       <MarkdownRenderer content={project.content} className="mt-8" />

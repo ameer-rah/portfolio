@@ -7,8 +7,7 @@ export default function TLDR() {
   };
 
   return (
-    <section className="w-full py-28 md:py-40 px-8 md:px-16 lg:px-24 border-t border-[#111111]">
-      {/* Massive heading */}
+    <section className="w-full py-28 md:py-40 px-8 md:px-16 lg:px-24 border-t border-surface-dark">
       <h2
         className="font-display font-extralight text-adaptive leading-[0.88] mb-20 tracking-tight"
         style={{ fontSize: "clamp(3.5rem, 8vw, 10rem)" }}
@@ -16,10 +15,9 @@ export default function TLDR() {
         At a Glance
       </h2>
 
-      {/* Two-column editorial content */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-16 max-w-5xl">
         <div className="space-y-5">
-          <p className="font-sans text-[10px] tracking-[0.35em] uppercase text-[#C8A455] font-light mb-6">
+          <p className="font-sans text-[10px] tracking-[0.35em] uppercase text-primary font-light mb-6">
             Currently
           </p>
           <p className="font-sans font-light text-muted-adaptive leading-relaxed text-[15px]">
@@ -54,7 +52,6 @@ export default function TLDR() {
             .
           </p>
 
-          {/* Currently building — RUPlanner card */}
           <a
             href="https://github.com/ameer-rah/ruplanner"
             target="_blank"
@@ -62,7 +59,7 @@ export default function TLDR() {
             className="group mt-6 flex items-center gap-4 border border-primary/10 hover:border-primary/30 px-5 py-4 transition-colors duration-500 w-fit"
           >
             <img
-              src="/assets/About/RUPlanner_logo.png"
+              src="/assets/projects/RUPlanner_logo.png"
               alt="RUPlanner logo"
               className="h-7 w-auto opacity-80 group-hover:opacity-100 transition-opacity duration-300"
             />
@@ -81,7 +78,7 @@ export default function TLDR() {
         </div>
 
         <div className="space-y-5">
-          <p className="font-sans text-[10px] tracking-[0.35em] uppercase text-[#C8A455] font-light mb-6">
+          <p className="font-sans text-[10px] tracking-[0.35em] uppercase text-primary font-light mb-6">
             Off the Clock
           </p>
           <p className="font-sans font-light text-muted-adaptive leading-relaxed text-[15px]">

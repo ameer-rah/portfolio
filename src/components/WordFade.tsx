@@ -3,17 +3,10 @@ import { motion } from "framer-motion";
 interface WordFadeProps {
   text: string;
   className?: string;
-  /** Extra delay before the first word starts (seconds) */
   delay?: number;
-  /** Time between each word appearing (seconds) */
   stagger?: number;
 }
 
-/**
- * Replicates the Mercedes-Maybach `.brandhub-word-fade` effect:
- * splits text into individual words and fades each one in sequentially
- * as the element scrolls into view.
- */
 export default function WordFade({
   text,
   className = "",
@@ -46,7 +39,6 @@ export default function WordFade({
 
   return (
     <motion.span
-      /* matches .brandhub-word-fade: flex row wrap */
       className={`inline-flex flex-wrap gap-x-[0.28em] ${className}`}
       variants={container}
       initial="hidden"

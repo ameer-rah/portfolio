@@ -8,16 +8,16 @@ import { fetchUserRepos } from "../utils/githubApi";
 const GITHUB_USERNAME = "ameer-rah";
 
 const repoVideos: Record<string, string> = {
-  "ai_object_detector": "/assets/About/ai_detector.mp4",
-  "gravity": "/assets/About/gravity.mp4",
-  "personal website": "/assets/About/Personal%20Website.mp4",
-  "personal-website": "/assets/About/Personal%20Website.mp4",
-  "ruplanner": "/assets/About/RUPlanner.mp4",
+  "ai_object_detector": "/assets/projects/ai_detector.mp4",
+  "gravity": "/assets/projects/gravity.mp4",
+  "personal website": "/assets/projects/Personal%20Website.mp4",
+  "personal-website": "/assets/projects/Personal%20Website.mp4",
+  "ruplanner": "/assets/projects/RUPlanner.mp4",
 };
 
 const repoPdfs: Record<string, string> = {
-  "vulnerability scanner report": "/assets/About/Vulnerability%20Scanner%20Report.pdf",
-  "vulnerability-scanner-report": "/assets/About/Vulnerability%20Scanner%20Report.pdf",
+  "vulnerability scanner report": "/assets/projects/Vulnerability%20Scanner%20Report.pdf",
+  "vulnerability-scanner-report": "/assets/projects/Vulnerability%20Scanner%20Report.pdf",
 };
 
 const featuredProjects: Project[] = [
@@ -28,7 +28,7 @@ const featuredProjects: Project[] = [
       "A full-stack degree planning app for Rutgers students with a custom prerequisite validation engine, PostgreSQL + Prisma ORM, Auth0 authentication, and Upstash Redis rate-limiting.",
     tags: ["TypeScript", "Next.js", "React", "PostgreSQL", "Prisma", "Auth0", "Redis"],
     githubLink: "https://github.com/ameer-rah/ruplanner",
-    video: "/assets/About/RUPlanner.mp4",
+    video: "/assets/projects/RUPlanner.mp4",
   },
   {
     id: "vulnerability-scanner",
@@ -36,7 +36,7 @@ const featuredProjects: Project[] = [
     description:
       "Simulated penetration tests on a vulnerable network identifying 60+ exploitable CVEs (SQLi, XSS, CSRF, RMI RCE, OpenSSL CCS Injection). Scored 92/100 and used as a teaching aid.",
     tags: ["Nmap", "Metasploitable2", "Cybersecurity", "Penetration Testing"],
-    pdf: "/assets/About/Vulnerability Scanner Report.pdf",
+    pdf: "/assets/projects/Vulnerability Scanner Report.pdf",
   },
 ];
 
@@ -87,7 +87,6 @@ export default function Projects() {
       transition={{ duration: 0.3, ease: "easeOut" }}
       className="w-full"
     >
-      {/* ── Featured Projects ── */}
       <section className="py-28 md:py-40 px-8 md:px-16 lg:px-24 border-t border-surface-dark">
         <p className="font-sans text-[10px] tracking-[0.45em] uppercase text-primary font-light mb-10">
           Projects
@@ -111,12 +110,10 @@ export default function Projects() {
         </div>
       </section>
 
-      {/* ── GitHub Activity ── */}
       <section className="py-20 px-8 md:px-16 lg:px-24 border-t border-surface-dark">
         <GitHubChart username={GITHUB_USERNAME} />
       </section>
 
-      {/* ── All Repos ── */}
       <section className="py-28 md:py-40 px-8 md:px-16 lg:px-24 border-t border-surface-dark">
         <p className="font-sans text-[10px] tracking-[0.45em] uppercase text-primary font-light mb-10">
           GitHub

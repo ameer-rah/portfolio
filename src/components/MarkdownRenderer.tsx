@@ -17,7 +17,6 @@ function useDarkMode() {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
-    
     const checkColorScheme = () => {
       const isDark =
         document.documentElement.classList.contains("force-dark") ||
@@ -26,15 +25,12 @@ function useDarkMode() {
       setIsDarkMode(isDark);
     };
 
-    
     checkColorScheme();
 
-    
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
     const handleChange = () => checkColorScheme();
     mediaQuery.addEventListener("change", handleChange);
 
-    
     const observer = new MutationObserver(checkColorScheme);
     observer.observe(document.documentElement, {
       attributes: true,
@@ -101,18 +97,15 @@ function extractYoutubeVideoId(url: string): string | null {
   try {
     if (!url || typeof url !== "string") return null;
 
-    
     if (url.includes("youtu.be/")) {
       return url.split("youtu.be/")[1]?.split("?")[0] || null;
     }
 
-    
     if (url.includes("youtube.com/watch")) {
       const urlParams = new URLSearchParams(url.split("?")[1] || "");
       return urlParams.get("v");
     }
 
-    
     if (url.includes("youtube.com/embed/")) {
       return url.split("youtube.com/embed/")[1]?.split("?")[0] || null;
     }
@@ -158,7 +151,6 @@ export default function MarkdownRenderer({
             );
           },
           a: (props) => {
-            
             const videoId = extractYoutubeVideoId(props.href || "");
 
             if (videoId) {
@@ -175,7 +167,6 @@ export default function MarkdownRenderer({
               );
             }
 
-            
             return (
               <a
                 {...props}
@@ -190,9 +181,7 @@ export default function MarkdownRenderer({
               {children}
             </pre>
           ),
-          
           img: (props) => {
-            
             if (props.alt?.toLowerCase().includes("youtube:")) {
               const videoUrl = props.alt.split("youtube:")[1]?.trim();
               const videoId = extractYoutubeVideoId(videoUrl);
@@ -212,14 +201,10 @@ export default function MarkdownRenderer({
               }
             }
 
-            
             return <img {...props} className="rounded-lg" />;
           },
-          
           summary: (props) => <summary {...props} className="cursor-pointer" />,
-          
           details: ({ node, children, ...rest }) => {
-            
             const childrenArray = Array.isArray(children)
               ? children
               : [children];
@@ -227,17 +212,13 @@ export default function MarkdownRenderer({
               (child: any) => child?.props?.node?.tagName === "summary",
             );
 
-            
             const summary =
               summaryIndex !== -1 ? childrenArray[summaryIndex] : null;
 
-            
-            
             const extractTextContent = (node: any): string => {
               if (typeof node === "string") return node;
               if (!node) return "";
 
-              
               if (node.props && node.props.children) {
                 if (Array.isArray(node.props.children)) {
                   return node.props.children.map(extractTextContent).join("");
@@ -249,13 +230,11 @@ export default function MarkdownRenderer({
               return "";
             };
 
-            
             const contentNodes = childrenArray.filter(
               (_, i) => i !== summaryIndex,
             );
             const textContent = contentNodes.map(extractTextContent).join("");
 
-            
             return (
               <details {...rest}>
                 {summary}

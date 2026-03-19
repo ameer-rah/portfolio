@@ -6,7 +6,6 @@ interface TwitterTweetProps {
 
 export default function TwitterTweet({ tweetId }: TwitterTweetProps) {
   useEffect(() => {
-    
     const script = document.createElement("script");
     script.src = "https://platform.twitter.com/widgets.js";
     script.async = true;
@@ -14,7 +13,6 @@ export default function TwitterTweet({ tweetId }: TwitterTweetProps) {
     document.body.appendChild(script);
 
     return () => {
-      
       document.body.removeChild(script);
     };
   }, []);

@@ -14,7 +14,6 @@ const ReadingList = lazy(() => import("./pages/ReadingList"));
 const NavigationBar = lazy(() => import("./components/NavigationBar"));
 
 export default function App() {
-  // Always dark — no toggle
   useEffect(() => {
     localStorage.removeItem("color-theme");
     document.documentElement.classList.remove("force-light", "color-scheme-adaptive");

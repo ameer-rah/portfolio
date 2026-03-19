@@ -2,11 +2,14 @@ import { motion } from "framer-motion";
 import { useState, useEffect, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 import FilterDropdown from "../components/FilterDropdown";
+import PdfScrollPreview from "../components/PdfScrollPreview";
 
 interface ReadingListItem {
   id: string;
   title: string;
   url: string;
+  pdf?: string;
+  image?: string;
   tags: string[];
   dateAdded: string;
 }
@@ -88,12 +91,10 @@ export default function ReadingList() {
       transition={{ duration: 0.3, ease: "easeOut" }}
       className="w-full py-28 md:py-40 px-8 md:px-16 lg:px-24"
     >
-      {/* Section number */}
       <p className="font-sans text-[10px] tracking-[0.45em] uppercase text-primary font-light mb-10">
         Reading
       </p>
 
-      {/* Heading + filter row */}
       <div className="flex items-end justify-between gap-6 mb-20">
         <h1
           className="font-display font-extralight text-adaptive leading-[0.88] tracking-tight"
@@ -129,49 +130,75 @@ export default function ReadingList() {
           )}
         </div>
       ) : (
-        <div className="space-y-0">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {filteredPapers.map((paper, index) => (
             <motion.div
               key={paper.id}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: index * 0.04, duration: 0.5 }}
-              className="group border-b border-primary/8 py-6 first:border-t first:border-t-primary/8"
+              initial={{ opacity: 0, x: index % 2 === 0 ? -60 : 60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.55, ease: "easeOut" }}
+              className="group border border-primary/10 hover:border-primary/25 transition-colors duration-300 overflow-hidden flex h-56"
             >
-              <div className="flex flex-col sm:flex-row sm:items-start gap-4">
-                {/* Date */}
-                <span className="font-sans text-[10px] tracking-[0.15em] uppercase text-muted-adaptive font-light shrink-0 sm:w-32 sm:pt-1">
+              {(paper.image || paper.pdf) && (
+                <div className="w-2/5 shrink-0 overflow-hidden border-r border-primary/10">
+                  {paper.image && (
+                    <a href={paper.url} target="_blank" rel="noopener noreferrer" className="block h-full">
+                      <img
+                        src={paper.image}
+                        alt={paper.title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
+                    </a>
+                  )}
+                  {paper.pdf && (
+                    <PdfScrollPreview url={paper.pdf} />
+                  )}
+                </div>
+              )}
+
+              <div className="flex flex-col gap-3 p-5 flex-1 min-w-0">
+                <span className="font-sans text-[10px] tracking-[0.15em] uppercase text-muted-adaptive font-light shrink-0">
                   {new Date(paper.dateAdded).toLocaleDateString("en-US", {
                     year: "numeric",
                     month: "short",
                   })}
                 </span>
 
-                {/* Content */}
-                <div className="flex-1 space-y-3">
-                  <a
-                    href={paper.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-display font-light text-adaptive text-xl leading-tight hover:text-primary transition-colors duration-300 group/link inline-flex items-start gap-2"
-                  >
-                    {paper.title}
-                    <svg className="w-3 h-3 mt-1.5 shrink-0 opacity-0 group-hover/link:opacity-100 transition-opacity duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
-                  </a>
+                <a
+                  href={paper.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-display font-light text-adaptive text-base leading-snug hover:text-primary transition-colors duration-300 group/link inline-flex items-start gap-2 flex-1"
+                >
+                  <span className="line-clamp-4">{paper.title}</span>
+                  <svg className="w-3 h-3 mt-0.5 shrink-0 opacity-0 group-hover/link:opacity-100 transition-opacity duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
 
+                <div className="flex flex-col gap-2 mt-auto shrink-0">
                   {paper.tags.length > 0 && (
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-1.5">
                       {paper.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="font-sans text-[10px] tracking-[0.1em] px-2 py-1 border border-primary/12 text-muted-adaptive"
+                          className="font-sans text-[9px] tracking-widest px-2 py-0.5 border border-primary/12 text-muted-adaptive"
                         >
                           {tag}
                         </span>
                       ))}
                     </div>
+                  )}
+                  {paper.pdf && (
+                    <a
+                      href={paper.pdf}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-sans text-[9px] tracking-[0.2em] uppercase text-primary border border-primary/30 px-3 py-1 hover:border-primary/60 transition-colors duration-300 self-start"
+                    >
+                      Open PDF
+                    </a>
                   )}
                 </div>
               </div>

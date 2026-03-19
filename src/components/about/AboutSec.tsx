@@ -1,7 +1,6 @@
 export default function AboutSection() {
   return (
     <section className="w-full py-28 md:py-40 px-8 md:px-16 lg:px-24 border-t border-[#111111]">
-      {/* Massive heading */}
       <h2
         className="font-display font-extralight text-adaptive leading-[0.88] mb-20 tracking-tight"
         style={{ fontSize: "clamp(3.5rem, 8vw, 10rem)" }}
@@ -9,7 +8,6 @@ export default function AboutSection() {
         About
       </h2>
 
-      {/* Editorial two-column layout */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-16 max-w-5xl mb-24">
         <p className="font-sans font-light text-muted-adaptive leading-relaxed text-[15px]">
           I'm passionate about solving difficult, thought-provoking problems
@@ -26,7 +24,6 @@ export default function AboutSection() {
         </p>
       </div>
 
-      {/* Three focus areas — full-width editorial grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 border-t border-primary/8">
         {[
           {

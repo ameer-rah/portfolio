@@ -32,7 +32,6 @@ export default function ImportantDocuments() {
             rel="noopener noreferrer"
             className="group inline-flex items-center gap-4 px-8 py-4 border border-primary/15 hover:border-primary/50 transition-colors duration-500"
           >
-            {/* Download icon */}
             <svg
               className="w-3 h-3 text-primary/30 group-hover:text-primary transition-colors duration-300"
               fill="none"

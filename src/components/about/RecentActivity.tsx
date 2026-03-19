@@ -9,7 +9,6 @@ export default function RecentActivity() {
 
   return (
     <section className="w-full py-28 md:py-40 px-8 md:px-16 lg:px-24 border-t border-[#111111]">
-      {/* Live indicator */}
       <div className="flex items-center gap-4 mb-10">
         <span className="relative flex h-1.5 w-1.5">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-60" />
@@ -18,7 +17,6 @@ export default function RecentActivity() {
         <span className="font-sans text-[9px] tracking-[0.35em] uppercase text-primary/50 font-light">Live</span>
       </div>
 
-      {/* Massive heading */}
       <h2
         className="font-display font-extralight text-adaptive leading-[0.88] mb-20 tracking-tight"
         style={{ fontSize: "clamp(3.5rem, 8vw, 10rem)" }}
@@ -26,10 +24,8 @@ export default function RecentActivity() {
         Currently Building
       </h2>
 
-      {/* Project — editorial card */}
       <div className="border-t border-primary/10 pt-12">
         <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-10 md:gap-20">
-          {/* Left — metadata */}
           <div className="space-y-6">
             <span className="font-sans text-[9px] tracking-[0.3em] uppercase px-3 py-1.5 border border-primary/20 text-primary inline-block">
               In Development
@@ -44,7 +40,7 @@ export default function RecentActivity() {
             </div>
             <video
               ref={videoRef}
-              src="/assets/About/RUPlanner.mp4"
+              src="/assets/projects/RUPlanner.mp4"
               autoPlay
               muted
               loop
@@ -53,7 +49,6 @@ export default function RecentActivity() {
             />
           </div>
 
-          {/* Right — content */}
           <div className="space-y-6">
             <h3
               className="font-display font-extralight text-adaptive leading-tight"

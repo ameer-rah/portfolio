@@ -30,17 +30,15 @@ export default function NavigationBar() {
       />
 
       <div className="flex flex-col items-center">
-        {/* Logo — always visible */}
         <div className="flex items-center justify-center h-14 w-full">
           <NavLink
             to="/about"
-            className="font-display text-base font-extralight text-primary tracking-[0.35em] hover:text-[#E8C870] transition-colors duration-500"
+            className="font-display text-base font-extralight text-primary tracking-[0.35em] hover:text-white transition-colors duration-500"
           >
             AR
           </NavLink>
         </div>
 
-        {/* Nav links — slide down on hover */}
         <AnimatePresence>
           {hovered && (
             <motion.div

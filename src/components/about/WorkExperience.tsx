@@ -86,16 +86,13 @@ function RoleEntry({ role, index }: { role: Role; index: number }) {
       id={role.id}
       className="border-t border-primary/8 pt-10 pb-14 md:pt-14 md:pb-20 grid grid-cols-[2.5rem_1fr] sm:grid-cols-[4rem_1fr] md:grid-cols-[5.5rem_1fr] gap-x-6 md:gap-x-10 lg:gap-x-14"
     >
-      {/* Left gutter — index number */}
       <div className="pt-1">
         <span className="font-sans text-[10px] tracking-[0.3em] text-primary/35 font-light tabular-nums select-none">
           {String(index + 1).padStart(2, "0")}
         </span>
       </div>
 
-      {/* Right — content */}
       <div className="space-y-5">
-        {/* Company name */}
         <h3
           className="font-display font-extralight text-adaptive leading-[0.9] tracking-tight"
           style={{ fontSize: "clamp(1.9rem, 4.5vw, 5rem)" }}
@@ -103,7 +100,6 @@ function RoleEntry({ role, index }: { role: Role; index: number }) {
           {role.company}
         </h3>
 
-        {/* Meta row */}
         <div className="flex flex-wrap items-center gap-x-6 gap-y-1.5">
           <span className="font-sans text-[10px] tracking-[0.25em] uppercase text-primary font-light">
             {role.title}
@@ -118,15 +114,12 @@ function RoleEntry({ role, index }: { role: Role; index: number }) {
           )}
         </div>
 
-        {/* Thin gold rule */}
         <div className="gold-rule opacity-20" />
 
-        {/* Body */}
         <p className="font-sans font-light text-muted-adaptive leading-relaxed text-[14px] max-w-2xl">
           {role.body}
         </p>
 
-        {/* Tags */}
         {role.tags.length > 0 && (
           <div className="flex flex-wrap gap-2 pt-1">
             {role.tags.map((tag) => (
@@ -152,7 +145,6 @@ export default function WorkExperienceSection() {
 
   return (
     <section className="w-full">
-      {/* ── Hero ── */}
       <motion.div
         ref={heroRef}
         initial={{ opacity: 0, y: 32 }}
@@ -160,12 +152,10 @@ export default function WorkExperienceSection() {
         transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
         className="px-8 md:px-16 lg:px-24 pt-28 md:pt-40 pb-16 md:pb-24"
       >
-        {/* Eyebrow */}
         <p className="font-sans text-[10px] tracking-[0.35em] uppercase text-primary font-light mb-10">
           Career
         </p>
 
-        {/* Massive headline */}
         <h2
           className="font-display font-extralight text-adaptive leading-[0.88] tracking-tight"
           style={{ fontSize: "clamp(3.5rem, 9vw, 11rem)" }}
@@ -175,7 +165,6 @@ export default function WorkExperienceSection() {
           Experience
         </h2>
 
-        {/* Stats row */}
         <div className="mt-14 md:mt-16 flex flex-wrap gap-x-12 gap-y-6 border-t border-primary/8 pt-10">
           {[
             { value: "5", label: "Roles" },
@@ -197,14 +186,12 @@ export default function WorkExperienceSection() {
         </div>
       </motion.div>
 
-      {/* ── Roles ── */}
       <div className="px-8 md:px-16 lg:px-24 pb-4">
         {roles.map((role, i) => (
           <RoleEntry key={role.id} role={role} index={i} />
         ))}
       </div>
 
-      {/* ── Terminal CTA ── */}
       <motion.div
         ref={ctaRef}
         initial={{ opacity: 0, y: 28 }}

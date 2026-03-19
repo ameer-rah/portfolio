@@ -10,7 +10,7 @@ interface GitHubChartProps {
 
 const GitHubChart: React.FC<GitHubChartProps> = ({
   username = "[your-github]",
-  color = "C8A455",
+  color = "1B7340",
   className = "github-chart",
   alt = `${username}'s GitHub contribution chart`
 }) => {
@@ -38,7 +38,6 @@ const GitHubChart: React.FC<GitHubChartProps> = ({
         </a>
       </div>
 
-      {/* Contribution chart */}
       <div
         className="border border-primary/10 p-6 cursor-pointer hover:border-primary/25 transition-colors duration-500"
         onClick={() => window.open(`https://github.com/${username}`, '_blank')}
@@ -51,7 +50,6 @@ const GitHubChart: React.FC<GitHubChartProps> = ({
         />
       </div>
 
-      {/* Legend */}
       <div className="flex items-center justify-end gap-3">
         <span className="font-sans text-[10px] tracking-[0.15em] uppercase text-muted-adaptive font-light">Less</span>
         <div className="flex gap-1.5">

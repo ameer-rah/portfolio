@@ -3,19 +3,17 @@ import TwitterTweet from "../TwitterEmbed";
 
 export default function Socials() {
   useEffect(() => {
-    
     const script = document.createElement("script");
     script.type = "module";
     script.src = "https://w.behold.so/widget.js";
     document.head.appendChild(script);
 
-    
     return () => {
       if (script && document.head.contains(script)) {
         document.head.removeChild(script);
       }
     };
-  }, []); 
+  }, []);
 
   return (
     <section className="space-y-6">
@@ -86,7 +84,7 @@ export default function Socials() {
             <div className="relative m-4">
               <div className="w-28 h-28 rounded-full overflow-hidden border-2 border-[color-mix(in_oklch,var(--color-primary)_30%,transparent)]">
                 <img
-                  src="/assets/About/ig_pfp.jpg"
+                  src="/assets/about/ig_pfp.jpg"
                   alt="Ameer Rahman"
                   className="w-full h-full object-cover"
                   onError={(e) => {

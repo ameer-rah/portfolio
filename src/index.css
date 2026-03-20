@@ -2782,29 +2782,79 @@ ul { list-style: none; }
   margin-top: 5px;
 }
 
-/* ── Mobile ── */
-@media (max-width: 800px) {
-  .dg-body                         { grid-template-columns: 1fr; }
-  .dg-map-panel                    { display: none; }
-  .dg-chronicle-bottom             { flex-direction: column; }
-  .dg-vault-grid                   { grid-template-columns: 1fr; }
-}
-
 /* ─── SCROLLBAR ──────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 8px; height: 8px; }
 ::-webkit-scrollbar-track { background: var(--pixel-darker); }
 ::-webkit-scrollbar-thumb { background: #555555; }
 
-/* ─── MOBILE ─────────────────────────────────────────────────── */
+/* ─── MOBILE (tablet + phone) ────────────────────────────────── */
 @media (max-width: 800px) {
-  html, body, #root { font-size: 11px; }
-  .game-shell { border-width: 0; }
-  .inv-grid { grid-template-columns: repeat(2, 1fr); }
-  .stats-grid { grid-template-columns: 1fr; }
-  .nav-btn { font-size: 6px; padding: 10px 2px; }
-  .top-bar-title { font-size: 9px; }
-  .home-top { flex-direction: column; }
-  .edu-grid { grid-template-columns: 1fr; }
-  .lib-stats-grid { grid-template-columns: 1fr; }
-  .lib-big-number { font-size: 22px; }
+  .dg-body             { grid-template-columns: 1fr; }
+  .dg-map-panel        { display: none; }
+  .dg-chronicle-bottom { flex-direction: column; }
+  .dg-vault-grid       { grid-template-columns: 1fr; }
+
+  html, body, #root    { font-size: 11px; }
+  .game-shell          { border-width: 0; }
+  .inv-grid            { grid-template-columns: repeat(2, 1fr); }
+  .stats-grid          { grid-template-columns: 1fr; }
+  .top-bar-title       { font-size: 9px; }
+  .home-top            { flex-direction: column; }
+  .edu-grid            { grid-template-columns: 1fr; }
+  .lib-stats-grid      { grid-template-columns: 1fr; }
+  .lib-big-number      { font-size: 22px; }
+}
+
+/* ─── MOBILE (iPhone — ≤480px) ───────────────────────────────── */
+@media (max-width: 480px) {
+  /* Global font scale */
+  html, body, #root { font-size: 10px; }
+
+  /* Top bar — hide binary noise, shrink title */
+  .top-bar           { padding: 8px 10px; gap: 8px; }
+  .top-bar-binary    { display: none; }
+  .top-bar-title     { font-size: 7px; letter-spacing: 2px; }
+  .hp-label          { font-size: 6px; }
+  .level-badge       { font-size: 6px; }
+
+  /* Nav — scroll horizontally instead of squishing */
+  .nav-menu          { overflow-x: auto; overflow-y: hidden; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .nav-menu::-webkit-scrollbar { display: none; }
+  .nav-btn           { font-size: 6px; padding: 10px 6px; white-space: nowrap; flex-shrink: 0; letter-spacing: 0; }
+
+  /* Game content padding */
+  .game-content      { padding: 12px; }
+
+  /* Home screen */
+  .home-top          { flex-direction: column; }
+  .character-panel   { min-width: 0; width: 100%; flex-direction: row; justify-content: center; }
+  .dialog-panel      { min-width: 0; width: 100%; }
+  .stats-grid        { grid-template-columns: 1fr; }
+  .edu-grid          { grid-template-columns: 1fr; }
+  .docs-row          { flex-direction: column; }
+  .doc-card          { min-width: 0; width: 100%; }
+  .dialog-links      { flex-wrap: wrap; gap: 8px; }
+  .screen-title      { font-size: 9px; }
+  .screen-subtitle   { font-size: 7px; }
+
+  /* Inventory */
+  .inv-shell         { grid-template-columns: 1fr; }
+  .inv-grid          { grid-template-columns: repeat(2, 1fr); }
+
+  /* Dungeons */
+  .dg-body           { grid-template-columns: 1fr; }
+  .dg-map-panel      { display: none; }
+  .dg-vault-grid     { grid-template-columns: 1fr; }
+  .dg-boss-actions   { flex-wrap: wrap; }
+  .dg-chronicle-bottom { flex-direction: column; }
+  .dg-hero-row       { flex-wrap: wrap; }
+
+  /* Terminal */
+  .terminal-desk     { flex-direction: column; }
+  .terminal-desk-sprite { padding-top: 0; flex-direction: row; align-items: center; gap: 10px; }
+  .t-key             { min-width: 80px; font-size: 7px; }
+
+  /* Library */
+  .lib-stats-grid    { grid-template-columns: 1fr; }
+  .lib-big-number    { font-size: 18px; }
 }

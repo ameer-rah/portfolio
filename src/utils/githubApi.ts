@@ -63,3 +63,36 @@ export async function fetchGitHubText(path: string): Promise<string> {
   return fetchGitHubFile(path);
 }
 
+export interface ContributionDay {
+  date: string;
+  count: number;
+  level: 0 | 1 | 2 | 3 | 4;
+}
+
+export interface ContributionData {
+  contributions: ContributionDay[];
+  total: Record<string, number>;
+}
+
+export async function fetchContributions(username: string): Promise<ContributionData> {
+  const url = `https://github-contributions-api.jogruber.de/v4/${username}?y=last`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`Contributions fetch failed: ${res.status}`);
+  return res.json() as Promise<ContributionData>;
+}
+
+export interface GitHubEvent {
+  id: string;
+  type: string;
+  repo: { name: string };
+  created_at: string;
+  payload: Record<string, unknown>;
+}
+
+export async function fetchUserEvents(username: string): Promise<GitHubEvent[]> {
+  const url = `https://api.github.com/users/${username}/events/public?per_page=30`;
+  const res = await fetch(url, { headers: { Accept: 'application/vnd.github.v3+json' } });
+  if (!res.ok) throw new Error(`Events fetch failed: ${res.status}`);
+  return res.json() as Promise<GitHubEvent[]>;
+}
+

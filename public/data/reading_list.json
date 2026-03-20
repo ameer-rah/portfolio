@@ -2,97 +2,341 @@
   {
     "id": "paper-001",
     "title": "Meltdown: Reading Kernel Memory from User Space — Lipp et al. (2018)",
-    "url": "https://arxiv.org/abs/1801.01207",
+    "author": "Lipp et al.",
+    "description": "Out-of-order execution exploit leaking kernel memory directly to user space.",
+    "url": "https://arxiv.org/pdf/1801.01207",
     "pdf": "/assets/reading/Meltdown- Reading Kernel Memory from User Space.pdf",
     "tags": ["security", "systems", "paper"],
-    "dateAdded": "2026-03-19"
+    "dateAdded": "2026-03-19",
+    "read": false
   },
   {
     "id": "paper-002",
     "title": "Spectre Attacks: Exploiting Speculative Execution — Kocher et al. (2018)",
-    "url": "https://arxiv.org/abs/1801.01203",
+    "author": "Kocher et al.",
+    "description": "Branch prediction exploitation to leak data across hardware security boundaries.",
+    "url": "https://arxiv.org/pdf/1801.01203",
     "pdf": "/assets/reading/Spectre Attacks- Exploiting Speculative Execution .pdf",
     "tags": ["security", "systems", "paper"],
-    "dateAdded": "2026-03-18"
+    "dateAdded": "2026-03-18",
+    "read": true
   },
   {
     "id": "book-001",
     "title": "Operating Systems: Three Easy Pieces — Arpaci-Dusseau & Arpaci-Dusseau",
+    "author": "Arpaci-Dusseau",
+    "description": "Comprehensive introduction to OS internals — processes, memory, and file systems.",
     "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/",
     "image": "/assets/reading/Operating Systems- Three Easy Pieces.jpg",
     "tags": ["systems", "book"],
-    "dateAdded": "2026-03-10"
+    "dateAdded": "2026-03-10",
+    "read": false
   },
   {
     "id": "book-002",
     "title": "Security Engineering — Ross Anderson (3rd ed., Free Online)",
+    "author": "Ross Anderson",
+    "description": "Building systems that remain dependable under hostile and adversarial conditions.",
     "url": "https://www.cl.cam.ac.uk/~rja14/book.html",
     "image": "/assets/reading/Security Engineering — Ross Anderson.jpg",
     "tags": ["security", "book"],
-    "dateAdded": "2026-03-05"
+    "dateAdded": "2026-03-05",
+    "read": true
   },
   {
     "id": "paper-003",
     "title": "The Byzantine Generals Problem — Lamport, Shostak & Pease (1982)",
-    "url": "https://dl.acm.org/doi/10.1145/357172.357176",
+    "author": "Lamport et al.",
+    "description": "Achieving distributed consensus despite unreliable and malicious participants.",
+    "url": "https://lamport.azurewebsites.net/pubs/byz.pdf",
     "pdf": "/assets/reading/The Byzantine Generals Problem.pdf",
     "tags": ["distributed systems", "paper"],
-    "dateAdded": "2026-02-20"
+    "dateAdded": "2026-02-20",
+    "read": true
   },
   {
     "id": "book-003",
     "title": "Designing Data-Intensive Applications — Martin Kleppmann",
+    "author": "Martin Kleppmann",
+    "description": "Deep dive into data systems at scale — storage engines, replication, and reliability.",
     "url": "https://dataintensive.net/",
     "image": "/assets/reading/Designing Data-Intensive Applications.png",
     "tags": ["systems", "distributed systems", "book"],
-    "dateAdded": "2026-02-15"
+    "dateAdded": "2026-02-15",
+    "read": true
   },
   {
     "id": "paper-004",
     "title": "Reflections on Trusting Trust — Ken Thompson (1984)",
-    "url": "https://dl.acm.org/doi/10.1145/358198.358210",
+    "author": "Ken Thompson",
+    "description": "On trusting trust — the compiler backdoor thought experiment and its implications.",
+    "url": "https://dl.acm.org/doi/pdf/10.1145/358198.358210",
     "pdf": "/assets/reading/Reflections on Trusting Trust.pdf",
     "tags": ["security", "paper"],
-    "dateAdded": "2026-01-05"
+    "dateAdded": "2026-01-05",
+    "read": true
   },
   {
     "id": "book-004",
     "title": "Introduction to Algorithms (CLRS) — Cormen, Leiserson, Rivest & Stein",
+    "author": "Cormen et al.",
+    "description": "The definitive reference on algorithms and data structures, from sorting to NP-completeness.",
     "url": "https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/",
     "image": "/assets/reading/Introduction to Algorithms (CLRS) .avif",
     "tags": ["algorithms", "book"],
-    "dateAdded": "2025-12-20"
+    "dateAdded": "2025-12-20",
+    "read": true,
+    "lean": -7
   },
   {
     "id": "paper-005",
     "title": "Smashing the Stack for Fun and Profit — Aleph One (1996)",
+    "author": "Aleph One",
+    "description": "Classic guide to stack buffer overflows and shellcode writing on x86 Linux.",
     "url": "https://phrack.org/issues/49/14.html",
     "image": "/assets/reading/Smashing the Stack for Fun and Profit .png",
     "tags": ["security", "systems", "paper"],
-    "dateAdded": "2025-12-28"
+    "dateAdded": "2025-12-28",
+    "read": true
   },
   {
     "id": "book-005",
     "title": "Hacking: The Art of Exploitation — Jon Erickson",
+    "author": "Jon Erickson",
+    "description": "Hands-on exploitation, shellcode, and low-level hacking fundamentals from scratch.",
     "url": "https://nostarch.com/hacking2.htm",
     "image": "/assets/reading/Hacking- The Art of Exploitation.jpg",
     "tags": ["security", "systems", "book"],
-    "dateAdded": "2025-12-05"
+    "dateAdded": "2025-12-05",
+    "read": true
   },
   {
     "id": "paper-006",
     "title": "No Silver Bullet: Essence and Accidents of Software Engineering — Fred Brooks (1987)",
+    "author": "Fred Brooks",
+    "description": "No single technique yields the dramatic productivity gains software engineers seek.",
     "url": "https://worrydream.com/refs/Brooks-NoSilverBullet.pdf",
     "pdf": "/assets/reading/No Silver Bullet.pdf",
     "tags": ["software engineering", "paper"],
-    "dateAdded": "2025-12-10"
+    "dateAdded": "2025-12-10",
+    "read": true,
+    "lean": -5
   },
   {
     "id": "book-006",
     "title": "The Pragmatic Programmer — David Thomas & Andrew Hunt",
+    "author": "Thomas & Hunt",
+    "description": "Practical wisdom for software craftsmanship, clean code, and long-term career growth.",
     "url": "https://pragprog.com/titles/tpp20/the-pragmatic-programmer-20th-anniversary-edition/",
     "image": "/assets/reading/The Pragmatic Programmer.jpg",
     "tags": ["software engineering", "book"],
-    "dateAdded": "2025-11-10"
+    "dateAdded": "2025-11-10",
+    "read": true
+  },
+  {
+    "id": "book-007",
+    "title": "Social Engineering: The Art of Human Hacking — Christopher Hadnagy",
+    "author": "Christopher Hadnagy",
+    "description": "The psychology and methodology behind manipulating people as the weakest security link.",
+    "url": "https://www.wiley.com/en-us/Social+Engineering%3A+The+Art+of+Human+Hacking-p-9780470639535",
+    "tags": ["security", "book"],
+    "dateAdded": "2025-10-20",
+    "read": true
+  },
+  {
+    "id": "book-008",
+    "title": "The Mythical Man-Month — Frederick P. Brooks Jr.",
+    "author": "Fred Brooks",
+    "description": "Why adding engineers to a late project makes it later — timeless software project wisdom.",
+    "url": "https://www.oreilly.com/library/view/mythical-man-month-the/0201835959/",
+    "tags": ["software engineering", "book"],
+    "dateAdded": "2025-09-15",
+    "read": true,
+    "lean": -8
+  },
+  {
+    "id": "book-009",
+    "title": "Clean Code: A Handbook of Agile Software Craftsmanship — Robert C. Martin",
+    "author": "Robert C. Martin",
+    "description": "Principles, patterns, and practices for writing readable, maintainable software.",
+    "url": "https://www.oreilly.com/library/view/clean-code-a/9780136083238/",
+    "tags": ["software engineering", "book"],
+    "dateAdded": "2025-08-05",
+    "read": true
+  },
+  {
+    "id": "book-010",
+    "title": "Refactoring: Improving the Design of Existing Code — Martin Fowler",
+    "author": "Martin Fowler",
+    "description": "A catalog of refactoring techniques for restructuring code without changing its behavior.",
+    "url": "https://martinfowler.com/books/refactoring.html",
+    "tags": ["software engineering", "book"],
+    "dateAdded": "2025-07-10",
+    "read": true,
+    "lean": -6
+  },
+  {
+    "id": "book-011",
+    "title": "The C Programming Language — Brian Kernighan & Dennis Ritchie",
+    "author": "Kernighan & Ritchie",
+    "description": "The original C reference — still the clearest introduction to the language and systems thinking.",
+    "url": "https://www.cs.princeton.edu/~bwk/cbook.html",
+    "tags": ["systems", "book"],
+    "dateAdded": "2025-06-12",
+    "read": true
+  },
+  {
+    "id": "book-012",
+    "title": "Structure and Interpretation of Computer Programs — Abelson & Sussman",
+    "author": "Abelson & Sussman",
+    "description": "MIT's classic — abstraction, recursion, interpreters, and the essence of computation.",
+    "url": "https://web.mit.edu/6.001/6.037/sicp.pdf",
+    "tags": ["software engineering", "book"],
+    "dateAdded": "2025-05-03",
+    "read": true,
+    "lean": 5
+  },
+  {
+    "id": "book-013",
+    "title": "Cracking the Coding Interview — Gayle Laakmann McDowell",
+    "author": "Gayle L. McDowell",
+    "description": "189 programming problems and solutions to prepare for software engineering interviews.",
+    "url": "https://www.crackingthecodinginterview.com/",
+    "tags": ["algorithms", "book"],
+    "dateAdded": "2025-04-01",
+    "read": true
+  },
+  {
+    "id": "book-014",
+    "title": "Computer Networking: A Top-Down Approach — Kurose & Ross",
+    "author": "Kurose & Ross",
+    "description": "Network layers from application down to the physical — the standard networking textbook.",
+    "url": "https://gaia.cs.umass.edu/kurose_ross/index.php",
+    "tags": ["systems", "book"],
+    "dateAdded": "2025-03-05",
+    "read": true
+  },
+  {
+    "id": "book-015",
+    "title": "The Linux Command Line — William Shotts",
+    "author": "William Shotts",
+    "description": "A complete introduction to the Linux command line and shell scripting.",
+    "url": "https://linuxcommand.org/tlcl.php",
+    "tags": ["systems", "book"],
+    "dateAdded": "2025-02-10",
+    "read": true
+  },
+  {
+    "id": "paper-007",
+    "title": "MapReduce: Simplified Data Processing on Large Clusters — Dean & Ghemawat (2004)",
+    "author": "Dean & Ghemawat",
+    "description": "Google's programming model for processing large datasets across commodity clusters.",
+    "url": "https://static.googleusercontent.com/media/research.google.com/en//archive/mapreduce-osdi04.pdf",
+    "tags": ["distributed systems", "paper"],
+    "dateAdded": "2025-01-20",
+    "read": true
+  },
+  {
+    "id": "paper-008",
+    "title": "The Google File System — Ghemawat, Gobioff & Leung (2003)",
+    "author": "Ghemawat et al.",
+    "description": "A scalable distributed file system for large data-intensive applications.",
+    "url": "https://static.googleusercontent.com/media/research.google.com/en//archive/gfs-sosp2003.pdf",
+    "tags": ["distributed systems", "systems", "paper"],
+    "dateAdded": "2025-01-05",
+    "read": true
+  },
+  {
+    "id": "book-016",
+    "title": "Modern Operating Systems — Andrew Tanenbaum",
+    "author": "Andrew Tanenbaum",
+    "description": "Comprehensive coverage of OS design principles, processes, memory, and file systems.",
+    "url": "https://www.pearson.com/en-us/subject-catalog/p/modern-operating-systems/P200000003248",
+    "tags": ["systems", "book"],
+    "dateAdded": "2024-12-15",
+    "read": true
+  },
+  {
+    "id": "paper-009",
+    "title": "Dynamo: Amazon's Highly Available Key-Value Store — DeCandia et al. (2007)",
+    "author": "DeCandia et al.",
+    "description": "Eventual consistency and the techniques behind Amazon's distributed storage system.",
+    "url": "https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf",
+    "tags": ["distributed systems", "paper"],
+    "dateAdded": "2024-11-25",
+    "read": true
+  },
+  {
+    "id": "book-017",
+    "title": "Head First Design Patterns — Freeman & Robson",
+    "author": "Freeman & Robson",
+    "description": "Object-oriented design patterns explained with visual, brain-friendly examples.",
+    "url": "https://www.oreilly.com/library/view/head-first-design/9781492077992/",
+    "tags": ["software engineering", "book"],
+    "dateAdded": "2024-11-01",
+    "read": true,
+    "lean": 6
+  },
+  {
+    "id": "paper-010",
+    "title": "Attention Is All You Need — Vaswani et al. (2017)",
+    "author": "Vaswani et al.",
+    "description": "The transformer architecture that revolutionized NLP and modern deep learning.",
+    "url": "https://arxiv.org/pdf/1706.03762",
+    "tags": ["software engineering", "paper"],
+    "dateAdded": "2024-10-10",
+    "read": true
+  },
+  {
+    "id": "book-018",
+    "title": "Deep Work — Cal Newport",
+    "author": "Cal Newport",
+    "description": "Rules for focused success in a distracted world — building the ability to concentrate deeply.",
+    "url": "https://calnewport.com/deep-work/",
+    "tags": ["software engineering", "book"],
+    "dateAdded": "2024-09-05",
+    "read": true,
+    "lean": -4
+  },
+  {
+    "id": "paper-011",
+    "title": "Raft: In Search of an Understandable Consensus Algorithm — Ongaro & Ousterhout (2014)",
+    "author": "Ongaro & Ousterhout",
+    "description": "A consensus algorithm designed to be more understandable than Paxos.",
+    "url": "https://raft.github.io/raft.pdf",
+    "tags": ["distributed systems", "paper"],
+    "dateAdded": "2024-08-20",
+    "read": true
+  },
+  {
+    "id": "book-019",
+    "title": "The Art of Problem Solving Vol. 1 — Rusczyk & Lehoczky",
+    "author": "Rusczyk & Lehoczky",
+    "description": "Competition mathematics fundamentals — the foundation of algorithmic thinking.",
+    "url": "https://artofproblemsolving.com/store/book/aops-vol1",
+    "tags": ["algorithms", "book"],
+    "dateAdded": "2024-07-15",
+    "read": true
+  },
+  {
+    "id": "paper-012",
+    "title": "On the Criteria To Be Used in Decomposing Systems into Modules — Parnas (1972)",
+    "author": "David Parnas",
+    "description": "The foundational paper on modularity and information hiding in software design.",
+    "url": "https://www.win.tue.nl/~wstomv/edu/2ip30/references/criteria_for_modularization.pdf",
+    "tags": ["software engineering", "paper"],
+    "dateAdded": "2024-06-30",
+    "read": true
+  },
+  {
+    "id": "book-020",
+    "title": "Compilers: Principles, Techniques & Tools — Aho, Lam, Sethi & Ullman",
+    "author": "Aho et al.",
+    "description": "The Dragon Book — comprehensive coverage of compiler design and implementation.",
+    "url": "https://www.pearson.com/en-us/subject-catalog/p/compilers-principles-techniques-and-tools/P200000003261",
+    "tags": ["systems", "book"],
+    "dateAdded": "2024-06-01",
+    "read": true,
+    "lean": -5
   }
 ]

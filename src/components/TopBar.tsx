@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 const BINARY = '01110000 01101000 01110010 01100001 01100011 01101011 00100000 01000001 01010010';
 
 export default function TopBar() {
@@ -5,7 +7,7 @@ export default function TopBar() {
     <div className="top-bar">
       <div className="top-bar-left">
         <span className="top-bar-binary">{BINARY}</span>
-        <span className="top-bar-title">AMEER.DEV</span>
+        <Link to="/" className="top-bar-title" style={{ textDecoration: 'none', cursor: 'pointer' }}>AMEERRAHMAN.DEV</Link>
         <span className="top-bar-binary">{BINARY}</span>
       </div>
       <div className="top-bar-right">

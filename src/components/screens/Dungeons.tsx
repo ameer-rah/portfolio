@@ -419,21 +419,59 @@ function VaultRoom({ repos, loading, error }: { repos: GitHubRepo[]; loading: bo
 
 // ── Archive Room ──────────────────────────────────────────────────────
 function ArchiveRoom() {
+  const SKILLS = [
+    { label: 'LANGUAGES', items: ['TypeScript', 'Python', 'Java', 'C', 'SQL', 'Bash'] },
+    { label: 'FRONTEND',  items: ['React', 'Next.js', 'Tailwind', 'Vite'] },
+    { label: 'BACKEND',   items: ['Node.js', 'PostgreSQL', 'Redis', 'Prisma'] },
+    { label: 'SECURITY',  items: ['Burp Suite', 'OWASP ZAP', 'Wireshark', 'SHA-256'] },
+  ];
+  const COLORS = ['#cc44ff', '#00ddff', '#00cc66', '#ffb700'];
+
   return (
-    <div className="dg-boss-card" style={{ borderColor: '#cc44ff', background: 'rgba(204,68,255,0.06)' }}>
-      <div className="dg-boss-name" style={{ color: '#cc44ff' }}>Ameer Rahman</div>
-      <div className="dg-boss-meta">
-        <span className="dg-boss-type">Character Archive</span>
-        <span className="dg-diff-badge" style={{ borderColor: '#cc44ff', color: '#cc44ff' }}>ORIGIN STORY</span>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+      <div className="dg-boss-card" style={{ borderColor: '#cc44ff', background: 'rgba(204,68,255,0.06)' }}>
+        <div className="dg-boss-name" style={{ color: '#cc44ff' }}>Ameer Rahman</div>
+        <div className="dg-boss-meta">
+          <span className="dg-boss-type">Character Archive</span>
+          <span className="dg-diff-badge" style={{ borderColor: '#cc44ff', color: '#cc44ff' }}>ORIGIN STORY</span>
+        </div>
+        <HPBar hp={100} maxHp={100} color="#cc44ff" />
+        <div className="dg-desc">
+          CS + Critical Intelligence Studies @ Rutgers. Founded the Rutgers Run Club. Based in New York. Seeking SWE internship 2026.
+        </div>
+        <div className="dg-tags">
+          {['Rutgers 2026', 'New York', 'Run Club', 'Open to Work'].map(t => (
+            <span key={t} className="dg-tag" style={{ color: '#00cc66', borderColor: 'rgba(0,204,102,0.4)' }}>{t}</span>
+          ))}
+        </div>
       </div>
-      <HPBar hp={100} maxHp={100} color="#cc44ff" />
-      <div className="dg-desc">
-        CS + Critical Intelligence Studies @ Rutgers. Founded the Rutgers Run Club. Based in New York. Seeking SWE internship 2025.
+
+      {/* Equipped Skills */}
+      <div className="dg-boss-card" style={{ borderColor: '#00ddff', background: 'rgba(0,221,255,0.04)' }}>
+        <div className="dg-boss-name" style={{ color: '#00ddff', fontSize: 9 }}>◈ EQUIPPED SKILLS</div>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginTop: 10 }}>
+          {SKILLS.map((group, i) => (
+            <div key={group.label}>
+              <div style={{ fontSize: 6, color: COLORS[i], marginBottom: 4, letterSpacing: 1 }}>{group.label}</div>
+              <div className="dg-tags" style={{ flexWrap: 'wrap', gap: 4 }}>
+                {group.items.map(item => (
+                  <span key={item} className="dg-tag" style={{ color: COLORS[i], borderColor: COLORS[i] + '44' }}>{item}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
-      <div className="dg-tags">
-        {['Rutgers 2026', 'New York', 'Run Club', 'Open to Work'].map(t => (
-          <span key={t} className="dg-tag" style={{ color: '#00cc66', borderColor: 'rgba(0,204,102,0.4)' }}>{t}</span>
-        ))}
+
+      {/* Links */}
+      <div className="dg-boss-card" style={{ borderColor: '#334433', background: 'rgba(0,204,102,0.03)' }}>
+        <div style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap' }}>
+          <span style={{ fontSize: 6, color: '#334433' }}>[ FIELD LINKS ]</span>
+          <a href="https://github.com/ameer-rah" target="_blank" rel="noopener noreferrer" className="dg-link" style={{ color: '#ffffff' }}>[GITHUB]</a>
+          <a href="https://linkedin.com/in/ameer-rahman" target="_blank" rel="noopener noreferrer" className="dg-link" style={{ color: '#00ddff' }}>[LINKEDIN]</a>
+          <a href="/assets/PDF/Ameer Rahman Resume.pdf" target="_blank" rel="noopener noreferrer" className="dg-link" style={{ color: '#00cc66' }}>[RESUME]</a>
+          <a href="mailto:ameerrahman456@gmail.com" className="dg-link" style={{ color: '#ffb700' }}>[EMAIL]</a>
+        </div>
       </div>
     </div>
   );
@@ -733,9 +771,8 @@ export default function Dungeons() {
 
   // Fetch GitHub repos once on mount
   useEffect(() => {
-    const featuredIds = new Set(PROJECTS.map(p => p.id));
     fetchUserRepos('ameer-rah')
-      .then(data => setRepos(data.filter(r => !featuredIds.has(r.name.toLowerCase()))))
+      .then(data => setRepos(data))
       .catch(err => setRepoError(err.message))
       .finally(() => setLoadingRepos(false));
   }, []);

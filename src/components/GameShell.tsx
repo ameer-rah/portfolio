@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import TopBar from './TopBar';
 import NavMenu from './NavMenu';
 import GameFooter from './GameFooter';
@@ -11,23 +11,46 @@ import LibraryScreen from './screens/LibraryScreen';
 import type { Screen } from '../hooks/useKeyboardNav';
 import { useKeyboardNav } from '../hooks/useKeyboardNav';
 
+const ROUTE_TO_SCREEN: Record<string, Screen> = {
+  '/':          'home',
+  '/quests':    'quests',
+  '/inventory': 'inventory',
+  '/dungeons':  'dungeons',
+  '/library':   'library',
+  '/terminal':  'contact',
+};
+
+const SCREEN_TO_ROUTE: Record<Screen, string> = {
+  home:      '/',
+  quests:    '/quests',
+  inventory: '/inventory',
+  dungeons:  '/dungeons',
+  contact:   '/terminal',
+  library:   '/library',
+};
+
 export default function GameShell() {
-  const [active, setActive] = useState<Screen>('home');
-  useKeyboardNav(active, setActive);
+  const navigate   = useNavigate();
+  const location   = useLocation();
+  const active: Screen = ROUTE_TO_SCREEN[location.pathname] ?? 'home';
+
+  const handleSelect = (s: Screen) => navigate(SCREEN_TO_ROUTE[s]);
+
+  useKeyboardNav(active, handleSelect);
 
   const screens: Record<Screen, JSX.Element> = {
     home:      <HomeScreen />,
     quests:    <QuestLog />,
     inventory: <Inventory />,
     dungeons:  <Dungeons />,
-    contact:   <ContactTerminal navigate={setActive} />,
+    contact:   <ContactTerminal navigate={handleSelect} />,
     library:   <LibraryScreen />,
   };
 
   return (
     <div className="game-shell">
       <TopBar />
-      <NavMenu active={active} onSelect={setActive} />
+      <NavMenu active={active} onSelect={handleSelect} />
       <main className={`game-content${(active === 'dungeons' || active === 'inventory') ? ' game-content--full' : ''}`} key={active}>
         {screens[active]}
       </main>

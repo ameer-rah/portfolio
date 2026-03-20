@@ -8,9 +8,9 @@ const DIALOG_LINES = [
 ];
 
 const STATS = [
-  { label: 'FULL STACK', value: 62, color: 'var(--pixel-green)' },
+  { label: 'FULL STACK', value: 62, color: '#ffffff' },
   { label: 'SECURITY',   value: 55, color: 'var(--pixel-amber)' },
-  { label: 'ALGORITHMS', value: 58, color: 'var(--pixel-cyan)' },
+  { label: 'ALGORITHMS', value: 58, color: '#00ddff' },
   { label: 'RESEARCH',   value: 50, color: 'var(--pixel-purple)' },
 ];
 
@@ -115,13 +115,13 @@ export default function HomeScreen() {
             <span className="cursor" />
           </div>
           <div className="dialog-links">
-            <a href="https://github.com/ameer-rah" target="_blank" rel="noopener noreferrer" className="dialog-link">
-              [GH]
+            <a href="https://github.com/ameer-rah" target="_blank" rel="noopener noreferrer" className="dialog-link" style={{ color: '#ffffff' }}>
+              [GITHUB]
             </a>
             <a href="https://linkedin.com/in/ameer-rahman" target="_blank" rel="noopener noreferrer" className="dialog-link" style={{ color: 'var(--pixel-cyan)' }}>
-              [LI]
+              [LINKEDIN]
             </a>
-            <a href="mailto:ar1735@scarletmail.rutgers.edu" className="dialog-link" style={{ color: 'var(--pixel-amber)' }}>
+            <a href="mailto:ameerrahman456@gmail.com" className="dialog-link" style={{ color: 'var(--pixel-amber)' }}>
               [MAIL]
             </a>
           </div>
@@ -132,7 +132,7 @@ export default function HomeScreen() {
       <div className="stats-grid">
         {STATS.map(stat => (
           <div key={stat.label} className="stat-card pixel-box">
-            <div className="stat-label">{stat.label}</div>
+            <div className="stat-label" style={{ color: stat.color }}>{stat.label}</div>
             <div className="stat-bar">
               <div className="stat-fill" style={{ width: `${stat.value}%`, background: stat.color }} />
             </div>

@@ -1,4 +1,26 @@
 import { useState, useRef, useEffect, type KeyboardEvent } from 'react';
+
+function TerminalSprite() {
+  const T = 'transparent';
+  const H = '#3d2b1f'; const S = '#f4c48a'; const G = '#1a6b3a';
+  const P = '#1a3a6b'; const W = '#ffffff'; const E = '#2c1810';
+  const SH = '#2c1810';
+  const grid: string[][] = [
+    [H,H,H,H,H,H,H,H],[H,H,H,H,H,H,H,H],
+    [H,S,S,S,S,S,S,H],[H,S,W,W,S,W,W,H],
+    [H,S,E,E,S,E,E,H],[H,S,S,S,S,S,S,H],
+    [T,T,G,G,G,G,T,T],[T,G,G,G,G,G,G,T],
+    [T,G,G,G,G,G,G,T],[T,P,P,P,P,P,P,T],
+    [T,P,P,T,T,P,P,T],[T,SH,SH,T,T,SH,SH,T],
+  ];
+  return (
+    <svg width="48" height="72" viewBox="0 0 8 12" style={{ imageRendering: 'pixelated' }}>
+      {grid.map((row, y) => row.map((fill, x) =>
+        fill !== T ? <rect key={`${x}-${y}`} x={x} y={y} width={1} height={1} fill={fill} /> : null
+      ))}
+    </svg>
+  );
+}
 import type { Screen } from '../../hooks/useKeyboardNav';
 
 interface TerminalLine {
@@ -23,7 +45,7 @@ const HELP_LINES: TerminalLine[] = [
 ];
 
 const BOOT_LINES: TerminalLine[] = [
-  { type: 'output', text: 'AMEER.DEV v1.0 — Portfolio Terminal' },
+  { type: 'output', text: 'AMEERRAHMAN.DEV v1.0 — Portfolio Terminal' },
   { type: 'output', text: 'Type "help" for available commands.' },
   { type: 'blank' },
 ];
@@ -49,7 +71,7 @@ function runCommand(cmd: string, navigate: (s: Screen) => void): TerminalLine[] 
 
   if (command === 'cat' && args[0] === 'contact.txt') {
     return [
-      { type: 'link',   label: 'email    ', text: 'ar1735@scarletmail.rutgers.edu', href: 'mailto:ar1735@scarletmail.rutgers.edu' },
+      { type: 'link',   label: 'email    ', text: 'ameerrahman456@gmail.com', href: 'mailto:ameerrahman456@gmail.com' },
       { type: 'link',   label: 'github   ', text: 'github.com/ameer-rah',          href: 'https://github.com/ameer-rah' },
       { type: 'link',   label: 'linkedin ', text: 'linkedin.com/in/ameer-rahman',  href: 'https://linkedin.com/in/ameer-rahman' },
     ];
@@ -143,51 +165,74 @@ export default function ContactTerminal({ navigate }: { navigate: (s: Screen) =>
         <span className="screen-subtitle">[ INTERACTIVE — type "help" ]</span>
       </div>
 
-      <div className="terminal pixel-box" onClick={() => inputRef.current?.focus()}>
-        <div className="terminal-output">
-          {lines.map((line, i) => {
-            if (line.type === 'blank') return <div key={i} className="t-blank" />;
-            if (line.type === 'input') return (
-              <div key={i} className="t-line">
-                <span className="prompt">ameer@portfolio:~$ </span>
-                <span className="t-cmd">{line.text}</span>
-              </div>
-            );
-            if (line.type === 'error') return (
-              <div key={i} className="t-line">
-                <span className="t-error">{line.text}</span>
-              </div>
-            );
-            if (line.type === 'link') return (
-              <div key={i} className="t-line">
-                <span className="t-key">{line.label}</span>
-                <a href={line.href} target="_blank" rel="noopener noreferrer" className="t-link">
-                  {line.text}
-                </a>
-              </div>
-            );
-            return (
-              <div key={i} className="t-line">
-                <span className="t-val-inline">{line.text}</span>
-              </div>
-            );
-          })}
-          <div ref={bottomRef} />
+      <div className="terminal-desk">
+        {/* Sprite sitting at the desk */}
+        <div className="terminal-desk-sprite">
+          <TerminalSprite />
+          <div className="terminal-desk-sprite-label">TYPING...</div>
         </div>
 
-        {/* Input row */}
-        <div className="t-input-row">
-          <span className="prompt">ameer@portfolio:~$ </span>
-          <input
-            ref={inputRef}
-            className="t-input"
-            value={input}
-            onChange={e => setInput(e.target.value)}
-            onKeyDown={onKeyDown}
-            spellCheck={false}
-            autoComplete="off"
-            autoCapitalize="off"
-          />
+        {/* Pixel monitor wrapping the terminal */}
+        <div className="monitor-wrap">
+          <div className="monitor-body">
+            <div className="monitor-title-bar">
+              <div className="monitor-dot" style={{ background: '#ff3333' }} />
+              <div className="monitor-dot" style={{ background: '#ffb700' }} />
+              <div className="monitor-dot" style={{ background: '#00cc66' }} />
+              <span className="monitor-title-text">AMEERRAHMAN.DEV — TERMINAL v1.0</span>
+            </div>
+            <div className="monitor-screen">
+              <div className="terminal" onClick={() => inputRef.current?.focus()}>
+                <div className="terminal-output">
+                  {lines.map((line, i) => {
+                    if (line.type === 'blank') return <div key={i} className="t-blank" />;
+                    if (line.type === 'input') return (
+                      <div key={i} className="t-line">
+                        <span className="prompt">ameer@portfolio:~$ </span>
+                        <span className="t-cmd">{line.text}</span>
+                      </div>
+                    );
+                    if (line.type === 'error') return (
+                      <div key={i} className="t-line">
+                        <span className="t-error">{line.text}</span>
+                      </div>
+                    );
+                    if (line.type === 'link') return (
+                      <div key={i} className="t-line">
+                        <span className="t-key">{line.label}</span>
+                        <a href={line.href} target="_blank" rel="noopener noreferrer" className="t-link">
+                          {line.text}
+                        </a>
+                      </div>
+                    );
+                    return (
+                      <div key={i} className="t-line">
+                        <span className="t-val-inline">{line.text}</span>
+                      </div>
+                    );
+                  })}
+                  <div ref={bottomRef} />
+                </div>
+
+                {/* Input row */}
+                <div className="t-input-row">
+                  <span className="prompt">ameer@portfolio:~$ </span>
+                  <input
+                    ref={inputRef}
+                    className="t-input"
+                    value={input}
+                    onChange={e => setInput(e.target.value)}
+                    onKeyDown={onKeyDown}
+                    spellCheck={false}
+                    autoComplete="off"
+                    autoCapitalize="off"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="monitor-neck" />
+          <div className="monitor-base" />
         </div>
       </div>
     </div>

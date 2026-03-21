@@ -41,7 +41,6 @@ function equipSlotForType(slot: EquipSlot, loadout: Loadout): SlotKey {
   if (slot === 'weapon') return 'weapon';
   if (slot === 'armor')  return 'armor';
   if (slot === 'ring')   return loadout.ring1 ? 'ring2' : 'ring1';
-  // spell
   return loadout.spell1 ? 'spell2' : 'spell1';
 }
 
@@ -134,16 +133,13 @@ export default function Inventory() {
   return (
     <div className="inv-shell">
 
-      {/* ── LEFT PANEL ─────────────────────────────── */}
       <div className="inv-left">
 
-        {/* Header */}
         <div className="inv-panel-header">
           <span className="inv-panel-title">[ INVENTORY ]</span>
           <span className="inv-slot-count">SLOTS {filledSlots}/6</span>
         </div>
 
-        {/* Character card */}
         <div className="inv-char-card">
           <div className="inv-sprite-wrap">
             <InvSprite />
@@ -152,7 +148,6 @@ export default function Inventory() {
           <div className="inv-char-class">FULL-STACK SORCERER</div>
         </div>
 
-        {/* Equipped slots */}
         <div className="inv-section-label">EQUIPPED</div>
         <div className="inv-equip-slots">
           {slotKeys.map(key => {
@@ -178,7 +173,6 @@ export default function Inventory() {
           })}
         </div>
 
-        {/* Power stats */}
         <div className="inv-section-label">POWER STATS</div>
         <div className="inv-stats">
           {(['STR', 'INT', 'DEX', 'MGK'] as const).map(stat => (
@@ -196,10 +190,8 @@ export default function Inventory() {
         </div>
       </div>
 
-      {/* ── RIGHT PANEL ────────────────────────────── */}
       <div className="inv-right">
 
-        {/* Tabs */}
         <div className="inv-tabs">
           {SKILLS.map(cat => (
             <button
@@ -213,7 +205,6 @@ export default function Inventory() {
           ))}
         </div>
 
-        {/* Item list */}
         <div className="inv-item-list">
           {tabItems.map(item => {
             const equipped = isEquipped(item);
@@ -260,7 +251,6 @@ export default function Inventory() {
           })}
         </div>
 
-        {/* Detail bar */}
         <div className="inv-detail-bar">
           {selected
             ? <span className="inv-detail-text">{selected.name}: {selected.desc}</span>

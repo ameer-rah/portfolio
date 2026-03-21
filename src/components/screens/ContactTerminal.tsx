@@ -119,7 +119,6 @@ export default function ContactTerminal({ navigate }: { navigate: (s: Screen) =>
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [lines]);
 
-  // Focus input when screen mounts
   useEffect(() => { inputRef.current?.focus(); }, []);
 
   function submit() {
@@ -166,13 +165,11 @@ export default function ContactTerminal({ navigate }: { navigate: (s: Screen) =>
       </div>
 
       <div className="terminal-desk">
-        {/* Sprite sitting at the desk */}
         <div className="terminal-desk-sprite">
           <TerminalSprite />
           <div className="terminal-desk-sprite-label">TYPING...</div>
         </div>
 
-        {/* Pixel monitor wrapping the terminal */}
         <div className="monitor-wrap">
           <div className="monitor-body">
             <div className="monitor-title-bar">
@@ -214,7 +211,6 @@ export default function ContactTerminal({ navigate }: { navigate: (s: Screen) =>
                   <div ref={bottomRef} />
                 </div>
 
-                {/* Input row */}
                 <div className="t-input-row">
                   <span className="prompt">ameer@portfolio:~$ </span>
                   <input

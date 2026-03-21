@@ -2,7 +2,6 @@ import { useState, useEffect, useCallback } from 'react';
 import { PROJECTS, type DungeonProject } from '../../data/projects';
 import { fetchUserRepos, fetchContributions, fetchUserEvents, type GitHubRepo, type ContributionData, type ContributionDay, type GitHubEvent } from '../../utils/githubApi';
 
-// ── Types ───────────────────────────────────────────────────────────
 type Direction = 'n' | 's' | 'e' | 'w';
 type RoomType  = 'entry' | 'boss' | 'treasure' | 'archive' | 'chronicle';
 type FloorId   = 'b1' | 'b2' | 'b3' | 'b4';
@@ -29,23 +28,19 @@ interface Floor {
   start: string;
 }
 
-// ── Floor / Room Data ───────────────────────────────────────────────
 const FLOORS: Record<FloorId, Floor> = {
   b1: {
     label: 'B1F — BOSS CHAMBERS',
     rooms: {
-      //  entry sits directly below b1-01; corridor connects them vertically
-      //  b1-01 → b1-02 → b1-03 connected by horizontal corridor at room mid-height
-      //  All rooms + entry fit inside a 190×160 canvas
       entry:   { x:8,   y:118, label:'ENTRY',   type:'entry',    exits:{ n:'b1-01' },            color:'#00cc66' },
       'b1-01': { x:8,   y:55,  label:'B1-01',   type:'boss',     exits:{ e:'b1-02', s:'entry' }, color:'#ff3333', project:'ruplanner' },
       'b1-02': { x:77,  y:55,  label:'B1-02',   type:'boss',     exits:{ w:'b1-01', e:'b1-03' }, color:'#ff3333', project:'malware'   },
       'b1-03': { x:146, y:55,  label:'B1-03',   type:'boss',     exits:{ w:'b1-02' },            color:'#ff3333', project:'portfolio' },
     },
     corridors: [
-      { x1:25,  y1:83, w:2,  h:35, type:'v' },  // b1-01 bottom → entry top  (x=26 = center of b1-01)
-      { x1:44,  y1:69, w:33, h:2,  type:'h' },  // b1-01 right (44) → b1-02 left (77)
-      { x1:113, y1:69, w:33, h:2,  type:'h' },  // b1-02 right (113) → b1-03 left (146)
+      { x1:25,  y1:83, w:2,  h:35, type:'v' },
+      { x1:44,  y1:69, w:33, h:2,  type:'h' },
+      { x1:113, y1:69, w:33, h:2,  type:'h' },
     ],
     start: 'entry',
   },
@@ -56,7 +51,7 @@ const FLOORS: Record<FloorId, Floor> = {
       vault: { x:77, y:50,  label:'VAULT', type:'treasure', exits:{ s:'entry' }, color:'#ffb700', project:'repos' },
     },
     corridors: [
-      { x1:94, y1:78, w:2, h:40, type:'v' },  // vault bottom (78) → entry top (118)
+      { x1:94, y1:78, w:2, h:40, type:'v' },
     ],
     start: 'entry',
   },
@@ -96,7 +91,6 @@ const ACCENT_HEX: Record<string, string> = {
 
 const VAULT_ACCENTS = ['#00cc66', '#ffb700', '#00ddff', '#cc44ff'];
 
-// ── Reachability ─────────────────────────────────────────────────────
 function checkReachable(floorId: FloorId, currentRoom: string, cleared: Set<string>, target: string): boolean {
   if (target === FLOORS[floorId].start) return true;
   const rooms = FLOORS[floorId].rooms;
@@ -108,7 +102,6 @@ function checkReachable(floorId: FloorId, currentRoom: string, cleared: Set<stri
   return false;
 }
 
-// ── HP Bar ────────────────────────────────────────────────────────────
 function HPBar({ hp, maxHp, color }: { hp: number; maxHp: number; color: string }) {
   return (
     <div className="dg-hp-row">
@@ -121,7 +114,6 @@ function HPBar({ hp, maxHp, color }: { hp: number; maxHp: number; color: string 
   );
 }
 
-// ── Map Panel ─────────────────────────────────────────────────────────
 function MapPanel({
   floorId, currentRoom, cleared, onJump, onSwitchFloor,
 }: {
@@ -199,7 +191,6 @@ function MapPanel({
   );
 }
 
-// ── Nav Bar ───────────────────────────────────────────────────────────
 function NavBar({
   exits, onMove, battleMode,
 }: {
@@ -233,7 +224,6 @@ function NavBar({
   );
 }
 
-// ── Pixel Sprite (same as HomeScreen / QuestLog) ─────────────────────
 function DungeonHero() {
   const T = 'transparent';
   const H = '#3d2b1f';
@@ -275,11 +265,9 @@ function DungeonHero() {
   );
 }
 
-// ── Entry Room ────────────────────────────────────────────────────────
 function EntryRoom({ cleared, floorId }: { cleared: Set<string>; floorId: FloorId }) {
   return (
     <div className="dg-entry-room">
-      {/* Sprite + thought bubble */}
       <div className="dg-hero-row">
         <div className="dg-hero-sprite">
           <DungeonHero />
@@ -301,7 +289,6 @@ function EntryRoom({ cleared, floorId }: { cleared: Set<string>; floorId: FloorI
   );
 }
 
-// ── Boss Card ─────────────────────────────────────────────────────────
 function BossCard({ proj, onRaid }: { proj: DungeonProject; onRaid: () => void }) {
   const hex = ACCENT_HEX[proj.accent] ?? '#00cc66';
   return (
@@ -339,7 +326,6 @@ function BossCard({ proj, onRaid }: { proj: DungeonProject; onRaid: () => void }
   );
 }
 
-// ── Battle / Raid Log ─────────────────────────────────────────────────
 function BattleScreen({ proj, onExit }: { proj: DungeonProject; onExit: () => void }) {
   const hex = ACCENT_HEX[proj.accent] ?? '#00cc66';
   return (
@@ -364,7 +350,6 @@ function BattleScreen({ proj, onExit }: { proj: DungeonProject; onExit: () => vo
   );
 }
 
-// ── Vault Room (GitHub repos) ─────────────────────────────────────────
 function VaultRoom({ repos, loading, error }: { repos: GitHubRepo[]; loading: boolean; error: string | null }) {
   if (loading) {
     return (
@@ -417,7 +402,6 @@ function VaultRoom({ repos, loading, error }: { repos: GitHubRepo[]; loading: bo
   );
 }
 
-// ── Archive Room ──────────────────────────────────────────────────────
 function ArchiveRoom() {
   const SKILLS = [
     { label: 'LANGUAGES', items: ['TypeScript', 'Python', 'Java', 'C', 'SQL', 'Bash'] },
@@ -446,7 +430,6 @@ function ArchiveRoom() {
         </div>
       </div>
 
-      {/* Equipped Skills */}
       <div className="dg-boss-card" style={{ borderColor: '#00ddff', background: 'rgba(0,221,255,0.04)' }}>
         <div className="dg-boss-name" style={{ color: '#00ddff', fontSize: 9 }}>◈ EQUIPPED SKILLS</div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginTop: 10 }}>
@@ -463,7 +446,6 @@ function ArchiveRoom() {
         </div>
       </div>
 
-      {/* Links */}
       <div className="dg-boss-card" style={{ borderColor: '#334433', background: 'rgba(0,204,102,0.03)' }}>
         <div style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap' }}>
           <span style={{ fontSize: 6, color: '#334433' }}>[ FIELD LINKS ]</span>
@@ -477,7 +459,6 @@ function ArchiveRoom() {
   );
 }
 
-// ── Chronicle Room (GitHub Contribution Calendar) ─────────────────────
 const CONTRIB_COLORS: Record<0|1|2|3|4, string> = {
   0: '#0a0a0a',
   1: '#2e2e2e',
@@ -584,14 +565,12 @@ function ChronicleRoom({ data, loading, error, events, loadingEvents, repos, loa
   const weeks = groupByWeek(data.contributions);
   const totalThisYear = Object.values(data.total).reduce((a, b) => a + b, 0);
 
-  // Compute current streak (days in a row with count > 0, going backwards)
   let streak = 0;
   for (let i = data.contributions.length - 1; i >= 0; i--) {
     if (data.contributions[i].count > 0) streak++;
     else break;
   }
 
-  // Build month label positions: find first week index where month changes
   const MONTH_NAMES = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
   const monthLabels: { wi: number; label: string }[] = [];
   let lastMonth = -1;
@@ -637,7 +616,6 @@ function ChronicleRoom({ data, loading, error, events, loadingEvents, repos, loa
           {DAYS.map(d => <div key={d} className="dg-cal-day-label">{d}</div>)}
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', flex: 1, minWidth: 0 }}>
-          {/* Month labels row */}
           <div className="dg-cal-months">
             {weeks.map((_, wi) => {
               const lbl = monthLabels.find(m => m.wi === wi);
@@ -696,7 +674,6 @@ function ChronicleRoom({ data, loading, error, events, loadingEvents, repos, loa
   );
 }
 
-// ── Char Stats Panel ──────────────────────────────────────────────────
 function CharStatsPanel({
   repos, contribs, loadingRepos, loadingCal,
 }: {
@@ -754,7 +731,6 @@ function CharStatsPanel({
   );
 }
 
-// ── Main Component ────────────────────────────────────────────────────
 export default function Dungeons() {
   const [floor,        setFloor]       = useState<FloorId>('b1');
   const [room,         setRoom]        = useState<string>('entry');
@@ -769,7 +745,6 @@ export default function Dungeons() {
   const [events,       setEvents]      = useState<GitHubEvent[]>([]);
   const [loadingEvents,setLoadingEvents]= useState(true);
 
-  // Fetch GitHub repos once on mount
   useEffect(() => {
     fetchUserRepos('ameer-rah')
       .then(data => setRepos(data))
@@ -777,7 +752,6 @@ export default function Dungeons() {
       .finally(() => setLoadingRepos(false));
   }, []);
 
-  // Fetch contribution calendar once on mount
   useEffect(() => {
     fetchContributions('ameer-rah')
       .then(data => setContribs(data))
@@ -785,7 +759,6 @@ export default function Dungeons() {
       .finally(() => setLoadingCal(false));
   }, []);
 
-  // Fetch recent events once on mount
   useEffect(() => {
     fetchUserEvents('ameer-rah')
       .then(data => setEvents(data))
@@ -815,7 +788,6 @@ export default function Dungeons() {
     setBattle(null);
   }, [floor, room, cleared]);
 
-  // WASD keyboard navigation (does not use arrow keys to avoid conflict with screen switcher)
   useEffect(() => {
     const KEY_MAP: Record<string, Direction> = {
       w:'n', s:'s', a:'w', d:'e',
@@ -871,13 +843,11 @@ export default function Dungeons() {
   return (
     <div className="dg-wrap">
 
-      {/* Header */}
       <div className="dg-header">
         <div className="dg-title">[ DUNGEON RAIDS ]</div>
         <div className="dg-floor-badge">{floorDef.label}</div>
       </div>
 
-      {/* Body */}
       <div className="dg-body">
 
         <MapPanel

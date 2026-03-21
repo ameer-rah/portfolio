@@ -96,7 +96,6 @@ export default function HomeScreen() {
   return (
     <div className="home-screen">
 
-      {/* ── CHARACTER SELECT ── */}
       <div className="home-top">
         <div className="character-panel">
           <PixelSprite />
@@ -128,7 +127,6 @@ export default function HomeScreen() {
         </div>
       </div>
 
-      {/* ── STATS ── */}
       <div className="stats-grid">
         {STATS.map(stat => (
           <div key={stat.label} className="stat-card pixel-box">
@@ -141,7 +139,6 @@ export default function HomeScreen() {
         ))}
       </div>
 
-      {/* ── EDUCATION ── */}
       <div className="home-section-header">
         <span className="home-section-title">◈ EDUCATION LOG</span>
       </div>
@@ -170,7 +167,6 @@ export default function HomeScreen() {
         ))}
       </div>
 
-      {/* ── WHAT DRIVES ME ── */}
       <div className="home-section-header">
         <span className="home-section-title">◈ LORE / BACKSTORY</span>
       </div>
@@ -187,7 +183,6 @@ export default function HomeScreen() {
         </div>
       </div>
 
-      {/* ── DOCUMENTS ── */}
       <div className="home-section-header">
         <span className="home-section-title">◈ FILES</span>
       </div>
@@ -222,7 +217,6 @@ export default function HomeScreen() {
         </a>
       </div>
 
-      {/* ── BIO ── */}
       <div className="home-bio pixel-box-amber">
         <span className="bio-label">STATUS: </span>
         <span className="bio-text">

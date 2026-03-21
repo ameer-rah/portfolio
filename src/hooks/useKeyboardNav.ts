@@ -6,7 +6,6 @@ export const NAV_ORDER: Screen[] = ['home', 'quests', 'inventory', 'dungeons', '
 export function useKeyboardNav(active: Screen, setActive: (s: Screen) => void) {
   useEffect(() => {
     function handler(e: KeyboardEvent) {
-      // Don't hijack when user is typing in an input
       if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
       const idx = NAV_ORDER.indexOf(active);
       if (e.key === 'ArrowRight') {

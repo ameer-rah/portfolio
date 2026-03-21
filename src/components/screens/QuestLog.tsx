@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { EXPERIENCE } from '../../data/experience';
 
-// Display order: top = newest/active, bottom = oldest (journey origin)
 const PATH_ORDER = ['runclub', 'werblin', 'jasfel', 'redynox', 'motazedi'];
 
 const T  = 'transparent';
@@ -52,7 +51,7 @@ export default function QuestLog() {
     .filter((e): e is NonNullable<typeof e> => e != null);
   const N = quests.length;
 
-  const [activeIdx, setActiveIdx] = useState(N - 1); // start at bottom (Motazedi)
+  const [activeIdx, setActiveIdx] = useState(N - 1);
   const [prevIdx,   setPrevIdx]   = useState(N - 1);
   const [isWalking, setIsWalking] = useState(false);
   const [openIdx,   setOpenIdx]   = useState<number | null>(null);
@@ -70,31 +69,25 @@ export default function QuestLog() {
     setMeasured(true);
   }
 
-  // Dismiss intro bubble after a delay
   useEffect(() => {
     const t = setTimeout(() => setBubble(null), 3200);
     return () => clearTimeout(t);
   }, []);
 
-  // Re-measure when active quest or expanded card changes
   useEffect(() => {
     const t = setTimeout(() => measure(activeIdx), 20);
     return () => clearTimeout(t);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeIdx, openIdx]);
 
-  // Re-measure on any layout resize (card expand/collapse)
   useEffect(() => {
     const obs = new ResizeObserver(() => measure(activeIdx));
     const el = mapRef.current;
     if (el) obs.observe(el);
     return () => obs.disconnect();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeIdx]);
 
   function handleNode(idx: number) {
     if (isWalking) return;
-    // Clicking the current node just toggles its card
     if (idx === activeIdx) {
       setOpenIdx(prev => (prev === idx ? null : idx));
       return;
@@ -124,7 +117,6 @@ export default function QuestLog() {
       </div>
 
       <div className="quest-map" ref={mapRef}>
-        {/* ── Sprite pin, travels along the path ── */}
         <div
           className="qsprite-pin"
           style={{
@@ -139,34 +131,28 @@ export default function QuestLog() {
           <QuestSprite walking={isWalking} flipped={activeIdx < prevIdx} />
         </div>
 
-        {/* ── Quest rows ── */}
         {quests.map((quest, i) => (
           <div key={quest.id} className="quest-path-row">
 
-            {/* Left: path line + waypoint node */}
             <div
               className="quest-node-col"
               ref={el => { wpRefs.current[i] = el; }}
               onClick={() => handleNode(i)}
               title={`Travel to ${quest.company}`}
             >
-              {/* Line above dot (not shown for first row) */}
               {i > 0 && (
                 <div className={`qline${activeIdx < i ? ' lit' : ''}`} />
               )}
 
-              {/* Waypoint dot */}
               <div className={`qnode ${quest.status}${activeIdx === i ? ' here' : ''}`}>
                 {quest.status === 'active' ? '★' : '✓'}
               </div>
 
-              {/* Line below dot (not shown for last row) */}
               {i < N - 1 && (
                 <div className={`qline${activeIdx <= i ? ' lit' : ''}`} />
               )}
             </div>
 
-            {/* Right: quest card */}
             <div className="quest-card-col">
               <div
                 className={`quest-card pixel-box ${quest.status}${activeIdx === i ? ' here' : ''}`}

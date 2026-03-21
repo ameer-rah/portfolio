@@ -174,7 +174,6 @@ ul { list-style: none; }
   animation: screenIn 0.18s ease-out;
 }
 
-/* Dungeons fills 100% — no padding, flex column so dg-wrap can stretch */
 .game-content--full {
   padding: 0;
   display: flex;
@@ -424,7 +423,6 @@ ul { list-style: none; }
   line-height: 2;
 }
 
-/* ─── HOME SECTIONS ──────────────────────────────────────────── */
 .home-section-header {
   margin-top: 5px;
   padding-bottom: 8px;
@@ -437,7 +435,6 @@ ul { list-style: none; }
   letter-spacing: 2px;
 }
 
-/* ─── EDUCATION ──────────────────────────────────────────────── */
 .edu-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -511,7 +508,6 @@ ul { list-style: none; }
   color: var(--pixel-green);
 }
 
-/* ─── LORE / WHAT DRIVES ME ──────────────────────────────────── */
 .lore-box {
   padding: 18px;
 }
@@ -552,14 +548,12 @@ ul { list-style: none; }
   color: var(--pixel-white);
 }
 
-/* ─── QUEST LOG ──────────────────────────────────────────────── */
 .quest-log {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-/* ── Quest map: interactive path layout ── */
 .quest-map {
   position: relative;
 }
@@ -570,7 +564,6 @@ ul { list-style: none; }
   gap: 0 12px;
 }
 
-/* Node column (left side: path line + dot) */
 .quest-node-col {
   display: flex;
   flex-direction: column;
@@ -583,7 +576,6 @@ ul { list-style: none; }
   transform: scale(1.2);
 }
 
-/* Path lines connecting dots */
 .qline {
   flex: 1;
   width: 2px;
@@ -597,7 +589,6 @@ ul { list-style: none; }
   box-shadow: 0 0 8px var(--pixel-green);
 }
 
-/* Waypoint dot */
 .qnode {
   width: 28px;
   height: 28px;
@@ -631,12 +622,10 @@ ul { list-style: none; }
   transform: scale(1.15);
 }
 
-/* Card column (right side) */
 .quest-card-col {
   padding: 8px 0;
 }
 
-/* Quest card */
 .quest-card {
   padding: 15px;
   cursor: pointer;
@@ -656,14 +645,12 @@ ul { list-style: none; }
   opacity: 0.85;
 }
 
-/* Sprite is currently at this quest */
 .quest-card.here {
   border-color: var(--pixel-amber) !important;
   box-shadow: 0 0 18px rgba(255, 183, 0, 0.15);
   opacity: 1 !important;
 }
 
-/* Sprite pin: absolutely positioned, travels along the path */
 .qsprite-pin {
   position: absolute;
   left: 0;
@@ -676,7 +663,6 @@ ul { list-style: none; }
   pointer-events: none;
 }
 
-/* Thought bubble */
 .quest-bubble {
   position: absolute;
   left: 55px;
@@ -693,7 +679,6 @@ ul { list-style: none; }
   animation: screenIn 0.15s ease-out;
 }
 
-/* Thought dots: three descending circles toward the sprite */
 .quest-bubble::before {
   content: '· ·';
   position: absolute;
@@ -715,7 +700,6 @@ ul { list-style: none; }
   line-height: 1;
 }
 
-/* Sprite animations */
 .quest-sprite-idle {
   animation: bounce 0.8s ease-in-out infinite alternate;
   filter: drop-shadow(0 0 5px #00cc66);
@@ -726,7 +710,6 @@ ul { list-style: none; }
   filter: drop-shadow(0 0 8px var(--pixel-amber));
 }
 
-/* Bottom hint */
 .quest-travel-hint {
   font-size: 8px;
   color: var(--pixel-gray);
@@ -827,7 +810,6 @@ ul { list-style: none; }
   text-align: right;
 }
 
-/* ─── INVENTORY ──────────────────────────────────────────────── */
 .inv-shell {
   display: grid;
   grid-template-columns: 275px 1fr;
@@ -836,7 +818,6 @@ ul { list-style: none; }
   overflow: hidden;
 }
 
-/* Left panel */
 .inv-left {
   display: flex;
   flex-direction: column;
@@ -857,7 +838,6 @@ ul { list-style: none; }
 .inv-panel-title { font-size: 9px; color: var(--pixel-green); letter-spacing: 2px; }
 .inv-slot-count  { font-size: 8px; color: var(--pixel-gray); }
 
-/* Character card */
 .inv-char-card {
   display: flex;
   flex-direction: column;
@@ -937,7 +917,6 @@ ul { list-style: none; }
 .inv-char-name  { font-size: 8px; color: var(--pixel-white); margin-bottom: 2px; text-align: center; }
 .inv-char-class { font-size: 6px; color: var(--pixel-amber); letter-spacing: 1px; text-align: center; }
 
-/* Section label */
 .inv-section-label {
   font-size: 6px;
   color: var(--pixel-gray);
@@ -946,7 +925,6 @@ ul { list-style: none; }
   flex-shrink: 0;
 }
 
-/* Equip slots */
 .inv-equip-slots {
   display: flex;
   flex-direction: column;
@@ -1000,7 +978,6 @@ ul { list-style: none; }
 }
 .inv-unequip-btn:hover { color: var(--pixel-red); border-color: var(--pixel-red); }
 
-/* Stats bars */
 .inv-stats {
   display: flex;
   flex-direction: column;
@@ -1045,7 +1022,6 @@ ul { list-style: none; }
   flex-shrink: 0;
 }
 
-/* Right panel */
 .inv-right {
   display: flex;
   flex-direction: column;
@@ -1053,7 +1029,6 @@ ul { list-style: none; }
   overflow: hidden;
 }
 
-/* Tabs */
 .inv-tabs {
   display: flex;
   border-bottom: 2px solid #1a2a1a;
@@ -1083,7 +1058,6 @@ ul { list-style: none; }
 .inv-tab-sub   { font-size: 6px; color: var(--pixel-gray); letter-spacing: 1px; }
 .inv-tab--active .inv-tab-sub { color: #336633; }
 
-/* Item list */
 .inv-item-list {
   flex: 1;
   overflow-y: auto;
@@ -1179,7 +1153,6 @@ ul { list-style: none; }
   letter-spacing: 1px;
 }
 
-/* Detail bar */
 .inv-detail-bar {
   border-top: 2px solid #1a2a1a;
   padding: 12px 18px;
@@ -1201,7 +1174,6 @@ ul { list-style: none; }
   letter-spacing: 1px;
 }
 
-/* Scrollbar */
 .inv-item-list::-webkit-scrollbar,
 .inv-left::-webkit-scrollbar { width: 5px; }
 .inv-item-list::-webkit-scrollbar-track,
@@ -1209,7 +1181,6 @@ ul { list-style: none; }
 .inv-item-list::-webkit-scrollbar-thumb,
 .inv-left::-webkit-scrollbar-thumb { background: #1a3a1a; }
 
-/* ─── DUNGEONS ───────────────────────────────────────────────── */
 @keyframes torchFlicker {
   0%, 100% { opacity: 1;   filter: drop-shadow(0 0 6px #ff8800); }
   20%       { opacity: 0.8; filter: drop-shadow(0 0 2px #ffb700); }
@@ -1236,14 +1207,12 @@ ul { list-style: none; }
   gap: 18px;
 }
 
-/* ── Torch ── */
 .dungeon-torch {
   display: inline-block;
   font-size: 20px;
   animation: torchFlicker 0.7s ease-in-out infinite;
 }
 
-/* ── Header row ── */
 .dungeon-header {
   display: flex;
   align-items: center;
@@ -1253,14 +1222,12 @@ ul { list-style: none; }
   flex: 1;
 }
 
-/* ── Floor overview row (map + info) ── */
 .dungeon-floor-header {
   display: flex;
   gap: 12px;
   align-items: stretch;
 }
 
-/* ── Mini SVG map ── */
 .dungeon-map {
   padding: 12px 15px;
   flex: 1;
@@ -1273,7 +1240,6 @@ ul { list-style: none; }
 }
 .dmap-svg { display: block; width: 100%; height: auto; }
 
-/* ── Floor info panel ── */
 .dungeon-floor-info {
   padding: 12px 18px;
   display: flex;
@@ -1292,7 +1258,6 @@ ul { list-style: none; }
   line-height: 1.8;
 }
 
-/* ── Section labels ── */
 .dungeon-section-label {
   font-size: 9px;
   color: var(--pixel-gray);
@@ -1303,14 +1268,12 @@ ul { list-style: none; }
 }
 .dungeon-repo-count { color: var(--pixel-cyan); }
 
-/* ── Boss grid ── */
 .dungeon-boss-grid {
   display: flex;
   flex-direction: column;
   gap: 18px;
 }
 
-/* Boss room card */
 .boss-room {
   border: 2px solid var(--boss-accent, var(--pixel-green));
   background: var(--pixel-dark);
@@ -1346,7 +1309,6 @@ ul { list-style: none; }
   align-items: flex-start;
 }
 
-/* Large monster glyph */
 .boss-monster-art {
   font-size: 42px;
   line-height: 1;
@@ -1367,7 +1329,6 @@ ul { list-style: none; }
   min-width: 0;
 }
 
-/* HP difficulty bar */
 .dungeon-diff-bar-wrap {
   display: flex;
   align-items: center;
@@ -1394,7 +1355,6 @@ ul { list-style: none; }
   text-align: right;
 }
 
-/* Boss action bar */
 .boss-room-actions {
   display: flex;
   gap: 15px;
@@ -1417,7 +1377,6 @@ ul { list-style: none; }
   background: rgba(255,255,255,0.04);
 }
 
-/* ── Dungeon shared atoms ── */
 .dungeon-name  { font-size: 11px; margin-bottom: 2px; }
 .dungeon-type  { font-size: 8px; color: var(--pixel-gray); }
 .dungeon-desc  { font-size: 9px; color: var(--pixel-white); line-height: 2; }
@@ -1428,7 +1387,6 @@ ul { list-style: none; }
 .dungeon-link:hover { color: var(--pixel-amber); }
 .dungeon-stars { font-size: 9px; color: var(--pixel-amber); margin-left: auto; }
 
-/* ── Treasure vaults ── */
 .dungeon-vault-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -1455,7 +1413,6 @@ ul { list-style: none; }
 }
 .vault-info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
 
-/* ── Loading / error ── */
 .dungeon-loading {
   display: flex;
   align-items: center;
@@ -1471,7 +1428,6 @@ ul { list-style: none; }
   color: var(--pixel-amber);
 }
 
-/* ─── LIBRARY / BOOKSHELF ────────────────────────────────────── */
 .library {
   display: flex;
   flex-direction: column;
@@ -1487,7 +1443,6 @@ ul { list-style: none; }
   color: var(--pixel-gray);
 }
 
-/* ── Shelf structure ── */
 .bookshelf {
   display: flex;
   flex-direction: column;
@@ -1504,7 +1459,6 @@ ul { list-style: none; }
   overflow: visible;
 }
 
-/* Individual book spine */
 .book-spine {
   display: flex;
   flex-direction: column;
@@ -1546,7 +1500,6 @@ ul { list-style: none; }
   padding-bottom: 5px;
 }
 
-/* Shelf dot indicators */
 .shelf-dots {
   display: flex;
   gap: 4px;
@@ -1555,7 +1508,6 @@ ul { list-style: none; }
   flex-wrap: nowrap;
 }
 
-/* Wrapper sized to match its spine so the dot centers underneath */
 .shelf-dot-wrapper {
   display: flex;
   justify-content: center;
@@ -1576,7 +1528,6 @@ ul { list-style: none; }
   background: var(--pixel-green);
 }
 
-/* Shelf plank */
 .shelf-plank {
   width: 100%;
 }
@@ -1593,7 +1544,6 @@ ul { list-style: none; }
   border-bottom: 2px solid #1a0e00;
 }
 
-/* Shelf supports */
 .shelf-supports {
   display: flex;
   justify-content: space-between;
@@ -1608,7 +1558,6 @@ ul { list-style: none; }
   border-right: 2px solid #1a0e00;
 }
 
-/* ── Detail strip ── */
 .lib-detail-strip {
   min-height: 120px;
   padding: 18px 20px;
@@ -1720,7 +1669,6 @@ ul { list-style: none; }
   color: #000 !important;
 }
 
-/* ── Stats grid ── */
 .lib-stats-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1746,7 +1694,6 @@ ul { list-style: none; }
   margin: 0 -2px;
 }
 
-/* ── Big stats row ── */
 .lib-big-stats {
   display: flex;
   gap: 25px;
@@ -1771,7 +1718,6 @@ ul { list-style: none; }
   letter-spacing: 1px;
 }
 
-/* ── Progress bars ── */
 .lib-progress-rows {
   display: flex;
   flex-direction: column;
@@ -1814,7 +1760,6 @@ ul { list-style: none; }
   flex-shrink: 0;
 }
 
-/* ── Monthly streak ── */
 .lib-streak-section {
   display: flex;
   flex-direction: column;
@@ -1888,7 +1833,6 @@ ul { list-style: none; }
   100% { opacity: 1; transform: scale(1); background: #003322; }
 }
 
-/* ── Genre breakdown ── */
 .lib-genre-list {
   display: flex;
   flex-direction: column;
@@ -1933,7 +1877,6 @@ ul { list-style: none; }
   flex-shrink: 0;
 }
 
-/* ── Recently added ── */
 .lib-recent-list {
   display: flex;
   flex-direction: column;
@@ -1974,21 +1917,18 @@ ul { list-style: none; }
   letter-spacing: 1px;
 }
 
-/* ── Right column ── */
 .lib-right-col {
   display: flex;
   flex-direction: column;
   gap: 18px;
 }
 
-/* ─── CONTACT TERMINAL ───────────────────────────────────────── */
 .contact {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-/* ── Pixel Monitor Frame ── */
 .terminal-desk {
   display: flex;
   flex-direction: row;
@@ -2115,7 +2055,6 @@ ul { list-style: none; }
   line-height: 2;
 }
 
-/* ─── DIALOG LINKS ───────────────────────────────────────────── */
 .dialog-links {
   display: flex;
   gap: 12px;
@@ -2132,7 +2071,6 @@ ul { list-style: none; }
 
 .dialog-link:hover { color: var(--pixel-amber); }
 
-/* ─── CURSOR ─────────────────────────────────────────────────── */
 .cursor {
   display: inline-block;
   width: 9px;
@@ -2142,7 +2080,6 @@ ul { list-style: none; }
   vertical-align: middle;
 }
 
-/* ─── KEYFRAME ANIMATIONS ────────────────────────────────────── */
 @keyframes screenIn {
   from { opacity: 0; transform: translateY(8px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -2178,7 +2115,6 @@ ul { list-style: none; }
   to   { transform: translateY(-4px) rotate(4deg); }
 }
 
-/* ─── DUNGEON CRAWLER ────────────────────────────────────────── */
 @keyframes roomPulse {
   0%, 100% { opacity: 1; }
   50%       { opacity: 0.4; }
@@ -2215,7 +2151,6 @@ ul { list-style: none; }
   overflow: hidden;
 }
 
-/* ── Map Panel ── */
 .dg-map-panel {
   background: #000;
   border-right: 2px solid #334433;
@@ -2256,7 +2191,6 @@ ul { list-style: none; }
 .dg-corridor-h { position: absolute; height: 2px; background: #334433; }
 .dg-corridor-v { position: absolute; width:  2px; background: #334433; }
 
-/* ── Legend ── */
 .dg-legend { flex-shrink: 0; }
 .dg-legend-row {
   display: flex; align-items: center; gap: 9px;
@@ -2264,7 +2198,6 @@ ul { list-style: none; }
 }
 .dg-legend-box { width: 18px; height: 18px; border: 1px solid; flex-shrink: 0; }
 
-/* ── Floor list ── */
 .dg-floor-list-wrap { margin-top: auto; }
 .dg-floor-list { display: flex; flex-direction: column; gap: 5px; }
 
@@ -2306,7 +2239,6 @@ ul { list-style: none; }
 
 .dg-floor-btn-arrow { font-size: 8px; flex-shrink: 0; }
 
-/* ── Main Panel ── */
 .dg-main-panel {
   background: #0a0f0a;
   display: flex;
@@ -2334,7 +2266,6 @@ ul { list-style: none; }
   flex-direction: column;
 }
 
-/* ── Nav Bar ── */
 .dg-nav-bar {
   border-top: 2px solid #334433;
   padding: 9px 18px;
@@ -2360,10 +2291,8 @@ ul { list-style: none; }
 .dg-nav-btn:hover:not(:disabled) { border-color: var(--pixel-green); color: var(--pixel-green); }
 .dg-nav-btn:disabled { opacity: 0.25; cursor: not-allowed; }
 
-/* ── Entry Room ── */
 .dg-entry-room { padding: 20px; }
 
-/* Hero sprite row */
 .dg-hero-row {
   display: flex;
   align-items: flex-start;
@@ -2379,7 +2308,6 @@ ul { list-style: none; }
   margin-right: 5px;
 }
 
-/* Thought bubble — matches quest log style */
 .dg-thought-bubble {
   position: relative;
   background: #fff;
@@ -2395,7 +2323,6 @@ ul { list-style: none; }
   animation: screenIn 0.15s ease-out;
 }
 
-/* Two dots to the left of the bubble */
 .dg-thought-bubble::before {
   content: '· ·';
   position: absolute;
@@ -2407,7 +2334,6 @@ ul { list-style: none; }
   line-height: 1;
 }
 
-/* Smallest dot, drops below */
 .dg-thought-bubble::after {
   content: '·';
   position: absolute;
@@ -2425,7 +2351,6 @@ ul { list-style: none; }
 .dg-stat-num  { font-size: 18px; color: var(--pixel-green); margin-bottom: 5px; }
 .dg-stat-lab  { font-size: 6px; color: #334433; }
 
-/* ── Boss Card ── */
 .dg-boss-card { border: 2px solid; padding: 15px; margin-bottom: 12px; }
 .dg-boss-name { font-size: 11px; margin-bottom: 10px; }
 .dg-boss-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
@@ -2434,21 +2359,18 @@ ul { list-style: none; }
 
 .dg-boss-actions { display: flex; align-items: center; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
 
-/* ── HP Bar ── */
 .dg-hp-row   { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
 .dg-hp-label { font-size: 8px; min-width: 22px; }
 .dg-hp-track { flex: 1; height: 10px; background: #1a0000; border: 1px solid #330000; overflow: hidden; }
 .dg-hp-fill  { height: 100%; transition: width 0.6s ease; }
 .dg-hp-val   { font-size: 6px; min-width: 56px; text-align: right; }
 
-/* ── Shared atoms ── */
 .dg-desc { font-size: 9px; color: var(--pixel-white); line-height: 2; margin-bottom: 10px; }
 .dg-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 12px; }
 .dg-tag  { font-size: 6px; padding: 2px 8px; border: 1px solid; }
 .dg-link { font-size: 8px; transition: filter 0.1s; }
 .dg-link:hover { filter: brightness(1.4); }
 
-/* ── Raid button ── */
 .dg-raid-btn {
   font-family: var(--font-pixel);
   font-size: 9px; padding: 9px 18px;
@@ -2458,7 +2380,6 @@ ul { list-style: none; }
 }
 .dg-raid-btn:hover { background: rgba(255,255,255,0.06); }
 
-/* ── Battle Screen ── */
 .dg-battle-screen { padding: 15px; }
 
 .dg-back-btn {
@@ -2484,7 +2405,6 @@ ul { list-style: none; }
 .dg-ability-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 9px; }
 .dg-ability     { font-size: 6px; padding: 2px 9px; border: 1px solid var(--pixel-purple); color: var(--pixel-purple); }
 
-/* ── Vault Room ── */
 .dg-vault-room   { padding: 5px; flex: 1; min-height: 0; overflow-y: auto; }
 .dg-vault-header { font-size: 9px; color: var(--pixel-amber); margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #334433; }
 
@@ -2509,7 +2429,6 @@ ul { list-style: none; }
 .dg-vault-desc  { font-size: 6px; color: var(--pixel-white); line-height: 1.8; }
 .dg-vault-links { display: flex; align-items: center; gap: 10px; margin-top: 2px; }
 
-/* ── Chronicle Room ── */
 .dg-chronicle-room { padding: 10px 5px; display: flex; flex-direction: column; gap: 12px; width: 100%; box-sizing: border-box; position: relative; flex: 1; min-height: 0; overflow: hidden; }
 
 .dg-cal-tooltip {
@@ -2537,8 +2456,7 @@ ul { list-style: none; }
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
-  height: calc(110px + 20px + 4px); /* grid + spacer + months margin */
-}
+  height: calc(110px + 20px + 4px); }
 .dg-cal-day-spacer { height: 20px; flex-shrink: 0; margin-bottom: 4px; }
 .dg-cal-day-label { font-size: 6px; color: #888888; flex: 1; display: flex; align-items: center; letter-spacing: 0.03em; padding-right: 5px; }
 
@@ -2595,7 +2513,6 @@ ul { list-style: none; }
 .dg-cal-legend-label { font-size: 6px; color: #4a7a4a; letter-spacing: 0.05em; }
 .dg-cal-legend .dg-cal-cell { width: 14px; height: 14px; aspect-ratio: unset; flex-shrink: 0; }
 
-/* ── Activity Log ── */
 .dg-chronicle-bottom {
   display: flex;
   gap: 12px;
@@ -2614,7 +2531,6 @@ ul { list-style: none; }
   flex-direction: column;
 }
 
-/* scroll anchor: fills remaining space, log scrolls inside it */
 .dg-activity-scroll-anchor {
   flex: 1;
   min-height: 0;
@@ -2650,12 +2566,10 @@ ul { list-style: none; }
 .dg-activity-prefix { flex-shrink: 0; font-weight: bold; }
 .dg-activity-text   { color: #aaaaaa; }
 
-/* ── Loading / Error ── */
 .dg-loading { display: flex; align-items: center; gap: 10px; padding: 20px; font-size: 9px; color: #334433; }
 .dg-error   { padding: 12px; font-size: 9px; color: var(--pixel-amber); }
 
 
-/* ── Char Stats Panel ── */
 .dg-char-stats-panel {
   width: 175px;
   flex-shrink: 0;
@@ -2782,12 +2696,10 @@ ul { list-style: none; }
   margin-top: 5px;
 }
 
-/* ─── SCROLLBAR ──────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 8px; height: 8px; }
 ::-webkit-scrollbar-track { background: var(--pixel-darker); }
 ::-webkit-scrollbar-thumb { background: #555555; }
 
-/* ─── MOBILE (tablet + phone) ────────────────────────────────── */
 @media (max-width: 800px) {
   html, body, #root    { font-size: 11px; }
   .game-shell          { border-width: 0; }
@@ -2801,7 +2713,6 @@ ul { list-style: none; }
   .dg-chronicle-bottom { flex-direction: column; }
   .dg-vault-grid       { grid-template-columns: 1fr; }
 
-  /* ── Dungeons: replace hidden map panel with compact floor-switcher bar ── */
   .dg-body {
     display: flex;
     flex-direction: column;
@@ -2832,27 +2743,21 @@ ul { list-style: none; }
   .dg-room-content     { overflow-y: auto; }
 }
 
-/* ─── MOBILE (iPhone — ≤480px) ───────────────────────────────── */
 @media (max-width: 480px) {
-  /* Global font scale */
   html, body, #root { font-size: 10px; }
 
-  /* Top bar — hide binary noise, shrink title */
   .top-bar           { padding: 8px 10px; gap: 8px; }
   .top-bar-binary    { display: none; }
   .top-bar-title     { font-size: 7px; letter-spacing: 2px; }
   .hp-label          { font-size: 6px; }
   .level-badge       { font-size: 6px; }
 
-  /* Nav — scroll horizontally instead of squishing */
   .nav-menu          { overflow-x: auto; overflow-y: hidden; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
   .nav-menu::-webkit-scrollbar { display: none; }
   .nav-btn           { font-size: 6px; padding: 10px 6px; white-space: nowrap; flex-shrink: 0; letter-spacing: 0; }
 
-  /* Game content padding */
   .game-content      { padding: 12px; }
 
-  /* Home screen */
   .home-top          { flex-direction: column; }
   .character-panel   { min-width: 0; width: 100%; flex-direction: row; justify-content: center; }
   .dialog-panel      { min-width: 0; width: 100%; }
@@ -2864,7 +2769,6 @@ ul { list-style: none; }
   .screen-title      { font-size: 9px; }
   .screen-subtitle   { font-size: 7px; }
 
-  /* ── Inventory: stack panels and let game-content scroll ── */
   .inv-shell {
     display: flex;
     flex-direction: column;
@@ -2876,7 +2780,6 @@ ul { list-style: none; }
   .inv-left         { overflow-y: visible; }
   .inv-right        { overflow: visible; }
   .inv-item-list    { overflow-y: visible; flex: unset; }
-  /* Tabs: scroll horizontally so all 5 tabs (incl. SPELLS/POTIONS) are reachable */
   .inv-tabs {
     overflow-x: auto;
     flex-wrap: nowrap;
@@ -2887,13 +2790,11 @@ ul { list-style: none; }
   .inv-tab          { flex-shrink: 0; padding: 8px 10px; }
   .inv-grid         { grid-template-columns: repeat(2, 1fr); }
 
-  /* ── Dungeons: inherits compact floor-switcher from 800px ── */
   .dg-vault-grid    { grid-template-columns: 1fr; }
   .dg-boss-actions  { flex-wrap: wrap; }
   .dg-chronicle-bottom { flex-direction: column; }
   .dg-hero-row      { flex-wrap: wrap; }
 
-  /* ── Terminal: prevent computer/monitor from overflowing ── */
   .terminal-desk        { flex-direction: column; gap: 10px; }
   .terminal-desk-sprite { display: none; }
   .terminal             { padding: 12px; overflow-x: hidden; }
@@ -2902,7 +2803,6 @@ ul { list-style: none; }
   .t-cmd, .t-val, .t-val-inline, .t-link, .t-error { font-size: 7px; }
   .monitor-body         { max-width: 100%; overflow: hidden; }
 
-  /* ── Library: scrollable bookshelf + responsive detail ── */
   .lib-stats-grid   { grid-template-columns: 1fr; }
   .lib-big-number   { font-size: 18px; }
   .bookshelf        { overflow: hidden; }

@@ -14,7 +14,6 @@ interface ReadingItem {
   lean?: number;
 }
 
-// ── helpers ────────────────────────────────────────────────────────────────
 
 function shortTitle(title: string): string {
   return title.split(' — ')[0].split(':')[0].trim();
@@ -71,7 +70,6 @@ function getLastTwelveMonths(): { year: number; month: number; label: string }[]
   return result;
 }
 
-// ── Book spine ─────────────────────────────────────────────────────────────
 
 function BookSpine({
   item, selected, onClick,
@@ -114,7 +112,6 @@ function BookSpine({
   );
 }
 
-// ── Main component ─────────────────────────────────────────────────────────
 
 export default function LibraryScreen() {
   const [items, setItems]       = useState<ReadingItem[]>([]);
@@ -144,7 +141,6 @@ export default function LibraryScreen() {
     setSelected(prev => prev?.id === item.id ? null : item);
   }
 
-  // ── stats ────────────────────────────────────────────────────────────────
   const readCount   = 11;
   const total       = items.length;
   const completePct = total ? Math.round((readCount / total) * 100) : 0;
@@ -173,7 +169,6 @@ export default function LibraryScreen() {
 
   return (
     <div className="library">
-      {/* Header */}
       <div className="screen-header">
         <span className="screen-title">[ LIBRARY ]</span>
         <span className="screen-subtitle">{total} ENTRIES — TAP A BOOK</span>
@@ -192,7 +187,6 @@ export default function LibraryScreen() {
 
       {!loading && !error && (
         <>
-          {/* ── SHELF ── */}
           <div className="bookshelf">
             <div className="shelf-books">
               {items.map(item => (
@@ -215,7 +209,6 @@ export default function LibraryScreen() {
             </div>
           </div>
 
-          {/* ── DETAIL STRIP ── */}
           <div
             className="lib-detail-strip pixel-box"
             style={selected ? { borderColor: spineColor(selected).glow, boxShadow: `0 0 12px ${spineColor(selected).glow}22` } : {}}
@@ -264,10 +257,8 @@ export default function LibraryScreen() {
             )}
           </div>
 
-          {/* ── STATS GRID ── */}
           <div className="lib-stats-grid">
 
-            {/* Left — Reading Progress */}
             <div className="lib-stats-card pixel-box">
               <div className="lib-card-title">READING PROGRESS</div>
               <div className="lib-card-divider" />
@@ -343,7 +334,6 @@ export default function LibraryScreen() {
               </div>
             </div>
 
-            {/* Right column */}
             <div className="lib-right-col">
 
               <div className="lib-stats-card pixel-box">

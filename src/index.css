@@ -2789,11 +2789,6 @@ ul { list-style: none; }
 
 /* ─── MOBILE (tablet + phone) ────────────────────────────────── */
 @media (max-width: 800px) {
-  .dg-body             { grid-template-columns: 1fr; }
-  .dg-map-panel        { display: none; }
-  .dg-chronicle-bottom { flex-direction: column; }
-  .dg-vault-grid       { grid-template-columns: 1fr; }
-
   html, body, #root    { font-size: 11px; }
   .game-shell          { border-width: 0; }
   .inv-grid            { grid-template-columns: repeat(2, 1fr); }
@@ -2803,6 +2798,38 @@ ul { list-style: none; }
   .edu-grid            { grid-template-columns: 1fr; }
   .lib-stats-grid      { grid-template-columns: 1fr; }
   .lib-big-number      { font-size: 22px; }
+  .dg-chronicle-bottom { flex-direction: column; }
+  .dg-vault-grid       { grid-template-columns: 1fr; }
+
+  /* ── Dungeons: replace hidden map panel with compact floor-switcher bar ── */
+  .dg-body {
+    display: flex;
+    flex-direction: column;
+  }
+  .dg-map-panel {
+    flex-direction: row;
+    align-items: center;
+    border-right: none;
+    border-bottom: 2px solid #334433;
+    padding: 8px 10px;
+    gap: 12px;
+    flex-shrink: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .dg-map-panel::-webkit-scrollbar { display: none; }
+  .dg-map-canvas       { display: none; }
+  .dg-legend           { display: none; }
+  .dg-map-label        { display: none; }
+  .dg-floor-list-wrap  { margin-top: 0; flex-shrink: 0; }
+  .dg-floor-list-label { margin-bottom: 0; margin-right: 6px; white-space: nowrap; font-size: 7px; }
+  .dg-floor-list       { flex-direction: row; gap: 5px; flex-wrap: nowrap; }
+  .dg-floor-btn        { white-space: nowrap; padding: 5px 8px; font-size: 7px; flex-shrink: 0; }
+  .dg-floor-hint       { display: none; }
+  .dg-main-panel       { flex: 1; min-height: 0; }
+  .dg-room-content     { overflow-y: auto; }
 }
 
 /* ─── MOBILE (iPhone — ≤480px) ───────────────────────────────── */
@@ -2837,24 +2864,56 @@ ul { list-style: none; }
   .screen-title      { font-size: 9px; }
   .screen-subtitle   { font-size: 7px; }
 
-  /* Inventory */
-  .inv-shell         { grid-template-columns: 1fr; }
-  .inv-grid          { grid-template-columns: repeat(2, 1fr); }
+  /* ── Inventory: stack panels and let game-content scroll ── */
+  .inv-shell {
+    display: flex;
+    flex-direction: column;
+    flex: unset;
+    overflow: visible;
+    min-height: unset;
+    height: auto;
+  }
+  .inv-left         { overflow-y: visible; }
+  .inv-right        { overflow: visible; }
+  .inv-item-list    { overflow-y: visible; flex: unset; }
+  /* Tabs: scroll horizontally so all 5 tabs (incl. SPELLS/POTIONS) are reachable */
+  .inv-tabs {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .inv-tabs::-webkit-scrollbar { display: none; }
+  .inv-tab          { flex-shrink: 0; padding: 8px 10px; }
+  .inv-grid         { grid-template-columns: repeat(2, 1fr); }
 
-  /* Dungeons */
-  .dg-body           { grid-template-columns: 1fr; }
-  .dg-map-panel      { display: none; }
-  .dg-vault-grid     { grid-template-columns: 1fr; }
-  .dg-boss-actions   { flex-wrap: wrap; }
+  /* ── Dungeons: inherits compact floor-switcher from 800px ── */
+  .dg-vault-grid    { grid-template-columns: 1fr; }
+  .dg-boss-actions  { flex-wrap: wrap; }
   .dg-chronicle-bottom { flex-direction: column; }
-  .dg-hero-row       { flex-wrap: wrap; }
+  .dg-hero-row      { flex-wrap: wrap; }
 
-  /* Terminal */
-  .terminal-desk     { flex-direction: column; }
-  .terminal-desk-sprite { padding-top: 0; flex-direction: row; align-items: center; gap: 10px; }
-  .t-key             { min-width: 80px; font-size: 7px; }
+  /* ── Terminal: prevent computer/monitor from overflowing ── */
+  .terminal-desk        { flex-direction: column; gap: 10px; }
+  .terminal-desk-sprite { display: none; }
+  .terminal             { padding: 12px; overflow-x: hidden; }
+  .t-key                { min-width: 75px; font-size: 7px; }
+  .prompt               { font-size: 7px; }
+  .t-cmd, .t-val, .t-val-inline, .t-link, .t-error { font-size: 7px; }
+  .monitor-body         { max-width: 100%; overflow: hidden; }
 
-  /* Library */
-  .lib-stats-grid    { grid-template-columns: 1fr; }
-  .lib-big-number    { font-size: 18px; }
+  /* ── Library: scrollable bookshelf + responsive detail ── */
+  .lib-stats-grid   { grid-template-columns: 1fr; }
+  .lib-big-number   { font-size: 18px; }
+  .bookshelf        { overflow: hidden; }
+  .shelf-books {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 5px;
+  }
+  .shelf-books::-webkit-scrollbar { display: none; }
+  .lib-detail-content { flex-direction: column; gap: 10px; }
+  .lib-detail-actions { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 8px; }
+  .lib-big-stats      { flex-wrap: wrap; }
 }

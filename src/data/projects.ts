@@ -75,7 +75,7 @@ export const PROJECTS: DungeonProject[] = [
   },
   {
     id: 'portfolio',
-    name: 'ameerrahman.dev',
+    name: 'ameer-rahman.info',
     type: 'Pixel Portfolio',
     difficulty: 'CURRENT RUN',
     diffColor: '#00ddff',
@@ -96,6 +96,6 @@ export const PROJECTS: DungeonProject[] = [
       },
     ],
     github: 'https://github.com/ameer-rah/portfolio',
-    live: 'https://ameerrahman.dev',
+    live: 'https://ameer-rahman.info',
   },
 ];

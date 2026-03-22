@@ -7,7 +7,7 @@ export default function TopBar() {
     <div className="top-bar">
       <div className="top-bar-left">
         <span className="top-bar-binary">{BINARY}</span>
-        <Link to="/" className="top-bar-title" style={{ textDecoration: 'none', cursor: 'pointer' }}>AMEERRAHMAN.DEV</Link>
+        <Link to="/" className="top-bar-title" style={{ textDecoration: 'none', cursor: 'pointer' }}>AMEER-RAHMAN.INFO</Link>
         <span className="top-bar-binary">{BINARY}</span>
       </div>
       <div className="top-bar-right">

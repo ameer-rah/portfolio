@@ -45,7 +45,7 @@ const HELP_LINES: TerminalLine[] = [
 ];
 
 const BOOT_LINES: TerminalLine[] = [
-  { type: 'output', text: 'AMEERRAHMAN.DEV v1.0 — Portfolio Terminal' },
+  { type: 'output', text: 'AMEER-RAHMAN.INFO v1.0 — Portfolio Terminal' },
   { type: 'output', text: 'Type "help" for available commands.' },
   { type: 'blank' },
 ];
@@ -176,7 +176,7 @@ export default function ContactTerminal({ navigate }: { navigate: (s: Screen) =>
               <div className="monitor-dot" style={{ background: '#ff3333' }} />
               <div className="monitor-dot" style={{ background: '#ffb700' }} />
               <div className="monitor-dot" style={{ background: '#00cc66' }} />
-              <span className="monitor-title-text">AMEERRAHMAN.DEV — TERMINAL v1.0</span>
+              <span className="monitor-title-text">AMEER-RAHMAN.INFO — TERMINAL v1.0</span>
             </div>
             <div className="monitor-screen">
               <div className="terminal" onClick={() => inputRef.current?.focus()}>

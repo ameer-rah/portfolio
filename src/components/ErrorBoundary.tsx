@@ -75,30 +75,27 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   render(): ReactNode {
     if (this.state.hasError) {
       return (
-        <div className="min-h-screen flex items-center justify-center bg-background text-foreground p-4">
-          <div className="w-full max-w-md p-6 rounded-lg border border-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] bg-background shadow-lg">
-            <h2 className="text-2xl font-bold mb-4 text-primary">
-              Unexpected Error... Try refreshing the page.
+        <div className="flex min-h-[100dvh] items-center justify-center bg-paper p-5 text-ink">
+          <div className="w-full max-w-md rounded-2xl border border-stone-200 bg-white p-8">
+            <h2 className="text-xl font-semibold tracking-tight">
+              Something went wrong.
             </h2>
-            <p className="mb-6">
-              Sorry about this, i guess my code is not as good as i thought.
-              <br />
-              <span className="text-red-500">
-                PLEASE SUBMIT THIS SO I CAN FIX IT!!!
-              </span>
+            <p className="mt-2 mb-6 text-sm leading-relaxed text-stone-600">
+              Try refreshing the page. If you have a moment, sending a quick
+              report helps me fix it.
             </p>
 
             {this.state.isSubmitted ? (
-              <div className="text-center p-4 bg-[color-mix(in_oklch,var(--color-primary)_10%,transparent)] rounded-md">
-                <p className="font-medium">Thank you for your report!</p>
-                <p className="mt-2">
-                  We'll look into this issue as soon as possible.
+              <div className="rounded-xl bg-brg-soft p-5 text-center">
+                <p className="font-medium text-brg">Thanks for the report.</p>
+                <p className="mt-1 text-sm text-stone-600">
+                  I'll look into this as soon as possible.
                 </p>
                 <button
                   onClick={() => (window.location.href = "/")}
-                  className="mt-4 px-4 py-2 bg-primary text-white rounded-md hover:bg-[color-mix(in_oklch,var(--color-primary)_80%,black)] transition-colors"
+                  className="mt-4 rounded-lg bg-brg px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-brg-mid"
                 >
-                  Return to Home
+                  Return home
                 </button>
               </div>
             ) : (
@@ -106,9 +103,9 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
                 <div>
                   <label
                     htmlFor="email"
-                    className="block text-sm font-medium mb-1"
+                    className="mb-1 block text-sm font-medium"
                   >
-                    Your Email (optional)
+                    Your email (optional)
                   </label>
                   <input
                     type="email"
@@ -116,18 +113,17 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
                     name="email"
                     value={this.state.email}
                     onChange={this.handleChange}
-                    className="w-full p-2 rounded-md border border-[color-mix(in_oklch,var(--color-primary)_20%,transparent)] bg-background"
-                    placeholder="your.email@example.com"
+                    className="w-full rounded-lg border border-stone-300 bg-white p-2 text-sm focus:border-brg"
+                    placeholder="you@example.com"
                   />
                 </div>
 
                 <div>
                   <label
                     htmlFor="message"
-                    className="block text-sm font-medium mb-1"
+                    className="mb-1 block text-sm font-medium"
                   >
-                    Please tell me everything so i can fix this error. What were
-                    you doing when the error occurred?
+                    What were you doing when the error occurred?
                   </label>
                   <textarea
                     id="message"
@@ -135,7 +131,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
                     value={this.state.message}
                     onChange={this.handleChange}
                     rows={4}
-                    className="w-full p-2 rounded-md border border-[color-mix(in_oklch,var(--color-primary)_20%,transparent)] bg-background"
+                    className="w-full rounded-lg border border-stone-300 bg-white p-2 text-sm focus:border-brg"
                     placeholder="I was trying to..."
                   />
                 </div>
@@ -143,17 +139,14 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
                 <button
                   type="submit"
                   disabled={this.state.isSubmitting}
-                  className="w-full py-2 px-4 bg-primary text-white rounded-md hover:bg-[color-mix(in_oklch,var(--color-primary)_80%,black)] transition-colors disabled:opacity-50"
+                  className="w-full rounded-lg bg-brg px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-brg-mid disabled:opacity-50"
                 >
-                  {this.state.isSubmitting ? "Submitting..." : "Submit Report"}
+                  {this.state.isSubmitting ? "Submitting..." : "Submit report"}
                 </button>
 
-                <div className="text-xs opacity-75 mt-4">
-                  <p>
-                    Error details will be included automatically with your
-                    report.
-                  </p>
-                </div>
+                <p className="text-xs text-stone-500">
+                  Error details are included automatically with your report.
+                </p>
               </form>
             )}
           </div>

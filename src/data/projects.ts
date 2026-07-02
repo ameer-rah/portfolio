@@ -1,50 +1,43 @@
-export interface Phase {
-  label: string;
+export interface ProjectHighlight {
+  title: string;
   text: string;
-  abilities: string[];
+  tech: string[];
 }
 
-export interface DungeonProject {
+export interface Project {
   id: string;
   name: string;
   type: string;
-  difficulty: string;
-  diffColor: string;
-  accent: 'green' | 'amber' | 'cyan' | 'purple';
-  hp: number;
   description: string;
   stack: string[];
-  phases: Phase[];
+  highlights: ProjectHighlight[];
   github?: string;
   live?: string;
 }
 
-export const PROJECTS: DungeonProject[] = [
+export const PROJECTS: Project[] = [
   {
     id: 'ruplanner',
     name: 'RUPlanner',
     type: 'Full-Stack Web App',
-    difficulty: 'BOSS FIGHT',
-    diffColor: '#ff3333',
-    accent: 'green',
-    hp: 100,
-    description: 'Degree planning tool for Rutgers students. Course search, 4-year plan builder, and graduation requirement tracker with real-time sync.',
+    description:
+      'Degree planning tool for Rutgers students. Course search, 4-year plan builder, and graduation requirement tracker with real-time sync.',
     stack: ['TypeScript', 'React', 'Next.js', 'PostgreSQL', 'Redis', 'Prisma'],
-    phases: [
+    highlights: [
       {
-        label: 'PHASE 1 — Core Engine',
+        title: 'Core engine',
         text: 'Built the course graph and requirement resolution engine in TypeScript. Modeled degree requirements as a constraint satisfaction problem.',
-        abilities: ['TypeScript', 'Node.js', 'PostgreSQL'],
+        tech: ['TypeScript', 'Node.js', 'PostgreSQL'],
       },
       {
-        label: 'PHASE 2 — Frontend',
+        title: 'Frontend',
         text: 'React + Next.js frontend with drag-and-drop semester planning. Upstash Redis caching for sub-100ms course lookups.',
-        abilities: ['React', 'Next.js', 'Redis'],
+        tech: ['React', 'Next.js', 'Redis'],
       },
       {
-        label: 'PHASE 3 — Deployment',
+        title: 'Deployment',
         text: 'Prisma ORM for type-safe DB access. Deployed on Vercel with AWS Amplify fallback.',
-        abilities: ['Prisma', 'Vercel', 'Amplify'],
+        tech: ['Prisma', 'Vercel', 'Amplify'],
       },
     ],
     github: 'https://github.com/ameer-rah',
@@ -53,22 +46,19 @@ export const PROJECTS: DungeonProject[] = [
     id: 'malware',
     name: 'Malware Detector',
     type: 'Security Pipeline',
-    difficulty: 'DANGER ZONE',
-    diffColor: '#ffb700',
-    accent: 'amber',
-    hp: 65,
-    description: 'SHA-256 file fingerprinting pipeline. Automated hash comparisons against 200+ known malware samples with Pandas/Scikit-learn preprocessing.',
+    description:
+      'SHA-256 file fingerprinting pipeline. Automated hash comparisons against 200+ known malware samples with Pandas/Scikit-learn preprocessing.',
     stack: ['Python', 'SHA-256', 'Pandas', 'Scikit-learn'],
-    phases: [
+    highlights: [
       {
-        label: 'PHASE 1 — Ingestion',
+        title: 'Ingestion',
         text: 'File ingestion pipeline that computes SHA-256 hashes of submitted binaries and normalizes metadata.',
-        abilities: ['Python', 'HashLib'],
+        tech: ['Python', 'HashLib'],
       },
       {
-        label: 'PHASE 2 — Detection',
+        title: 'Detection',
         text: 'Hash comparison against a curated threat database. ML-assisted anomaly scoring with Scikit-learn.',
-        abilities: ['Scikit-learn', 'Pandas'],
+        tech: ['Scikit-learn', 'Pandas'],
       },
     ],
     github: 'https://github.com/ameer-rah',
@@ -76,23 +66,20 @@ export const PROJECTS: DungeonProject[] = [
   {
     id: 'portfolio',
     name: 'ameer-rahman.info',
-    type: 'Pixel Portfolio',
-    difficulty: 'CURRENT RUN',
-    diffColor: '#00ddff',
-    accent: 'cyan',
-    hp: 85,
-    description: 'This very site. Retro pixel RPG-themed personal portfolio with dungeon crawler navigation, quest logs, and terminal contact screens.',
-    stack: ['TypeScript', 'React', 'Vite', 'CSS', 'AWS Amplify'],
-    phases: [
+    type: 'Personal Site',
+    description:
+      'This very site. A personal portfolio built with React, TypeScript, and Tailwind, with live GitHub data and a curated reading list.',
+    stack: ['TypeScript', 'React', 'Vite', 'Tailwind CSS', 'AWS Amplify'],
+    highlights: [
       {
-        label: 'PHASE 1 — Design System',
-        text: 'Established the pixel design system: CSS variables, Press Start 2P font, scanline overlay, and pixel border utilities.',
-        abilities: ['CSS', 'Press Start 2P'],
+        title: 'First iteration',
+        text: 'Started life as a retro pixel-art RPG with a hand-built CSS design system, keyboard navigation, and animated stat bars.',
+        tech: ['CSS', 'React'],
       },
       {
-        label: 'PHASE 2 — Game Shell',
-        text: 'Built GameShell with screen routing, keyboard navigation hook, and animated stat bars.',
-        abilities: ['React', 'TypeScript', 'Vite'],
+        title: 'Redesign',
+        text: 'Rebuilt as a modern site with Tailwind CSS, client-side routing, and live GitHub repos, contributions, and activity.',
+        tech: ['Tailwind CSS', 'TypeScript', 'Vite'],
       },
     ],
     github: 'https://github.com/ameer-rah/portfolio',

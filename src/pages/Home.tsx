@@ -30,9 +30,9 @@ const SCHOOLS = [
 ];
 
 const ABOUT_PARAGRAPHS = [
-  "I'm a first-gen CS student at Rutgers with a minor in Critical Intelligence Studies. My work lives at the intersection of software engineering and security: building things that matter while making sure they're built right.",
+  "I'm a first-gen, Bengali-Guyanese CS student at Rutgers with a minor in Critical Intelligence Studies. My work lives at the intersection of software engineering and security: building things that matter while making sure they're built right.",
   "Two internships in one summer: a malware detection pipeline at Jasfel Analytics, and pen testing with Burp Suite and OWASP ZAP at Redynox. I don't just want to write code, I want to understand how it breaks.",
-  "Whether architecting RUPlanner's prerequisite engine, cataloging CVEs in a pen test report, or founding the Rutgers Run Club, it's the same energy: try hard, build something real, make it count.",
+  "Whether shipping RUPlanner's prerequisite engine, fine-tuning a CNN on 21,000 chest X-rays, or founding the Rutgers Run Club, it's the same energy: try hard, build something real, make it count.",
 ];
 
 function FloatingCard({
@@ -88,7 +88,7 @@ export default function Home() {
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
             <p className="text-sm font-medium text-brg-bright">
-              Open to internships and collaborations for Summer 2026
+              Open to a Fall 2026 co-op and new grad roles for 2027
             </p>
             <h1 className="mt-5 max-w-xl text-4xl font-semibold leading-[1.08] tracking-tight text-ink sm:text-5xl lg:text-6xl">
               Full-stack engineer with a{' '}
@@ -142,7 +142,7 @@ export default function Home() {
                 Available now
               </div>
               <p className="mt-2 text-sm font-semibold leading-snug text-ink">
-                Summer 2026 internships &amp; collabs
+                Fall 2026 co-op &amp; New Grad 2027
               </p>
             </FloatingCard>
 
@@ -264,12 +264,12 @@ export default function Home() {
               {
                 to: '/projects',
                 title: 'Projects',
-                text: 'RUPlanner, a malware detection pipeline, and live GitHub activity.',
+                text: 'RUPlanner, a chest X-ray classifier, a census data study, and live GitHub activity.',
               },
               {
                 to: '/contact',
                 title: 'Contact',
-                text: 'Open to internships and collaborations for Summer 2026.',
+                text: 'Open to a Fall 2026 co-op and new grad roles for 2027.',
               },
             ].map((card, i) => (
               <Reveal key={card.to} delay={i * 0.08}>

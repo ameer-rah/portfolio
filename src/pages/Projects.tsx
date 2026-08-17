@@ -144,8 +144,9 @@ export default function Projects() {
             Projects
           </h1>
           <p className="mt-4 max-w-[65ch] text-base leading-relaxed text-stone-600">
-            Selected work across full-stack development and security, plus live
-            activity from my GitHub profile below.
+            Selected work across full-stack development, machine learning, data
+            analysis, and security, plus live activity from my GitHub profile
+            below.
           </p>
         </Reveal>
 

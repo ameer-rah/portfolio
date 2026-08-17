@@ -1,13 +1,13 @@
 import { lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import {
-  SiNextdotjs,
-  SiNodedotjs,
+  SiDocker,
+  SiFastapi,
   SiPostgresql,
-  SiPrisma,
+  SiPytorch,
   SiPython,
   SiReact,
-  SiRedis,
+  SiTailwindcss,
   SiTypescript,
 } from 'react-icons/si';
 import Reveal from './Reveal';
@@ -15,14 +15,14 @@ import Reveal from './Reveal';
 const VantaClouds = lazy(() => import('./VantaClouds'));
 
 const STACK = [
+  { name: 'Python', icon: SiPython },
   { name: 'TypeScript', icon: SiTypescript },
   { name: 'React', icon: SiReact },
-  { name: 'Next.js', icon: SiNextdotjs },
-  { name: 'Node.js', icon: SiNodedotjs },
+  { name: 'Tailwind CSS', icon: SiTailwindcss },
+  { name: 'FastAPI', icon: SiFastapi },
+  { name: 'PyTorch', icon: SiPytorch },
   { name: 'PostgreSQL', icon: SiPostgresql },
-  { name: 'Python', icon: SiPython },
-  { name: 'Prisma', icon: SiPrisma },
-  { name: 'Redis', icon: SiRedis },
+  { name: 'Docker', icon: SiDocker },
 ];
 
 function FloatCard({
@@ -73,9 +73,9 @@ export default function StackShowcase() {
               ship.
             </h2>
             <p className="mt-6 max-w-md text-base leading-relaxed text-white/70">
-              A stack chosen for reliability, not resume padding — the same
+              A stack chosen for reliability, not resume padding. The same
               languages, frameworks, and infrastructure across RUPlanner, the
-              malware detector, and this site.
+              X-ray classifier, and this site.
             </p>
           </Reveal>
 
@@ -113,16 +113,16 @@ export default function StackShowcase() {
             </FloatCard>
 
             <FloatCard className="right-0 top-[92px]" rotate={5} delay={0.4}>
-              <p className="text-xs font-medium text-stone-500">Data layer</p>
+              <p className="text-xs font-medium text-stone-500">Data &amp; infra</p>
               <p className="mt-1.5 text-sm font-semibold text-ink">
-                PostgreSQL + Prisma + Redis
+                PostgreSQL + Docker + Amplify
               </p>
             </FloatCard>
 
             <FloatCard className="left-[52px] top-[300px]" rotate={-3} delay={0.7}>
               <p className="text-xs font-medium text-stone-500">Frontend</p>
               <p className="mt-1.5 text-sm font-semibold text-ink">
-                React + Next.js + Tailwind
+                React + Vite + Tailwind
               </p>
             </FloatCard>
           </div>

@@ -4,6 +4,16 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Github, Menu, X } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 
+// Prefetch the Projects page's heavy Vanta/p5 chunk before navigation, so
+// it's already cached by the time the user clicks and the effect can boot
+// without competing with the route's entrance animations.
+let projectsPrefetched = false;
+function prefetchProjectsEffect() {
+  if (projectsPrefetched) return;
+  projectsPrefetched = true;
+  import('./VantaTopology');
+}
+
 const NAV_LINKS = [
   { to: '/', label: 'Home' },
   { to: '/experience', label: 'Experience' },
@@ -68,6 +78,7 @@ export default function Layout() {
                 to={link.to}
                 end={link.to === '/'}
                 className={navClass}
+                onMouseEnter={link.to === '/projects' ? prefetchProjectsEffect : undefined}
               >
                 {link.label}
               </NavLink>

@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { useTheme } from '../utils/theme';
 import p5 from 'p5';
 import TOPOLOGY from 'vanta/dist/vanta.topology.min';
 
@@ -12,6 +13,7 @@ const cancelIdle =
     : window.clearTimeout;
 
 export default function VantaTopology({ className }: { className?: string }) {
+  const theme = useTheme();
   const ref = useRef<HTMLDivElement>(null);
   const effectRef = useRef<ReturnType<typeof TOPOLOGY> | null>(null);
 
@@ -30,8 +32,8 @@ export default function VantaTopology({ className }: { className?: string }) {
         minWidth: 200,
         scale: 1.6,
         scaleMobile: 2.2,
-        color: 0x0b6e3f,
-        backgroundColor: 0xe7e2d8,
+        color: theme === 'dark' ? 0x7fc79b : 0x0b6e3f,
+        backgroundColor: theme === 'dark' ? 0x161512 : 0xe7e2d8,
       });
     });
 
@@ -40,7 +42,7 @@ export default function VantaTopology({ className }: { className?: string }) {
       effectRef.current?.destroy();
       effectRef.current = null;
     };
-  }, []);
+  }, [theme]);
 
   return <div ref={ref} aria-hidden className={className} />;
 }

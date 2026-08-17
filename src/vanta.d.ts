@@ -21,29 +21,3 @@ declare module 'vanta/dist/vanta.topology.min' {
 
   export default function TOPOLOGY(options: VantaTopologyOptions): VantaEffect;
 }
-
-declare module 'vanta/dist/vanta.clouds.min' {
-  import type * as THREE from 'three';
-
-  interface VantaEffect {
-    destroy(): void;
-  }
-
-  interface VantaCloudsOptions {
-    el: HTMLElement;
-    THREE?: typeof THREE;
-    backgroundColor?: number;
-    skyColor?: number;
-    cloudColor?: number;
-    cloudShadowColor?: number;
-    sunColor?: number;
-    sunGlareColor?: number;
-    sunlightColor?: number;
-    scale?: number;
-    scaleMobile?: number;
-    speed?: number;
-    mouseEase?: boolean;
-  }
-
-  export default function CLOUDS(options: VantaCloudsOptions): VantaEffect;
-}

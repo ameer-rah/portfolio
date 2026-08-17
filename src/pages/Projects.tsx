@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight, GitCommit, Star } from 'lucide-react';
 import { PROJECTS } from '../data/projects';
@@ -12,6 +12,8 @@ import {
   type ContributionData,
   type GitHubEvent,
 } from '../utils/githubApi';
+
+const VantaTopology = lazy(() => import('../components/VantaTopology'));
 
 const GITHUB_USERNAME = 'ameer-rah';
 
@@ -134,14 +136,12 @@ export default function Projects() {
     <>
       {/* Featured projects */}
       <section className="relative overflow-hidden">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -right-40 -top-24 h-[420px] w-[420px] rounded-full bg-brg-soft/60 blur-3xl"
-        />
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -left-32 bottom-0 h-[320px] w-[320px] rounded-full bg-brg-soft/40 blur-3xl"
-        />
+        <Suspense
+          fallback={<div className="absolute inset-0 bg-[#e7e2d8] dark:bg-[#161512]" aria-hidden />}
+        >
+          <VantaTopology className="absolute inset-0" />
+        </Suspense>
+        <div className="absolute inset-0 bg-paper/10" aria-hidden />
 
         <div className="relative mx-auto max-w-5xl px-5 py-16 sm:py-20">
         <Reveal>

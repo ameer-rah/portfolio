@@ -2,11 +2,11 @@ import { motion } from 'framer-motion';
 import {
   SiDocker,
   SiFastapi,
+  SiNextdotjs,
   SiPostgresql,
   SiPytorch,
   SiPython,
   SiReact,
-  SiTailwindcss,
   SiTypescript,
 } from 'react-icons/si';
 import Reveal from './Reveal';
@@ -15,7 +15,7 @@ const STACK = [
   { name: 'Python', icon: SiPython },
   { name: 'TypeScript', icon: SiTypescript },
   { name: 'React', icon: SiReact },
-  { name: 'Tailwind CSS', icon: SiTailwindcss },
+  { name: 'Next.js', icon: SiNextdotjs },
   { name: 'FastAPI', icon: SiFastapi },
   { name: 'PyTorch', icon: SiPytorch },
   { name: 'PostgreSQL', icon: SiPostgresql },
@@ -60,19 +60,19 @@ export default function StackShowcase() {
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: 'url(/assets/bloodbourne.jpg)' }}
       />
-      <div aria-hidden className="absolute inset-0 bg-ink/60" />
+      <div aria-hidden className="absolute inset-0 bg-[#0f0d0c]/65" />
 
       <div className="relative mx-auto max-w-6xl px-5 py-24 sm:py-28">
         <div className="grid gap-16 lg:grid-cols-[1fr_460px] lg:items-center">
           <Reveal>
-            <h2 className="max-w-lg text-3xl font-semibold leading-[1.1] tracking-tight text-white sm:text-4xl lg:text-5xl">
+            <h2 className="max-w-lg text-3xl font-semibold leading-[1.1] tracking-tight text-[#f7f6f3] sm:text-4xl lg:text-5xl">
               Built with tools that{' '}
               <span className="font-accent text-4xl italic text-[#a8dcb8] sm:text-5xl lg:text-6xl">
                 actually
               </span>{' '}
               ship.
             </h2>
-            <p className="mt-6 max-w-md text-base leading-relaxed text-white/70">
+            <p className="mt-6 max-w-md text-base leading-relaxed text-[#f7f6f3]/70">
               A stack chosen for reliability, not resume padding. The same
               languages, frameworks, and infrastructure across RUPlanner, the
               X-ray classifier, and this site.
@@ -83,7 +83,7 @@ export default function StackShowcase() {
             <svg
               aria-hidden
               viewBox="0 0 460 420"
-              className="pointer-events-none absolute inset-0 h-full w-full text-white/30"
+              className="pointer-events-none absolute inset-0 h-full w-full text-[#f7f6f3]/30"
             >
               <line x1="230" y1="210" x2="90" y2="70" strokeDasharray="4 5" stroke="currentColor" />
               <line x1="230" y1="210" x2="380" y2="130" strokeDasharray="4 5" stroke="currentColor" />
@@ -115,21 +115,21 @@ export default function StackShowcase() {
             <FloatCard className="right-0 top-[92px]" rotate={5} delay={0.4}>
               <p className="text-xs font-medium text-stone-500">Data &amp; infra</p>
               <p className="mt-1.5 text-sm font-semibold text-ink">
-                PostgreSQL + Docker + Amplify
+                PostgreSQL + Prisma + Docker
               </p>
             </FloatCard>
 
             <FloatCard className="left-[52px] top-[300px]" rotate={-3} delay={0.7}>
               <p className="text-xs font-medium text-stone-500">Frontend</p>
               <p className="mt-1.5 text-sm font-semibold text-ink">
-                React + Vite + Tailwind
+                React + Next.js + TypeScript
               </p>
             </FloatCard>
           </div>
         </div>
 
         <Reveal delay={0.15} className="mt-20">
-          <p className="text-sm font-medium uppercase tracking-wide text-white/60">
+          <p className="text-sm font-medium uppercase tracking-wide text-[#f7f6f3]/60">
             Core stack
           </p>
           <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">

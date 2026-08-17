@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Class-based dark mode instead of Tailwind v4's default media query. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", ui-sans-serif, system-ui, "Segoe UI", sans-serif;
   --font-accent: "Instrument Serif", ui-serif, Georgia, serif;
@@ -15,6 +18,37 @@
   --color-ink: #1c1917;
 }
 
+/*
+ * Dark mode works by re-pointing the theme tokens the utilities already
+ * compile against, so `bg-white` / `text-stone-600` / `border-stone-200`
+ * flip site-wide without per-component `dark:` variants. The only places
+ * that opt out are the ones layered over the photographic backdrop, which
+ * pin literal colors instead.
+ */
+.dark {
+  color-scheme: dark;
+
+  --color-brg: #7fc79b;
+  --color-brg-mid: #6bb488;
+  --color-brg-bright: #9ad9b1;
+  --color-brg-soft: #17301f;
+
+  --color-paper: #121110;
+  --color-ink: #f5f3f0;
+  --color-white: #1b1917;
+
+  --color-stone-50: #171513;
+  --color-stone-100: #201d1b;
+  --color-stone-200: #2e2a26;
+  --color-stone-300: #3b3631;
+  --color-stone-400: #7c736b;
+  --color-stone-500: #a49a91;
+  --color-stone-600: #c2b9b1;
+  --color-stone-700: #ded7d0;
+  --color-stone-800: #ebe6e1;
+  --color-stone-900: #f5f2ef;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -22,6 +56,7 @@ html {
 body {
   background-color: var(--color-paper);
   color: var(--color-ink);
+  transition: background-color 0.2s ease, color 0.2s ease;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }

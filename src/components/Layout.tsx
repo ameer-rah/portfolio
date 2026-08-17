@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Github, Menu, X } from 'lucide-react';
+import ThemeToggle from './ThemeToggle';
 
 const NAV_LINKS = [
   { to: '/', label: 'Home' },
@@ -9,16 +10,6 @@ const NAV_LINKS = [
   { to: '/projects', label: 'Projects' },
   { to: '/contact', label: 'Contact' },
 ];
-
-// Prefetch the Projects page's heavy Vanta/p5 chunk before navigation, so
-// it's already cached by the time the user clicks and the effect can boot
-// without competing with the route's entrance animations.
-let projectsPrefetched = false;
-function prefetchProjectsEffect() {
-  if (projectsPrefetched) return;
-  projectsPrefetched = true;
-  import('./VantaTopology');
-}
 
 function navClass({ isActive }: { isActive: boolean }) {
   return [
@@ -77,11 +68,11 @@ export default function Layout() {
                 to={link.to}
                 end={link.to === '/'}
                 className={navClass}
-                onMouseEnter={link.to === '/projects' ? prefetchProjectsEffect : undefined}
               >
                 {link.label}
               </NavLink>
             ))}
+            <ThemeToggle className="ml-1 h-8 w-8 rounded-full hover:bg-brg-soft" />
             <a
               href="https://github.com/ameer-rah"
               target="_blank"
@@ -94,18 +85,27 @@ export default function Layout() {
             </a>
           </nav>
 
-          <button
-            type="button"
-            className={[
-              'pointer-events-auto flex items-center justify-center rounded-full border border-stone-200/70 bg-white/95 p-2.5 text-stone-600 transition-shadow md:hidden',
-              scrolled ? 'shadow-[0_4px_20px_-4px_rgba(28,25,23,0.12)]' : 'shadow-sm',
-            ].join(' ')}
-            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={menuOpen}
-            onClick={() => setMenuOpen((o) => !o)}
-          >
-            {menuOpen ? <X size={20} strokeWidth={1.75} /> : <Menu size={20} strokeWidth={1.75} />}
-          </button>
+          <div className="flex items-center gap-2 md:hidden">
+            <ThemeToggle
+              className={[
+                'pointer-events-auto rounded-full border border-stone-200/70 bg-white/95 p-2.5 transition-shadow',
+                scrolled ? 'shadow-[0_4px_20px_-4px_rgba(28,25,23,0.12)]' : 'shadow-sm',
+              ].join(' ')}
+            />
+
+            <button
+              type="button"
+              className={[
+                'pointer-events-auto flex items-center justify-center rounded-full border border-stone-200/70 bg-white/95 p-2.5 text-stone-600 transition-shadow',
+                scrolled ? 'shadow-[0_4px_20px_-4px_rgba(28,25,23,0.12)]' : 'shadow-sm',
+              ].join(' ')}
+              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen((o) => !o)}
+            >
+              {menuOpen ? <X size={20} strokeWidth={1.75} /> : <Menu size={20} strokeWidth={1.75} />}
+            </button>
+          </div>
         </div>
       </motion.header>
 

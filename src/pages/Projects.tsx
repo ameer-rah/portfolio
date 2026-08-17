@@ -1,7 +1,8 @@
-import { lazy, Suspense, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight, GitCommit, Star } from 'lucide-react';
 import { PROJECTS } from '../data/projects';
+import { useTheme } from '../utils/theme';
 import Reveal from '../components/Reveal';
 import {
   fetchUserRepos,
@@ -12,13 +13,13 @@ import {
   type GitHubEvent,
 } from '../utils/githubApi';
 
-const VantaTopology = lazy(() => import('../components/VantaTopology'));
-
 const GITHUB_USERNAME = 'ameer-rah';
 
-const LEVEL_COLORS = ['#e7e5e4', '#b7d4c3', '#6faa8a', '#2e7d55', '#004225'];
+const LEVEL_COLORS_LIGHT = ['#e7e5e4', '#b7d4c3', '#6faa8a', '#2e7d55', '#004225'];
+const LEVEL_COLORS_DARK = ['#221f1d', '#1c3f29', '#2a6440', '#3d8f5c', '#7fc79b'];
 
 function ContributionGraph({ data }: { data: ContributionData }) {
+  const levelColors = useTheme() === 'dark' ? LEVEL_COLORS_DARK : LEVEL_COLORS_LIGHT;
   const days = data.contributions;
   const weeks: (typeof days)[] = [];
   for (let i = 0; i < days.length; i += 7) {
@@ -41,7 +42,7 @@ function ContributionGraph({ data }: { data: ContributionData }) {
                   key={day.date}
                   title={`${day.date}: ${day.count} contribution${day.count === 1 ? '' : 's'}`}
                   className="h-[11px] w-[11px] rounded-[2px]"
-                  style={{ backgroundColor: LEVEL_COLORS[day.level] }}
+                  style={{ backgroundColor: levelColors[day.level] }}
                 />
               ))}
             </div>
@@ -50,7 +51,7 @@ function ContributionGraph({ data }: { data: ContributionData }) {
       </div>
       <div className="mt-2 flex items-center gap-1.5 text-xs text-stone-400">
         Less
-        {LEVEL_COLORS.map((color) => (
+        {levelColors.map((color) => (
           <span
             key={color}
             className="inline-block h-[11px] w-[11px] rounded-[2px]"
@@ -133,10 +134,14 @@ export default function Projects() {
     <>
       {/* Featured projects */}
       <section className="relative overflow-hidden">
-        <Suspense fallback={<div className="absolute inset-0 bg-[#e7e2d8]" aria-hidden />}>
-          <VantaTopology className="absolute inset-0" />
-        </Suspense>
-        <div className="absolute inset-0 bg-paper/10" aria-hidden />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -right-40 -top-24 h-[420px] w-[420px] rounded-full bg-brg-soft/60 blur-3xl"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -left-32 bottom-0 h-[320px] w-[320px] rounded-full bg-brg-soft/40 blur-3xl"
+        />
 
         <div className="relative mx-auto max-w-5xl px-5 py-16 sm:py-20">
         <Reveal>

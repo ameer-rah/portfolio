@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, FileText, GitCommitHorizontal, ShieldCheck, Sparkles } from 'lucide-react';
+import { ArrowUpRight, FileText, GitCommitHorizontal, MapPin, ShieldCheck, Sparkles } from 'lucide-react';
 import Reveal from '../components/Reveal';
 import StackShowcase from '../components/StackShowcase';
 import Parallax from '../components/Parallax';
@@ -30,9 +30,9 @@ const SCHOOLS = [
 ];
 
 const ABOUT_PARAGRAPHS = [
-  "I'm a first-gen, Bengali-Guyanese CS student at Rutgers with a minor in Critical Intelligence Studies. My work lives at the intersection of software engineering and security: building things that matter while making sure they're built right.",
-  "Two internships in one summer: a malware detection pipeline at Jasfel Analytics, and pen testing with Burp Suite and OWASP ZAP at Redynox. I don't just want to write code, I want to understand how it breaks.",
-  "Whether shipping RUPlanner's prerequisite engine, fine-tuning a CNN on 21,000 chest X-rays, or building Archly with a small founding team, it's the same energy: try hard, build something real, make it count.",
+  "First-gen, Bengali-Guyanese, out of Queens. CS at Rutgers with a minor in Critical Intelligence Studies. Almost everything I build lands in a domain with rules I can't hand-wave past, so the interesting work is making the answer defensible, not just making it run.",
+  "Two internships in one summer, from both directions. At Jasfel Analytics I built a Python malware detection pipeline that hashed and compared 200+ samples to cut manual triage time 20%, and cleaned 50,000-row datasets with Pandas and scikit-learn for a 12% accuracy lift. At Redynox I attacked instead: Wireshark analysis cataloging 100+ malicious traffic signatures, web app pen testing with Burp Suite and OWASP ZAP, and custom Snort rules that dropped false positives 15%.",
+  "The projects run on the same instinct. RUPlanner models Rutgers prerequisites as a real dependency graph, so a generated semester plan can't come back invalid. My clinical lab monitor keeps reference ranges in a table scoped by sex and age, so one engine interprets every measurement and the dashboard renders what the API decided rather than guessing. The chest X-ray classifier hits 81.6% test accuracy behind a FastAPI endpoint, and ships labeled educational, not diagnostic, because that line matters.",
 ];
 
 function FloatingCard({
@@ -95,8 +95,8 @@ export default function Home() {
               <span className="font-accent italic text-brg">being wrong matters</span>.
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-stone-600">
-              Ameer Rahman. Computer science at Rutgers University, expected May
-              2027. Based in NYC, NY.
+              ameer rahman | computer science ꩜ rutgers university | class of
+              spring 2027 | <MapPin size={16} strokeWidth={1.75} className="inline align-[-2px]" /> nyc
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-4">
               <Link

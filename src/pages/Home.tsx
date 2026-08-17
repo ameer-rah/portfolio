@@ -15,7 +15,7 @@ const SCHOOLS = [
     gpa: '3.4 GPA',
     honors: null as string | null,
     courses:
-      'Data Structures, Systems Programming, Computer Architecture, Software Methodology, Principles of Programming Languages',
+      'Data Structures, Systems Programming, Computer Architecture, Software Methodology, Intro to Data Science',
   },
   {
     abbr: 'CCNY',
@@ -32,7 +32,7 @@ const SCHOOLS = [
 const ABOUT_PARAGRAPHS = [
   "I'm a first-gen, Bengali-Guyanese CS student at Rutgers with a minor in Critical Intelligence Studies. My work lives at the intersection of software engineering and security: building things that matter while making sure they're built right.",
   "Two internships in one summer: a malware detection pipeline at Jasfel Analytics, and pen testing with Burp Suite and OWASP ZAP at Redynox. I don't just want to write code, I want to understand how it breaks.",
-  "Whether shipping RUPlanner's prerequisite engine, fine-tuning a CNN on 21,000 chest X-rays, or founding the Rutgers Run Club, it's the same energy: try hard, build something real, make it count.",
+  "Whether shipping RUPlanner's prerequisite engine, fine-tuning a CNN on 21,000 chest X-rays, or building Archly with a small founding team, it's the same energy: try hard, build something real, make it count.",
 ];
 
 function FloatingCard({
@@ -227,27 +227,6 @@ export default function Home() {
               </Reveal>
             ))}
           </div>
-
-          <div className="mt-8 flex flex-wrap gap-3 text-sm">
-            <a
-              href="/assets/PDF/Rutgers_transcript.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-full bg-brg px-4 py-2 font-medium text-white transition-colors hover:bg-brg-mid active:translate-y-px"
-            >
-              Rutgers transcript
-              <ArrowUpRight size={14} strokeWidth={2} />
-            </a>
-            <a
-              href="/assets/PDF/CUNY_transcript.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-full bg-brg px-4 py-2 font-medium text-white transition-colors hover:bg-brg-mid active:translate-y-px"
-            >
-              CUNY transcript
-              <ArrowUpRight size={14} strokeWidth={2} />
-            </a>
-          </div>
         </div>
       </section>
 
@@ -259,7 +238,7 @@ export default function Home() {
               {
                 to: '/experience',
                 title: 'Experience',
-                text: 'Five roles across security, software engineering, and leadership.',
+                text: 'Four roles across startups, security, and software engineering.',
               },
               {
                 to: '/projects',

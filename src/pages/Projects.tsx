@@ -158,14 +158,9 @@ export default function Projects() {
                 transition={{ duration: 0.2 }}
                 className="rounded-2xl border border-stone-200 bg-white p-7 sm:p-9"
               >
-                <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-                  <h2 className="text-2xl font-semibold tracking-tight text-ink">
-                    {project.name}
-                  </h2>
-                  <span className="rounded-md bg-brg-soft px-2.5 py-1 text-xs font-medium text-brg">
-                    {project.type}
-                  </span>
-                </div>
+                <h2 className="text-2xl font-semibold tracking-tight text-ink">
+                  {project.name}
+                </h2>
                 <p className="mt-4 max-w-[65ch] text-[15px] leading-relaxed text-stone-600">
                   {project.description}
                 </p>

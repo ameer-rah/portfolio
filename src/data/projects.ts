@@ -44,11 +44,37 @@ export const PROJECTS: Project[] = [
     live: 'https://ruplanner.app',
   },
   {
+    id: 'clinical-lab-monitoring',
+    name: 'Clinical Lab & Patient Monitoring',
+    type: 'Full-Stack Web App',
+    description:
+      'A simplified clinical information system for tracking lab results, vital signs, and medications over time. A Flask REST API serves a healthcare relational model out of PostgreSQL, and a React dashboard flags results outside their reference range and charts how each measurement has moved. All data is synthetic.',
+    stack: ['Python', 'Flask', 'PostgreSQL', 'TypeScript', 'React', 'Docker'],
+    highlights: [
+      {
+        title: 'Reference ranges as configuration',
+        text: 'Ranges live in a table, not in code. Each row is an interval for one measurement, optionally narrowed by sex and age, so the resolver picks the most specific match — 13.0 g/dL of hemoglobin comes back low for a male patient and normal for a female one.',
+        tech: ['Python', 'PostgreSQL'],
+      },
+      {
+        title: 'One interpretation engine',
+        text: 'Lab results and vital signs stay separate tables because they are separate clinical concepts, but both key on a measurement code, so a single engine interprets both. The dashboard never re-derives status client-side; it renders what the API decided.',
+        tech: ['Flask', 'React'],
+      },
+      {
+        title: 'FHIR and honest data',
+        text: 'A read-only FHIR R4 layer projects the same records as Patient, Observation, and MedicationRequest resources. Seeded patients follow real clinical trajectories over two years, and unmapped codes resolve to unknown rather than silently normal.',
+        tech: ['FHIR R4', 'TypeScript'],
+      },
+    ],
+    github: 'https://github.com/ameer-rah/clinical-lab-monitoring',
+  },
+  {
     id: 'chest-xray',
     name: 'Chest X-Ray Classifier',
     type: 'Machine Learning',
     description:
-      'A full-stack app that sorts chest X-rays into COVID-19, lung opacity, normal, or viral pneumonia using a fine-tuned CNN, served over a FastAPI endpoint. An educational project, not a diagnostic tool.',
+      'A fine-tuned CNN that sorts chest X-rays into COVID-19, lung opacity, normal, or viral pneumonia, served over a FastAPI endpoint with a minimal browser UI for testing it. An educational project, not a diagnostic tool.',
     stack: ['Python', 'PyTorch', 'FastAPI', 'Docker'],
     highlights: [
       {
@@ -94,32 +120,5 @@ export const PROJECTS: Project[] = [
       },
     ],
     github: 'https://github.com/ameer-rah/njcu-community-analysis-internal',
-  },
-  {
-    id: 'portfolio',
-    name: 'ameer-rahman.info',
-    type: 'Personal Site',
-    description:
-      'This very site. A personal portfolio built with React, TypeScript, and Tailwind, pulling my repos, contribution graph, and activity feed live from the GitHub API.',
-    stack: ['TypeScript', 'React', 'Vite', 'Tailwind CSS', 'AWS Amplify'],
-    highlights: [
-      {
-        title: 'First iteration',
-        text: 'Started life as a retro pixel-art RPG with a hand-built CSS design system, keyboard navigation, and animated stat bars.',
-        tech: ['CSS', 'React'],
-      },
-      {
-        title: 'Redesign',
-        text: 'Rebuilt as a modern site with Tailwind CSS, client-side routing, and Framer Motion transitions, deployed on AWS Amplify.',
-        tech: ['Tailwind CSS', 'Framer Motion', 'Vite'],
-      },
-      {
-        title: 'Live data',
-        text: 'The Projects page fetches repos, a year of contributions, and a public event feed at runtime, so it stays current without me editing it.',
-        tech: ['GitHub API', 'React'],
-      },
-    ],
-    github: 'https://github.com/ameer-rah/portfolio',
-    live: 'https://ameer-rahman.info',
   },
 ];

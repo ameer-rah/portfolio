@@ -1,4 +1,3 @@
-import { lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import {
   SiDocker,
@@ -11,8 +10,6 @@ import {
   SiTypescript,
 } from 'react-icons/si';
 import Reveal from './Reveal';
-
-const VantaClouds = lazy(() => import('./VantaClouds'));
 
 const STACK = [
   { name: 'Python', icon: SiPython },
@@ -57,10 +54,13 @@ function FloatCard({
 export default function StackShowcase() {
   return (
     <section className="relative overflow-hidden border-t border-stone-200">
-      {/* animated Vanta clouds background, tinted to the site palette */}
-      <Suspense fallback={<div className="absolute inset-0 bg-[#3f4c40]" aria-hidden />}>
-        <VantaClouds className="absolute inset-0" />
-      </Suspense>
+      {/* photographic backdrop, darkened so the white copy stays legible */}
+      <div
+        aria-hidden
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: 'url(/assets/stack-backdrop.jpg)' }}
+      />
+      <div aria-hidden className="absolute inset-0 bg-ink/60" />
 
       <div className="relative mx-auto max-w-6xl px-5 py-24 sm:py-28">
         <div className="grid gap-16 lg:grid-cols-[1fr_460px] lg:items-center">

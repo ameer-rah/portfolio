@@ -7,9 +7,26 @@ export interface Experience {
   current: boolean;
   bullets: string[];
   tags: string[];
+  link?: string;
 }
 
 export const EXPERIENCE: Experience[] = [
+  {
+    id: 'archly',
+    company: 'Archly',
+    role: 'Co-Founder & Engineer',
+    period: 'Jul 2026 - Present',
+    location: 'New York, NY',
+    current: true,
+    tags: ['Vue 3', 'Node.js', 'Express', 'PostgreSQL', 'CI/CD'],
+    link: 'https://joinarchly.com/',
+    bullets: [
+      'Started Archly with a small founding team, building a two-sided marketplace that connects the people posting work with the people doing it',
+      'Own the stack end to end: a Vue 3 + Vite frontend against a Node.js/Express and PostgreSQL backend',
+      'Built the geolocation search that matches listings to nearby users, plus the REST API it runs on',
+      'Set up the CI/CD pipeline so a small team can ship to production without ceremony',
+    ],
+  },
   {
     id: 'werblin',
     company: 'Werblin Recreation Center',
@@ -21,20 +38,6 @@ export const EXPERIENCE: Experience[] = [
     bullets: [
       'Supervise daily operations at Rutgers largest rec facility',
       'Ensure safe and welcoming environment for 500+ students daily',
-    ],
-  },
-  {
-    id: 'runclub',
-    company: 'Rutgers Run Club',
-    role: 'Founder',
-    period: 'Present',
-    location: 'Rutgers University',
-    current: true,
-    tags: ['Leadership', 'Community'],
-    bullets: [
-      'Founded student running community with 40+ active members in the first semester',
-      'Weekly group runs, health challenges, social events',
-      'Onboarded 5 club officers via structured leadership pipeline',
     ],
   },
   {
@@ -58,25 +61,11 @@ export const EXPERIENCE: Experience[] = [
     period: 'Jul 2025 - Aug 2025',
     location: 'Newark, NJ',
     current: false,
-    tags: ['Python', 'Pandas', 'Scikit-learn', 'SHA-256'],
+    tags: ['Python', 'pandas', 'scikit-learn', 'Data Pipelines'],
     bullets: [
-      'Python malware detection: SHA-256 hash comparison vs 200+ samples',
-      'Pandas/Scikit-learn preprocessing on 50k+ entries, improving accuracy by 12%',
-      'Integrated cryptographic utilities into ML feature extraction',
-    ],
-  },
-  {
-    id: 'motazedi',
-    company: 'Michael Motazedi, C.P.A.',
-    role: 'IT Intern',
-    period: 'Feb 2024 - Aug 2024',
-    location: 'Jamaica, NY',
-    current: false,
-    tags: ['Network Security', 'Hardware', 'VPN'],
-    bullets: [
-      'Diagnosed 50+ hardware/network issues, improving uptime by 35%',
-      'Overhauled firewall rules and patch management, cutting alerts by 40%',
-      'Restructured VPN/access control for 15+ remote employees',
+      'Built a Python data pipeline processing 50,000+ records, with modular stages and defensive error handling so bad rows failed loudly instead of silently',
+      'Cleaned and engineered features with pandas and scikit-learn, raising downstream model accuracy by 12%',
+      'Turned raw sample metadata into ML-ready features, joining SHA-256 hashes against a 200+ sample reference set',
     ],
   },
 ];

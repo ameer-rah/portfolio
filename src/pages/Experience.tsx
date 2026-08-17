@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
 import { EXPERIENCE } from '../data/experience';
 import Reveal from '../components/Reveal';
 
@@ -20,8 +21,8 @@ export default function Experience() {
             Experience
           </h1>
           <p className="mt-4 max-w-[65ch] text-base leading-relaxed text-stone-600">
-            Internships in cybersecurity and software engineering, plus leadership
-            roles on campus at Rutgers.
+            Building a marketplace startup, internships in cybersecurity and data
+            engineering, and a leadership role on campus at Rutgers.
           </p>
         </Reveal>
 
@@ -64,7 +65,19 @@ export default function Experience() {
                       className="rounded-2xl border border-stone-200 bg-white p-6 shadow-[0_1px_2px_rgba(28,25,23,0.04)] transition-colors hover:border-brg/40 sm:p-7"
                     >
                       <h2 className="text-xl font-semibold text-ink">{job.role}</h2>
-                      <p className="mt-0.5 text-base font-medium text-brg">{job.company}</p>
+                      {job.link ? (
+                        <a
+                          href={job.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="mt-0.5 inline-flex items-center gap-1 text-base font-medium text-brg underline decoration-brg/30 underline-offset-4 transition-colors hover:decoration-brg"
+                        >
+                          {job.company}
+                          <ArrowUpRight size={14} strokeWidth={2} />
+                        </a>
+                      ) : (
+                        <p className="mt-0.5 text-base font-medium text-brg">{job.company}</p>
+                      )}
 
                       <ul className="mt-5 space-y-2.5">
                         {job.bullets.map((bullet, bi) => (

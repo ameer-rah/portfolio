@@ -91,8 +91,8 @@ export default function Home() {
               Open to a Fall 2026 co-op and new grad roles for 2027
             </p>
             <h1 className="mt-5 max-w-xl text-4xl font-semibold leading-[1.08] tracking-tight text-ink sm:text-5xl lg:text-6xl">
-              Full-stack engineer with a{' '}
-              <span className="font-accent italic text-brg">security mindset</span>.
+              I build systems for domains where{' '}
+              <span className="font-accent italic text-brg">being wrong matters</span>.
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-stone-600">
               Ameer Rahman. Computer science at Rutgers University, expected May

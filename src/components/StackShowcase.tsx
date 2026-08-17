@@ -58,7 +58,7 @@ export default function StackShowcase() {
       <div
         aria-hidden
         className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: 'url(/assets/stack-backdrop.jpg)' }}
+        style={{ backgroundImage: 'url(/assets/bloodbourne.jpg)' }}
       />
       <div aria-hidden className="absolute inset-0 bg-ink/60" />
 

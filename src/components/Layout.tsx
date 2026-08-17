@@ -160,7 +160,7 @@ export default function Layout() {
           <div>
             <p className="text-sm font-semibold text-ink">Ameer Rahman</p>
             <p className="mt-1 text-sm text-stone-500">
-              CS @ Rutgers University. New Brunswick, NJ.
+              CS ꩜ Rutgers University. New Brunswick, NJ.
             </p>
           </div>
           <div className="flex items-center gap-6 text-sm">

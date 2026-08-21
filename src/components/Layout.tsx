@@ -1,17 +1,14 @@
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Github, Menu, X } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 
-// Prefetch the Projects page's heavy Vanta/p5 chunk before navigation, so
-// it's already cached by the time the user clicks and the effect can boot
-// without competing with the route's entrance animations.
 let projectsPrefetched = false;
-function prefetchProjectsEffect() {
+function prefetchProjects() {
   if (projectsPrefetched) return;
   projectsPrefetched = true;
-  import('./VantaTopology');
+  void Promise.all([import('../pages/Projects'), import('./VantaTopology')]);
 }
 
 const NAV_LINKS = [
@@ -78,7 +75,8 @@ export default function Layout() {
                 to={link.to}
                 end={link.to === '/'}
                 className={navClass}
-                onMouseEnter={link.to === '/projects' ? prefetchProjectsEffect : undefined}
+                onMouseEnter={link.to === '/projects' ? prefetchProjects : undefined}
+                onFocus={link.to === '/projects' ? prefetchProjects : undefined}
               >
                 {link.label}
               </NavLink>
@@ -163,7 +161,9 @@ export default function Layout() {
       </AnimatePresence>
 
       <main className="flex-1 pt-24 sm:pt-28">
-        <Outlet />
+        <Suspense fallback={null}>
+          <Outlet />
+        </Suspense>
       </main>
 
       <footer className="border-t border-stone-200">

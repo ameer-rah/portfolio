@@ -1,9 +1,11 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { lazy } from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import Layout from './components/Layout';
 import Home from './pages/Home';
-import Experience from './pages/Experience';
-import Projects from './pages/Projects';
-import Contact from './pages/Contact';
+
+const Experience = lazy(() => import('./pages/Experience'));
+const Projects = lazy(() => import('./pages/Projects'));
+const Contact = lazy(() => import('./pages/Contact'));
 
 export default function App() {
   return (

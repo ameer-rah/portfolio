@@ -15,22 +15,18 @@ interface ErrorReportData {
 }
 
 export const sendErrorReport = async (data: ErrorReportData): Promise<void> => {
-  try {
-    await emailjs.send(
-      SERVICE_ID,
-      TEMPLATE_ID,
-      {
-        message: data.message,
-        error_message: data.errorMessage,
-        error_stack: data.errorStack,
-        component_stack: data.componentStack,
-        user_agent: data.userAgent,
-        url: data.url,
-      },
-      PUBLIC_KEY,
-    );
-  } catch (error) {
-    console.error("Failed to send error report:", error);
-    throw error;
-  }
+  await emailjs.send(
+    SERVICE_ID,
+    TEMPLATE_ID,
+    {
+      email: data.email,
+      message: data.message,
+      error_message: data.errorMessage,
+      error_stack: data.errorStack,
+      component_stack: data.componentStack,
+      user_agent: data.userAgent,
+      url: data.url,
+    },
+    PUBLIC_KEY,
+  );
 };

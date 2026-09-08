@@ -18,8 +18,8 @@ export const PROJECTS: Project[] = [
     id: 'ruplanner',
     name: 'RUPlanner',
     description:
-      'A degree planning engine for Rutgers New Brunswick. Evaluates degree requirements and builds prerequisite-aware semester plans, wrapped in a web app with accounts and saved plans.',
-    stack: ['Python', 'TypeScript', 'PostgreSQL', 'Docker'],
+      'A Rutgers–New Brunswick degree-planning platform that evaluates requirements, builds prerequisite-aware semester plans, restores saved plans, and tracks courses students want to snipe.',
+    stack: ['Python', 'FastAPI', 'Next.js', 'TypeScript', 'PostgreSQL', 'Docker'],
     highlights: [
       {
         title: 'Planner brain',
@@ -27,11 +27,11 @@ export const PROJECTS: Project[] = [
       },
       {
         title: 'Web app',
-        text: 'TypeScript frontend for course search, plan building, and progress tracking, with authentication so students can save and revisit a plan.',
+        text: 'Next.js frontend for course search, plan building, transcript-assisted onboarding, and progress tracking, with authentication and saved plans.',
       },
       {
         title: 'Data layer',
-        text: 'PostgreSQL for catalog and plan storage, including stored procedures for requirement queries. Containerized with Docker for reproducible deploys.',
+        text: 'FastAPI and PostgreSQL power the API, scheduled catalog refreshes, and course-snipe polling. Docker keeps local and deployed environments reproducible.',
       },
     ],
     github: 'https://github.com/ameer-rah/RUPlanner',
@@ -41,8 +41,8 @@ export const PROJECTS: Project[] = [
     id: 'clinical-lab-monitoring',
     name: 'Clinical Lab & Patient Monitoring',
     description:
-      'A simplified clinical information system for tracking lab results, vital signs, and medications over time. A Flask REST API serves a healthcare relational model out of PostgreSQL, and a React dashboard flags results outside their reference range and charts how each measurement has moved. All data is synthetic.',
-    stack: ['Python', 'Flask', 'PostgreSQL', 'TypeScript', 'React', 'Docker'],
+      'A simplified clinical information system for tracking lab results, vital signs, and medications over time. A Flask REST API serves a healthcare relational model from SQLite, and a React dashboard flags results outside their reference range and charts how each measurement has moved. All data is synthetic.',
+    stack: ['Python', 'Flask', 'SQLite', 'TypeScript', 'React'],
     highlights: [
       {
         title: 'Reference ranges as configuration',
@@ -80,6 +80,28 @@ export const PROJECTS: Project[] = [
       },
     ],
     github: 'https://github.com/ameer-rah/chest-xray-classifier',
+  },
+  {
+    id: 'mini-redis',
+    name: 'Mini Redis',
+    description:
+      'A compact Redis-inspired cache server built from scratch in Java to explore constant-time indexing, LRU eviction, TTL expiration, concurrency, and network protocol design.',
+    stack: ['Java 25', 'Maven', 'JUnit', 'TCP'],
+    highlights: [
+      {
+        title: 'Cache internals',
+        text: 'Combines a hash map with a custom doubly linked list for average O(1) reads, writes, deletion, TTL lookup, and LRU eviction.',
+      },
+      {
+        title: 'Concurrency',
+        text: 'Protects the map/list invariant with one ReentrantLock and includes stress tests for concurrent access and expiration behavior.',
+      },
+      {
+        title: 'Network server',
+        text: 'Exposes a line-oriented TCP protocol through a bounded worker pool with graceful shutdown and live socket integration tests.',
+      },
+    ],
+    github: 'https://github.com/ameer-rah/mini-redis',
   },
   {
     id: 'njcu-community',

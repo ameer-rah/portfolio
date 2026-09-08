@@ -36,8 +36,8 @@ export const EXPERIENCE: Experience[] = [
     current: true,
     tags: ['Leadership', 'Operations'],
     bullets: [
-      'Supervise daily operations at Rutgers largest rec facility',
-      'Ensure safe and welcoming environment for 500+ students daily',
+      "Supervise daily operations at Rutgers' largest recreation facility",
+      'Help maintain a safe, welcoming environment serving more than 500 students each day',
     ],
   },
   {

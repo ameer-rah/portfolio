@@ -3,13 +3,13 @@ import { motion } from 'framer-motion';
 import { ArrowUpRight, GitCommit, Star } from 'lucide-react';
 import { PROJECTS } from '../data/projects';
 import Reveal from '../components/Reveal';
+import { FeatureShaderBackdrop } from '../components/ui/feature-shader-card';
 import {
-  fetchUserRepos,
+  fetchGitHubOverview,
   fetchContributions,
-  fetchUserEvents,
   type GitHubRepo,
   type ContributionData,
-  type GitHubEvent,
+  type GitHubActivity,
 } from '../utils/githubApi';
 
 const VantaTopology = lazy(() => import('../components/VantaTopology'));
@@ -64,29 +64,6 @@ function ContributionGraph({ data }: { data: ContributionData }) {
   );
 }
 
-function describeEvent(event: GitHubEvent): string | null {
-  const repo = event.repo.name.split('/')[1] ?? event.repo.name;
-  switch (event.type) {
-    case 'PushEvent': {
-      const commits = event.commitCount;
-      if (commits === undefined) return `Pushed updates to ${repo}`;
-      return `Pushed ${commits} commit${commits === 1 ? '' : 's'} to ${repo}`;
-    }
-    case 'CreateEvent':
-      return `Created ${event.payload.ref_type ?? 'repository'} in ${repo}`;
-    case 'PullRequestEvent':
-      return `${event.payload.action === 'closed' ? 'Closed' : 'Opened'} a pull request in ${repo}`;
-    case 'IssuesEvent':
-      return `${event.payload.action === 'closed' ? 'Closed' : 'Opened'} an issue in ${repo}`;
-    case 'WatchEvent':
-      return `Starred ${event.repo.name}`;
-    case 'ForkEvent':
-      return `Forked ${event.repo.name}`;
-    default:
-      return null;
-  }
-}
-
 function relativeTime(dateStr: string): string {
   const diff = Date.now() - new Date(dateStr).getTime();
   const days = Math.floor(diff / 86_400_000);
@@ -108,29 +85,31 @@ export default function Projects() {
   const [loadingRepos, setLoadingRepos] = useState(true);
   const [contribs, setContribs] = useState<ContributionData | null>(null);
   const [loadingContribs, setLoadingContribs] = useState(true);
-  const [events, setEvents] = useState<GitHubEvent[]>([]);
+  const [activity, setActivity] = useState<GitHubActivity[]>([]);
+  const [githubError, setGitHubError] = useState(false);
   const [loadingEvents, setLoadingEvents] = useState(true);
 
   useEffect(() => {
-    fetchUserRepos(GITHUB_USERNAME)
-      .then(setRepos)
-      .catch(() => setRepoError(true))
-      .finally(() => setLoadingRepos(false));
+    fetchGitHubOverview()
+      .then((data) => {
+        setRepos(data.repos);
+        setActivity(data.activity);
+        setRepoError(!data.reposAvailable);
+        setGitHubError(!data.activityAvailable);
+      })
+      .catch(() => {
+        setRepoError(true);
+        setGitHubError(true);
+      })
+      .finally(() => {
+        setLoadingRepos(false);
+        setLoadingEvents(false);
+      });
     fetchContributions(GITHUB_USERNAME)
       .then(setContribs)
       .catch(() => setContribs(null))
       .finally(() => setLoadingContribs(false));
-    fetchUserEvents(GITHUB_USERNAME)
-      .then(setEvents)
-      .catch(() => setEvents([]))
-      .finally(() => setLoadingEvents(false));
   }, []);
-
-  const activity = [...events]
-    .sort((a, b) => Date.parse(b.created_at) - Date.parse(a.created_at))
-    .map((e) => ({ id: e.id, text: describeEvent(e), when: relativeTime(e.created_at) }))
-    .filter((e): e is { id: string; text: string; when: string } => e.text !== null)
-    .slice(0, 6);
 
   return (
     <>
@@ -161,8 +140,10 @@ export default function Projects() {
               <motion.article
                 whileHover={{ y: -3 }}
                 transition={{ duration: 0.2 }}
-                className="rounded-2xl border border-stone-200 bg-white p-7 sm:p-9"
+                className="group relative overflow-hidden rounded-2xl border border-stone-200 bg-white p-7 sm:p-9"
               >
+                <FeatureShaderBackdrop variant={i} />
+                <div className="relative">
                 <h2 className="text-2xl font-semibold tracking-tight text-ink">
                   {project.name}
                 </h2>
@@ -215,6 +196,7 @@ export default function Projects() {
                     )}
                   </div>
                 </div>
+                </div>
               </motion.article>
             </Reveal>
           ))}
@@ -265,9 +247,17 @@ export default function Projects() {
                   ))}
                 </div>
               ) : repoError ? (
-                <p className="mt-5 text-sm text-stone-500">
-                  Couldn't load repositories from GitHub. Try again later.
-                </p>
+                <div className="mt-5 rounded-xl border border-stone-200 bg-raised p-5">
+                  <p className="text-sm text-stone-500">GitHub's live data is temporarily unavailable.</p>
+                  <a
+                    href={`https://github.com/${GITHUB_USERNAME}?tab=repositories`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-brg hover:underline"
+                  >
+                    View repositories on GitHub <ArrowUpRight size={14} />
+                  </a>
+                </div>
               ) : (
                 <div className="mt-5 grid gap-4 sm:grid-cols-2">
                   {repos.slice(0, 6).map((repo, i) => (
@@ -315,11 +305,23 @@ export default function Projects() {
                     <SkeletonBlock key={i} className="h-10" />
                   ))}
                 </div>
+              ) : githubError ? (
+                <p className="mt-5 text-sm leading-relaxed text-stone-500">
+                  Live activity is temporarily unavailable.{' '}
+                  <a
+                    href={`https://github.com/${GITHUB_USERNAME}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium text-brg hover:underline"
+                  >
+                    View GitHub profile
+                  </a>
+                </p>
               ) : activity.length === 0 ? (
                 <p className="mt-5 text-sm text-stone-500">No recent public activity.</p>
               ) : (
                 <ul className="mt-5 space-y-4">
-                  {activity.map((item, i) => (
+                  {activity.slice(0, 6).map((item, i) => (
                     <motion.li
                       key={item.id}
                       initial={{ opacity: 0, x: 10 }}
@@ -333,8 +335,15 @@ export default function Projects() {
                         className="mt-0.5 shrink-0 text-brg-bright"
                       />
                       <div>
-                        <p className="text-sm leading-snug text-stone-700">{item.text}</p>
-                        <p className="mt-0.5 text-xs text-stone-400">{item.when}</p>
+                        <a
+                          href={item.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-sm leading-snug text-stone-700 hover:text-brg"
+                        >
+                          {item.text}
+                        </a>
+                        <p className="mt-0.5 text-xs text-stone-400">{relativeTime(item.createdAt)}</p>
                       </div>
                     </motion.li>
                   ))}

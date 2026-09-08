@@ -4,6 +4,7 @@ import { ArrowUpRight, GitCommitHorizontal, MapPin, ShieldCheck, Sparkles } from
 import Reveal from '../components/Reveal';
 import StackShowcase from '../components/StackShowcase';
 import Parallax from '../components/Parallax';
+import { FeatureShaderBackdrop } from '../components/ui/feature-shader-card';
 
 const SCHOOLS = [
   {
@@ -31,8 +32,8 @@ const SCHOOLS = [
 
 const ABOUT_PARAGRAPHS = [
   "First-gen, Bengali-Guyanese, out of Queens. CS at Rutgers with a minor in Critical Intelligence Studies. Almost everything I build lands in a domain with rules I can't hand-wave past, so the interesting work is making the answer defensible, not just making it run.",
-  "Two internships in one summer, from both directions. At Jasfel Analytics I built a Python malware detection pipeline that hashed and compared 200+ samples to cut manual triage time 20%, and cleaned 50,000-row datasets with Pandas and scikit-learn for a 12% accuracy lift. At Redynox I attacked instead: Wireshark analysis cataloging 100+ malicious traffic signatures, web app pen testing with Burp Suite and OWASP ZAP, and custom Snort rules that dropped false positives 15%.",
-  "The projects run on the same instinct. RUPlanner models Rutgers prerequisites as a real dependency graph, so a generated semester plan can't come back invalid. My clinical lab monitor keeps reference ranges in a table scoped by sex and age, so one engine interprets every measurement and the dashboard renders what the API decided rather than guessing. The chest X-ray classifier hits 81.6% test accuracy behind a FastAPI endpoint, and ships labeled educational, not diagnostic, because that line matters.",
+  "At Archly, I work across a Vue, Node.js, and PostgreSQL marketplace stack. My internships approached reliability from two directions: data engineering at Jasfel Analytics and hands-on security testing at Redynox.",
+  "My current projects follow the same instinct. RUPlanner models Rutgers requirements and prerequisites before it builds a schedule. The clinical lab monitor keeps reference ranges in data instead of code. Mini Redis explores LRU eviction, TTL behavior, concurrency, and a TCP protocol from first principles.",
 ];
 
 export default function Home() {
@@ -132,14 +133,36 @@ export default function Home() {
               ))}
             </Reveal>
             <Reveal delay={0.15}>
-              <figure className="h-fit rounded-xl border-l-4 border-gold bg-brg-soft p-6">
-                <blockquote className="text-lg font-medium leading-snug text-brg">
-                  "I had a purpose before everyone had an opinion"
-                </blockquote>
-                <figcaption className="mt-3 text-sm text-stone-600">
-                  Jalen Hurts
-                </figcaption>
-              </figure>
+              <div className="space-y-5">
+                <figure className="h-fit rounded-xl border-l-4 border-gold bg-brg-soft p-6">
+                  <blockquote className="text-lg font-medium leading-snug text-brg">
+                    "I had a purpose before everyone had an opinion"
+                  </blockquote>
+                  <figcaption className="mt-3 text-sm text-stone-600">
+                    Jalen Hurts
+                  </figcaption>
+                </figure>
+
+                <figure className="rounded-xl border border-stone-200 bg-white p-5">
+                  <div className="flex items-center justify-between gap-4">
+                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brg">
+                      New York City
+                    </p>
+                    <span className="flex items-center gap-2 text-xs font-medium text-stone-600">
+                      <span className="h-2.5 w-2.5 rounded-sm bg-[#c83b31]" aria-hidden />
+                      Queens · home
+                    </span>
+                  </div>
+                  <img
+                    src="/assets/nyc-boroughs.svg"
+                    alt="Map outlining Manhattan, Queens, the Bronx, Brooklyn, and Staten Island, with Queens shaded red"
+                    className="mx-auto mt-4 h-auto w-full max-w-[300px]"
+                  />
+                  <figcaption className="sr-only">
+                    The five boroughs of New York City. Queens is highlighted as where I am from.
+                  </figcaption>
+                </figure>
+              </div>
             </Reveal>
           </div>
         </div>
@@ -159,20 +182,21 @@ export default function Home() {
                 <motion.article
                   whileHover={{ y: -3 }}
                   transition={{ duration: 0.2 }}
-                  className="flex h-full flex-col rounded-xl border border-stone-200 bg-white p-6"
+                  className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-stone-200 bg-white p-6"
                 >
-                  <div className="flex items-baseline justify-between gap-4">
+                  <FeatureShaderBackdrop variant={i} />
+                  <div className="relative flex items-baseline justify-between gap-4">
                     <h3 className="text-lg font-semibold text-ink">{school.name}</h3>
                     <span className="shrink-0 text-sm font-medium text-brg">{school.gpa}</span>
                   </div>
-                  <p className="mt-2 text-sm font-medium text-stone-700">{school.degree}</p>
-                  {school.minor && <p className="mt-1 text-sm text-stone-600">{school.minor}</p>}
-                  <p className="mt-1 text-sm text-stone-500">{school.period}</p>
+                  <p className="relative mt-2 text-sm font-medium text-stone-700">{school.degree}</p>
+                  {school.minor && <p className="relative mt-1 text-sm text-stone-600">{school.minor}</p>}
+                  <p className="relative mt-1 text-sm text-stone-500">{school.period}</p>
                   {school.honors && (
-                    <p className="mt-3 text-sm font-medium text-brg-bright">{school.honors}</p>
+                    <p className="relative mt-3 text-sm font-medium text-brg-bright">{school.honors}</p>
                   )}
                   {school.courses && (
-                    <p className="mt-4 border-t border-stone-100 pt-4 text-sm leading-relaxed text-stone-500">
+                    <p className="relative mt-4 border-t border-stone-100 pt-4 text-sm leading-relaxed text-stone-500">
                       <span className="font-medium text-stone-700">Coursework: </span>
                       {school.courses}
                     </p>
@@ -184,51 +208,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Pointers */}
-      <section className="border-t border-stone-200 bg-white">
-        <div className="mx-auto max-w-5xl px-5 py-20">
-          <div className="grid gap-5 md:grid-cols-3">
-            {[
-              {
-                to: '/experience',
-                title: 'Experience',
-                text: 'Four roles across startups, security, and software engineering.',
-              },
-              {
-                to: '/projects',
-                title: 'Projects',
-                text: 'RUPlanner, a chest X-ray classifier, a census data study, and live GitHub activity.',
-              },
-              {
-                to: '/contact',
-                title: 'Contact',
-                text: 'Email is the fastest way to reach me about work or collaboration.',
-              },
-            ].map((card, i) => (
-              <Reveal key={card.to} delay={i * 0.08}>
-                <motion.div whileHover={{ y: -3 }} transition={{ duration: 0.2 }}>
-                  <Link
-                    to={card.to}
-                    className="group block rounded-xl border border-stone-200 p-6 transition-colors hover:border-brg"
-                  >
-                    <div className="flex items-center justify-between">
-                      <h3 className="text-base font-semibold text-ink group-hover:text-brg">
-                        {card.title}
-                      </h3>
-                      <ArrowUpRight
-                        size={16}
-                        strokeWidth={2}
-                        className="text-stone-400 transition-colors group-hover:text-brg"
-                      />
-                    </div>
-                    <p className="mt-2 text-sm leading-relaxed text-stone-500">{card.text}</p>
-                  </Link>
-                </motion.div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
     </>
   );
 }

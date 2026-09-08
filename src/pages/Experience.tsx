@@ -3,6 +3,7 @@ import { ArrowUpRight } from 'lucide-react';
 import { EXPERIENCE } from '../data/experience';
 import Reveal from '../components/Reveal';
 import VantaFog from '../components/VantaFog';
+import { FeatureShaderBackdrop } from '../components/ui/feature-shader-card';
 
 export default function Experience() {
   return (
@@ -57,8 +58,10 @@ export default function Experience() {
                     <motion.div
                       whileHover={{ y: -3 }}
                       transition={{ duration: 0.2 }}
-                      className="rounded-2xl border border-stone-200 bg-white p-6 shadow-[0_1px_2px_rgba(28,25,23,0.04)] transition-colors hover:border-brg/40 sm:p-7"
+                      className="group relative overflow-hidden rounded-2xl border border-stone-200 bg-white p-6 shadow-[0_1px_2px_rgba(28,25,23,0.04)] transition-colors hover:border-brg/40 sm:p-7"
                     >
+                      <FeatureShaderBackdrop variant={i} />
+                      <div className="relative">
                       <h2 className="text-xl font-semibold text-ink">{job.role}</h2>
                       {job.link ? (
                         <a
@@ -99,6 +102,7 @@ export default function Experience() {
                           </li>
                         ))}
                       </ul>
+                      </div>
                     </motion.div>
                   </article>
                 </Reveal>

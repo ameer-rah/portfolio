@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail } from 'lucide-react';
 import Reveal from '../components/Reveal';
+import { FeatureShaderBackdrop } from '../components/ui/feature-shader-card';
 
 const CHANNELS = [
   {
@@ -34,9 +35,8 @@ export default function Contact() {
           Have a role, project, or idea in mind?
         </h1>
         <p className="mt-6 max-w-[60ch] text-lg leading-relaxed text-stone-600">
-          I'm open to a Fall 2026 co-op and to new grad roles starting after I
-          graduate in May 2027. The fastest way to reach me is email; I usually
-          reply within a day.
+          The fastest way to reach me about engineering work or collaboration is
+          email. You can also find my current code and activity on GitHub.
         </p>
       </Reveal>
 
@@ -50,8 +50,10 @@ export default function Contact() {
                 : {})}
               whileHover={{ y: -3 }}
               transition={{ duration: 0.2 }}
-              className="group block rounded-xl border border-stone-200 bg-white p-6 transition-colors hover:border-brg"
+              className="group relative block overflow-hidden rounded-xl border border-stone-200 bg-white p-6 transition-colors hover:border-brg"
             >
+              <FeatureShaderBackdrop variant={i} />
+              <div className="relative">
               <channel.icon
                 size={20}
                 strokeWidth={1.75}
@@ -61,6 +63,7 @@ export default function Contact() {
                 {channel.label}
               </h2>
               <p className="mt-1 break-all text-sm text-stone-500">{channel.value}</p>
+              </div>
             </motion.a>
           </Reveal>
         ))}

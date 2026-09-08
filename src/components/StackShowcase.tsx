@@ -60,20 +60,20 @@ export default function StackShowcase() {
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: 'url(/assets/bloodbourne.jpg)' }}
       />
-      <div aria-hidden className="absolute inset-0 bg-[#0f0d0c]/65" />
+      <div aria-hidden className="absolute inset-0 bg-[#10251d]/80" />
 
       <div className="relative mx-auto max-w-6xl px-5 py-24 sm:py-28">
         <div className="grid gap-16 lg:grid-cols-[1fr_460px] lg:items-center">
           <Reveal>
             <h2 className="max-w-lg text-3xl font-semibold leading-[1.1] tracking-tight text-[#f7f6f3] sm:text-4xl lg:text-5xl">
               Built with tools that{' '}
-              <span className="font-accent text-4xl italic text-[#a8dcb8] sm:text-5xl lg:text-6xl">
+              <span className="font-accent text-4xl italic text-[#d7ee79] sm:text-5xl lg:text-6xl">
                 actually
               </span>{' '}
               ship.
             </h2>
             <p className="mt-6 max-w-md text-base leading-relaxed text-[#f7f6f3]/70">
-              A stack chosen for reliability, not resume padding. The same
+              A stack chosen for reliability, not trend chasing. The same
               languages, frameworks, and infrastructure across RUPlanner, the
               X-ray classifier, and this site.
             </p>
@@ -129,7 +129,7 @@ export default function StackShowcase() {
         </div>
 
         <Reveal delay={0.15} className="mt-20">
-          <p className="text-sm font-medium uppercase tracking-wide text-[#f7f6f3]/60">
+          <p className="flex items-center gap-3 text-sm font-medium uppercase tracking-wide text-[#f7f6f3]/60 before:h-[3px] before:w-7 before:bg-gold">
             Core stack
           </p>
           <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">

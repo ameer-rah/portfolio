@@ -2,7 +2,6 @@ import { Suspense, useEffect, useState } from 'react';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Github, Menu, X } from 'lucide-react';
-import ThemeToggle from './ThemeToggle';
 
 let projectsPrefetched = false;
 function prefetchProjects() {
@@ -81,7 +80,6 @@ export default function Layout() {
                 {link.label}
               </NavLink>
             ))}
-            <ThemeToggle className="ml-1 h-8 w-8 rounded-full hover:bg-brg-soft" />
             <a
               href="https://github.com/ameer-rah"
               target="_blank"
@@ -95,13 +93,6 @@ export default function Layout() {
           </nav>
 
           <div className="flex items-center gap-2 md:hidden">
-            <ThemeToggle
-              className={[
-                'pointer-events-auto rounded-full border border-stone-200/70 bg-white/95 p-2.5 transition-shadow',
-                scrolled ? 'shadow-[0_4px_20px_-4px_rgba(28,25,23,0.12)]' : 'shadow-sm',
-              ].join(' ')}
-            />
-
             <button
               type="button"
               className={[

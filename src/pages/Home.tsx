@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, FileText, GitCommitHorizontal, MapPin, ShieldCheck, Sparkles } from 'lucide-react';
+import { ArrowUpRight, GitCommitHorizontal, MapPin, ShieldCheck, Sparkles } from 'lucide-react';
 import Reveal from '../components/Reveal';
 import StackShowcase from '../components/StackShowcase';
 import Parallax from '../components/Parallax';
@@ -35,68 +35,37 @@ const ABOUT_PARAGRAPHS = [
   "The projects run on the same instinct. RUPlanner models Rutgers prerequisites as a real dependency graph, so a generated semester plan can't come back invalid. My clinical lab monitor keeps reference ranges in a table scoped by sex and age, so one engine interprets every measurement and the dashboard renders what the API decided rather than guessing. The chest X-ray classifier hits 81.6% test accuracy behind a FastAPI endpoint, and ships labeled educational, not diagnostic, because that line matters.",
 ];
 
-function FloatingCard({
-  children,
-  className,
-  rotate,
-  delay,
-}: {
-  children: React.ReactNode;
-  className: string;
-  rotate: number;
-  delay: number;
-}) {
-  return (
-    <motion.div
-      className={`absolute w-60 rounded-2xl border border-stone-200/80 bg-white p-4 shadow-[0_16px_40px_-12px_rgba(28,25,23,0.18)] ${className}`}
-      style={{ rotate }}
-      initial={{ opacity: 0, y: 30, scale: 0.96 }}
-      animate={{ opacity: 1, y: [0, -12, 0], scale: 1 }}
-      transition={{
-        opacity: { duration: 0.6, delay },
-        scale: { duration: 0.6, delay },
-        y: { duration: 5.5, repeat: Infinity, ease: 'easeInOut', delay: delay + 0.6 },
-      }}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
 export default function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="relative mx-auto max-w-6xl overflow-hidden px-5 pb-24 pt-4 sm:pt-10">
+      <section className="relative overflow-hidden border-y border-stone-200/70 bg-surface">
         <Parallax speed={50}>
           <div
             aria-hidden
-            className="pointer-events-none absolute -right-32 -top-20 h-[520px] w-[520px] rounded-full bg-brg-soft/70 blur-3xl"
+            className="pointer-events-none absolute -right-32 -top-20 h-[520px] w-[520px] rounded-full bg-brg-soft/55 blur-3xl"
           />
         </Parallax>
         <Parallax speed={25}>
           <div
             aria-hidden
-            className="pointer-events-none absolute -left-40 bottom-0 h-[360px] w-[360px] rounded-full bg-brg-soft/40 blur-3xl"
+            className="pointer-events-none absolute -left-40 bottom-0 h-[360px] w-[360px] rounded-full bg-gold/10 blur-3xl"
           />
         </Parallax>
 
-        <div className="relative grid gap-14 lg:grid-cols-[1fr_400px] lg:items-center">
+        <div className="relative mx-auto grid max-w-6xl gap-14 px-5 py-20 sm:py-24 lg:grid-cols-[minmax(0,1.2fr)_minmax(340px,0.75fr)] lg:items-center">
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
-            <p className="text-sm font-medium text-brg-bright">
-              Open to a Fall 2026 co-op and new grad roles for 2027
-            </p>
-            <h1 className="mt-5 max-w-xl text-4xl font-semibold leading-[1.08] tracking-tight text-ink sm:text-5xl lg:text-6xl">
+            <h1 className="max-w-2xl text-4xl font-semibold leading-[1.03] tracking-[-0.04em] text-ink sm:text-6xl lg:text-7xl">
               I build systems for domains where{' '}
               <span className="font-accent italic text-brg">being wrong matters</span>.
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-stone-600">
-              ameer rahman | computer science ꩜ rutgers university | class of
-              spring 2027 | <MapPin size={16} strokeWidth={1.75} className="inline align-[-2px]" /> nyc
+              ameer rahman | computer science ꩜ rutgers university |{' '}
+              <MapPin size={16} strokeWidth={1.75} className="inline align-[-2px]" /> nyc
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-4">
               <Link
@@ -106,58 +75,43 @@ export default function Home() {
                 View projects
                 <ArrowUpRight size={16} strokeWidth={2} />
               </Link>
-              <a
-                href="/assets/PDF/Ameer Rahman Resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-stone-300 px-5 py-2.5 text-sm font-medium text-ink transition-colors hover:border-brg hover:text-brg active:translate-y-px"
-              >
-                <FileText size={16} strokeWidth={1.75} />
-                Resume
-              </a>
             </div>
           </motion.div>
 
-          <div className="relative hidden h-[420px] lg:block">
-            <FloatingCard className="left-6 top-0" rotate={-6} delay={0.15}>
-              <div className="flex items-center gap-2 text-xs font-medium text-stone-500">
-                <GitCommitHorizontal size={14} strokeWidth={2} className="text-brg" />
-                GitHub activity
+          <motion.aside
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            className="relative overflow-hidden rounded-sm bg-hero-panel p-8 text-[#fffdf7] shadow-[18px_18px_0_var(--color-gold)] sm:p-10"
+          >
+            <div className="absolute -right-20 -top-20 h-52 w-52 rounded-full border border-white/10" aria-hidden />
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-lime">
+              At a glance
+            </p>
+            <div className="mt-7 divide-y divide-white/15">
+              <div className="py-5 first:pt-0">
+                <div className="flex items-center gap-2 text-lime">
+                  <GitCommitHorizontal size={16} strokeWidth={2} />
+                  <span className="text-xs font-semibold uppercase tracking-wider">Builder</span>
+                </div>
+                <p className="mt-2 text-base font-medium">Full-stack systems built to hold up in practice.</p>
               </div>
-              <div className="mt-3 flex gap-[3px]">
-                {[0.15, 0.4, 0.85, 0.3, 0.65, 1, 0.5, 0.2, 0.7, 0.9].map((v, i) => (
-                  <span
-                    key={i}
-                    className="h-6 w-2 rounded-sm bg-brg"
-                    style={{ opacity: 0.25 + v * 0.75 }}
-                  />
-                ))}
+              <div className="py-5">
+                <div className="flex items-center gap-2 text-lime">
+                  <ShieldCheck size={16} strokeWidth={2} />
+                  <span className="text-xs font-semibold uppercase tracking-wider">Security-minded</span>
+                </div>
+                <p className="mt-2 text-base font-medium">Defensive engineering informed by offensive testing.</p>
               </div>
-              <p className="mt-3 text-sm font-semibold text-ink">Shipping consistently</p>
-            </FloatingCard>
-
-            <FloatingCard className="left-32 top-[168px]" rotate={5} delay={0.55}>
-              <div className="flex items-center gap-2 text-xs font-medium text-brg-bright">
-                <Sparkles size={14} strokeWidth={2} />
-                Available now
+              <div className="pt-5">
+                <div className="flex items-center gap-2 text-lime">
+                  <Sparkles size={16} strokeWidth={2} />
+                  <span className="text-xs font-semibold uppercase tracking-wider">Focus</span>
+                </div>
+                <p className="mt-2 text-base font-medium">Reliable software for domains where correctness matters.</p>
               </div>
-              <p className="mt-2 text-sm font-semibold leading-snug text-ink">
-                Fall 2026 co-op &amp; New Grad 2027
-              </p>
-            </FloatingCard>
-
-            <FloatingCard className="left-2 top-[300px]" rotate={-3} delay={0.95}>
-              <div className="flex items-center gap-2 text-xs font-medium text-stone-500">
-                <ShieldCheck size={14} strokeWidth={2} className="text-brg" />
-                Security-minded
-              </div>
-              <p className="mt-2 font-mono text-[13px] leading-relaxed text-stone-600">
-                <span className="text-brg">$</span> whoami
-                <br />
-                full-stack + pentesting
-              </p>
-            </FloatingCard>
-          </div>
+            </div>
+          </motion.aside>
         </div>
       </section>
 
@@ -178,7 +132,7 @@ export default function Home() {
               ))}
             </Reveal>
             <Reveal delay={0.15}>
-              <figure className="h-fit rounded-xl bg-brg-soft p-6">
+              <figure className="h-fit rounded-xl border-l-4 border-gold bg-brg-soft p-6">
                 <blockquote className="text-lg font-medium leading-snug text-brg">
                   "I had a purpose before everyone had an opinion"
                 </blockquote>
@@ -248,7 +202,7 @@ export default function Home() {
               {
                 to: '/contact',
                 title: 'Contact',
-                text: 'Open to a Fall 2026 co-op and new grad roles for 2027.',
+                text: 'Email is the fastest way to reach me about work or collaboration.',
               },
             ].map((card, i) => (
               <Reveal key={card.to} delay={i * 0.08}>

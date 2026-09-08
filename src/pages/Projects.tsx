@@ -2,7 +2,6 @@ import { lazy, Suspense, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight, GitCommit, Star } from 'lucide-react';
 import { PROJECTS } from '../data/projects';
-import { useTheme } from '../utils/theme';
 import Reveal from '../components/Reveal';
 import {
   fetchUserRepos,
@@ -17,11 +16,10 @@ const VantaTopology = lazy(() => import('../components/VantaTopology'));
 
 const GITHUB_USERNAME = 'ameer-rah';
 
-const LEVEL_COLORS_LIGHT = ['#e7e5e4', '#b7d4c3', '#6faa8a', '#2e7d55', '#004225'];
-const LEVEL_COLORS_DARK = ['#221f1d', '#1c3f29', '#2a6440', '#3d8f5c', '#7fc79b'];
+const LEVEL_COLORS_LIGHT = ['#eee9dc', '#dce8b6', '#9ebd78', '#4c8969', '#174f3a'];
 
 function ContributionGraph({ data }: { data: ContributionData }) {
-  const levelColors = useTheme() === 'dark' ? LEVEL_COLORS_DARK : LEVEL_COLORS_LIGHT;
+  const levelColors = LEVEL_COLORS_LIGHT;
   const days = data.contributions;
   const weeks: (typeof days)[] = [];
   for (let i = 0; i < days.length; i += 7) {
@@ -30,7 +28,7 @@ function ContributionGraph({ data }: { data: ContributionData }) {
   const total = Object.values(data.total).reduce((a, b) => a + b, 0);
 
   return (
-    <div>
+    <div className="rounded-xl border border-stone-200 bg-raised p-5 shadow-[0_14px_35px_-28px_rgba(16,37,29,0.5)] sm:p-6">
       <p className="text-sm text-stone-500">
         <span className="font-semibold text-ink">{total.toLocaleString()}</span>{' '}
         contributions in the last year
@@ -70,7 +68,8 @@ function describeEvent(event: GitHubEvent): string | null {
   const repo = event.repo.name.split('/')[1] ?? event.repo.name;
   switch (event.type) {
     case 'PushEvent': {
-      const commits = (event.payload.commits as unknown[] | undefined)?.length ?? 0;
+      const commits = event.commitCount;
+      if (commits === undefined) return `Pushed updates to ${repo}`;
       return `Pushed ${commits} commit${commits === 1 ? '' : 's'} to ${repo}`;
     }
     case 'CreateEvent':
@@ -127,7 +126,8 @@ export default function Projects() {
       .finally(() => setLoadingEvents(false));
   }, []);
 
-  const activity = events
+  const activity = [...events]
+    .sort((a, b) => Date.parse(b.created_at) - Date.parse(a.created_at))
     .map((e) => ({ id: e.id, text: describeEvent(e), when: relativeTime(e.created_at) }))
     .filter((e): e is { id: string; text: string; when: string } => e.text !== null)
     .slice(0, 6);
@@ -137,7 +137,7 @@ export default function Projects() {
       {/* Featured projects */}
       <section className="relative overflow-hidden">
         <Suspense
-          fallback={<div className="absolute inset-0 bg-[#e7e2d8] dark:bg-[#161512]" aria-hidden />}
+          fallback={<div className="absolute inset-0 bg-[#f3efe3]" aria-hidden />}
         >
           <VantaTopology className="absolute inset-0" />
         </Suspense>
@@ -223,7 +223,7 @@ export default function Projects() {
       </section>
 
       {/* GitHub activity */}
-      <section className="border-t border-stone-200 bg-white">
+      <section className="border-t border-stone-200 bg-surface">
         <div className="mx-auto max-w-5xl px-5 py-16 sm:py-20">
           <Reveal>
             <h2 className="text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
@@ -278,7 +278,7 @@ export default function Projects() {
                         rel="noopener noreferrer"
                         whileHover={{ y: -3 }}
                         transition={{ duration: 0.2 }}
-                        className="group flex h-full flex-col rounded-xl border border-stone-200 p-5 transition-colors hover:border-brg"
+                        className="group flex h-full flex-col rounded-xl border border-stone-200 bg-raised p-5 transition-colors hover:border-brg"
                       >
                         <div className="flex items-center justify-between gap-2">
                           <h4 className="truncate text-[15px] font-semibold text-ink group-hover:text-brg">
@@ -307,7 +307,7 @@ export default function Projects() {
               )}
             </div>
 
-            <div>
+            <div className="h-fit rounded-xl border border-stone-200 bg-raised p-5 sm:p-6">
               <h3 className="text-lg font-semibold text-ink">Recent activity</h3>
               {loadingEvents ? (
                 <div className="mt-5 space-y-3">

@@ -2,18 +2,13 @@ import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import { EXPERIENCE } from '../data/experience';
 import Reveal from '../components/Reveal';
+import VantaFog from '../components/VantaFog';
 
 export default function Experience() {
   return (
     <section className="relative overflow-hidden">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -right-40 top-24 h-[420px] w-[420px] rounded-full bg-brg-soft/60 blur-3xl"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -left-32 bottom-0 h-[320px] w-[320px] rounded-full bg-brg-soft/40 blur-3xl"
-      />
+      <VantaFog className="absolute inset-0" />
+      <div aria-hidden className="absolute inset-0 bg-paper/55" />
 
       <div className="relative mx-auto max-w-5xl px-5 py-16 sm:py-20">
         <Reveal>

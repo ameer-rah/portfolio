@@ -1,56 +1,28 @@
 @import "tailwindcss";
 
-/* Class-based dark mode instead of Tailwind v4's default media query. */
-@custom-variant dark (&:where(.dark, .dark *));
-
 @theme {
   --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", ui-sans-serif, system-ui, "Segoe UI", sans-serif;
   --font-accent: "Instrument Serif", ui-serif, Georgia, serif;
 
-  /* British Racing Green accent scale */
-  --color-brg: #004225;
-  --color-brg-mid: #01572e;
-  --color-brg-bright: #0b6e3f;
-  --color-brg-soft: #e7efe9;
+  /* Guyana-inspired palette, matched to The Guyana Brief */
+  --color-brg: #174f3a;
+  --color-brg-mid: #10251d;
+  --color-brg-bright: #267052;
+  --color-brg-soft: #e8f2c8;
+  --color-gold: #efbd45;
 
-  /* Warm stone surfaces */
-  --color-paper: #faf9f6;
-  --color-ink: #1c1917;
-}
-
-/*
- * Dark mode works by re-pointing the theme tokens the utilities already
- * compile against, so `bg-white` / `text-stone-600` / `border-stone-200`
- * flip site-wide without per-component `dark:` variants. The only places
- * that opt out are the ones layered over the photographic backdrop, which
- * pin literal colors instead.
- */
-.dark {
-  color-scheme: dark;
-
-  --color-brg: #7fc79b;
-  --color-brg-mid: #6bb488;
-  --color-brg-bright: #9ad9b1;
-  --color-brg-soft: #17301f;
-
-  --color-paper: #121110;
-  --color-ink: #f5f3f0;
-  --color-white: #1b1917;
-
-  --color-stone-50: #171513;
-  --color-stone-100: #201d1b;
-  --color-stone-200: #2e2a26;
-  --color-stone-300: #3b3631;
-  --color-stone-400: #7c736b;
-  --color-stone-500: #a49a91;
-  --color-stone-600: #c2b9b1;
-  --color-stone-700: #ded7d0;
-  --color-stone-800: #ebe6e1;
-  --color-stone-900: #f5f2ef;
+  /* Warm editorial surfaces */
+  --color-paper: #f3efe3;
+  --color-ink: #10251d;
+  --color-surface: #fffdf7;
+  --color-raised: #ffffff;
+  --color-hero-panel: #174f3a;
+  --color-lime: #d7ee79;
 }
 
 html {
   scroll-behavior: smooth;
+  color-scheme: light;
 }
 
 body {
@@ -62,7 +34,7 @@ body {
 }
 
 ::selection {
-  background-color: rgba(0, 66, 37, 0.15);
+  background-color: rgba(239, 189, 69, 0.38);
 }
 
 :focus-visible {

@@ -15,22 +15,6 @@
       href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap"
       rel="stylesheet"
     />
-    <script>
-      // Set the theme before first paint so there is no light-mode flash.
-      (function () {
-        try {
-          var stored = localStorage.getItem('theme');
-          var theme =
-            stored === 'light' || stored === 'dark'
-              ? stored
-              : window.matchMedia('(prefers-color-scheme: dark)').matches
-                ? 'dark'
-                : 'light';
-          document.documentElement.classList.toggle('dark', theme === 'dark');
-          document.documentElement.style.colorScheme = theme;
-        } catch (e) {}
-      })();
-    </script>
   </head>
   <body>
     <div id="root"></div>

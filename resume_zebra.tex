@@ -1,0 +1,182 @@
+%-------------------------
+% Resume in LaTeX
+%------------------------
+
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{setspace}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\addtolength{\oddsidemargin}{-0.75in}
+\addtolength{\evensidemargin}{-0.75in}
+\addtolength{\textwidth}{1.5in}
+\addtolength{\topmargin}{-.75in}
+\addtolength{\textheight}{1.5in}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+\setlength{\parskip}{0pt}
+
+\titleformat{\section}{
+  \vspace{-6pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-3pt}]
+
+\pdfgentounicode=1
+
+\newcommand{\resumeItem}[1]{
+  \item\small{{#1}}
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-6pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-3pt}}
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.15in, itemsep=-3pt, topsep=0pt]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-3pt}}
+
+%-------------------------------------------
+\begin{document}
+\setstretch{0.97}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Ameer Rahman} \\ \vspace{1pt}
+    \small (347) 210-9056 $|$
+    \href{mailto:ameerrahman456@gmail.com}{\underline{ameerrahman456@gmail.com}} $|$
+    \href{https://www.linkedin.com/in/ameer-rahman-a3bb232a0/}{\underline{LinkedIn}} $|$
+    \href{https://github.com/ameer-rah}{\underline{GitHub}} $|$
+    \href{https://ameer-rahman.info/}{\underline{Portfolio}} $|$
+    NYC, NY
+\end{center}
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Rutgers University -- New Brunswick}{New Brunswick, NJ}
+      {B.S. Computer Science, Minor in Critical Intelligence Studies $|$ GPA: 3.4}{Aug. 2024 -- May 2027}
+      \resumeItemListStart
+        \resumeItem{Relevant Coursework: Data Structures, Systems Programming, Software Methodology, Computer Architecture, Intro to Data Science}
+      \resumeItemListEnd
+    \resumeSubheading
+      {CUNY City College of New York}{Harlem, NY}
+      {Dean's List -- Fall 2023 \& Spring 2024}{Fall 2023 -- May 2024}
+  \resumeSubHeadingListEnd
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {NASA L'SPACE Program Participant}{Sept. 2026 -- Present}
+      {NASA L'SPACE Program}{Remote}
+
+    \resumeSubheading
+      {Software Engineering Intern}{July 2026 -- Present}
+      {Archly (Stealth Startup)}{New York, NY}
+      \resumeItemListStart
+        \resumeItem{Designed and built REST API services using Node.js and Express with PostgreSQL to support users, firms, universities, projects, applications, and skills across a multi-role marketplace platform.}
+        \resumeItem{Implemented JWT authentication and role-based access control across Student, Firm, and Admin workflows using protected routes and reusable middleware.}
+        \resumeItem{Developed data-driven search and recommendation functionality with filtering and pagination to rank student-firm compatibility across skills, location, education, and portfolio attributes.}
+        \resumeItem{Contributed to coding, debugging, automated testing, code reviews, and deployment through a GitHub Actions CI/CD workflow; added Redis caching and API rate limiting.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Software Engineering Intern}{July 2025 -- August 2025}
+      {Jasfel Analytics}{Newark, NJ}
+      \resumeItemListStart
+        \resumeItem{Built a modular Python ETL pipeline using Pandas and NumPy to ingest, transform, and validate 50,000+ U.S. Census Bureau records for downstream analysis.}
+        \resumeItem{Developed validation and cleaning logic for missing values, inconsistent formatting, and duplicate records, improving reliability across automated data-processing workflows.}
+        \resumeItem{Created reusable Python components and SQL-backed workflows, documenting implementation details to support maintenance and future development.}
+        \resumeItem{Collaborated through iterative code reviews, communicated technical results, and debugged data and application issues as project requirements evolved.}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+
+      \resumeProjectHeading
+          {\textbf{RUPlanner} $|$ \href{https://ruplanner.app/}{\underline{Website}} $|$ \href{https://github.com/ameer-rah/RUPlanner}{\underline{GitHub}} $|$ \emph{Python, FastAPI, Next.js, TypeScript, PostgreSQL, Docker}}{}
+          \resumeItemListStart
+            \resumeItem{Shipped a full-stack degree-planning application with a React-based Next.js interface, course search, transcript-assisted onboarding, authentication, saved plans, and progress tracking.}
+            \resumeItem{Engineered a Python planning algorithm that analyzes degree requirements and generates prerequisite-aware semester plans through FastAPI and PostgreSQL services.}
+            \resumeItem{Added scheduled catalog refreshes and course-availability polling and used Docker to maintain reproducible development and deployment environments.}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{Mini Redis} $|$ \href{https://github.com/ameer-rah/mini-redis}{\underline{GitHub}} $|$ \emph{Java, Maven, JUnit, TCP/IP, Concurrency}}{}
+          \resumeItemListStart
+            \resumeItem{Built a Redis-inspired in-memory server with average O(1) reads, writes, deletion, TTL lookup, and LRU eviction using a hash map and custom doubly linked list.}
+            \resumeItem{Implemented thread-safe cache operations and a line-oriented TCP server with a bounded worker pool, graceful shutdown, stress tests, and live socket integration tests.}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{Clinical Lab \& Patient Monitoring} $|$ \href{https://github.com/ameer-rah/clinical-lab-monitoring}{\underline{GitHub}} $|$ \emph{Python, Flask, SQLite, TypeScript, React}}{}
+          \resumeItemListStart
+            \resumeItem{Built a full-stack clinical information system that tracks synthetic lab results, vital signs, and medications through a Flask REST API and React dashboard.}
+            \resumeItem{Designed a relational data model and configurable interpretation engine that selects specific reference ranges and consistently flags abnormal measurements.}
+            \resumeItem{Exposed records through a read-only FHIR R4 interface and handled unmapped codes explicitly to preserve predictable software behavior and data quality.}
+          \resumeItemListEnd
+
+    \resumeSubHeadingListEnd
+
+%-----------LEADERSHIP-----------
+\section{Leadership}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Founder \& President}{Sept. 2024 -- Present}
+      {Rutgers Run Club}{New Brunswick, NJ}
+      \resumeItemListStart
+        \resumeItem{Founded and scaled a student organization from zero to 40+ active members, coordinating multiple priorities and adapting operations as membership grew.}
+        \resumeItem{Collaborated with students and campus stakeholders to organize activities, communicate plans, and manage multiple concurrent responsibilities.}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: JavaScript, TypeScript, Python, Java, SQL, C, HTML/CSS} \\
+     \textbf{Frameworks}{: React, Next.js, Node.js, Express, FastAPI, Flask, Pandas, NumPy} \\
+     \textbf{Development \& Tools}{: Git, GitHub, GitHub Actions, Docker, CI/CD, JUnit, REST APIs, PostgreSQL, SQLite, Redis, Agile Development}
+    }}
+ \end{itemize}
+
+\end{document}

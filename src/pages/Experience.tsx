@@ -17,8 +17,8 @@ export default function Experience() {
             Experience
           </h1>
           <p className="mt-4 max-w-[65ch] text-base leading-relaxed text-stone-600">
-            Building a marketplace startup, internships in cybersecurity and data
-            engineering, and a leadership role on campus at Rutgers.
+            Incoming NASA L'SPACE NPWEE participant, marketplace co-founder,
+            data engineering intern, and campus recreation supervisor.
           </p>
         </Reveal>
 

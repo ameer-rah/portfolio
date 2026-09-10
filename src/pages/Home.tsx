@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, GitCommitHorizontal, MapPin, ShieldCheck, Sparkles } from 'lucide-react';
+import { ArrowUpRight, MapPin } from 'lucide-react';
 import Reveal from '../components/Reveal';
 import StackShowcase from '../components/StackShowcase';
 import Parallax from '../components/Parallax';
 import { FeatureShaderBackdrop } from '../components/ui/feature-shader-card';
+import VintageKeyboard from '../components/ui/VintageKeyboard';
 
 const SCHOOLS = [
   {
@@ -32,7 +33,7 @@ const SCHOOLS = [
 
 const ABOUT_PARAGRAPHS = [
   "First-gen, Bengali-Guyanese, out of Queens. CS at Rutgers with a minor in Critical Intelligence Studies. Almost everything I build lands in a domain with rules I can't hand-wave past, so the interesting work is making the answer defensible, not just making it run.",
-  "At Archly, I work across a Vue, Node.js, and PostgreSQL marketplace stack. My internships approached reliability from two directions: data engineering at Jasfel Analytics and hands-on security testing at Redynox.",
+  "At Archly, I work across a TypeScript monorepo: a React and Vite frontend, a Hono API on Cloudflare Workers, and PostgreSQL through Drizzle ORM. At Jasfel Analytics, I built data pipelines for U.S. Census records and demographic analysis.",
   "My current projects follow the same instinct. RUPlanner models Rutgers requirements and prerequisites before it builds a schedule. The clinical lab monitor keeps reference ranges in data instead of code. Mini Redis explores LRU eviction, TTL behavior, concurrency, and a TCP protocol from first principles.",
 ];
 
@@ -54,17 +55,17 @@ export default function Home() {
           />
         </Parallax>
 
-        <div className="relative mx-auto grid max-w-6xl gap-14 px-5 py-20 sm:py-24 lg:grid-cols-[minmax(0,1.2fr)_minmax(340px,0.75fr)] lg:items-center">
+        <div className="relative mx-auto grid max-w-6xl gap-14 px-5 py-20 sm:py-24 lg:grid-cols-[minmax(0,0.92fr)_minmax(480px,1.08fr)] lg:items-center">
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
-            <h1 className="max-w-2xl text-4xl font-semibold leading-[1.03] tracking-[-0.04em] text-ink sm:text-6xl lg:text-7xl">
-              I build systems for domains where{' '}
-              <span className="font-accent italic text-brg">being wrong matters</span>.
+            <h1 className="max-w-2xl text-4xl font-semibold leading-[1.03] tracking-[-0.04em] text-ink sm:text-6xl">
+              hey! i like building{' '}
+              <span className="font-accent italic text-brg">software</span>
             </h1>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-stone-600">
+            <p className="mt-6 whitespace-nowrap text-[clamp(0.72rem,1.45vw,1.125rem)] leading-relaxed text-stone-600">
               ameer rahman | computer science ꩜ rutgers university |{' '}
               <MapPin size={16} strokeWidth={1.75} className="inline align-[-2px]" /> nyc
             </p>
@@ -79,40 +80,14 @@ export default function Home() {
             </div>
           </motion.div>
 
-          <motion.aside
+          <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="relative overflow-hidden rounded-sm bg-hero-panel p-8 text-[#fffdf7] shadow-[18px_18px_0_var(--color-gold)] sm:p-10"
+            className="relative rounded-2xl border border-stone-200/80 bg-white/75 p-4 shadow-[18px_18px_0_var(--color-gold)] backdrop-blur-sm sm:p-6"
           >
-            <div className="absolute -right-20 -top-20 h-52 w-52 rounded-full border border-white/10" aria-hidden />
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-lime">
-              At a glance
-            </p>
-            <div className="mt-7 divide-y divide-white/15">
-              <div className="py-5 first:pt-0">
-                <div className="flex items-center gap-2 text-lime">
-                  <GitCommitHorizontal size={16} strokeWidth={2} />
-                  <span className="text-xs font-semibold uppercase tracking-wider">Builder</span>
-                </div>
-                <p className="mt-2 text-base font-medium">Full-stack systems built to hold up in practice.</p>
-              </div>
-              <div className="py-5">
-                <div className="flex items-center gap-2 text-lime">
-                  <ShieldCheck size={16} strokeWidth={2} />
-                  <span className="text-xs font-semibold uppercase tracking-wider">Security-minded</span>
-                </div>
-                <p className="mt-2 text-base font-medium">Defensive engineering informed by offensive testing.</p>
-              </div>
-              <div className="pt-5">
-                <div className="flex items-center gap-2 text-lime">
-                  <Sparkles size={16} strokeWidth={2} />
-                  <span className="text-xs font-semibold uppercase tracking-wider">Focus</span>
-                </div>
-                <p className="mt-2 text-base font-medium">Reliable software for domains where correctness matters.</p>
-              </div>
-            </div>
-          </motion.aside>
+            <VintageKeyboard />
+          </motion.div>
         </div>
       </section>
 

@@ -12,19 +12,32 @@ export interface Experience {
 
 export const EXPERIENCE: Experience[] = [
   {
+    id: 'lspace-npwee',
+    company: "NASA L'SPACE Program",
+    role: 'Incoming NPWEE Participant',
+    period: 'Fall 2026',
+    location: 'Remote',
+    current: true,
+    tags: ['NPWEE', "NASA L'SPACE"],
+    link: 'https://www.lspace.asu.edu/',
+    bullets: [
+      'Incoming Fall 2026 participant in the NASA Proposal Writing and Evaluation Experience (NPWEE) Academy',
+    ],
+  },
+  {
     id: 'archly',
     company: 'Archly',
     role: 'Co-Founder & Engineer',
     period: 'Jul 2026 - Present',
     location: 'New York, NY',
     current: true,
-    tags: ['Vue 3', 'Node.js', 'Express', 'PostgreSQL', 'CI/CD'],
+    tags: ['TypeScript', 'React', 'Hono', 'PostgreSQL', 'Cloudflare Workers'],
     link: 'https://joinarchly.com/',
     bullets: [
-      'Started Archly with a small founding team, building a two-sided marketplace that connects the people posting work with the people doing it',
-      'Own the stack end to end: a Vue 3 + Vite frontend against a Node.js/Express and PostgreSQL backend',
-      'Built the geolocation search that matches listings to nearby users, plus the REST API it runs on',
-      'Set up the CI/CD pipeline so a small team can ship to production without ceremony',
+      'Build and maintain a two-sided marketplace connecting architecture students across New York with NYC firms offering project work',
+      'Develop the TypeScript monorepo across a React and Vite frontend, a Hono API on Cloudflare Workers, and PostgreSQL through Drizzle ORM',
+      'Implemented session-based authentication and role-scoped workflows for students, firm members, and administrators',
+      'Ship through a GitHub Actions pipeline that runs linting, type checks, database and API tests, and Playwright end-to-end tests before deployment',
     ],
   },
   {
@@ -35,23 +48,10 @@ export const EXPERIENCE: Experience[] = [
     location: 'Rutgers University',
     current: true,
     tags: ['Leadership', 'Operations'],
+    link: 'https://recreation.rutgers.edu/facilities/werblin',
     bullets: [
       "Supervise daily operations at Rutgers' largest recreation facility",
       'Help maintain a safe, welcoming environment serving more than 500 students each day',
-    ],
-  },
-  {
-    id: 'redynox',
-    company: 'Redynox',
-    role: 'Cybersecurity Intern',
-    period: 'May 2025 - Jun 2025',
-    location: 'Remote',
-    current: false,
-    tags: ['Wireshark', 'OWASP ZAP', 'Burp Suite', 'Snort'],
-    bullets: [
-      'Packet analysis pipeline: 100+ malicious traffic signatures cataloged',
-      'Web app pen tests with OWASP ZAP + Burp Suite (SQLi, XSS)',
-      'Custom Snort IDS rules, reducing false positives by 15%',
     ],
   },
   {
@@ -61,11 +61,12 @@ export const EXPERIENCE: Experience[] = [
     period: 'Jul 2025 - Aug 2025',
     location: 'Newark, NJ',
     current: false,
-    tags: ['Python', 'pandas', 'scikit-learn', 'Data Pipelines'],
+    tags: ['Python', 'pandas', 'NumPy', 'U.S. Census ACS'],
+    link: 'https://jasfel.com/',
     bullets: [
-      'Built a Python data pipeline processing 50,000+ records, with modular stages and defensive error handling so bad rows failed loudly instead of silently',
-      'Cleaned and engineered features with pandas and scikit-learn, raising downstream model accuracy by 12%',
-      'Turned raw sample metadata into ML-ready features, joining SHA-256 hashes against a 200+ sample reference set',
+      'Built a modular Python ETL pipeline with pandas and NumPy to ingest, transform, and validate more than 50,000 U.S. Census Bureau records',
+      'Developed cleaning and validation logic for missing values, inconsistent formatting, and duplicate records',
+      'Used ACS 2019–2023 estimates and TIGER/Line geography to profile every New Jersey census tract centered within three and five miles of NJCU\'s three campuses',
     ],
   },
 ];

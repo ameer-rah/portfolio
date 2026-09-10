@@ -57,7 +57,7 @@ export default function Layout() {
               scrolled ? 'shadow-[0_4px_20px_-4px_rgba(28,25,23,0.12)]' : 'shadow-sm',
             ].join(' ')}
           >
-            <img src="/assets/ar-logo.png" alt="" className="h-7 w-7 rounded-full" />
+            <img src="/favicon.svg" alt="" className="h-7 w-7" />
             Ameer Rahman
           </NavLink>
 

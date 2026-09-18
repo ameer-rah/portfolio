@@ -5,7 +5,6 @@ import Reveal from '../components/Reveal';
 import StackShowcase from '../components/StackShowcase';
 import Parallax from '../components/Parallax';
 import { FeatureShaderBackdrop } from '../components/ui/feature-shader-card';
-import VintageKeyboard from '../components/ui/VintageKeyboard';
 
 const SCHOOLS = [
   {
@@ -86,7 +85,14 @@ export default function Home() {
             transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
             className="relative rounded-2xl border border-stone-200/80 bg-white/75 p-4 shadow-[18px_18px_0_var(--color-gold)] backdrop-blur-sm sm:p-6"
           >
-            <VintageKeyboard />
+            <img
+              src="/assets/ameer-rahman.jpeg"
+              alt="Ameer Rahman"
+              width={1024}
+              height={768}
+              fetchPriority="high"
+              className="block h-auto w-full rounded-xl"
+            />
           </motion.div>
         </div>
       </section>

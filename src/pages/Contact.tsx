@@ -32,7 +32,7 @@ export default function Contact() {
     <section className="mx-auto max-w-5xl px-5 py-16 sm:py-24">
       <Reveal>
         <h1 className="max-w-2xl text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-5xl">
-          Have a role, project, or idea in mind?
+          wanna reach out?
         </h1>
         <p className="mt-6 max-w-[60ch] text-lg leading-relaxed text-stone-600">
           The fastest way to reach me about engineering work or collaboration is

@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { ArrowUpRight, MapPin } from 'lucide-react';
 import Reveal from '../components/Reveal';
 import StackShowcase from '../components/StackShowcase';
-import Parallax from '../components/Parallax';
 import { FeatureShaderBackdrop } from '../components/ui/feature-shader-card';
 import PixelCompanion from '../components/PixelCompanion';
 
@@ -41,38 +40,26 @@ export default function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden border-y border-stone-200/70 bg-surface">
-        <Parallax speed={50}>
-          <div
-            aria-hidden
-            className="pointer-events-none absolute -right-32 -top-20 h-[520px] w-[520px] rounded-full bg-brg-soft/55 blur-3xl"
-          />
-        </Parallax>
-        <Parallax speed={25}>
-          <div
-            aria-hidden
-            className="pointer-events-none absolute -left-40 bottom-0 h-[360px] w-[360px] rounded-full bg-gold/10 blur-3xl"
-          />
-        </Parallax>
-
-        <div className="relative mx-auto grid max-w-6xl gap-14 px-5 py-20 sm:py-24 lg:grid-cols-[minmax(0,0.92fr)_minmax(480px,1.08fr)] lg:items-center">
+      <section className="game-hero relative overflow-hidden">
+        <div className="relative mx-auto grid max-w-6xl gap-14 px-5 py-20 sm:py-24 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
+            <p className="game-eyebrow mb-6">Developer. Builder. Player one.</p>
             <h1 className="max-w-2xl text-4xl font-semibold leading-[1.03] tracking-[-0.04em] text-ink sm:text-6xl">
               hey! i like building{' '}
-              <span className="font-accent italic text-brg">software</span>
+              <span className="hero-pixel-word">software</span>
             </h1>
-            <p className="mt-6 whitespace-nowrap text-[clamp(0.72rem,1.45vw,1.125rem)] leading-relaxed text-stone-600">
+            <p className="mt-6 text-[clamp(0.72rem,1.45vw,1.125rem)] leading-relaxed text-stone-600">
               ameer rahman | computer science ꩜ rutgers university |{' '}
               <MapPin size={16} strokeWidth={1.75} className="inline align-[-2px]" /> nyc
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-4">
               <Link
                 to="/projects"
-                className="inline-flex items-center gap-2 rounded-full bg-brg px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-brg-mid active:translate-y-px"
+                className="game-button"
               >
                 View projects
                 <ArrowUpRight size={16} strokeWidth={2} />
@@ -84,9 +71,12 @@ export default function Home() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="relative flex justify-center"
+            className="character-panel"
           >
+            <div className="character-panel-title"><span>Player profile</span><span>AR</span></div>
+            <img className="forest-banner" src="/assets/rpg-forest.webp" alt="" width={900} height={273} fetchPriority="high" />
             <PixelCompanion hero />
+            <div className="character-stats"><span>CLASS <strong>Engineer</strong></span><span>ORIGIN <strong>Queens, NYC</strong></span></div>
           </motion.div>
         </div>
       </section>
@@ -94,11 +84,11 @@ export default function Home() {
       <StackShowcase />
 
       {/* About */}
-      <section className="border-t border-stone-200 bg-white">
+      <section className="border-t border-stone-200 bg-raised">
         <div className="mx-auto max-w-5xl px-5 py-20">
           <Reveal>
-            <h2 className="text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
-              About
+            <h2 className="game-section-title">
+              Character bio
             </h2>
           </Reveal>
           <div className="mt-8 grid gap-10 lg:grid-cols-[1fr_360px]">
@@ -109,7 +99,7 @@ export default function Home() {
             </Reveal>
             <Reveal delay={0.15}>
               <div className="space-y-5">
-                <figure className="h-fit rounded-xl border-l-4 border-gold bg-brg-soft p-6">
+                <figure className="h-fit rounded-none border-l-4 border-gold bg-brg-soft p-6">
                   <blockquote className="text-lg font-medium leading-snug text-brg">
                     "I had a purpose before everyone had an opinion"
                   </blockquote>
@@ -118,7 +108,7 @@ export default function Home() {
                   </figcaption>
                 </figure>
 
-                <figure className="rounded-xl border border-stone-200 bg-white p-5">
+                <figure className="rounded-none border border-stone-200 bg-raised p-5">
                   <div className="flex items-center justify-between gap-4">
                     <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brg">
                       New York City
@@ -130,6 +120,9 @@ export default function Home() {
                   </div>
                   <img
                     src="/assets/nyc-boroughs.svg"
+                    width={800}
+                    height={604}
+                    loading="lazy"
                     alt="Map outlining Manhattan, Queens, the Bronx, Brooklyn, and Staten Island, with Queens shaded red"
                     className="mx-auto mt-4 h-auto w-full max-w-[300px]"
                   />
@@ -147,8 +140,8 @@ export default function Home() {
       <section className="border-t border-stone-200">
         <div className="mx-auto max-w-5xl px-5 py-20">
           <Reveal>
-            <h2 className="text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
-              Education
+            <h2 className="game-section-title">
+              Training grounds
             </h2>
           </Reveal>
           <div className="mt-8 grid gap-5 md:grid-cols-2">
@@ -157,7 +150,7 @@ export default function Home() {
                 <motion.article
                   whileHover={{ y: -3 }}
                   transition={{ duration: 0.2 }}
-                  className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-stone-200 bg-white p-6"
+                  className="group relative flex h-full flex-col overflow-hidden rounded-none border border-stone-200 bg-raised p-6"
                 >
                   <FeatureShaderBackdrop variant={i} />
                   <div className="relative flex items-baseline justify-between gap-4">

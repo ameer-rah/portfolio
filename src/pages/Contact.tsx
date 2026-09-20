@@ -31,7 +31,7 @@ export default function Contact() {
   return (
     <section className="mx-auto max-w-5xl px-5 py-16 sm:py-24">
       <Reveal>
-        <h1 className="max-w-2xl text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-5xl">
+        <h1 className="game-page-title">
           wanna reach out?
         </h1>
         <p className="mt-6 max-w-[60ch] text-lg leading-relaxed text-stone-600">
@@ -50,7 +50,7 @@ export default function Contact() {
                 : {})}
               whileHover={{ y: -3 }}
               transition={{ duration: 0.2 }}
-              className="group relative block overflow-hidden rounded-xl border border-stone-200 bg-white p-6 transition-colors hover:border-brg"
+              className="group relative block overflow-hidden rounded-none border border-stone-200 bg-raised p-6 transition-colors hover:border-brg"
             >
               <FeatureShaderBackdrop variant={i} />
               <div className="relative">
@@ -69,7 +69,7 @@ export default function Contact() {
         ))}
       </div>
 
-      <Reveal delay={0.2} className="mt-12 rounded-xl bg-brg-soft p-6">
+      <Reveal delay={0.2} className="mt-12 rounded-none bg-brg-soft p-6">
         <p className="text-sm leading-relaxed text-brg">
           Based in NYC, NY. Comfortable working remote or on site
           across the NY/NJ area.

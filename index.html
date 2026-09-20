@@ -10,12 +10,13 @@
       name="description"
       content="Ameer Rahman is a Rutgers computer science student and software engineer building full-stack, security, data, and systems projects."
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preload" href="/fonts/Silkscreen-Regular.ttf" as="font" type="font/ttf" crossorigin />
+    <script>
+      try {
+        const mode = localStorage.getItem('portfolio-theme');
+        document.documentElement.dataset.theme = mode === 'light' || mode === 'dark' ? mode : matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      } catch { document.documentElement.dataset.theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
+    </script>
   </head>
   <body>
     <div id="root"></div>

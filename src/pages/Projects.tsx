@@ -29,7 +29,7 @@ function ContributionGraph({ data }: { data: ContributionData }) {
   const total = Object.values(data.total).reduce((a, b) => a + b, 0);
 
   return (
-    <div className="rounded-xl border border-stone-200 bg-raised p-5 shadow-[0_14px_35px_-28px_rgba(16,37,29,0.5)] sm:p-6">
+    <div className="rounded-none border border-stone-200 bg-raised p-5 shadow-[0_14px_35px_-28px_rgba(16,37,29,0.5)] sm:p-6">
       <p className="text-sm text-stone-500">
         <span className="font-semibold text-ink">{total.toLocaleString()}</span>{' '}
         contributions in the last year
@@ -117,7 +117,7 @@ export default function Projects() {
       {/* Featured projects */}
       <section className="relative overflow-hidden">
         <Suspense
-          fallback={<div className="absolute inset-0 bg-[#f3efe3]" aria-hidden />}
+          fallback={<div className="absolute inset-0 bg-paper" aria-hidden />}
         >
           <VantaTopology className="absolute inset-0" />
         </Suspense>
@@ -125,7 +125,7 @@ export default function Projects() {
 
         <div className="relative mx-auto max-w-5xl px-5 py-16 sm:py-20">
         <Reveal>
-          <h1 className="font-accent text-4xl font-bold italic text-brg sm:text-5xl">
+          <h1 className="game-page-title">
             Projects
           </h1>
           <p className="mt-4 max-w-[65ch] text-base leading-relaxed text-stone-600">
@@ -153,7 +153,7 @@ export default function Projects() {
                 tabIndex={-1}
                 whileHover={{ y: -3 }}
                 transition={{ duration: 0.2 }}
-                className="scroll-mt-28 group relative overflow-hidden rounded-2xl border border-stone-200 bg-white p-7 sm:p-9"
+                className="scroll-mt-28 group relative overflow-hidden rounded-none border border-stone-200 bg-raised p-7 sm:p-9"
               >
                 <FeatureShaderBackdrop variant={i} />
                 <div className="relative">
@@ -260,7 +260,7 @@ export default function Projects() {
                   ))}
                 </div>
               ) : repoError ? (
-                <div className="mt-5 rounded-xl border border-stone-200 bg-raised p-5">
+                <div className="mt-5 rounded-none border border-stone-200 bg-raised p-5">
                   <p className="text-sm text-stone-500">GitHub's live data is temporarily unavailable.</p>
                   <a
                     href={`https://github.com/${GITHUB_USERNAME}?tab=repositories`}
@@ -281,7 +281,7 @@ export default function Projects() {
                         rel="noopener noreferrer"
                         whileHover={{ y: -3 }}
                         transition={{ duration: 0.2 }}
-                        className="group flex h-full flex-col rounded-xl border border-stone-200 bg-raised p-5 transition-colors hover:border-brg"
+                        className="group flex h-full flex-col rounded-none border border-stone-200 bg-raised p-5 transition-colors hover:border-brg"
                       >
                         <div className="flex items-center justify-between gap-2">
                           <h4 className="truncate text-[15px] font-semibold text-ink group-hover:text-brg">
@@ -310,7 +310,7 @@ export default function Projects() {
               )}
             </div>
 
-            <div className="h-fit rounded-xl border border-stone-200 bg-raised p-5 sm:p-6">
+            <div className="h-fit rounded-none border border-stone-200 bg-raised p-5 sm:p-6">
               <h3 className="text-lg font-semibold text-ink">Recent activity</h3>
               {loadingEvents ? (
                 <div className="mt-5 space-y-3">

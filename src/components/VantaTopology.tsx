@@ -1,6 +1,8 @@
 import { useEffect, useRef } from 'react';
 import p5 from 'p5';
 import TOPOLOGY from 'vanta/dist/vanta.topology.min';
+import { useReducedMotion } from 'framer-motion';
+import { useTheme } from './ThemeProvider';
 
 const requestIdle =
   typeof window.requestIdleCallback === 'function'
@@ -14,9 +16,11 @@ const cancelIdle =
 export default function VantaTopology({ className }: { className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const effectRef = useRef<ReturnType<typeof TOPOLOGY> | null>(null);
+  const { theme } = useTheme();
+  const reducedMotion = useReducedMotion();
 
   useEffect(() => {
-    if (!ref.current) return;
+    if (!ref.current || reducedMotion) return;
     const el = ref.current;
 
     const idleHandle = requestIdle(() => {
@@ -30,8 +34,8 @@ export default function VantaTopology({ className }: { className?: string }) {
         minWidth: 200,
         scale: 1.6,
         scaleMobile: 2.2,
-        color: 0x174f3a,
-        backgroundColor: 0xf3efe3,
+        color: theme === 'dark' ? 0x647e56 : 0x849c7f,
+        backgroundColor: theme === 'dark' ? 0x101b16 : 0xf0f1e7,
       });
     });
 
@@ -40,7 +44,7 @@ export default function VantaTopology({ className }: { className?: string }) {
       effectRef.current?.destroy();
       effectRef.current = null;
     };
-  }, []);
+  }, [theme, reducedMotion]);
 
-  return <div ref={ref} aria-hidden className={className} />;
+  return <div ref={ref} aria-hidden className={`vanta-atmosphere ${className ?? ''}`} />;
 }

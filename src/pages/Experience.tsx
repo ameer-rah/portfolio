@@ -14,7 +14,7 @@ export default function Experience() {
 
       <div className="relative mx-auto max-w-5xl px-5 py-16 sm:py-20">
         <Reveal>
-          <h1 className="font-accent text-4xl font-bold italic text-brg sm:text-5xl">
+          <h1 className="game-page-title">
             Experience
           </h1>
           <p className="mt-4 max-w-[65ch] text-base leading-relaxed text-stone-600">
@@ -46,12 +46,12 @@ export default function Experience() {
                   <article id={`experience-${job.id}`} tabIndex={-1} className="scroll-mt-28 relative grid gap-3 pl-8 sm:grid-cols-[200px_1fr] sm:gap-10 sm:pl-0">
                     <span
                       aria-hidden
-                      className="absolute left-0 top-1.5 h-3.5 w-3.5 rounded-full border-2 border-paper bg-brg sm:left-[193px]"
+                      className="absolute left-0 top-1.5 h-3.5 w-3.5 rounded-sm border-2 border-paper bg-brg sm:left-[193px]"
                     />
                     {job.current && (
                       <span
                         aria-hidden
-                        className="absolute left-0 top-1.5 h-3.5 w-3.5 animate-ping rounded-full bg-brg-bright/60 sm:left-[193px]"
+                        className="absolute left-0 top-1.5 h-3.5 w-3.5 animate-ping rounded-sm bg-brg-bright/60 sm:left-[193px]"
                       />
                     )}
 
@@ -59,8 +59,8 @@ export default function Experience() {
                       <p className="text-sm font-medium text-stone-500">{job.period}</p>
                       <p className="mt-1 text-sm text-stone-400">{job.location}</p>
                       {job.current && (
-                        <span className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-brg-soft px-2.5 py-0.5 text-xs font-medium text-brg">
-                          <span className="h-1.5 w-1.5 rounded-full bg-brg-bright" />
+                        <span className="mt-3 inline-flex items-center gap-1.5 rounded-sm bg-brg-soft px-2.5 py-0.5 text-xs font-medium text-brg">
+                          <span className="h-1.5 w-1.5 rounded-sm bg-brg-bright" />
                           Current
                         </span>
                       )}
@@ -69,7 +69,7 @@ export default function Experience() {
                     <motion.div
                       whileHover={{ y: -3 }}
                       transition={{ duration: 0.2 }}
-                      className="group relative overflow-hidden rounded-2xl border border-stone-200 bg-white p-6 shadow-[0_1px_2px_rgba(28,25,23,0.04)] transition-colors hover:border-brg/40 sm:p-7"
+                      className="group relative overflow-hidden rounded-none border border-stone-200 bg-raised p-6 shadow-[0_1px_2px_rgba(28,25,23,0.04)] transition-colors hover:border-brg/40 sm:p-7"
                     >
                       <FeatureShaderBackdrop variant={i} />
                       <div className="relative">

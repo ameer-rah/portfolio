@@ -1,84 +1,25 @@
-import { motion } from 'framer-motion';
-import {
-  SiDocker,
-  SiFastapi,
-  SiNextdotjs,
-  SiPostgresql,
-  SiPytorch,
-  SiPython,
-  SiReact,
-  SiTypescript,
-} from 'react-icons/si';
+import { useState } from 'react';
+import { SiDocker, SiFastapi, SiNextdotjs, SiPostgresql, SiPytorch, SiPython, SiReact, SiTypescript } from 'react-icons/si';
+import { Link } from 'react-router-dom';
 import Reveal from './Reveal';
-import { SplineScene } from './ui/splite';
-import { Spotlight } from './ui/spotlight';
 
 const STACK = [
-  { name: 'Python', icon: SiPython },
-  { name: 'TypeScript', icon: SiTypescript },
-  { name: 'React', icon: SiReact },
-  { name: 'Next.js', icon: SiNextdotjs },
-  { name: 'FastAPI', icon: SiFastapi },
-  { name: 'PyTorch', icon: SiPytorch },
-  { name: 'PostgreSQL', icon: SiPostgresql },
-  { name: 'Docker', icon: SiDocker },
+  { name: 'Python', icon: SiPython, kind: 'Language', detail: 'Data pipelines, prerequisite planning, and machine learning. Python powers the RUPlanner engine and my Census analysis.', project: 'RUPlanner' },
+  { name: 'TypeScript', icon: SiTypescript, kind: 'Language', detail: 'Typed interfaces and APIs across Archly, RUPlanner, and this portfolio.', project: 'RUPlanner' },
+  { name: 'React', icon: SiReact, kind: 'Interface', detail: 'Interactive interfaces, from clinical monitoring dashboards to the character exploring this page.', project: 'Clinical Lab & Patient Monitoring' },
+  { name: 'Next.js', icon: SiNextdotjs, kind: 'Framework', detail: 'The web application behind RUPlanner: course search, saved plans, and progress tracking.', project: 'RUPlanner' },
+  { name: 'FastAPI', icon: SiFastapi, kind: 'API', detail: 'Python APIs for degree planning and serving predictions from the chest X-ray classifier.', project: 'Chest X-Ray Classifier' },
+  { name: 'PyTorch', icon: SiPytorch, kind: 'Machine learning', detail: 'Fine-tuning a pretrained ResNet18 to classify chest X-rays in an educational machine learning project.', project: 'Chest X-Ray Classifier' },
+  { name: 'PostgreSQL', icon: SiPostgresql, kind: 'Database', detail: 'Relational storage for course catalogs and plans in RUPlanner, and marketplace data at Archly.', project: 'RUPlanner' },
+  { name: 'Docker', icon: SiDocker, kind: 'Infrastructure', detail: 'Reproducible environments for the planner and classifier, keeping local development and deployment consistent.', project: 'RUPlanner' },
 ];
-
 export default function StackShowcase() {
-  return (
-    <section className="overflow-hidden bg-[#0b1f18]">
-      <div className="mx-auto max-w-6xl px-5 py-20 sm:py-24">
-        <div className="relative overflow-hidden">
-          <Spotlight className="z-20" size={420} />
-          <div className="grid min-h-[500px] lg:grid-cols-[0.9fr_1.1fr]">
-            <Reveal>
-              <div className="relative z-10 flex h-full flex-col justify-center p-8 sm:p-12">
-                <p className="mb-5 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.14em] text-[#d7ee79] before:h-[3px] before:w-7 before:bg-gold">
-                  Interactive systems
-                </p>
-                <h2 className="max-w-lg text-4xl font-semibold leading-[1.05] tracking-[-0.035em] text-[#fffdf7] sm:text-5xl">
-                  Built with tools that{' '}
-                  <span className="font-accent italic text-[#d7ee79]">actually ship.</span>
-                </h2>
-                <p className="mt-6 max-w-md text-base leading-relaxed text-[#fffdf7]/70">
-                  A stack chosen for reliability, not trend chasing. The same languages,
-                  frameworks, and infrastructure across RUPlanner, the X-ray classifier,
-                  and this site.
-                </p>
-              </div>
-            </Reveal>
-            <div className="relative h-[360px] min-h-0 lg:h-auto">
-              <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-[#0b1f18] to-transparent" />
-              <SplineScene
-                scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-                className="h-full w-full"
-              />
-            </div>
-          </div>
-
-          <Reveal delay={0.15} className="border-t border-white/10 px-8 pb-10 pt-10 sm:px-12 sm:pb-12">
-            <p className="flex items-center gap-3 text-sm font-medium uppercase tracking-wide text-[#f7f6f3]/60 before:h-[3px] before:w-7 before:bg-gold">
-              Core stack
-            </p>
-            <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
-              {STACK.map((tool, i) => (
-                <motion.div
-                  key={tool.name}
-                  whileHover={{ y: -3 }}
-                  transition={{ duration: 0.2 }}
-                  className="relative flex flex-col items-center gap-3 rounded-xl border border-stone-200/80 bg-white/95 p-5 text-center"
-                >
-                  <span className="absolute left-3 top-2 font-mono text-[10px] text-stone-400">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <tool.icon size={26} className="mt-2 text-ink" />
-                  <p className="text-xs font-medium text-stone-600">{tool.name}</p>
-                </motion.div>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      </div>
-    </section>
-  );
+  const [selected, setSelected] = useState(0);
+  const tool = STACK[selected];
+  return <section className="inventory-section"><div className="mx-auto max-w-6xl px-5 py-16 sm:py-20"><Reveal>
+    <p className="game-eyebrow">Equipment</p><h2 className="game-section-title">Tools in my inventory.</h2>
+    <p className="mt-4 max-w-xl text-stone-600">Select a tool to see where I use it.</p>
+    <div className="inventory-layout"><div className="inventory-grid" role="group" aria-label="Select a technology">{STACK.map((item, index) => <button className="inventory-slot" type="button" key={item.name} aria-pressed={selected === index} onClick={() => setSelected(index)}><item.icon size={30} aria-hidden="true" /><span>{item.name}</span></button>)}</div>
+    <div className="inventory-detail" aria-live="polite"><div className="flex items-center gap-4"><tool.icon size={34} aria-hidden="true" /><div><p className="game-eyebrow">{tool.kind}</p><h3 className="mt-1 text-2xl font-semibold">{tool.name}</h3></div></div><p className="mt-5 leading-relaxed text-stone-600">{tool.detail}</p><p className="mt-5 text-xs text-stone-500">Used in: {tool.project}</p><Link to="/projects" className="game-text-link">Explore projects →</Link></div></div>
+  </Reveal></div></section>;
 }

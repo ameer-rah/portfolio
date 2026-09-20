@@ -1,0 +1,20 @@
+September 16, 2026
+
+BNY Early Careers Hiring Team
+240 Greenwich Street
+New York, NY 10286
+
+Dear BNY Early Careers Hiring Team,
+
+I am applying for the 2027 BNY Analyst Program – Engineering (Data Science) in New York (Job ID 82245). I am a Rutgers University computer science student graduating in May 2027. I enjoy turning complex data into useful tools and clear findings, and I am drawn to this program’s mix of analytical work, engineering, and collaboration with business teams.
+
+At Jasfel Analytics, I built a Python pipeline with Pandas and NumPy to transform and validate more than 50,000 U.S. Census Bureau records. I added checks for missing, inconsistent, and duplicate data so downstream analysis rested on cleaner inputs. I then used American Community Survey estimates and geographic data to study communities around three NJCU campuses. In my NJCU Community Analysis project, I profiled 207 New Jersey census tracts, created demographic maps and charts, and documented limitations that mattered to the conclusions: New York tracts were excluded, and the two Jersey City catchments overlap, so their totals cannot simply be added together. That work taught me that a useful analysis depends as much on transparent assumptions as it does on code.
+
+I have also built tools that apply data to practical decisions. In RUPlanner, I developed a Python planning engine that uses degree requirements and prerequisite data to generate semester plans, supported by FastAPI and PostgreSQL. At Archly, I worked across a TypeScript application and PostgreSQL-backed API, contributing to testing and code review. Separately, I implemented a PyTorch transfer-learning pipeline for a four-class chest X-ray dataset and documented the model’s limitations. These experiences have strengthened my ability to move between data preparation, analytical logic, application development, and careful validation.
+
+BNY’s Data Science Analyst Program appeals to me because analysts work on real engineering and business problems while learning from teams across the organization. I would welcome the opportunity to bring my Python, data-profiling, and software-development experience to BNY, and to grow in how I communicate findings that support sound decisions.
+
+Thank you for your time and consideration. I would be glad to discuss how my experience aligns with the program.
+
+Sincerely,
+Ameer Rahman

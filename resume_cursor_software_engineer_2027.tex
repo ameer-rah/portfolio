@@ -1,0 +1,119 @@
+% Ameer Rahman — Cursor Software Engineer, New Grad 2027
+\documentclass[letterpaper,10pt]{article}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{setspace}
+\input{glyphtounicode}
+\pdfgentounicode=1
+
+\addtolength{\oddsidemargin}{-0.75in}
+\addtolength{\evensidemargin}{-0.75in}
+\addtolength{\textwidth}{1.5in}
+\addtolength{\topmargin}{-0.75in}
+\addtolength{\textheight}{1.5in}
+\pagestyle{empty}
+\raggedright
+\raggedbottom
+\setlength{\tabcolsep}{0in}
+\setlength{\parskip}{0pt}
+\titleformat{\section}{\vspace{-4pt}\scshape\raggedright\large}{}{0em}{}[\titlerule\vspace{-3pt}]
+
+\newcommand{\resumeItem}[1]{\item\small{#1}}
+\newcommand{\resumeSubheading}[4]{
+  \vspace{1pt}\item
+  \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \textbf{#1} & #2 \\
+    \textit{\small #3} & \textit{\small #4} \\
+  \end{tabular*}\vspace{-3pt}
+}
+\newcommand{\resumeProjectHeading}[1]{\vspace{3pt}\item\small{#1}\vspace{0pt}}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in,label={},itemsep=0pt,topsep=0pt]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.15in,label=\textbullet,itemsep=-2pt,topsep=0pt]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{0pt}}
+
+\begin{document}
+\setstretch{0.98}
+\begin{center}
+  {\Huge\scshape\textbf{Ameer Rahman}} \\ \vspace{2pt}
+  \small (347) 210-9056 $|$
+  \href{mailto:ameerrahman456@gmail.com}{\underline{ameerrahman456@gmail.com}} $|$
+  \href{https://www.linkedin.com/in/ameer-rahman-a3bb232a0/}{\underline{LinkedIn}} $|$
+  \href{https://github.com/ameer-rah}{\underline{GitHub}} $|$
+  \href{https://ameer-rahman.info/}{\underline{Portfolio}} $|$ New York, NY
+\end{center}
+
+\section{Education}
+\resumeSubHeadingListStart
+  \resumeSubheading{Rutgers University -- New Brunswick}{New Brunswick, NJ}
+    {B.S. Computer Science, Minor in Critical Intelligence Studies $|$ GPA: 3.4}{Aug. 2024 -- May 2027}
+    \resumeItemListStart
+      \resumeItem{Relevant Coursework: \textbf{Data Structures, Software Methodology, Systems Programming}, Computer Architecture, Intro to Data Science}
+    \resumeItemListEnd
+  \resumeSubheading{CUNY City College of New York}{New York, NY}
+    {Dean's List -- Fall 2023 \& Spring 2024}{Fall 2023 -- May 2024}
+\resumeSubHeadingListEnd
+
+\section{Technical Skills}
+\begin{itemize}[leftmargin=0.15in,label={},topsep=0pt]
+  \small\item{
+    \textbf{Languages:} TypeScript, JavaScript, Python, Java, SQL, HTML, CSS \\
+    \textbf{Frontend \& Backend:} React, Next.js, Vite, FastAPI, Hono, REST APIs, PostgreSQL, Drizzle ORM \\
+    \textbf{Engineering Tools:} Git, GitHub Actions, Docker, Playwright, JUnit, Maven, CI/CD, Cloudflare Workers
+  }
+\end{itemize}
+
+\section{Experience}
+\resumeSubHeadingListStart
+  \resumeSubheading{NASA L'SPACE NPWEE Participant}{Sept. 2026 -- Present}
+    {NASA Proposal Writing and Evaluation Experience Academy}{Remote}
+    \resumeItemListStart
+      \resumeItem{Fall 2026 participant in the \textbf{NASA Proposal Writing and Evaluation Experience}; program work is in progress.}
+    \resumeItemListEnd
+  \resumeSubheading{Software Engineering Intern}{July 2026 -- Sept. 2026}
+    {Archly (Stealth Startup)}{New York, NY}
+    \resumeItemListStart
+      \resumeItem{Built \textbf{full-stack features} for a two-sided marketplace using React/Vite, a Hono REST API on Cloudflare Workers, and PostgreSQL with Drizzle ORM.}
+      \resumeItem{Implemented \textbf{session-based authentication} and role-scoped workflows for students, firm members, and administrators.}
+      \resumeItem{Debugged and iterated on application behavior as requirements changed; collaborated through \textbf{code review} and feature development.}
+      \resumeItem{Used \textbf{GitHub Actions CI}, type checks, database/API tests, and Playwright end-to-end tests to verify changes before deployment.}
+    \resumeItemListEnd
+  \resumeSubheading{Software Engineering Intern}{July 2025 -- Aug. 2025}
+    {Jasfel Analytics}{Newark, NJ}
+    \resumeItemListStart
+      \resumeItem{Built a modular \textbf{Python data pipeline} with Pandas and NumPy to transform and validate 50,000+ U.S. Census Bureau records.}
+      \resumeItem{Added checks for missing, inconsistent, and duplicate data; documented reusable components and debugged issues.}
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+\section{Selected Projects}
+\resumeSubHeadingListStart
+  \resumeProjectHeading{\textbf{RUPlanner} $|$ \href{https://ruplanner.app/}{\underline{Live App}} $|$ \href{https://github.com/ameer-rah/RUPlanner}{\underline{GitHub}} $|$ \emph{Python, FastAPI, Next.js, PostgreSQL}}
+    \resumeItemListStart
+      \resumeItem{Built and published a \textbf{full-stack degree-planning app} with course search, transcript-assisted onboarding, authentication, saved plans, and progress tracking.}
+      \resumeItem{Developed a \textbf{prerequisite-aware planning engine} that evaluates degree requirements and generates semester plans through FastAPI/PostgreSQL services.}
+      \resumeItem{Integrated course data with scheduled catalog refreshes and seat-availability polling; used Docker for reproducible development.}
+    \resumeItemListEnd
+  \resumeProjectHeading{\textbf{Mini Redis} $|$ \href{https://github.com/ameer-rah/mini-redis}{\underline{GitHub}} $|$ \emph{Java, Maven, JUnit, TCP/IP}}
+    \resumeItemListStart
+      \resumeItem{Built a \textbf{concurrent TCP cache server} with average O(1) operations, TTL expiration, LRU eviction, and a bounded worker pool.}
+      \resumeItem{Wrote \textbf{JUnit stress and socket integration tests} covering concurrency, expiration, eviction, and network behavior.}
+    \resumeItemListEnd
+  \resumeProjectHeading{\textbf{Audit-Ready Content Management System} $|$ \emph{Java, Spring Boot, React, PostgreSQL}}
+    \resumeItemListStart
+      \resumeItem{Built a full-stack CMS that records create, update, and delete actions as searchable \textbf{audit events} with actor, timestamp, and before/after JSON states.}
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+\section{Leadership}
+\resumeSubHeadingListStart
+  \resumeSubheading{Founder \& President}{Sept. 2024 -- Present}
+    {Rutgers Run Club}{New Brunswick, NJ}
+    \resumeItemListStart
+      \resumeItem{Founded and grew a student organization to \textbf{40+ active members}, coordinating recurring activities and campus stakeholders.}
+      \resumeItem{Gathered feedback and adapted club operations as participation grew.}
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+\end{document}

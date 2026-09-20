@@ -2,6 +2,7 @@ import { Suspense, useEffect, useState } from 'react';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Github, Menu, X } from 'lucide-react';
+import PixelCompanion, { CompanionProvider } from './PixelCompanion';
 
 let projectsPrefetched = false;
 function prefetchProjects() {
@@ -42,7 +43,8 @@ export default function Layout() {
   }, []);
 
   return (
-    <div className="flex min-h-[100dvh] flex-col">
+    <CompanionProvider>
+    <div className="portfolio-layout flex min-h-[100dvh] flex-col">
       <motion.header
         initial={{ opacity: 0, y: -16 }}
         animate={{ opacity: 1, y: 0 }}
@@ -157,6 +159,7 @@ export default function Layout() {
         </Suspense>
       </main>
 
+      <PixelCompanion />
       <footer className="border-t border-stone-200">
         <div className="mx-auto flex max-w-5xl flex-col gap-4 px-5 py-10 sm:flex-row sm:items-center sm:justify-between">
           <div>
@@ -192,5 +195,6 @@ export default function Layout() {
         </div>
       </footer>
     </div>
+    </CompanionProvider>
   );
 }

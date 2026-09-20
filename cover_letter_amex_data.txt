@@ -1,0 +1,21 @@
+September 15, 2026
+
+American Express Early Careers Hiring Team
+New York, NY
+
+Dear American Express Early Careers Hiring Team,
+
+I am applying for the Campus Undergraduate Full-Time Analyst – 2027 Data & Analytics position within Enterprise Technology Services. I am pursuing a B.S. in Computer Science at Rutgers University and will graduate in May 2027. I am drawn to this opportunity because it combines data analysis, technology delivery, reporting, and responsible AI to help teams make well-supported operational and investment decisions.
+
+During my internship at Jasfel Analytics, I built a modular Python ETL pipeline using Pandas and NumPy to ingest, transform, and validate more than 50,000 U.S. Census Bureau records. I developed controls for missing values, inconsistent formatting, and duplicates, then used Census estimates and geographic data to analyze the communities surrounding three university campuses. The work required careful attention to data quality, clear documentation of methodology and limitations, and the ability to turn raw records into findings that others could use.
+
+At Archly, I work across the software development lifecycle for a multi-role marketplace. I have built REST APIs and PostgreSQL data models, developed search and recommendation workflows, and contributed through requirements analysis, automated testing, code review, debugging, and GitHub Actions. This experience has shown me how data, technology delivery, and operational priorities connect, as well as how important it is to communicate clearly while requirements evolve.
+
+My projects have further strengthened my analytical judgment. In a clinical monitoring application, I modeled lab results, vital signs, and medications in a relational database and developed a dashboard that presents interpreted trends. I kept reference ranges in data rather than hard-coded logic, designed unmapped codes to return an unknown status instead of a misleading normal result, and exposed records through read-only FHIR resources. In a chest X-ray classification project, I evaluated a ResNet18 model on roughly 21,000 images and documented important reliability limitations. These decisions reflect how I approach analytics and AI: automate useful work, validate outputs, and communicate uncertainty rather than overstate conclusions.
+
+I would be excited to bring my Python, SQL, data-validation, technology-delivery, and communication experience to American Express. I am particularly interested in learning how Enterprise Technology Services uses portfolio and operational data to improve planning, resource allocation, controls, and decision-making at global scale.
+
+Thank you for your consideration. I would welcome the opportunity to discuss my qualifications and interest in the program.
+
+Sincerely,
+Ameer Rahman

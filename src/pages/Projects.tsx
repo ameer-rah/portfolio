@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowUpRight, GitCommit, Star } from 'lucide-react';
 import { PROJECTS } from '../data/projects';
 import Reveal from '../components/Reveal';
+import CompanionScene from '../components/CompanionScene';
 import { FeatureShaderBackdrop } from '../components/ui/feature-shader-card';
 import {
   fetchGitHubOverview,
@@ -134,13 +135,25 @@ export default function Projects() {
           </p>
         </Reveal>
 
+        <CompanionScene title="The workshop" intro="Choose a build. Let’s look under the hood." stops={PROJECTS.map(project => ({
+          id: project.id,
+          label: project.name.replace('Clinical Lab & Patient Monitoring', 'Clinical Lab').replace('Chest X-Ray Classifier', 'X-Ray AI').replace('NJCU Community Analysis', 'NJCU'),
+          title: project.name,
+          detail: project.highlights[0]?.text ?? project.description,
+          meta: project.stack.slice(0, 2).join(' + '),
+          target: `project-${project.id}`,
+          action: 'Explore this project',
+        }))} />
+
         <div className="mt-12 space-y-8">
           {PROJECTS.map((project, i) => (
             <Reveal key={project.id} delay={Math.min(i * 0.08, 0.24)}>
               <motion.article
+                id={`project-${project.id}`}
+                tabIndex={-1}
                 whileHover={{ y: -3 }}
                 transition={{ duration: 0.2 }}
-                className="group relative overflow-hidden rounded-2xl border border-stone-200 bg-white p-7 sm:p-9"
+                className="scroll-mt-28 group relative overflow-hidden rounded-2xl border border-stone-200 bg-white p-7 sm:p-9"
               >
                 <FeatureShaderBackdrop variant={i} />
                 <div className="relative">

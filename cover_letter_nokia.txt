@@ -1,0 +1,21 @@
+Dear Nokia Hiring Team,
+
+I am excited to apply for the Jr. Software Developer position with Nokia Space Networks. I am pursuing a B.S. in Computer Science with a minor in Critical Intelligence Studies at Rutgers University--New Brunswick and expect to graduate in May 2027. The opportunity to contribute to LTE and 5G solutions that enable direct-to-mobile satellite communication strongly aligns with my interests in software engineering, networking, and space technology.
+
+My experience has prepared me to contribute across prototyping, product development, automation, and verification. At Archly, I develop Node.js and Express services backed by PostgreSQL and Redis for a multi-role marketplace. I have implemented authentication and role-based access control, built search and recommendation functionality, and contributed to debugging, automated testing, code reviews, and deployment through GitHub Actions. This work has taught me to investigate problems systematically and carry features through development and verification.
+
+I built Mini Redis in Java to deepen my understanding of networking, concurrency, and reliable systems. The project combines a hash map with a custom doubly linked list for constant-time cache operations, supports TTL expiration and LRU eviction, and exposes a line-oriented TCP server through a bounded worker pool. I developed stress tests and live socket integration tests to verify concurrent behavior, expiration, eviction, and graceful shutdown. These challenges strengthened the debugging and verification skills that would be valuable in a telecommunications development environment.
+
+I also developed RUPlanner using Python, FastAPI, Next.js, TypeScript, PostgreSQL, and Docker. Its Python planning engine analyzes degree requirements and produces prerequisite-aware semester plans, while scheduled catalog refreshes and course-availability polling automate recurring data workflows. Docker helps keep the development and deployment environments reproducible.
+
+During my internship at Jasfel Analytics, I built a modular Python ETL pipeline that processed more than 50,000 records. I implemented validation for missing, inconsistent, and duplicate data, documented reusable components, and debugged issues as project requirements changed. My current participation in NASA L'SPACE has further strengthened my interest in applying engineering skills within the space sector.
+
+I would be excited to contribute my experience with Python, JavaScript, Java, C, Git, automated testing, networking, and CI/CD while learning Nokia's 5G development tools and laboratory systems. Thank you for considering my application. I would welcome the opportunity to discuss how my technical background and interest in space communications could contribute to Nokia Space Networks.
+
+Sincerely,
+
+Ameer Rahman
+(347) 210-9056
+ameerrahman456@gmail.com
+linkedin.com/in/ameer-rahman-a3bb232a0
+ameer-rahman.info

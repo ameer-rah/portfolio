@@ -1,0 +1,19 @@
+September 15, 2026
+
+Nominal Hiring Team
+New York, NY
+
+Dear Nominal Hiring Team,
+
+I am applying for Nominal's Software Engineer – New Grad position in New York. I am a Rutgers University computer science student graduating in May 2027, and I am drawn to Nominal's work because it brings software engineering into direct contact with consequential physical systems. Building infrastructure that helps engineers understand high-frequency hardware data, automate testing, and make reliable decisions for spacecraft, autonomous vehicles, and other critical systems is exactly the kind of technically demanding, mission-oriented work I want to pursue.
+
+At Archly, I build backend services and data models for a multi-role marketplace using TypeScript, Node.js, PostgreSQL, and Redis. I have implemented authentication and role-scoped workflows, developed search and recommendation functionality, and helped ship changes through automated tests, code review, and GitHub Actions. This experience has taught me to take ownership across the development lifecycle, work through ambiguous requirements, and consider reliability as part of the feature rather than an afterthought.
+
+My projects reflect the same interest in understanding systems end to end. I built Mini Redis in Java to explore constant-time cache operations, TTL expiration, LRU eviction, concurrency, and network protocol design. The server uses thread-safe cache operations, a bounded worker pool, graceful shutdown, stress tests, and live socket integration tests. In RUPlanner, I developed a Python planning engine and full-stack application backed by FastAPI and PostgreSQL, including scheduled data-refresh and course-availability workflows. At Jasfel Analytics, I built a Python ETL pipeline that processed and validated more than 50,000 Census records. Together, these experiences have given me a foundation in backend systems, data infrastructure, debugging, and verification.
+
+My participation in NASA L'SPACE and my minor in Critical Intelligence Studies have also strengthened my interest in aerospace, public-sector technology, and systems where engineering quality has real consequences. At Nominal, I would be excited to deepen my knowledge of high-volume data infrastructure, learn directly from hardware engineers and users in the field, and take responsibility for products that support complex testing and validation.
+
+Thank you for your consideration. I would welcome the opportunity to discuss how my systems, data, and full-stack experience could contribute to Nominal.
+
+Sincerely,
+Ameer Rahman

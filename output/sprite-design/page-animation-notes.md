@@ -1,0 +1,9 @@
+# Page-specific animations
+
+Generated using the built-in image tool, using the existing character sheet as the reference. Saved asset: `public/assets/sprite/ameer-page-actions.png`.
+
+Three columns (journal, laptop, letter), two rows (resting/action). Each page has its own timed two-pose loop; selecting a stop or activating the sprite restarts it. Pause and reduced motion retain that page's resting pose. Home retains its original wave and blink sheet.
+
+## Generation prompt
+
+Production RPG pixel sprite sheet matching reference character EXACTLY: brown skin, slick back black hair, rectangular black glasses, grey shirt, black trousers, silver white ASICS sneakers. SIX equally spaced frames arranged THREE COLUMNS by TWO ROWS. Each cell portrait 3:4 proportions, total canvas 9:8 aspect ratio. Same full body character size and exact head/feet registration in every cell, centered, 10% padding. Flat solid ivory #fffdf7 background, no transparency checkerboard, NO text labels or cell borders. Column 1 Experience: top frame holding open small forest-green journal in both hands looking down; bottom frame same pose turning a cream page with right hand. Column 2 Projects: top frame supporting open silver laptop on left forearm at waist and typing with right hand; bottom frame identical body pose but right fingers lifted to next key and small green terminal lines changed on laptop. Column 3 Contact: top frame holding a cream envelope with gold seal at chest in right hand; bottom frame extending envelope forward to viewer with warm smile. Every column is two-frame animation: top row pose A, bottom row pose B. Face likeness and clothes absolutely identical across all six frames. Crisp pixel clusters, 16-bit artwork, no soft painterly edges, no scenery, no floor or shadows. Props clear enough to read at small sizes.

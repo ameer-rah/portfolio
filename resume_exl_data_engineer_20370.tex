@@ -1,0 +1,116 @@
+% EXL Data Engineer, Job ID 20370 — Ameer Rahman
+\documentclass[letterpaper,10pt]{article}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{setspace}
+\input{glyphtounicode}
+\pdfgentounicode=1
+
+\addtolength{\oddsidemargin}{-0.75in}
+\addtolength{\evensidemargin}{-0.75in}
+\addtolength{\textwidth}{1.5in}
+\addtolength{\topmargin}{-0.75in}
+\addtolength{\textheight}{1.5in}
+\pagestyle{empty}
+\raggedright
+\raggedbottom
+\setlength{\tabcolsep}{0in}
+\setlength{\parskip}{0pt}
+\titleformat{\section}{\vspace{-4pt}\scshape\raggedright\large}{}{0em}{}[\titlerule\vspace{-3pt}]
+
+\newcommand{\resumeItem}[1]{\item\small{#1}}
+\newcommand{\resumeSubheading}[4]{
+  \vspace{1pt}\item
+  \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \textbf{#1} & #2 \\
+    \textit{\small #3} & \textit{\small #4} \\
+  \end{tabular*}\vspace{-3pt}
+}
+\newcommand{\resumeProjectHeading}[1]{\vspace{3pt}\item\small{#1}\vspace{0pt}}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in,label={},itemsep=0pt,topsep=0pt]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.15in,label=\textbullet,itemsep=-2pt,topsep=0pt]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{0pt}}
+
+\begin{document}
+\setstretch{0.98}
+\begin{center}
+  {\Huge\scshape\textbf{Ameer Rahman}} \\ \vspace{2pt}
+  \small (347) 210-9056 $|$
+  \href{mailto:ameerrahman456@gmail.com}{\underline{ameerrahman456@gmail.com}} $|$
+  \href{https://www.linkedin.com/in/ameer-rahman-a3bb232a0/}{\underline{LinkedIn}} $|$
+  \href{https://github.com/ameer-rah}{\underline{GitHub}} $|$
+  \href{https://ameer-rahman.info/}{\underline{Portfolio}} $|$ New York, NY
+\end{center}
+
+\section{Education}
+\resumeSubHeadingListStart
+  \resumeSubheading{Rutgers University -- New Brunswick}{New Brunswick, NJ}
+    {B.S. Computer Science, Minor in Critical Intelligence Studies $|$ GPA: 3.4}{Aug. 2024 -- May 2027}
+    \resumeItemListStart
+      \resumeItem{Relevant Coursework: \textbf{Intro to Data Science, Data Structures, Systems Programming}, Software Methodology, Computer Architecture}
+    \resumeItemListEnd
+  \resumeSubheading{CUNY City College of New York}{New York, NY}
+    {Dean's List -- Fall 2023 \& Spring 2024}{Fall 2023 -- May 2024}
+\resumeSubHeadingListEnd
+
+\section{Technical Skills}
+\begin{itemize}[leftmargin=0.15in,label={},topsep=0pt]
+  \small\item{
+    \textbf{Data Engineering:} Python, SQL, Pandas, NumPy, GeoPandas, Jupyter, ETL, data validation, data profiling \\
+    \textbf{Databases \& APIs:} PostgreSQL, SQLite, Drizzle ORM, FastAPI, Hono, REST APIs \\
+    \textbf{Tools:} Git, GitHub Actions, Docker, CI/CD, Playwright, Cloudflare Workers
+  }
+\end{itemize}
+
+\section{Experience}
+\resumeSubHeadingListStart
+  \resumeSubheading{NASA L'SPACE NPWEE Participant}{Sept. 2026 -- Present}
+    {NASA Proposal Writing and Evaluation Experience Academy}{Remote}
+    \resumeItemListStart
+      \resumeItem{Fall 2026 participant in the \textbf{NASA Proposal Writing and Evaluation Experience}; program work is in progress.}
+    \resumeItemListEnd
+  \resumeSubheading{Software Engineering Intern}{July 2026 -- Sept. 2026}
+    {Archly (Stealth Startup)}{New York, NY}
+    \resumeItemListStart
+      \resumeItem{Built features across a \textbf{TypeScript/React} web application, Hono REST API on Cloudflare Workers, and \textbf{PostgreSQL/Drizzle ORM} data layer.}
+      \resumeItem{Implemented \textbf{database-backed, role-scoped workflows} for students, firm members, and administrators.}
+      \resumeItem{Used \textbf{GitHub Actions CI} with type checks, database/API tests, and Playwright browser tests; debugged and reviewed changes.}
+    \resumeItemListEnd
+  \resumeSubheading{Software Engineering Intern}{July 2025 -- Aug. 2025}
+    {Jasfel Analytics}{Newark, NJ}
+    \resumeItemListStart
+      \resumeItem{Built a modular \textbf{Python ETL pipeline} with Pandas and NumPy to ingest, transform, and validate \textbf{50,000+ U.S. Census Bureau records}.}
+      \resumeItem{Implemented \textbf{data-quality checks} for missing values, inconsistent formatting, and duplicates; documented reusable processing components.}
+      \resumeItem{Profiled ACS demographic data and TIGER/Line geography for communities near three NJCU campuses, documenting overlapping service areas.}
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+\section{Selected Projects}
+\resumeSubHeadingListStart
+  \resumeProjectHeading{\textbf{RUPlanner} $|$ \href{https://ruplanner.app/}{\underline{Live App}} $|$ \href{https://github.com/ameer-rah/RUPlanner}{\underline{GitHub}} $|$ \emph{Python, FastAPI, PostgreSQL, Docker}}
+    \resumeItemListStart
+      \resumeItem{Built a \textbf{Python planning engine} and FastAPI/PostgreSQL services to generate prerequisite-aware semester plans from degree requirements.}
+      \resumeItem{Automated \textbf{course-catalog ingestion and refreshes} and seat-availability polling to keep application data current.}
+      \resumeItem{Connected backend data to course search, saved plans, and progress tracking in the published web application.}
+    \resumeItemListEnd
+  \resumeProjectHeading{\textbf{NJCU Community Analysis} $|$ \href{https://github.com/ameer-rah/njcu-community-analysis-internal}{\underline{GitHub}} $|$ \emph{Python, Pandas, GeoPandas, U.S. Census ACS}}
+    \resumeItemListStart
+      \resumeItem{Processed \textbf{ACS 2019--2023 tract data} and geography for three- and five-mile campus catchments, comparing population, age, race, sex, and density.}
+      \resumeItem{Produced maps and demographic charts for approximately \textbf{207 New Jersey census tracts} across three campus areas.}
+      \resumeItem{Documented \textbf{data limitations}: New York tracts were excluded, and overlapping Jersey City catchments make totals non-additive.}
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+\section{Leadership}
+\resumeSubHeadingListStart
+  \resumeSubheading{Founder \& President}{Sept. 2024 -- Present}
+    {Rutgers Run Club}{New Brunswick, NJ}
+    \resumeItemListStart
+      \resumeItem{Founded and grew a student organization to \textbf{40+ active members}, coordinating activities and communicating with campus stakeholders.}
+      \resumeItem{Gathered member feedback and adjusted operations as participation grew.}
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+\end{document}

@@ -1,0 +1,156 @@
+%-------------------------
+% Resume in LaTeX — Johnson & Johnson TDQ Co-op
+%-------------------------
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{setspace}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\addtolength{\oddsidemargin}{-0.75in}
+\addtolength{\evensidemargin}{-0.75in}
+\addtolength{\textwidth}{1.5in}
+\addtolength{\topmargin}{-.75in}
+\addtolength{\textheight}{1.5in}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+\setlength{\parskip}{0pt}
+\titleformat{\section}{\vspace{-6pt}\scshape\raggedright\large}{}{0em}{}[\color{black}\titlerule \vspace{-3pt}]
+\pdfgentounicode=1
+
+\newcommand{\resumeItem}[1]{\item\small{{#1}}}
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-1pt}\item
+  \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \textbf{#1} & #2 \\
+    \textit{\small#3} & \textit{\small #4} \\
+  \end{tabular*}\vspace{-6pt}
+}
+\newcommand{\resumeProjectHeading}[2]{
+  \item
+  \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+    \small#1 & #2 \\
+  \end{tabular*}\vspace{-5pt}
+}
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.15in, itemsep=-3pt, topsep=0pt]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-3pt}}
+
+\begin{document}
+\setstretch{1.0}
+
+\begin{center}
+  \textbf{\Huge \scshape Ameer Rahman} \\ \vspace{1pt}
+  \small (347) 210-9056 $|$
+  \href{mailto:ameerrahman456@gmail.com}{\underline{ameerrahman456@gmail.com}} $|$
+  \href{https://www.linkedin.com/in/ameer-rahman-a3bb232a0/}{\underline{LinkedIn}} $|$
+  \href{https://github.com/ameer-rah}{\underline{GitHub}} $|$
+  \href{https://ameer-rahman.info/}{\underline{Portfolio}} $|$ New York, NY
+\end{center}
+
+\section{Education}
+\resumeSubHeadingListStart
+  \resumeSubheading
+    {Rutgers University -- New Brunswick}{New Brunswick, NJ}
+    {B.S. Computer Science, Minor in Critical Intelligence Studies $|$ GPA: 3.4}{Aug. 2024 -- May 2027}
+    \resumeItemListStart
+      \resumeItem{Relevant Coursework: \textbf{Intro to Data Science, Data Structures, Software Methodology}, Systems Programming, Computer Architecture}
+    \resumeItemListEnd
+  \resumeSubheading
+    {CUNY City College of New York}{New York, NY}
+    {Dean's List -- Fall 2023 \& Spring 2024}{Fall 2023 -- May 2024}
+\resumeSubHeadingListEnd
+
+\section{Experience}
+\resumeSubHeadingListStart
+  \resumeSubheading
+    {NASA L'SPACE Program Participant}{Sept. 2026 -- Present}
+    {NASA Proposal Writing and Evaluation Experience Academy}{Remote}
+
+  \resumeSubheading
+    {Software Engineering Intern}{July 2026 -- Sept. 2026}
+    {Archly (Stealth Startup)}{New York, NY}
+    \resumeItemListStart
+      \resumeItem{Built \textbf{REST APIs and relational data models} for a multi-role marketplace using TypeScript, Node.js, PostgreSQL, and Redis.}
+      \resumeItem{Developed data-driven search and recommendation workflows with filtering and pagination across skills, location, education, and portfolio attributes.}
+      \resumeItem{Translated product needs into implemented workflows and contributed through \textbf{Agile development}, Git-based reviews, automated tests, debugging, and GitHub Actions CI/CD.}
+      \resumeItem{Documented implementation decisions and collaborated as requirements evolved, supporting reproducibility, maintenance, and knowledge sharing.}
+    \resumeItemListEnd
+
+  \resumeSubheading
+    {Software Engineering Intern}{July 2025 -- Aug. 2025}
+    {Jasfel Analytics}{Newark, NJ}
+    \resumeItemListStart
+      \resumeItem{Built an automated \textbf{Python ETL pipeline} with Pandas and NumPy to collect, clean, transform, and validate \textbf{50,000+ U.S. Census Bureau records}.}
+      \resumeItem{Developed \textbf{data-quality controls} for missing values, inconsistent formatting, and duplicate records, preventing unreliable data from reaching downstream analysis.}
+      \resumeItem{Combined ACS 2019--2023 estimates with TIGER/Line geography to analyze census tracts within three and five miles of three university campuses.}
+      \resumeItem{Created reusable Python components and \textbf{SQL-backed workflows}, documented analytical methodology and limitations, and communicated findings as requirements evolved.}
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+\section{Projects}
+\resumeSubHeadingListStart
+  \resumeProjectHeading
+    {\textbf{Clinical Lab \& Patient Monitoring} $|$ \href{https://github.com/ameer-rah/clinical-lab-monitoring}{\underline{GitHub}} $|$ \emph{Python, Flask, SQL, TypeScript, React}}{}
+    \resumeItemListStart
+      \resumeItem{Built a relational system and dashboard for synthetic \textbf{healthcare data}, tracking lab results, vital signs, medications, reference ranges, and longitudinal trends.}
+      \resumeItem{Designed one interpretation engine for labs and vitals with configurable reference ranges; the dashboard displays validated API results without duplicating decision logic.}
+      \resumeItem{Added \textbf{data-integrity safeguards}: unmapped codes resolve to unknown rather than normal, and records project into read-only FHIR R4 resources.}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\textbf{NJCU Community Analysis} $|$ \href{https://github.com/ameer-rah/njcu-community-analysis-internal}{\underline{GitHub}} $|$ \emph{Python, Jupyter, Pandas, U.S. Census ACS}}{}
+    \resumeItemListStart
+      \resumeItem{Analyzed demographic patterns across campus catchments covering \textbf{72,000 to 574,000 people}, identifying differences in population density, age, race, and sex.}
+      \resumeItem{Converted results into actionable comparisons while documenting geographic exclusions, overlapping service areas, and non-additive findings.}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\textbf{Chest X-Ray Classifier} $|$ \href{https://github.com/ameer-rah/chest-xray-classifier}{\underline{GitHub}} $|$ \emph{Python, PyTorch, FastAPI, Docker}}{}
+    \resumeItemListStart
+      \resumeItem{Fine-tuned an ImageNet-pretrained \textbf{ResNet18 on roughly 21,000 images}, applied inverse-frequency class weighting, and served predictions through FastAPI.}
+      \resumeItem{Evaluated model performance and documented limitations, including the lack of out-of-distribution detection, to support \textbf{responsible AI validation}.}
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+\section{Leadership}
+\resumeSubHeadingListStart
+  \resumeSubheading
+    {Founder \& President}{Sept. 2024 -- Present}
+    {Rutgers Run Club}{New Brunswick, NJ}
+    \resumeItemListStart
+      \resumeItem{Founded and scaled a campus organization from zero to \textbf{40+ active members}, organizing recurring activities and communicating with students and university stakeholders.}
+      \resumeItem{Coordinated competing priorities, adapted operations as membership grew, and built an inclusive community through consistent service and follow-through.}
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+\section{Technical Skills}
+\begin{itemize}[leftmargin=0.15in, label={}]
+  \small{\item{
+    \textbf{Data \& Programming}{: Python, SQL, Pandas, NumPy, Jupyter, PyTorch, Java, TypeScript} \\
+    \textbf{Databases \& Applications}{: PostgreSQL, SQLite, FastAPI, Flask, REST APIs, React, Node.js} \\
+    \textbf{Tools \& Practices}{: Git, GitHub Actions, Docker, ETL, Data Validation, Data Analysis, Quality Control, Agile/SDLC, Model Evaluation}
+  }}
+\end{itemize}
+
+\end{document}

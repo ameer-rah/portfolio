@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import { EXPERIENCE } from '../data/experience';
 import Reveal from '../components/Reveal';
+import CompanionScene from '../components/CompanionScene';
 import VantaFog from '../components/VantaFog';
 import { FeatureShaderBackdrop } from '../components/ui/feature-shader-card';
 
@@ -22,6 +23,16 @@ export default function Experience() {
           </p>
         </Reveal>
 
+        <CompanionScene title="The journey" intro="Pick a stop. I’ll show you what I worked on." stops={EXPERIENCE.map(job => ({
+          id: job.id,
+          label: job.company.replace(' Program', '').replace(' Recreation Center', '').replace(' Analytics', ''),
+          title: job.role,
+          detail: job.bullets[0],
+          meta: job.period,
+          target: `experience-${job.id}`,
+          action: 'Explore this role',
+        }))} />
+
         <div className="relative mt-14">
           <div
             aria-hidden
@@ -32,7 +43,7 @@ export default function Experience() {
             {EXPERIENCE.map((job, i) => {
               return (
                 <Reveal key={job.id} delay={Math.min(i * 0.07, 0.28)}>
-                  <article className="relative grid gap-3 pl-8 sm:grid-cols-[200px_1fr] sm:gap-10 sm:pl-0">
+                  <article id={`experience-${job.id}`} tabIndex={-1} className="scroll-mt-28 relative grid gap-3 pl-8 sm:grid-cols-[200px_1fr] sm:gap-10 sm:pl-0">
                     <span
                       aria-hidden
                       className="absolute left-0 top-1.5 h-3.5 w-3.5 rounded-full border-2 border-paper bg-brg sm:left-[193px]"

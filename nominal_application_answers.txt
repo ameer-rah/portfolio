@@ -1,0 +1,27 @@
+NOMINAL — NEW GRAD 2027 APPLICATION ANSWERS
+
+1. What is your preferred programming language for interviews?
+
+Java
+
+2. Do you have any pending offers or deadlines we should know about? If so, what companies and dates?
+
+I do not currently have any pending offers or decision deadlines.
+
+Confirm this is still accurate before submitting. If you have a deadline, replace it with: "I currently have an offer deadline with [Company] on [Month Day, Year]. Nominal is a role I am especially interested in, so I would appreciate any flexibility your team may have in the interview timeline."
+
+3. What's something you spend a lot of time thinking about or working on, in any part of your life? What draws you to it?
+
+I spend a lot of time thinking about what makes a system reliable beneath the abstractions people normally interact with. That curiosity led me to build Mini Redis from scratch rather than only use an existing cache. I wanted to understand how a hash map and linked list support LRU eviction, how TTL behavior changes under concurrent access, and how a server should respond when several clients connect or shut down unexpectedly. I am drawn to this kind of work because each layer reveals another tradeoff between performance, correctness, and simplicity. I enjoy reaching the point where I can explain not only that something works, but why it works and where it can fail.
+
+4. Tell us about a challenge, professional or personal, that stretched you. What did you do, and what did you take away from it?
+
+Building concurrent behavior into Mini Redis stretched me because bugs were not always reproducible and a locally correct operation could still break the shared relationship between the hash map and LRU list. I first reduced the design to a clear invariant: every cached entry had to correspond to exactly one list node, and every operation that changed either structure had to preserve that relationship. I protected the shared state with a single lock, then added stress tests, expiration tests, and live socket integration tests instead of relying on manual checks. I also implemented a bounded worker pool and graceful shutdown so that the server's lifecycle was testable, not just its commands. I took away that difficult systems problems become manageable when I define the invariant, isolate failure modes, and build verification into the design from the beginning.
+
+5. Why are you interested in Nominal? (100 words maximum)
+
+Nominal combines the areas I most want to develop in my first full-time role: reliable data infrastructure, end-to-end product ownership, and close collaboration with engineers working on physical systems. Building Mini Redis taught me to reason about concurrency, networking, performance, and failure modes, while my internships gave me experience shipping backend services and data pipelines. I am especially excited by the opportunity to work with high-frequency hardware data and users testing spacecraft, autonomous vehicles, and other critical systems. I hope to become stronger at designing scalable infrastructure and translating demanding field requirements into dependable software.
+
+LEGAL AND ELIGIBILITY QUESTIONS
+
+Answer the protected-individual, work-authorization, sponsorship, and clearance questions only according to your actual status. Do not select "eligible to obtain a clearance" merely because you are a U.S. citizen; eligibility can depend on additional background considerations. If you have never held a clearance, select "N/A — have never held a U.S. security clearance" for the past-clearance-level question.

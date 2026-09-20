@@ -1,0 +1,18 @@
+September 18, 2026
+
+Cursor Hiring Team
+
+Dear Cursor Hiring Team,
+
+I am applying for the Software Engineer, New Grad 2027 role. I study computer science at Rutgers University and expect to graduate in May 2027. What draws me to Cursor is the focus on building tools that engineers use every day, with the care to make those tools both useful and reliable. I enjoy owning a problem from the interface through the underlying logic, then testing and improving what I ship.
+
+The clearest example is RUPlanner, a degree-planning application I built and published at https://ruplanner.app/. It brings together a Next.js interface, a Python planning engine, FastAPI services, and PostgreSQL. The planning engine evaluates degree requirements and course prerequisites to generate semester plans, while the application supports course search, saved plans, and progress tracking. I also built scheduled catalog refreshes and seat-availability polling so the underlying course data can stay useful. The project is open for review at https://github.com/ameer-rah/RUPlanner.
+
+At Archly, I worked on a two-sided marketplace using React, TypeScript, a Hono API on Cloudflare Workers, and PostgreSQL. I implemented session-based authentication and role-scoped workflows and used code review, GitHub Actions, API tests, and Playwright tests while the product evolved. Separately, building a concurrent Java TCP cache server strengthened my understanding of data structures, networking, and correctness under concurrent access.
+
+I would be excited to bring this mix of product-building and engineering fundamentals to Cursor. I care about the details that make software feel trustworthy: clear behavior, thoughtful interfaces, and tests that catch problems before users do. I would welcome the opportunity to discuss RUPlanner and the decisions behind it.
+
+Thank you for your consideration.
+
+Sincerely,
+Ameer Rahman

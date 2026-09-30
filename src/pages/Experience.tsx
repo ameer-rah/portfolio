@@ -1,127 +1,111 @@
-import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 import { EXPERIENCE } from '../data/experience';
 import Reveal from '../components/Reveal';
-import CompanionScene from '../components/CompanionScene';
-import VantaFog from '../components/VantaFog';
-import { FeatureShaderBackdrop } from '../components/ui/feature-shader-card';
 
 export default function Experience() {
   return (
-    <section className="relative overflow-hidden">
-      <VantaFog className="absolute inset-0" />
-      <div aria-hidden className="absolute inset-0 bg-paper/55" />
+    <>
+      {/* Page header, full-bleed red */}
+      <section className="panel flex min-h-[70svh] items-end bg-red text-white">
+        <div className="panel-inner">
+          <Reveal>
+            <p className="section-eyebrow text-white/75">002 — Experience</p>
+            <h1 className="hero-title mt-6 max-w-4xl">
+              Four rooms,
+              <br />
+              four sets of rules.
+            </h1>
+            <p className="section-subtext mt-6 max-w-xl text-white/85">
+              Incoming NASA L'SPACE NPWEE participant, marketplace co-founder, data
+              engineering intern, and campus recreation supervisor.
+            </p>
+          </Reveal>
+        </div>
+      </section>
 
-      <div className="relative mx-auto max-w-5xl px-5 py-16 sm:py-20">
-        <Reveal>
-          <h1 className="game-page-title">
-            Experience
-          </h1>
-          <p className="mt-4 max-w-[65ch] text-base leading-relaxed text-stone-600">
-            Incoming NASA L'SPACE NPWEE participant, marketplace co-founder,
-            data engineering intern, and campus recreation supervisor.
-          </p>
-        </Reveal>
-
-        <CompanionScene title="The journey" intro="Pick a stop. I’ll show you what I worked on." stops={EXPERIENCE.map(job => ({
-          id: job.id,
-          label: job.company.replace(' Program', '').replace(' Recreation Center', '').replace(' Analytics', ''),
-          title: job.role,
-          detail: job.bullets[0],
-          meta: job.period,
-          target: `experience-${job.id}`,
-          action: 'Explore this role',
-        }))} />
-
-        <div className="relative mt-14">
-          <div
-            aria-hidden
-            className="absolute left-[7px] top-2 bottom-2 w-px bg-gradient-to-b from-brg-soft via-stone-200 to-transparent sm:left-[199px]"
-          />
-
-          <div className="space-y-10">
-            {EXPERIENCE.map((job, i) => {
-              return (
-                <Reveal key={job.id} delay={Math.min(i * 0.07, 0.28)}>
-                  <article id={`experience-${job.id}`} tabIndex={-1} className="scroll-mt-28 relative grid gap-3 pl-8 sm:grid-cols-[200px_1fr] sm:gap-10 sm:pl-0">
-                    <span
-                      aria-hidden
-                      className="absolute left-0 top-1.5 h-3.5 w-3.5 rounded-sm border-2 border-paper bg-brg sm:left-[193px]"
-                    />
+      {/* Timeline, cream */}
+      <section className="panel bg-cream text-ink">
+        <div className="panel-inner">
+          <div className="grid gap-px overflow-hidden rounded-xl bg-ink/15">
+            {EXPERIENCE.map((job, i) => (
+              <Reveal key={job.id} delay={Math.min(i * 0.06, 0.24)}>
+                <article
+                  id={`experience-${job.id}`}
+                  tabIndex={-1}
+                  className="scroll-mt-28 grid gap-6 bg-cream p-7 sm:grid-cols-[13rem_1fr] sm:gap-10 sm:p-10"
+                >
+                  <div>
+                    <span className="display-num text-4xl text-ink/25">
+                      {String(i + 1).padStart(3, '0')}
+                    </span>
+                    <p className="mt-5 text-sm font-medium text-ink/70">{job.period}</p>
+                    <p className="mt-1 text-sm text-ink/50">{job.location}</p>
                     {job.current && (
-                      <span
-                        aria-hidden
-                        className="absolute left-0 top-1.5 h-3.5 w-3.5 animate-ping rounded-sm bg-brg-bright/60 sm:left-[193px]"
-                      />
+                      <span className="mt-4 inline-flex items-center gap-2 rounded-full bg-orange px-3 py-1 text-xs font-medium text-white">
+                        <span className="h-1.5 w-1.5 rounded-full bg-white" aria-hidden />
+                        Current
+                      </span>
+                    )}
+                  </div>
+
+                  <div>
+                    <h2 className="font-display text-2xl leading-tight tracking-tight sm:text-3xl">
+                      {job.role}
+                    </h2>
+                    {job.link ? (
+                      <a
+                        href={job.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-2 inline-flex items-center gap-1 text-base font-medium text-blue underline decoration-blue/30 underline-offset-4 transition-colors hover:decoration-blue"
+                      >
+                        {job.company}
+                        <ArrowUpRight size={14} strokeWidth={2} />
+                      </a>
+                    ) : (
+                      <p className="mt-2 text-base font-medium text-blue">{job.company}</p>
                     )}
 
-                    <div>
-                      <p className="text-sm font-medium text-stone-500">{job.period}</p>
-                      <p className="mt-1 text-sm text-stone-400">{job.location}</p>
-                      {job.current && (
-                        <span className="mt-3 inline-flex items-center gap-1.5 rounded-sm bg-brg-soft px-2.5 py-0.5 text-xs font-medium text-brg">
-                          <span className="h-1.5 w-1.5 rounded-sm bg-brg-bright" />
-                          Current
-                        </span>
-                      )}
-                    </div>
+                    <ul className="mt-6 space-y-3">
+                      {job.bullets.map(bullet => (
+                        <li key={bullet} className="flex gap-4 text-[15px] leading-relaxed text-ink/75">
+                          <span aria-hidden className="mt-[11px] h-px w-5 shrink-0 bg-orange" />
+                          {bullet}
+                        </li>
+                      ))}
+                    </ul>
 
-                    <motion.div
-                      whileHover={{ y: -3 }}
-                      transition={{ duration: 0.2 }}
-                      className="group relative overflow-hidden rounded-none border border-stone-200 bg-raised p-6 shadow-[0_1px_2px_rgba(28,25,23,0.04)] transition-colors hover:border-brg/40 sm:p-7"
-                    >
-                      <FeatureShaderBackdrop variant={i} />
-                      <div className="relative">
-                      <h2 className="text-xl font-semibold text-ink">{job.role}</h2>
-                      {job.link ? (
-                        <a
-                          href={job.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="mt-0.5 inline-flex items-center gap-1 text-base font-medium text-brg underline decoration-brg/30 underline-offset-4 transition-colors hover:decoration-brg"
+                    <ul className="mt-6 flex flex-wrap gap-2">
+                      {job.tags.map(tag => (
+                        <li
+                          key={tag}
+                          className="rounded-full border border-ink/20 px-3 py-1 text-xs font-medium text-ink/70"
                         >
-                          {job.company}
-                          <ArrowUpRight size={14} strokeWidth={2} />
-                        </a>
-                      ) : (
-                        <p className="mt-0.5 text-base font-medium text-brg">{job.company}</p>
-                      )}
-
-                      <ul className="mt-5 space-y-2.5">
-                        {job.bullets.map((bullet, bi) => (
-                          <li
-                            key={bi}
-                            className="flex gap-3 text-[15px] leading-relaxed text-stone-600"
-                          >
-                            <span
-                              aria-hidden
-                              className="mt-[11px] h-px w-4 shrink-0 bg-brg-bright"
-                            />
-                            {bullet}
-                          </li>
-                        ))}
-                      </ul>
-
-                      <ul className="mt-5 flex flex-wrap gap-2">
-                        {job.tags.map((tag) => (
-                          <li
-                            key={tag}
-                            className="rounded-md border border-stone-200 bg-stone-50 px-2.5 py-1 text-xs font-medium text-stone-600"
-                          >
-                            {tag}
-                          </li>
-                        ))}
-                      </ul>
-                      </div>
-                    </motion.div>
-                  </article>
-                </Reveal>
-              );
-            })}
+                          {tag}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* Closing, blue */}
+      <section className="panel bg-blue text-white">
+        <div className="panel-inner panel-narrow text-center">
+          <Reveal>
+            <h2 className="section-title">Want the code behind it?</h2>
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+              <Link to="/projects" className="btn btn-light">Read the projects</Link>
+              <Link to="/contact" className="btn btn-ghost">Get in touch</Link>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+    </>
   );
 }

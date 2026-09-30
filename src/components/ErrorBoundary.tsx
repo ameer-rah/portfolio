@@ -75,25 +75,25 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   render(): ReactNode {
     if (this.state.hasError) {
       return (
-        <div className="flex min-h-[100dvh] items-center justify-center bg-paper p-5 text-ink">
-          <div className="w-full max-w-md rounded-2xl border border-stone-200 bg-white p-8">
+        <div className="flex min-h-[100dvh] items-center justify-center bg-cream p-5 text-ink">
+          <div className="w-full max-w-md rounded-2xl border border-ink/15 bg-white p-8">
             <h2 className="text-xl font-semibold tracking-tight">
               Something went wrong.
             </h2>
-            <p className="mt-2 mb-6 text-sm leading-relaxed text-stone-600">
+            <p className="mt-2 mb-6 text-sm leading-relaxed text-ink/70">
               Try refreshing the page. If you have a moment, sending a quick
               report helps me fix it.
             </p>
 
             {this.state.isSubmitted ? (
-              <div className="rounded-xl bg-brg-soft p-5 text-center">
-                <p className="font-medium text-brg">Thanks for the report.</p>
-                <p className="mt-1 text-sm text-stone-600">
+              <div className="rounded-xl bg-yellow p-5 text-center">
+                <p className="font-medium text-ink">Thanks for the report.</p>
+                <p className="mt-1 text-sm text-ink/70">
                   I'll look into this as soon as possible.
                 </p>
                 <button
                   onClick={() => (window.location.href = "/")}
-                  className="mt-4 rounded-lg bg-brg px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-brg-mid"
+                  className="mt-4 rounded-lg bg-ink px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue"
                 >
                   Return home
                 </button>
@@ -113,7 +113,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
                     name="email"
                     value={this.state.email}
                     onChange={this.handleChange}
-                    className="w-full rounded-lg border border-stone-300 bg-white p-2 text-sm focus:border-brg"
+                    className="w-full rounded-lg border border-ink/25 bg-white p-2 text-sm focus:border-orange"
                     placeholder="you@example.com"
                   />
                 </div>
@@ -131,7 +131,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
                     value={this.state.message}
                     onChange={this.handleChange}
                     rows={4}
-                    className="w-full rounded-lg border border-stone-300 bg-white p-2 text-sm focus:border-brg"
+                    className="w-full rounded-lg border border-ink/25 bg-white p-2 text-sm focus:border-orange"
                     placeholder="I was trying to..."
                   />
                 </div>
@@ -139,12 +139,12 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
                 <button
                   type="submit"
                   disabled={this.state.isSubmitting}
-                  className="w-full rounded-lg bg-brg px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-brg-mid disabled:opacity-50"
+                  className="w-full rounded-lg bg-ink px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue disabled:opacity-50"
                 >
                   {this.state.isSubmitting ? "Submitting..." : "Submit report"}
                 </button>
 
-                <p className="text-xs text-stone-500">
+                <p className="text-xs text-ink/60">
                   Error details are included automatically with your report.
                 </p>
               </form>

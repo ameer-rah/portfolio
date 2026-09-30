@@ -1,10 +1,8 @@
-import { lazy, Suspense, useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowUpRight, GitCommit, Star } from 'lucide-react';
 import { PROJECTS } from '../data/projects';
 import Reveal from '../components/Reveal';
-import CompanionScene from '../components/CompanionScene';
-import { FeatureShaderBackdrop } from '../components/ui/feature-shader-card';
 import {
   fetchGitHubOverview,
   fetchContributions,
@@ -13,14 +11,12 @@ import {
   type GitHubActivity,
 } from '../utils/githubApi';
 
-const VantaTopology = lazy(() => import('../components/VantaTopology'));
-
 const GITHUB_USERNAME = 'ameer-rah';
 
-const LEVEL_COLORS_LIGHT = ['#eee9dc', '#dce8b6', '#9ebd78', '#4c8969', '#174f3a'];
+// Cream through to blue, so the graph reads on the cream panel.
+const LEVEL_COLORS = ['#e7e0d4', '#c9d2f6', '#93a6f0', '#5c79f7', '#3159f4'];
 
 function ContributionGraph({ data }: { data: ContributionData }) {
-  const levelColors = LEVEL_COLORS_LIGHT;
   const days = data.contributions;
   const weeks: (typeof days)[] = [];
   for (let i = 0; i < days.length; i += 7) {
@@ -29,30 +25,30 @@ function ContributionGraph({ data }: { data: ContributionData }) {
   const total = Object.values(data.total).reduce((a, b) => a + b, 0);
 
   return (
-    <div className="rounded-none border border-stone-200 bg-raised p-5 shadow-[0_14px_35px_-28px_rgba(16,37,29,0.5)] sm:p-6">
-      <p className="text-sm text-stone-500">
-        <span className="font-semibold text-ink">{total.toLocaleString()}</span>{' '}
+    <div className="rounded-xl border border-ink/15 p-6">
+      <p className="text-sm text-ink/60">
+        <span className="font-display text-base text-ink">{total.toLocaleString()}</span>{' '}
         contributions in the last year
       </p>
-      <div className="mt-4 overflow-x-auto pb-2">
+      <div className="mt-5 overflow-x-auto pb-2">
         <div className="flex w-max gap-[3px]">
           {weeks.map((week, wi) => (
             <div key={wi} className="flex flex-col gap-[3px]">
-              {week.map((day) => (
+              {week.map(day => (
                 <div
                   key={day.date}
                   title={`${day.date}: ${day.count} contribution${day.count === 1 ? '' : 's'}`}
                   className="h-[11px] w-[11px] rounded-[2px]"
-                  style={{ backgroundColor: levelColors[day.level] }}
+                  style={{ backgroundColor: LEVEL_COLORS[day.level] }}
                 />
               ))}
             </div>
           ))}
         </div>
       </div>
-      <div className="mt-2 flex items-center gap-1.5 text-xs text-stone-400">
+      <div className="mt-3 flex items-center gap-1.5 text-xs text-ink/50">
         Less
-        {levelColors.map((color) => (
+        {LEVEL_COLORS.map(color => (
           <span
             key={color}
             className="inline-block h-[11px] w-[11px] rounded-[2px]"
@@ -77,7 +73,7 @@ function relativeTime(dateStr: string): string {
 }
 
 function SkeletonBlock({ className }: { className: string }) {
-  return <div className={`animate-pulse rounded-lg bg-stone-200/70 ${className}`} />;
+  return <div className={`animate-pulse rounded-lg bg-ink/10 ${className}`} />;
 }
 
 export default function Projects() {
@@ -92,7 +88,7 @@ export default function Projects() {
 
   useEffect(() => {
     fetchGitHubOverview()
-      .then((data) => {
+      .then(data => {
         setRepos(data.repos);
         setActivity(data.activity);
         setRepoError(!data.reposAvailable);
@@ -114,125 +110,120 @@ export default function Projects() {
 
   return (
     <>
-      {/* Featured projects */}
-      <section className="relative overflow-hidden">
-        <Suspense
-          fallback={<div className="absolute inset-0 bg-paper" aria-hidden />}
-        >
-          <VantaTopology className="absolute inset-0" />
-        </Suspense>
-        <div className="absolute inset-0 bg-paper/10" aria-hidden />
-
-        <div className="relative mx-auto max-w-5xl px-5 py-16 sm:py-20">
-        <Reveal>
-          <h1 className="game-page-title">
-            Projects
-          </h1>
-          <p className="mt-4 max-w-[65ch] text-base leading-relaxed text-stone-600">
-            Selected work across full-stack development, machine learning, data
-            analysis, and security, plus live activity from my GitHub profile
-            below.
-          </p>
-        </Reveal>
-
-        <CompanionScene title="The workshop" intro="Choose a build. Let’s look under the hood." stops={PROJECTS.map(project => ({
-          id: project.id,
-          label: project.name.replace('Clinical Lab & Patient Monitoring', 'Clinical Lab').replace('Chest X-Ray Classifier', 'X-Ray AI').replace('NJCU Community Analysis', 'NJCU'),
-          title: project.name,
-          detail: project.highlights[0]?.text ?? project.description,
-          meta: project.stack.slice(0, 2).join(' + '),
-          target: `project-${project.id}`,
-          action: 'Explore this project',
-        }))} />
-
-        <div className="mt-12 space-y-8">
-          {PROJECTS.map((project, i) => (
-            <Reveal key={project.id} delay={Math.min(i * 0.08, 0.24)}>
-              <motion.article
-                id={`project-${project.id}`}
-                tabIndex={-1}
-                whileHover={{ y: -3 }}
-                transition={{ duration: 0.2 }}
-                className="scroll-mt-28 group relative overflow-hidden rounded-none border border-stone-200 bg-raised p-7 sm:p-9"
-              >
-                <FeatureShaderBackdrop variant={i} />
-                <div className="relative">
-                <h2 className="text-2xl font-semibold tracking-tight text-ink">
-                  {project.name}
-                </h2>
-                <p className="mt-4 max-w-[65ch] text-[15px] leading-relaxed text-stone-600">
-                  {project.description}
-                </p>
-
-                <div className="mt-7 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                  {project.highlights.map((highlight) => (
-                    <div key={highlight.title} className="border-l-2 border-brg-soft pl-4">
-                      <h3 className="text-sm font-semibold text-brg">{highlight.title}</h3>
-                      <p className="mt-1.5 text-sm leading-relaxed text-stone-600">
-                        {highlight.text}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="mt-7 flex flex-wrap items-center justify-between gap-4 border-t border-stone-100 pt-6">
-                  <ul className="flex flex-wrap gap-2">
-                    {project.stack.map((tech) => (
-                      <li
-                        key={tech}
-                        className="rounded-md border border-stone-200 px-2.5 py-1 text-xs font-medium text-stone-600"
-                      >
-                        {tech}
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="flex items-center gap-5 text-sm font-medium">
-                    {project.github && (
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-brg transition-colors hover:text-brg-bright"
-                      >
-                        GitHub <ArrowUpRight size={14} strokeWidth={2} />
-                      </a>
-                    )}
-                    {project.live && (
-                      <a
-                        href={project.live}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-brg transition-colors hover:text-brg-bright"
-                      >
-                        Live site <ArrowUpRight size={14} strokeWidth={2} />
-                      </a>
-                    )}
-                  </div>
-                </div>
-                </div>
-              </motion.article>
-            </Reveal>
-          ))}
-        </div>
+      {/* Page header, warm black */}
+      <section className="panel flex min-h-[70svh] items-end bg-warmblack text-cream">
+        <div className="panel-inner">
+          <Reveal>
+            <p className="section-eyebrow text-cream/50">003 — Projects</p>
+            <h1 className="hero-title mt-6 max-w-4xl">
+              Five systems,
+              <br />
+              and what each one refuses to fake.
+            </h1>
+            <p className="section-subtext mt-6 max-w-xl text-cream/80">
+              Selected work across full-stack development, machine learning, data
+              analysis, and systems, plus live activity from my GitHub profile below.
+            </p>
+          </Reveal>
         </div>
       </section>
 
-      {/* GitHub activity */}
-      <section className="border-t border-stone-200 bg-surface">
-        <div className="mx-auto max-w-5xl px-5 py-16 sm:py-20">
+      {/* Project list, cream */}
+      <section className="panel bg-cream text-ink">
+        <div className="panel-inner">
+          <div className="grid gap-px overflow-hidden rounded-xl bg-ink/15">
+            {PROJECTS.map((project, i) => (
+              <Reveal key={project.id} delay={Math.min(i * 0.05, 0.2)}>
+                <article
+                  id={`project-${project.id}`}
+                  tabIndex={-1}
+                  className="scroll-mt-28 bg-cream p-7 sm:p-10"
+                >
+                  <div className="flex flex-wrap items-baseline gap-5">
+                    <span className="display-num text-4xl text-ink/25">
+                      {String(i + 1).padStart(3, '0')}
+                    </span>
+                    <h2 className="font-display text-3xl leading-tight tracking-tight sm:text-4xl">
+                      {project.name}
+                    </h2>
+                  </div>
+
+                  <p className="mt-6 max-w-[68ch] text-[15px] leading-relaxed text-ink/75">
+                    {project.description}
+                  </p>
+
+                  <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                    {project.highlights.map(highlight => (
+                      <div key={highlight.title} className="border-l-2 border-orange pl-4">
+                        <h3 className="text-sm font-semibold text-blue">{highlight.title}</h3>
+                        <p className="mt-2 text-sm leading-relaxed text-ink/70">{highlight.text}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mt-8 flex flex-wrap items-center justify-between gap-5 border-t border-ink/10 pt-6">
+                    <ul className="flex flex-wrap gap-2">
+                      {project.stack.map(tech => (
+                        <li
+                          key={tech}
+                          className="rounded-full border border-ink/20 px-3 py-1 text-xs font-medium text-ink/70"
+                        >
+                          {tech}
+                        </li>
+                      ))}
+                    </ul>
+
+                    <div className="flex items-center gap-3">
+                      {project.github && (
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn btn-outline !px-4 !py-2 !text-xs"
+                        >
+                          Source
+                          <ArrowUpRight size={14} strokeWidth={2} />
+                        </a>
+                      )}
+                      {project.live && (
+                        <a
+                          href={project.live}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn btn-dark !px-4 !py-2 !text-xs"
+                        >
+                          Live
+                          <ArrowUpRight size={14} strokeWidth={2} />
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Live GitHub, cream with blue accents */}
+      <section className="panel bg-cream text-ink">
+        <div className="panel-inner">
           <Reveal>
-            <h2 className="text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
-              On GitHub
+            <p className="section-eyebrow text-ink/50">Live from GitHub</p>
+            {/* Lower clamp floor than .section-title so it still fits on one
+                line at phone widths. */}
+            <h2 className="section-title mt-4 whitespace-nowrap text-[clamp(1.25rem,5vw,4.5rem)]">
+              What I have been pushing.
             </h2>
-            <p className="mt-3 text-base text-stone-600">
-              Live data from{' '}
+            <p className="mt-5 text-base text-ink/70">
+              Pulled live from{' '}
               <a
-                href="https://github.com/ameer-rah"
+                href={`https://github.com/${GITHUB_USERNAME}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-medium text-brg underline-offset-4 hover:underline"
+                className="font-medium text-blue underline decoration-blue/30 underline-offset-4 hover:decoration-blue"
               >
-                github.com/ameer-rah
+                @{GITHUB_USERNAME}
               </a>
               .
             </p>
@@ -240,130 +231,125 @@ export default function Projects() {
 
           <Reveal delay={0.1} className="mt-10">
             {loadingContribs ? (
-              <SkeletonBlock className="h-32 w-full" />
+              <SkeletonBlock className="h-40 w-full" />
             ) : contribs ? (
               <ContributionGraph data={contribs} />
             ) : (
-              <p className="text-sm text-stone-500">
-                Contribution data is unavailable right now.
-              </p>
+              <p className="text-sm text-ink/60">Contribution data is temporarily unavailable.</p>
             )}
           </Reveal>
 
-          <div className="mt-14 grid gap-10 lg:grid-cols-[1fr_320px]">
+          <div className="mt-12 grid gap-10 lg:grid-cols-[1fr_22rem]">
             <div>
-              <h3 className="text-lg font-semibold text-ink">Recent repositories</h3>
+              <h3 className="font-display text-xl tracking-tight">Recent repositories</h3>
               {loadingRepos ? (
                 <div className="mt-5 grid gap-4 sm:grid-cols-2">
-                  {Array.from({ length: 4 }).map((_, i) => (
+                  {[0, 1, 2, 3].map(i => (
                     <SkeletonBlock key={i} className="h-28" />
                   ))}
                 </div>
               ) : repoError ? (
-                <div className="mt-5 rounded-none border border-stone-200 bg-raised p-5">
-                  <p className="text-sm text-stone-500">GitHub's live data is temporarily unavailable.</p>
+                <div className="mt-5 rounded-xl border border-ink/15 p-6">
+                  <p className="text-sm text-ink/60">GitHub's live data is temporarily unavailable.</p>
                   <a
                     href={`https://github.com/${GITHUB_USERNAME}?tab=repositories`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-brg hover:underline"
+                    className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-blue hover:underline"
                   >
-                    View repositories on GitHub <ArrowUpRight size={14} />
+                    Browse on GitHub
+                    <ArrowUpRight size={14} strokeWidth={2} />
                   </a>
                 </div>
               ) : (
-                <div className="mt-5 grid gap-4 sm:grid-cols-2">
-                  {repos.slice(0, 6).map((repo, i) => (
-                    <Reveal key={repo.id} delay={Math.min(i * 0.05, 0.2)}>
-                      <motion.a
-                        href={repo.html_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ y: -3 }}
-                        transition={{ duration: 0.2 }}
-                        className="group flex h-full flex-col rounded-none border border-stone-200 bg-raised p-5 transition-colors hover:border-brg"
-                      >
-                        <div className="flex items-center justify-between gap-2">
-                          <h4 className="truncate text-[15px] font-semibold text-ink group-hover:text-brg">
-                            {repo.name}
-                          </h4>
-                          {repo.stargazers_count > 0 && (
-                            <span className="inline-flex shrink-0 items-center gap-1 text-xs text-stone-500">
-                              <Star size={12} strokeWidth={1.75} />
-                              {repo.stargazers_count}
-                            </span>
-                          )}
-                        </div>
-                        <p className="mt-1.5 line-clamp-2 flex-1 text-sm leading-relaxed text-stone-500">
-                          {repo.description ?? 'No description yet.'}
-                        </p>
-                        <div className="mt-3 flex items-center gap-3 text-xs text-stone-400">
-                          {repo.language && (
-                            <span className="font-medium text-stone-500">{repo.language}</span>
-                          )}
-                          <span>Updated {relativeTime(repo.updated_at)}</span>
-                        </div>
-                      </motion.a>
-                    </Reveal>
+                <div className="mt-5 grid gap-px overflow-hidden rounded-xl bg-ink/15 sm:grid-cols-2">
+                  {repos.map(repo => (
+                    <a
+                      key={repo.id}
+                      href={repo.html_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex h-full flex-col bg-cream p-5 transition-colors duration-300 hover:bg-yellow"
+                    >
+                      <div className="flex items-center justify-between gap-2">
+                        <h4 className="truncate text-[15px] font-semibold">{repo.name}</h4>
+                        {repo.stargazers_count > 0 && (
+                          <span className="inline-flex shrink-0 items-center gap-1 text-xs text-ink/60">
+                            <Star size={12} strokeWidth={2} />
+                            {repo.stargazers_count}
+                          </span>
+                        )}
+                      </div>
+                      <p className="mt-2 line-clamp-2 flex-1 text-sm leading-relaxed text-ink/60">
+                        {repo.description ?? 'No description provided.'}
+                      </p>
+                      <div className="mt-3 flex items-center gap-3 text-xs text-ink/50">
+                        {repo.language && <span className="font-medium text-ink/70">{repo.language}</span>}
+                        <span>{relativeTime(repo.updated_at)}</span>
+                      </div>
+                    </a>
                   ))}
                 </div>
               )}
             </div>
 
-            <div className="h-fit rounded-none border border-stone-200 bg-raised p-5 sm:p-6">
-              <h3 className="text-lg font-semibold text-ink">Recent activity</h3>
+            <div className="h-fit rounded-xl border border-ink/15 p-6">
+              <h3 className="font-display text-xl tracking-tight">Recent activity</h3>
               {loadingEvents ? (
                 <div className="mt-5 space-y-3">
-                  {Array.from({ length: 5 }).map((_, i) => (
+                  {[0, 1, 2, 3].map(i => (
                     <SkeletonBlock key={i} className="h-10" />
                   ))}
                 </div>
               ) : githubError ? (
-                <p className="mt-5 text-sm leading-relaxed text-stone-500">
-                  Live activity is temporarily unavailable.{' '}
+                <p className="mt-5 text-sm leading-relaxed text-ink/60">
+                  Activity is temporarily unavailable.{' '}
                   <a
                     href={`https://github.com/${GITHUB_USERNAME}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-medium text-brg hover:underline"
+                    className="font-medium text-blue hover:underline"
                   >
-                    View GitHub profile
+                    View on GitHub
                   </a>
                 </p>
               ) : activity.length === 0 ? (
-                <p className="mt-5 text-sm text-stone-500">No recent public activity.</p>
+                <p className="mt-5 text-sm text-ink/60">No recent public activity.</p>
               ) : (
                 <ul className="mt-5 space-y-4">
-                  {activity.slice(0, 6).map((item, i) => (
-                    <motion.li
-                      key={item.id}
-                      initial={{ opacity: 0, x: 10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.4, delay: Math.min(i * 0.06, 0.3) }}
-                      className="flex gap-3"
-                    >
-                      <GitCommit
-                        size={16}
-                        strokeWidth={1.75}
-                        className="mt-0.5 shrink-0 text-brg-bright"
-                      />
+                  {activity.map(item => (
+                    <li key={item.id} className="flex gap-3">
+                      <GitCommit size={14} strokeWidth={2} className="mt-0.5 shrink-0 text-orange" />
                       <div>
                         <a
                           href={item.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-sm leading-snug text-stone-700 hover:text-brg"
+                          className="text-sm leading-snug text-ink/80 hover:text-blue"
                         >
                           {item.text}
                         </a>
-                        <p className="mt-0.5 text-xs text-stone-400">{relativeTime(item.createdAt)}</p>
+                        <p className="mt-0.5 text-xs text-ink/50">{relativeTime(item.createdAt)}</p>
                       </div>
-                    </motion.li>
+                    </li>
                   ))}
                 </ul>
               )}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Closing, blue */}
+      <section className="panel bg-blue text-white">
+        <div className="panel-inner panel-narrow text-center">
+          <Reveal>
+            <h2 className="section-title">Something here worth a conversation?</h2>
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+              <Link to="/contact" className="btn btn-light">Get in touch</Link>
+              <Link to="/experience" className="btn btn-ghost">See experience</Link>
+            </div>
+          </Reveal>
         </div>
       </section>
     </>
